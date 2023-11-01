@@ -1,0 +1,32 @@
+/**
+* Post Grid Editor Styles
+*
+* CSS for just Backend enqueued after style.scss
+* which makes it higher in priority.
+*/
+/**
+* Post Grid Editor Styles
+*
+* CSS for both Frontend+Backend.
+*/
+
+//.utk-pg-featured-img img {
+//	border-radius: 5px 5px 0px 0px;
+//}
+
+.ggm-pg-grid {
+    .wp-block-post {
+        width: calc(50% - 10px);
+        padding: 0;
+    }
+}
+
+
+.ggm-pg-loop-wrap {
+    
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}

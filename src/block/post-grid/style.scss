@@ -1,0 +1,100 @@
+/**
+* Post Grid Editor Styles
+*
+* CSS for both Frontend+Backend.
+*/
+
+//.utk-pg-featured-img img {
+//	border-radius: 5px 5px 0px 0px;
+//}
+
+.ggm-pg-grid {
+    margin: 0 -10px;
+    .wp-block-post {
+        width: 33.33%;
+        padding: 10px;
+    }
+    
+    .ggm-pg-wrap {
+        position: relative;
+        &:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-image: linear-gradient(to bottom, rgba( 20, 20, 20, 0.5 ), rgba(20, 20, 20, 0.7));
+            border-radius: 20px;
+            overflow: hidden;
+            z-index: 0;
+        }
+    }
+    
+    .ggm-pg-content {
+        z-index: 1;
+        position: relative;
+    }
+    
+    .wp-block-group__inner-container {
+        position: relative;
+    }
+    .ggm-pg-featured-img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+    }
+    .ggm-pg-date-wrap {
+        .wp-block-post-author,
+        .ggm-pg-date {
+            margin: 0;
+        }
+        .wp-block-group__inner-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+        }
+        .wp-block-post-author {
+            &__avatar {
+                width: 16px;
+            }
+            &__content {
+                color: #fff;
+            }
+        }
+    }
+    .ggm-pg-link {
+        &:focus,
+        &:hover {
+            background: transparent !important;
+        }
+    }
+    
+    .wp-block-post-excerpt__excerpt {
+        line-height: 1.2;
+    }
+    
+    @media (min-width: 640px) and (max-width: 992px){
+        .wp-block-post {
+            width: 50%;
+        }        
+    }
+    @media (max-width: 640px){
+        .wp-block-post {
+            width: 100%;
+        }
+    }
+}

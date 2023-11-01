@@ -1,0 +1,188 @@
+/**
+ * Testimonial Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.utk-pg-featured-img img {
+	border-radius: 5px 5px 0px 0px;
+}
+
+.utk-testi-block {
+	.utk-testi-author-location {
+		margin-top: 0;
+	}
+	.utk-testi-description,
+	.utk-testi-star,
+	.utk-testi-author-name {
+		margin-top: 10px;
+	}
+	.slick-dots {
+		display: flex;
+		list-style: none;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		padding: 0;
+		margin-top: 20px;
+		li {
+			button {
+				font-size: 0;
+				width: 12px;
+				height: 12px;
+				border: 0;
+				border-radius: 50%;
+				background: #8d8d8d;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			&.slick-active {
+				button {
+					opacity: 0.5;
+				}
+			}
+		}
+		li + li {
+			margin-left: 15px;
+		}
+	}
+	.slick-arrow {
+		font-size: 0;
+		background: transparent;
+		border: none;
+		width: 70px;
+		height: 70px;
+		position: absolute;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		&:hover {
+			cursor: pointer;
+		}
+		&.slick-prev {
+			background-image: url('../src/block/testimonials/img/angle_left_icon.svg');
+			top: 40%;
+			left: -66px;
+			@media ( max-width: 1140px ) {
+				left: -50px;
+			}
+		}
+		&.slick-next {
+			background-image: url('../src/block/testimonials/img/angle_right_icon.svg');
+			top: 40%;
+			right: -66px;
+			@media ( max-width: 1140px ) {
+				right: -50px;
+			}
+		}
+	}
+}
+
+.utk-testi-inner-grp {
+
+	@media ( max-width: 992px ) {
+		margin: 0 50px;
+	}
+
+	&.slick-slider {
+		position: relative;
+		display: block;
+		box-sizing: border-box;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-ms-touch-action: pan-y;
+		touch-action: pan-y;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.slick-list {
+		position: relative;
+		overflow: hidden;
+		display: block;
+		margin: 0;
+		padding: 0;
+
+		&:focus {
+			outline: none;
+		}
+
+		&.dragging {
+			cursor: pointer;
+			cursor: hand;
+		}
+	}
+
+	.slick-track, .slick-list {
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		-o-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	.slick-track {
+		position: relative;
+		left: 0;
+		top: 0;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+
+		&:before,
+		&:after {
+			content: "";
+			display: table;
+		}
+
+		&:after {
+			clear: both;
+		}
+
+		.slick-loading & {
+			visibility: hidden;
+		}
+	}
+
+	.slick-slide {
+		float: left;
+		height: 100%;
+		min-height: 1px;
+		[dir="rtl"] & {
+			float: right;
+		}
+		img {
+			display: block;
+		}
+		&.slick-loading img {
+			display: none;
+		}
+
+		&.dragging img {
+			pointer-events: none;
+		}
+
+		.slick-initialized & {
+			display: block;
+		}
+
+		.slick-loading & {
+			visibility: hidden;
+		}
+
+		.slick-vertical & {
+			display: block;
+			height: auto;
+			border: 1px solid transparent;
+		}
+	}
+
+	.slick-arrow.slick-hidden {
+		display: none;
+	}
+}

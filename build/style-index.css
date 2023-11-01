@@ -1,0 +1,151 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/block/post-grid/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/**
+* Post Grid Editor Styles
+*
+* CSS for both Frontend+Backend.
+*/
+.ggm-pg-grid {
+  margin: 0 -10px;
+}
+.ggm-pg-grid .wp-block-post {
+  width: 33.33%;
+  padding: 10px;
+}
+.ggm-pg-grid .ggm-pg-wrap {
+  position: relative;
+}
+.ggm-pg-grid .ggm-pg-wrap:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.7));
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 0;
+}
+.ggm-pg-grid .ggm-pg-content {
+  z-index: 1;
+  position: relative;
+}
+.ggm-pg-grid .wp-block-group__inner-container {
+  position: relative;
+}
+.ggm-pg-grid .ggm-pg-featured-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.ggm-pg-grid .ggm-pg-featured-img img {
+  width: 100% !important;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.ggm-pg-grid .ggm-pg-date-wrap .wp-block-post-author,
+.ggm-pg-grid .ggm-pg-date-wrap .ggm-pg-date {
+  margin: 0;
+}
+.ggm-pg-grid .ggm-pg-date-wrap .wp-block-group__inner-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.ggm-pg-grid .ggm-pg-date-wrap .wp-block-post-author__avatar {
+  width: 16px;
+}
+.ggm-pg-grid .ggm-pg-date-wrap .wp-block-post-author__content {
+  color: #fff;
+}
+.ggm-pg-grid .ggm-pg-link:focus, .ggm-pg-grid .ggm-pg-link:hover {
+  background: transparent !important;
+}
+.ggm-pg-grid .wp-block-post-excerpt__excerpt {
+  line-height: 1.2;
+}
+@media (min-width: 640px) and (max-width: 992px) {
+  .ggm-pg-grid .wp-block-post {
+    width: 50%;
+  }
+}
+@media (max-width: 640px) {
+  .ggm-pg-grid .wp-block-post {
+    width: 100%;
+  }
+}
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/block/media-grid/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/**
+* Post Grid Editor Styles
+*
+* CSS for both Frontend+Backend.
+*/
+.ggm-mg-grid {
+  display: flex;
+  margin: 0;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .ggm-mg-grid.grid-size-1 .ggm-mg-media,
+  .ggm-mg-grid.grid-size-1 .ggm-mg-button,
+  .ggm-mg-grid.grid-size-1 .ggm-mg-wrap {
+    width: calc(100% - 0px);
+  }
+  .ggm-mg-grid.grid-size-2 .ggm-mg-media,
+  .ggm-mg-grid.grid-size-2 .ggm-mg-button,
+  .ggm-mg-grid.grid-size-2 .ggm-mg-wrap {
+    width: calc(50% - 10px);
+  }
+  .ggm-mg-grid.grid-size-3 .ggm-mg-media,
+  .ggm-mg-grid.grid-size-3 .ggm-mg-button,
+  .ggm-mg-grid.grid-size-3 .ggm-mg-wrap {
+    width: calc(33.3333333333% - 13.3333333333px);
+  }
+  .ggm-mg-grid.grid-size-4 .ggm-mg-media,
+  .ggm-mg-grid.grid-size-4 .ggm-mg-button,
+  .ggm-mg-grid.grid-size-4 .ggm-mg-wrap {
+    width: calc(25% - 15px);
+  }
+  .ggm-mg-grid.grid-size-5 .ggm-mg-media,
+  .ggm-mg-grid.grid-size-5 .ggm-mg-button,
+  .ggm-mg-grid.grid-size-5 .ggm-mg-wrap {
+    width: calc(20% - 16px);
+  }
+}
+@media (min-width: 561px) and (max-width: 767px) {
+  .ggm-mg-grid .ggm-mg-media,
+  .ggm-mg-grid .ggm-mg-button,
+  .ggm-mg-grid .ggm-mg-wrap {
+    width: 33.33%;
+  }
+}
+@media (min-width: 320px) and (max-width: 560px) {
+  .ggm-mg-grid .ggm-mg-media,
+  .ggm-mg-grid .ggm-mg-button,
+  .ggm-mg-grid .ggm-mg-wrap {
+    width: 50%;
+  }
+}
+
+.ggm-mg-media {
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

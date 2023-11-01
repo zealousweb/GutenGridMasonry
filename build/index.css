@@ -1,0 +1,157 @@
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/block/post-grid/editor.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/**
+* Post Grid Editor Styles
+*
+* CSS for just Backend enqueued after style.scss
+* which makes it higher in priority.
+*/
+/**
+* Post Grid Editor Styles
+*
+* CSS for both Frontend+Backend.
+*/
+.ggm-pg-grid .wp-block-post {
+  width: calc(50% - 10px);
+  padding: 0;
+}
+
+.ggm-pg-loop-wrap ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/block/media-grid/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+/**
+* Post Grid Editor Styles
+*
+* CSS for just Backend enqueued after style.scss
+* which makes it higher in priority.
+*/
+/**
+* Post Grid Editor Styles
+*
+* CSS for both Frontend+Backend.
+*/
+/*
+.ggm-pg-grid {
+.wp-block-post {
+width: 100%;
+padding: 0;
+}
+}
+*/
+.ggm-mg-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.ggm-mg-grid .ggm-mg-button {
+  display: block;
+  min-height: 320px !important;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.ggm-mg-wrap {
+  position: relative;
+  padding-top: 100px;
+  min-height: 220px;
+}
+
+.ggm-mg-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ggm-mg-image img {
+  width: 100%;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.ggm-mg-image:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.36);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.ggm-mg-content {
+  box-sizing: border-box;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.ggm-mg-content label {
+  display: none;
+}
+.ggm-mg-content input[type=text],
+.ggm-mg-content textarea {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+.ggm-mg-content input[type=text]::-webkit-input-placeholder,
+.ggm-mg-content textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ffffff;
+  opacity: 1;
+}
+.ggm-mg-content input[type=text]::-moz-placeholder,
+.ggm-mg-content textarea::-moz-placeholder { /* Firefox 19+ */
+  color: #ffffff;
+  opacity: 1;
+}
+.ggm-mg-content input[type=text]:-ms-input-placeholder,
+.ggm-mg-content textarea:-ms-input-placeholder { /* IE 10+ */
+  color: #ffffff;
+  opacity: 1;
+}
+.ggm-mg-content input[type=text]:-moz-placeholder,
+.ggm-mg-content textarea:-moz-placeholder { /* Firefox 18- */
+  color: #ffffff;
+  opacity: 1;
+}
+.ggm-mg-content input[type=text]:focus,
+.ggm-mg-content textarea:focus {
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+}
+.ggm-mg-content input[type=text]:focus::-webkit-input-placeholder,
+.ggm-mg-content textarea:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #000000;
+}
+.ggm-mg-content input[type=text]:focus::-moz-placeholder,
+.ggm-mg-content textarea:focus::-moz-placeholder { /* Firefox 19+ */
+  color: #000000;
+}
+.ggm-mg-content input[type=text]:focus:-ms-input-placeholder,
+.ggm-mg-content textarea:focus:-ms-input-placeholder { /* IE 10+ */
+  color: #000000;
+}
+.ggm-mg-content input[type=text]:focus:-moz-placeholder,
+.ggm-mg-content textarea:focus:-moz-placeholder { /* Firefox 18- */
+  color: #000000;
+}
+
+.custom-label {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=index.css.map*/
