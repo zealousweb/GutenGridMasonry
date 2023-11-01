@@ -4,7 +4,7 @@
 	"name": "gutengrid/masonary",
 	"version": "1.0.0",
 	"title": "Guten Grid Masonry",
-	"category": "custom_block",
+	"category": "text",
 	"icon": "smiley",
 	"description": "Example static block scaffolded with Create Block tool.",
 	"supports": {
