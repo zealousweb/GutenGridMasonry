@@ -10,7 +10,7 @@
 $columns: 3;
 .ggm-pg-grid {
     margin: 0 -10px;
-    @media (min-width: 768px){
+    @media (min-width: 992px){
         @for $i from 1 through $columns {
             &.grid-size-#{$i} {
                 .wp-block-post {
@@ -19,6 +19,20 @@ $columns: 3;
             }
         }        
     }
+    
+    @media (min-width: 767px) and (max-width: 991px) {
+        .wp-block-post {
+            width: 50%;
+        }
+    }
+
+    @media (min-width: 320px) and (max-width: 766px) {
+        .wp-block-post {
+            width: 100%;
+        }
+    }
+    
+    
     .wp-block-post {
         padding: 10px;
     }

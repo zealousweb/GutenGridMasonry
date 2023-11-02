@@ -9,7 +9,7 @@
 .ggm-pg-grid {
   margin: 0 -10px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .ggm-pg-grid.grid-size-1 .wp-block-post {
     width: calc(100% - 0px);
   }
@@ -18,6 +18,16 @@
   }
   .ggm-pg-grid.grid-size-3 .wp-block-post {
     width: calc(33.3333333333% - 13.3333333333px);
+  }
+}
+@media (min-width: 767px) and (max-width: 991px) {
+  .ggm-pg-grid .wp-block-post {
+    width: 50%;
+  }
+}
+@media (min-width: 320px) and (max-width: 766px) {
+  .ggm-pg-grid .wp-block-post {
+    width: 100%;
   }
 }
 .ggm-pg-grid .wp-block-post {
