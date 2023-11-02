@@ -39,7 +39,11 @@ const POST_GRID_TEMPLATE = [
 			] ],
 		] ],
 	],
-	[ 'core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [ [ 'core/button', { text: __( 'Read All Posts', 'gutengridmasonry' ), style: { color: { background: '#ffc668', text: '#fff' }, border: { radius: '5px' } } } ] ] ],
+	[ 'core/group', {  className: 'test' },
+		[
+			[ 'core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [ [ 'core/button', { text: __( 'Read All Posts', 'gutengridmasonry' ), style: { color: { background: '#ffc668', text: '#fff' }, border: { radius: '5px' } } } ] ] ],
+		]
+	]
 ];
 
 registerBlockType( 'gutengridmasonry/post-grid', {
@@ -96,7 +100,7 @@ registerBlockType( 'gutengridmasonry/post-grid', {
 		);
 	},
 
-	save: ( {attributes} ) => {
+	save: ( { attributes } ) => {
 		const { gridItem } = attributes;
 		return (
 			<div { ...useBlockProps.save( { className: `ggm-pg-grid ggm-grid grid-size-${gridItem}` } ) }>

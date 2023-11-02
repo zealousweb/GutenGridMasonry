@@ -12,7 +12,8 @@ $columns: 5;
 .ggm-mg-grid {
     display: flex;
     margin: 0;
-    gap: 20px;
+    font-size: 0;
+    position: relative;
     @media (min-width: 768px){
         @for $i from 1 through $columns {
             &.grid-size-#{$i} {
@@ -20,6 +21,7 @@ $columns: 5;
                 .ggm-mg-button,
                 .ggm-mg-wrap {
                     width: calc( ( 100% / $i ) - ( ( 20px * ( $i - 1 ) ) / $i ) );
+                    margin-bottom: 20px;
                 }
             }
         }        
@@ -42,7 +44,7 @@ $columns: 5;
     }
 }
 .ggm-mg-media {
-    padding: 10px;
+    padding: 0;
     box-sizing: border-box;
     font-size: 0;
     border-radius: 20px;

@@ -16,7 +16,7 @@ $(() => {
 		}
 	});*/
 
-	$('.ggm-pg-grid').isotope({
+	$('.ggm-pg-grid .ggm-pg-loop-wrap').isotope({
 		itemSelector: '.wp-block-post',
 		percentPosition: true,
 		masonry: {
@@ -29,8 +29,9 @@ $(() => {
 		itemSelector: '.ggm-mg-media',
 		percentPosition: true,
 		masonry: {
+			gutter: 20,
 			// use outer width of grid-sizer for columnWidth
-			//columnWidth: '.grid-sizer'
+			columnWidth: '.ggm-mg-media'
 		}
 	});
 

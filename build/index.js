@@ -37,7 +37,8 @@ const {
   MediaUpload,
   MediaUploadCheck,
   InspectorControls,
-  FileUpload
+  FileUpload,
+  useBlockProps
 } = wp.blockEditor;
 const {
   TextControl,
@@ -136,7 +137,9 @@ registerBlockType('gutengridmasonry/media-grid', {
       min: 1,
       max: 5
     }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-      className: `ggm-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
+      ...useBlockProps.save({
+        className: `alignwide ggm-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
+      })
     }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "ggm-mg-wrap",
       key: index
@@ -188,8 +191,10 @@ registerBlockType('gutengridmasonry/media-grid', {
       gridItem
     } = attributes;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-      className: `ggm-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
-    }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...useBlockProps.save({
+        className: `alignwide ggm-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
+      })
+    }, " ", attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "ggm-mg-media",
       key: index
     }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, item.popup_url && videoOptionEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
@@ -724,7 +729,9 @@ const POST_GRID_TEMPLATE = [['core/group', {
       'margin': '0'
     }
   }
-}]]]]]]]]]]], ['core/buttons', {
+}]]]]]]]]]]], ['core/group', {
+  className: 'test'
+}, [['core/buttons', {
   layout: {
     type: 'flex',
     justifyContent: 'center'
@@ -747,7 +754,7 @@ const POST_GRID_TEMPLATE = [['core/group', {
       radius: '5px'
     }
   }
-}]]]];
+}]]]]]];
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('gutengridmasonry/post-grid', {
   apiVersion: 2,
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Post Grid', 'gutengridmasonry'),

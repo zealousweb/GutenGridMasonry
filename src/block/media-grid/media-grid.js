@@ -13,7 +13,7 @@ import PlaceholderImage from './placeholder-image.png';
 
 import { __ } from '@wordpress/i18n';
 const { registerBlockType } = wp.blocks;
-const { MediaUpload, MediaUploadCheck, InspectorControls, FileUpload } = wp.blockEditor;
+const { MediaUpload, MediaUploadCheck, InspectorControls, FileUpload, useBlockProps } = wp.blockEditor;
 const { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button } = wp.components;
 
 registerBlockType('gutengridmasonry/media-grid', {
@@ -105,7 +105,7 @@ registerBlockType('gutengridmasonry/media-grid', {
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
-			<section className={`ggm-mg-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>
+			<section { ...useBlockProps.save( { className: `alignwide ggm-mg-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }` } ) }>
 				{attributes.items.map((item, index) => (
 					<div className="ggm-mg-wrap" key={index}>
 						{/*console.log(item.image.sizes)*/}
@@ -158,7 +158,7 @@ registerBlockType('gutengridmasonry/media-grid', {
 		const { videoOptionEnabled } = attributes;
 		const { gridItem } = attributes;
 		return (
-			<section className={`ggm-mg-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>
+			<section { ...useBlockProps.save( { className: `alignwide ggm-mg-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }` } ) }> { /* }//className={`ggm-mg-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
 
 				{attributes.items.map((item, index) => (
 					<div className="ggm-mg-media" key={index}>

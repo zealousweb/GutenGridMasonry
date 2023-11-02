@@ -8,6 +8,7 @@
 */
 .ggm-pg-grid {
   margin: 0 -10px;
+  position: relative;
 }
 @media (min-width: 992px) {
   .ggm-pg-grid.grid-size-1 .wp-block-post {
@@ -117,33 +118,39 @@
 .ggm-mg-grid {
   display: flex;
   margin: 0;
-  gap: 20px;
+  font-size: 0;
+  position: relative;
 }
 @media (min-width: 768px) {
   .ggm-mg-grid.grid-size-1 .ggm-mg-media,
   .ggm-mg-grid.grid-size-1 .ggm-mg-button,
   .ggm-mg-grid.grid-size-1 .ggm-mg-wrap {
     width: calc(100% - 0px);
+    margin-bottom: 20px;
   }
   .ggm-mg-grid.grid-size-2 .ggm-mg-media,
   .ggm-mg-grid.grid-size-2 .ggm-mg-button,
   .ggm-mg-grid.grid-size-2 .ggm-mg-wrap {
     width: calc(50% - 10px);
+    margin-bottom: 20px;
   }
   .ggm-mg-grid.grid-size-3 .ggm-mg-media,
   .ggm-mg-grid.grid-size-3 .ggm-mg-button,
   .ggm-mg-grid.grid-size-3 .ggm-mg-wrap {
     width: calc(33.3333333333% - 13.3333333333px);
+    margin-bottom: 20px;
   }
   .ggm-mg-grid.grid-size-4 .ggm-mg-media,
   .ggm-mg-grid.grid-size-4 .ggm-mg-button,
   .ggm-mg-grid.grid-size-4 .ggm-mg-wrap {
     width: calc(25% - 15px);
+    margin-bottom: 20px;
   }
   .ggm-mg-grid.grid-size-5 .ggm-mg-media,
   .ggm-mg-grid.grid-size-5 .ggm-mg-button,
   .ggm-mg-grid.grid-size-5 .ggm-mg-wrap {
     width: calc(20% - 16px);
+    margin-bottom: 20px;
   }
 }
 @media (min-width: 561px) and (max-width: 767px) {
@@ -162,7 +169,7 @@
 }
 
 .ggm-mg-media {
-  padding: 10px;
+  padding: 0;
   box-sizing: border-box;
   font-size: 0;
   border-radius: 20px;
