@@ -7,16 +7,25 @@
 //.utk-pg-featured-img img {
 //	border-radius: 5px 5px 0px 0px;
 //}
-
+$columns: 3;
 .ggm-pg-grid {
     margin: 0 -10px;
+    @media (min-width: 768px){
+        @for $i from 1 through $columns {
+            &.grid-size-#{$i} {
+                .wp-block-post {
+                    width: calc( ( 100% / $i ) - ( ( 20px * ( $i - 1 ) ) / $i ) );
+                }
+            }
+        }        
+    }
     .wp-block-post {
-        width: 33.33%;
         padding: 10px;
     }
     
     .ggm-pg-wrap {
         position: relative;
+        height: 100%;
         &:after {
             content: "";
             width: 100%;

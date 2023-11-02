@@ -63,7 +63,7 @@ registerBlockType( 'gutengridmasonry/post-grid', {
 		},
 		gridItem: {
 			type: 'number',
-			default: 3,
+			default: 2,
 		},
 	},
 	//onChange: sliderIsUpdated(),
@@ -82,12 +82,12 @@ registerBlockType( 'gutengridmasonry/post-grid', {
 							value={gridItem}
 							onChange={(newGridItem) => setAttributes({ gridItem: newGridItem })}
 							min={1}
-							max={5}
+							max={3}
 							/>
 						</PanelBody>
 					</Panel>
 				</InspectorControls>
-				<div { ...useBlockProps( { className: 'ggm-pg-grid' } ) }>
+				<div { ...useBlockProps( { className: `ggm-pg-grid grid-size-${gridItem}` } ) }>
 					<InnerBlocks
 						template={ POST_GRID_TEMPLATE }
 					/>
@@ -96,9 +96,12 @@ registerBlockType( 'gutengridmasonry/post-grid', {
 		);
 	},
 
-	save: ( {} ) => (
-		<div { ...useBlockProps.save( { className: 'ggm-pg-grid ggm-grid' } ) }>
-			<InnerBlocks.Content />
-		</div>
-	),
+	save: ( {attributes} ) => {
+		const { gridItem } = attributes;
+		return (
+			<div { ...useBlockProps.save( { className: `ggm-pg-grid ggm-grid grid-size-${gridItem}` } ) }>
+				<InnerBlocks.Content />
+			</div>
+		);
+	},
 } );

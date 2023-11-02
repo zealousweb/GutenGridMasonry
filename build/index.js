@@ -775,7 +775,7 @@ const POST_GRID_TEMPLATE = [['core/group', {
     },
     gridItem: {
       type: 'number',
-      default: 3
+      default: 2
     }
   },
   //onChange: sliderIsUpdated(),
@@ -799,20 +799,27 @@ const POST_GRID_TEMPLATE = [['core/group', {
         gridItem: newGridItem
       }),
       min: 1,
-      max: 5
+      max: 3
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
-        className: 'ggm-pg-grid'
+        className: `ggm-pg-grid grid-size-${gridItem}`
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
       template: POST_GRID_TEMPLATE
     })));
   },
-  save: ({}) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps.save({
-      className: 'ggm-pg-grid ggm-grid'
-    })
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.Content, null))
+  save: ({
+    attributes
+  }) => {
+    const {
+      gridItem
+    } = attributes;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps.save({
+        className: `ggm-pg-grid ggm-grid grid-size-${gridItem}`
+      })
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.Content, null));
+  }
 });
 
 /***/ }),
