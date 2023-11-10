@@ -106,7 +106,7 @@ function create_block_gutengridmasonry_block_init() {
 
 	wp_enqueue_script(
 		'fancyapp-lib',
-		plugins_url( '/node_modules/@fancyapps/ui/dist/fancybox/fancybox.umd.js', __FILE__ ),
+		plugins_url( '/assets/js/fancybox.umd.js', __FILE__ ),
 		array( 'jquery' ),
 		'',
 		true
@@ -120,8 +120,8 @@ function create_block_gutengridmasonry_block_init() {
 		true
 	);
 
-	wp_enqueue_style( 'fancyapp-lib',
-		plugins_url( '/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css', __FILE__ ),
+	wp_enqueue_style( 'fancyapp-css',
+		plugins_url( '/assets/css/fancybox.css', __FILE__ ),
 		'',
 		true
 	);
