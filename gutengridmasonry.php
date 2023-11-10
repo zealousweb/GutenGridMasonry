@@ -1,4 +1,5 @@
 <?php
+
 /**
 * Plugin Name:       Guten Grid Masonry
 * Description:       Example block scaffolded with Create Block tool.
@@ -120,7 +121,7 @@ function create_block_gutengridmasonry_block_init() {
 		true
 	);
 
-	wp_enqueue_style( 'fancyapp-css',
+	wp_enqueue_style( 'fancyapp-css/assets/',
 		plugins_url( '/assets/css/fancybox.css', __FILE__ ),
 		'',
 		true

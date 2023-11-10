@@ -5,13 +5,7 @@
 import './style.scss';
 import './editor.scss';
 import PlaceholderImage from './placeholder-image.png';
-{ /*}
-// import { Fancybox } from "../../../node_modules/@fancyapps/ui";
-// import { Fancybox } from "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js";
-// import "../../../node_modules/@fancyapps/ui/dist/fancybox/fancybox.css";
-{ */}
-
-import { __ } from '@wordpress/i18n';
+const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { MediaUpload, MediaUploadCheck, InspectorControls, FileUpload, useBlockProps } = wp.blockEditor;
 const { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button } = wp.components;
@@ -37,10 +31,6 @@ registerBlockType('gutengridmasonry/media-grid', {
 			type: 'number',
 			default: 3,
 		},
-		// file: {
-		// 	type: 'string',
-		// 	default: '',
-		// },
 	},
 	edit: function (props) {
 
