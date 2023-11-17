@@ -14,8 +14,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/block/media-grid/style.scss");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/block/media-grid/editor.scss");
 /* harmony import */ var _placeholder_image_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./placeholder-image.png */ "./src/block/media-grid/placeholder-image.png");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
 
 /**
 * WordPress dependencies
@@ -24,12 +22,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-{/*}
- // import { Fancybox } from "../../../node_modules/@fancyapps/ui";
- // import { Fancybox } from "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js";
- // import "../../../node_modules/@fancyapps/ui/dist/fancybox/fancybox.css";
- { */}
-
+const {
+  __
+} = wp.i18n;
 const {
   registerBlockType
 } = wp.blocks;
@@ -70,12 +65,7 @@ registerBlockType('gutengridmasonry/media-grid', {
       type: 'number',
       default: 3
     }
-    // file: {
-    // 	type: 'string',
-    // 	default: '',
-    // },
   },
-
   edit: function (props) {
     const {
       attributes,
@@ -129,7 +119,7 @@ registerBlockType('gutengridmasonry/media-grid', {
       className: "custom-label"
     }) : '', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
       className: "custom-label"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Grid Items', 'gutengridmasonry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
+    }, __('Select Grid Items', 'gutengridmasonry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
       value: gridItem,
       onChange: newGridItem => setAttributes({
         gridItem: newGridItem

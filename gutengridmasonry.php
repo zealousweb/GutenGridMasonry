@@ -64,37 +64,37 @@ require_once GUTENGRID_MASONRY_DIR . '/inc/custom-functions.php';
 function create_block_gutengridmasonry_block_init() {
 
 	// Register block styles for both frontend + backend.
-	wp_register_style(
-		'gutengridmasonry-comman-style-css',
-		plugins_url( '/dist/blocks.comman.style.build.css', __FILE__ ),
-		is_admin() ? array( 'wp-editor' ) : null,
-		GUTENGRID_MASONRY_VERSION
-	);
+	// wp_register_style(
+	// 	'gutengridmasonry-comman-style-css',
+	// 	plugins_url( '/dist/blocks.comman.style.build.css', __FILE__ ),
+	// 	is_admin() ? array( 'wp-editor' ) : null,
+	// 	GUTENGRID_MASONRY_VERSION
+	// );
 
 	// Register style frontend as well as backend.
-	wp_register_style(
-		'gutengridmasonry-style-css',
-		plugins_url( '/dist/blocks.style.build.css', __FILE__ ),
-		is_admin() ? array( 'wp-editor' ) : null,
-		GUTENGRID_MASONRY_VERSION
-	);
+	// wp_register_style(
+	// 	'gutengridmasonry-style-css',
+	// 	plugins_url( '/dist/blocks.style.build.css', __FILE__ ),
+	// 	is_admin() ? array( 'wp-editor' ) : null,
+	// 	GUTENGRID_MASONRY_VERSION
+	// );
 
 	// Register block editor script for backend.
-	wp_register_script(
-		'gutengridmasonry-block-js',
-		plugins_url( '/dist/blocks.build.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
-		GUTENGRID_MASONRY_VERSION,
-		true
-	);
+	// wp_register_script(
+	// 	'gutengridmasonry-block-js',
+	// 	plugins_url( '/dist/blocks.build.js', __FILE__ ),
+	// 	array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
+	// 	GUTENGRID_MASONRY_VERSION,
+	// 	true
+	// );
 
 	// Register block editor styles for backend.
-	wp_register_style(
-		'gutengridmasonry-block-editor-css',
-		plugins_url( '/dist/blocks.editor.build.css', __FILE__ ),
-		is_admin() ? array( 'wp-edit-blocks' ) : null,
-		GUTENGRID_MASONRY_VERSION
-	);
+	// wp_register_style(
+	// 	'gutengridmasonry-block-editor-css',
+	// 	plugins_url( '/dist/blocks.editor.build.css', __FILE__ ),
+	// 	is_admin() ? array( 'wp-edit-blocks' ) : null,
+	// 	GUTENGRID_MASONRY_VERSION
+	// );
 
 	/** Masonry */
 	wp_enqueue_script(
@@ -116,7 +116,7 @@ function create_block_gutengridmasonry_block_init() {
 	wp_enqueue_script(
 		'script-custom',
 		plugins_url( '/assets/js/script.js', __FILE__ ),
-		array( 'jquery', 'fancyapp-lib' ),
+		array( 'jquery', 'fancyapp-lib', 'isotope-masonry' ),
 		GUTENGRID_MASONRY_VERSION,
 		true
 	);
