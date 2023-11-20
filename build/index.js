@@ -237,7 +237,7 @@ registerBlockType('gutengridmasonry/media-grid', {
         alt: ""
       })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.image.sizes.full.url,
-        "data-fancybox": "gallery",
+        "data-fancybox": "video-gallery",
         "data-caption": item.image_caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
@@ -414,6 +414,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }], ['core/post-excerpt', {
   excerptLength: 20,
+  moreText: '&nbsp;',
   className: 'ggm-pg-description',
   style: {
     typography: {

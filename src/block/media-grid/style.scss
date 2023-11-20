@@ -27,15 +27,18 @@ $columns: 5;
 		.ggm-mg-media,
 		.ggm-mg-button,
 		.ggm-mg-wrap {
-			width: 33.33%;
+			width: calc( 33.33% - 13.33px );
+            margin-bottom: 20px;
 		}
+        
 	}
 
 	@media (min-width: 320px) and (max-width: 560px) {
 		.ggm-mg-media,
 		.ggm-mg-button,
 		.ggm-mg-wrap {
-			width: 50%;
+			width: calc(50% - 10px);
+            margin-bottom: 20px;
 		}
 	}
 }

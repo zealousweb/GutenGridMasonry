@@ -216,7 +216,7 @@ function ggm_plugin_block_categories( $categories ) {
 			array(
 				array(
 					'slug'  => 'guten-grid-masonry',
-					'title' => __( 'GutenGrid Masonry', 'gutengridmasonry' ),
+					'title' => __( 'ZealBlocks', 'gutengridmasonry' ),
 					'icon'  => '',
 				),
 			)

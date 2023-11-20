@@ -23,6 +23,7 @@ const { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelB
  */
 registerBlockType('gutengridmasonry/media-grid', {
     title: __( 'Media Grid', 'gutengridmasonry' ),
+    description: __('Media grid Masnary is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gutengridmasonry'),
 	icon: 'format-gallery',
 	category: 'guten-grid-masonry',
 	attributes: {
@@ -205,7 +206,7 @@ registerBlockType('gutengridmasonry/media-grid', {
                                                 </svg>
 											    <img src= {item.image.sizes.full.url} alt="" />
 											</a>
-											: <a href={item.image.sizes.full.url} data-fancybox="gallery" data-caption={item.image_caption}>
+                                                    : <a href={item.image.sizes.full.url} data-fancybox="video-gallery" data-caption={item.image_caption}>
 												<img src={item.image.sizes.full.url} alt="" />
 											</a>
 										}
