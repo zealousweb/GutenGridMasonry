@@ -55,6 +55,7 @@ const {
  */
 registerBlockType('gutengridmasonry/media-grid', {
   title: __('Media Grid', 'gutengridmasonry'),
+  description: __('Media grid Masnary is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gutengridmasonry'),
   icon: 'format-gallery',
   category: 'guten-grid-masonry',
   attributes: {
