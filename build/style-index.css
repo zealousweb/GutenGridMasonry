@@ -175,5 +175,13 @@
   border-radius: 20px;
   overflow: hidden;
 }
+.ggm-mg-media svg {
+  background: #ffffff;
+  padding: 5px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 100px;
+}
 
 /*# sourceMappingURL=style-index.css.map*/

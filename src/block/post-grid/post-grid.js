@@ -1,7 +1,13 @@
+
+/**
+ * Import Styles 
+ */
 import './style.scss';
 import './editor.scss';
-//import './admin-scripts.js';
 
+/**
+* WordPress dependencies
+*/
 import { registerBlockType } from '@wordpress/blocks';
 import {
 	BlockControls,
@@ -12,14 +18,17 @@ import {
 const { RangeControl, Panel, PanelBody } = wp.components;
 import { __ } from '@wordpress/i18n';
 
-
+/**  */
 const POST_GRID_TEMPLATE = [
+    /** Additional Heading and Description */
 	[ 'core/group', {  className: 'ggm-pg-title', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' } } },
 		[
 			[ 'core/paragraph', { className: 'ggm-pg-sub-heading', placeholder: __( 'Your amazing blog posts', 'gutengridmasonry' ), align: 'center', style: { color: { text: '#ffc668' }, typography: { fontSize: '16px', fontWeight: 700, textTransform: 'uppercase' }, spacing: { margin: { bottom: '15px', top: '0px', right: '0px', left: '0px' } } } } ],
 			[ 'core/heading', { className: 'ggm-pg-main-heading', placeholder: __( 'Create a Quick and Easy Post Grid', 'gutengridmasonry' ), textAlign: 'center', style: { typography: { fontWeight: 700, }, spacing: { margin: { bottom: '25px', top: '0px', right: '0px', left: '0px' } } } } ],
 		]
 	],
+
+    /** Main Post Loop/Query with Default Wordpress Posts */
 	[ 'core/query', { className: 'ggm-pg-loop-wrap', query: { inherit: false, offset: 0, postType: 'post' }, displayLayout: { type: 'flex', columns: 3 } },
 		[ [ 'core/post-template', {},
 			[ [ 'core/group', {  className: 'ggm-pg-wrap', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' } } },
@@ -39,13 +48,16 @@ const POST_GRID_TEMPLATE = [
 			] ],
 		] ],
 	],
-	[ 'core/group', {  className: 'test' },
+    ['core/group', { className: 'ggm-pg-cta-button' },
 		[
 			[ 'core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [ [ 'core/button', { text: __( 'Read All Posts', 'gutengridmasonry' ), style: { color: { background: '#ffc668', text: '#fff' }, border: { radius: '5px' } } } ] ] ],
 		]
 	]
 ];
 
+/**
+ * Post Grid block registration
+ */
 registerBlockType( 'gutengridmasonry/post-grid', {
 	apiVersion: 2,
 	title: __( 'Post Grid', 'gutengridmasonry' ),

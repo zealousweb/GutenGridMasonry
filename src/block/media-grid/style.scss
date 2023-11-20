@@ -4,49 +4,53 @@
 * CSS for both Frontend+Backend.
 */
 
-//.utk-pg-featured-img img {
-//	border-radius: 5px 5px 0px 0px;
-//}
-
 $columns: 5;
 .ggm-mg-grid {
-    display: flex;
-    margin: 0;
-    font-size: 0;
-    position: relative;
-    @media (min-width: 768px){
-        @for $i from 1 through $columns {
-            &.grid-size-#{$i} {
-                .ggm-mg-media,
-                .ggm-mg-button,
-                .ggm-mg-wrap {
-                    width: calc( ( 100% / $i ) - ( ( 20px * ( $i - 1 ) ) / $i ) );
-                    margin-bottom: 20px;
-                }
-            }
-        }        
-    }
-    
-    @media (min-width: 561px) and (max-width: 767px) {
-        .ggm-mg-media,
-        .ggm-mg-button,
-        .ggm-mg-wrap {
-            width: 33.33%;
-        }
-    }
+	display: flex;
+	margin: 0;
+	font-size: 0;
+	position: relative;
+	@media (min-width: 768px) {
+		@for $i from 1 through $columns {
+			&.grid-size-#{$i} {
+				.ggm-mg-media,
+				.ggm-mg-button,
+				.ggm-mg-wrap {
+					width: calc((100% / $i) - ((20px * ($i - 1)) / $i));
+					margin-bottom: 20px;
+				}
+			}
+		}
+	}
 
-    @media (min-width: 320px) and (max-width: 560px) {
-        .ggm-mg-media,
-        .ggm-mg-button,
-        .ggm-mg-wrap {
-            width: 50%;
-        }
-    }
+	@media (min-width: 561px) and (max-width: 767px) {
+		.ggm-mg-media,
+		.ggm-mg-button,
+		.ggm-mg-wrap {
+			width: 33.33%;
+		}
+	}
+
+	@media (min-width: 320px) and (max-width: 560px) {
+		.ggm-mg-media,
+		.ggm-mg-button,
+		.ggm-mg-wrap {
+			width: 50%;
+		}
+	}
 }
 .ggm-mg-media {
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 0;
-    border-radius: 20px;
-    overflow: hidden;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 0;
+	border-radius: 20px;
+	overflow: hidden;
+    svg {
+        background: #ffffff;
+        padding: 5px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        border-radius: 100px;
+    }
 }
