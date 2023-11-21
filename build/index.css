@@ -16,9 +16,6 @@
   width: calc(50% - 10px);
   padding: 0;
 }
-.ggm-pg-grid .wp-block-post .wp-block-post-excerpt__more-text {
-  display: none !important;
-}
 
 .ggm-pg-loop-wrap ul {
   display: flex;

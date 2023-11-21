@@ -345,13 +345,17 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   query: {
     inherit: false,
     offset: 0,
-    postType: 'post'
+    postType: 'post',
+    enhancedPagination: true
   },
+  templateLock: true,
   displayLayout: {
     type: 'flex',
     columns: 3
   }
-}, [['core/post-template', {}, [['core/group', {
+}, [['core/post-template', {
+  templateLock: true
+}, [['core/group', {
   className: 'ggm-pg-wrap',
   style: {
     border: {
@@ -359,7 +363,8 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       width: '0',
       radius: '0',
       color: '#dcdcdc'
-    }
+    },
+    templateLock: true
   }
 }, [['core/post-featured-image', {
   className: 'ggm-pg-featured-img',
@@ -491,7 +496,9 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       'margin': '0'
     }
   }
-}]]]]]]]]]]], ['core/group', {
+}]]]]]]]]], ['core/query-pagination', {
+  className: 'post-pagination'
+}]]], ['core/group', {
   className: 'ggm-pg-cta-button'
 }, [['core/buttons', {
   layout: {
