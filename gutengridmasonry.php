@@ -1,5 +1,4 @@
 <?php
-
 /**
 * Plugin Name:       Guten Grid Masonry
 * Description:       Example block scaffolded with Create Block tool.
@@ -40,7 +39,7 @@ if ( ! defined( 'GUTENGRID_MASONRY_VERSION' ) ) {
 	define( 'GUTENGRID_MASONRY_VERSION', time() );
 }
 
-if ( ! defined( 'GUTENGRID_MASONRY_VERSION' ) ) {
+if ( ! defined( 'GUTENGRID_BLOCK_PLUGIN_SHORT_NAME' ) ) {
 	define( 'GUTENGRID_BLOCK_PLUGIN_SHORT_NAME', 'GUTENGRID' );
 }
 
@@ -61,40 +60,7 @@ require_once GUTENGRID_MASONRY_DIR . '/inc/custom-functions.php';
 * @return void
 */
 
-function create_block_gutengridmasonry_block_init() {
-
-	// Register block styles for both frontend + backend.
-	// wp_register_style(
-	// 	'gutengridmasonry-comman-style-css',
-	// 	plugins_url( '/dist/blocks.comman.style.build.css', __FILE__ ),
-	// 	is_admin() ? array( 'wp-editor' ) : null,
-	// 	GUTENGRID_MASONRY_VERSION
-	// );
-
-	// Register style frontend as well as backend.
-	// wp_register_style(
-	// 	'gutengridmasonry-style-css',
-	// 	plugins_url( '/dist/blocks.style.build.css', __FILE__ ),
-	// 	is_admin() ? array( 'wp-editor' ) : null,
-	// 	GUTENGRID_MASONRY_VERSION
-	// );
-
-	// Register block editor script for backend.
-	// wp_register_script(
-	// 	'gutengridmasonry-block-js',
-	// 	plugins_url( '/dist/blocks.build.js', __FILE__ ),
-	// 	array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
-	// 	GUTENGRID_MASONRY_VERSION,
-	// 	true
-	// );
-
-	// Register block editor styles for backend.
-	// wp_register_style(
-	// 	'gutengridmasonry-block-editor-css',
-	// 	plugins_url( '/dist/blocks.editor.build.css', __FILE__ ),
-	// 	is_admin() ? array( 'wp-edit-blocks' ) : null,
-	// 	GUTENGRID_MASONRY_VERSION
-	// );
+function create_block_gutengridmasonry_block_init() {	
 
 	/** Masonry library */
 	wp_enqueue_script(
@@ -130,77 +96,11 @@ function create_block_gutengridmasonry_block_init() {
 		true
 	);
 
-	// Register card block CSS and JS.
-	// register_block_type(
-	// 	'gutengridmasonry/post-grid',
-	// 	array(
-	// 		'style'         => 'gutengridmasonry-style-css',
-	// 		'style-comman'  => 'gutengridmasonry-comman-style-css',
-	// 		'editor_script' => 'gutengridmasonry-block-js',
-	// 		'editor_style'  => 'gutengridmasonry-block-editor-css',
-	// 	)
-	// );
-
+   // wp_localize_script('main-script', 'admin_theme_object', array('themeurl' => get_theme_file_uri()));
 	register_block_type( __DIR__ . '/build' );
-	// register_block_type( __DIR__ . '/src/block/post-grid/post-grid.js' );
+
 }
 add_action( 'init', 'create_block_gutengridmasonry_block_init' );
-
-
-/**
- * Enqueue a script in the WordPress admin on edit.php.
- *
- * @param int $hook Hook suffix for the current admin page.
- */
-/*function create_block_gutengridmasonry_admin_block_init( $hook ) {
-    if ( 'edit.php' != $hook ) {
-        return;
-    }
-	wp_enqueue_script(
-		'isotope-masonry',
-		plugins_url( '/assets/js/unpkg.com_isotope-layout@3.0.6_dist_isotope.pkgd.min.js', __FILE__ ),
-		'array( 'jquery' )',
-		'3.0.6',
-		true
-	);
-
-	wp_enqueue_script(
-		'script-custom',
-		plugins_url( '/assets/js/script.js', __FILE__ ),
-		array( 'jquery' ),
-		GUTENGRID_MASONRY_VERSION,
-		true
-	);
-} */
-//add_action( 'admin_enqueue_scripts', 'create_block_gutengridmasonry_admin_block_init' );
-
-
-
-// function create_block_gutengrid_block_init() {
-// 	//register_block_type( __DIR__ . '/build/blog-post' );
-// 	register_block_type( __DIR__ . '/build/masonry' );
-// 	//register_block_type( __DIR__ . '/build/my-repeater' );
-// 	register_block_type( __DIR__ . '/build/new-repeater' );
-// 	register_block_type( __DIR__ . '/build/post-grid' );
-// }
-// add_action( 'init', 'create_block_gutengrid_block_init' );
-
-
-/**
-* Enqueue Gutenberg block assets for both frontend + backend.
-*
-* Assets enqueued:
-* 1. gutengridmasonry.style.build.css - Frontend + Backend.
-* 2. gutengridmasonry.build.js - Backend.
-* 3. gutengridmasonry.editor.build.css - Backend.
-*
-* @uses  {wp-blocks} for block type registration & related functions.
-* @uses  {wp-element} for WP Element abstraction — structure of blocks.
-* @uses  {wp-i18n} to internationalize the block's text.
-* @uses  {wp-editor} for WP editor styles.
-* @since 1.0.0
-*/
-
 
 
 /**

@@ -27,10 +27,9 @@ $columns: 5;
 		.ggm-mg-media,
 		.ggm-mg-button,
 		.ggm-mg-wrap {
-			width: calc( 33.33% - 13.33px );
-            margin-bottom: 20px;
+			width: calc(33.33% - 13.33px);
+			margin-bottom: 20px;
 		}
-        
 	}
 
 	@media (min-width: 320px) and (max-width: 560px) {
@@ -38,7 +37,7 @@ $columns: 5;
 		.ggm-mg-button,
 		.ggm-mg-wrap {
 			width: calc(50% - 10px);
-            margin-bottom: 20px;
+			margin-bottom: 20px;
 		}
 	}
 }
@@ -48,12 +47,12 @@ $columns: 5;
 	font-size: 0;
 	border-radius: 20px;
 	overflow: hidden;
-    svg {
-        background: #ffffff;
-        padding: 5px;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        border-radius: 100px;
-    }
+	svg {
+		background: #ffffff;
+		padding: 5px;
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		border-radius: 100px;
+	}
 }

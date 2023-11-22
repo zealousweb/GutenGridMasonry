@@ -288,7 +288,7 @@ const {
 } = wp.components;
 
 
-/**  */
+/** Post Template */
 const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
 ['core/group', {
   className: 'ggm-pg-title',
