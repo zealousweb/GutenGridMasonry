@@ -561,7 +561,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
       key: "setting"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
-      title: "MediaGrid Settings"
+      title: "PostGrid Settings"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
       className: "custom-label"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Select Grid Items', 'gutengridmasonry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {

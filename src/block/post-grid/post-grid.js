@@ -96,7 +96,7 @@ registerBlockType('gutengridmasonry/post-grid', {
             <>
                 <InspectorControls key="setting">
                     <Panel>
-                        <PanelBody title="MediaGrid Settings">
+                        <PanelBody title="PostGrid Settings">
                             <legend className="custom-label">
                                 {__('Select Grid Items', 'gutengridmasonry')}
                             </legend>
