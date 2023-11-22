@@ -22,7 +22,7 @@ const POST_GRID_TEMPLATE = [
     /** Additional Heading and Description */
     ['core/group', { className: 'ggm-pg-title', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' } } },
         [
-            ['core/paragraph', { className: 'ggm-pg-sub-heading', placeholder: __('Your amazing blog posts', 'gutengridmasonry'), align: 'center', style: { color: { text: '#ffc668' }, typography: { fontSize: '16px', fontWeight: 700, textTransform: 'uppercase' }, spacing: { margin: { bottom: '15px', top: '0px', right: '0px', left: '0px' } } } }],
+            ['core/paragraph', { className: 'ggm-pg-sub-heading', placeholder: __('Your amazing blog posts', 'gutengridmasonry'), align: 'center', style: { typography: { fontSize: '16px', fontWeight: 700, textTransform: 'uppercase' }, spacing: { margin: { bottom: '15px', top: '0px', right: '0px', left: '0px' } } } }],
             ['core/heading', { className: 'ggm-pg-main-heading', placeholder: __('Create a Quick and Easy Post Grid', 'gutengridmasonry'), textAlign: 'center', style: { typography: { fontWeight: 700, }, spacing: { margin: { bottom: '25px', top: '0px', right: '0px', left: '0px' } } } }],
         ]
     ],
@@ -53,7 +53,7 @@ const POST_GRID_TEMPLATE = [
     ],
     ['core/group', { className: 'ggm-pg-cta-button' },
         [
-            ['core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [['core/button', { text: __('Read All Posts', 'gutengridmasonry'), style: { color: { background: '#ffc668', text: '#fff' }, border: { radius: '5px' } } }]]],
+            ['core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [['core/button', { text: __('Read All Posts', 'gutengridmasonry') }]]],
         ]
     ]
 ];
@@ -112,9 +112,7 @@ registerBlockType('gutengridmasonry/post-grid', {
                 <div {...useBlockProps({ className: `ggm-pg-grid grid-size-${gridItem}` })}>
                     <InnerBlocks
                         template={POST_GRID_TEMPLATE}
-
                     />
-                    {/**post_page_url*/}
                 </div>
             </>
         );

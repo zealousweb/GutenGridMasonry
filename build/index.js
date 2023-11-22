@@ -305,9 +305,6 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Your amazing blog posts', 'gutengridmasonry'),
   align: 'center',
   style: {
-    color: {
-      text: '#ffc668'
-    },
     typography: {
       fontSize: '16px',
       fontWeight: 700,
@@ -514,16 +511,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }, [['core/button', {
-  text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Read All Posts', 'gutengridmasonry'),
-  style: {
-    color: {
-      background: '#ffc668',
-      text: '#fff'
-    },
-    border: {
-      radius: '5px'
-    }
-  }
+  text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Read All Posts', 'gutengridmasonry')
 }]]]]]];
 
 /**
