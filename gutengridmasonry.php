@@ -1,11 +1,11 @@
 <?php
 /**
 * Plugin Name:       Guten Grid Masonry
-* Description:       Example block scaffolded with Create Block tool.
+* Description:       It allows user to show their post and Media to the Grid with lightbox options.
 * Requires at least: 6.1
 * Requires PHP:      7.0
-* Version:           0.1.0
-* Author:            The WordPress Contributors
+* Version:           1.0
+* Author:            <a href="https://www.zealousweb.com/">Zealousweb</a>
 * License:           GPL-2.0-or-later
 * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 * Text Domain:       gutengridmasonry
