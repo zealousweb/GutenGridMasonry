@@ -2,5 +2,5 @@
 /**
  * Custom functions.
  *
- * @package gutengridmasonry
+ * @package gridmasonryforguten
  */

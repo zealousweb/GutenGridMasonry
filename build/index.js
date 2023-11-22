@@ -53,11 +53,11 @@ const {
 /**
  * Media Grid block registration
  */
-registerBlockType('gutengridmasonry/media-grid', {
-  title: __('Media Grid', 'gutengridmasonry'),
-  description: __('Media grid Masnary is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gutengridmasonry'),
+registerBlockType('gridmasonryforguten/media-grid', {
+  title: __('Media Grid', 'gridmasonryforguten'),
+  description: __('Media grid Masnary is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforguten'),
   icon: 'format-gallery',
-  category: 'guten-grid-masonry',
+  category: 'grid-masonry-for-guten',
   attributes: {
     /** Repeater Array containing Image, Description, and VideoURL */
     items: {
@@ -141,7 +141,7 @@ registerBlockType('gutengridmasonry/media-grid', {
       className: "custom-label"
     }) : '', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
       className: "custom-label"
-    }, __('Select Grid Items', 'gutengridmasonry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
+    }, __('Select Grid Items', 'gridmasonryforguten')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
       value: gridItem,
       onChange: newGridItem => setAttributes({
         gridItem: newGridItem
@@ -302,7 +302,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }, [['core/paragraph', {
   className: 'ggm-pg-sub-heading',
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Your amazing blog posts', 'gutengridmasonry'),
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Your amazing blog posts', 'gridmasonryforguten'),
   align: 'center',
   style: {
     typography: {
@@ -321,7 +321,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }], ['core/heading', {
   className: 'ggm-pg-main-heading',
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Create a Quick and Easy Post Grid', 'gutengridmasonry'),
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Create a Quick and Easy Post Grid', 'gridmasonryforguten'),
   textAlign: 'center',
   style: {
     typography: {
@@ -437,7 +437,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }], ['core/read-more', {
   className: 'ggm-pg-link',
-  content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Read More →', 'gutengridmasonry'),
+  content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Read More →', 'gridmasonryforguten'),
   style: {
     color: {
       text: '#ffffff'
@@ -511,16 +511,16 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }, [['core/button', {
-  text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Read All Posts', 'gutengridmasonry')
+  text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Read All Posts', 'gridmasonryforguten')
 }]]]]]];
 
 /**
  * Post Grid block registration
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('gutengridmasonry/post-grid', {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('gridmasonryforguten/post-grid', {
   apiVersion: 2,
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Post Grid', 'gutengridmasonry'),
-  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'gutengridmasonry'),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Post Grid', 'gridmasonryforguten'),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'gridmasonryforguten'),
   icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     width: "24",
     height: "24",
@@ -531,9 +531,9 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v12zM7 11h2V9H7v2zm0 4h2v-2H7v2zm3-4h7V9h-7v2zm0 4h7v-2h-7v2z"
   })),
-  category: 'guten-grid-masonry',
+  category: 'grid-masonry-for-guten',
   example: {},
-  keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('post-list', 'gutengridmasonry'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Post Listing', 'gutengridmasonry')],
+  keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('post-list', 'gridmasonryforguten'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Post Listing', 'gridmasonryforguten')],
   supports: {
     displayLayout: false,
     layout: false,
@@ -564,7 +564,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       title: "PostGrid Settings"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
       className: "custom-label"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Select Grid Items', 'gutengridmasonry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Select Grid Items', 'gridmasonryforguten')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
       value: gridItem,
       onChange: newGridItem => setAttributes({
         gridItem: newGridItem
@@ -952,7 +952,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkgutengridmasonry"] = self["webpackChunkgutengridmasonry"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkgridmasonryforguten"] = self["webpackChunkgridmasonryforguten"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	}();
