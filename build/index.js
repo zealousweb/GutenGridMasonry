@@ -349,12 +349,13 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     enhancedPagination: true
   },
   templateLock: true,
-  displayLayout: {
-    type: 'flex',
-    columns: 3
-  }
+  displayLayout: false,
+  align: false
 }, [['core/post-template', {
-  templateLock: true
+  templateLock: true,
+  layout: false,
+  displayLayout: false,
+  align: false
 }, [['core/group', {
   className: 'ggm-pg-wrap',
   style: {
@@ -546,7 +547,9 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   example: {},
   keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('post-list', 'gutengridmasonry'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Post Listing', 'gutengridmasonry')],
   supports: {
-    align: true
+    displayLayout: false,
+    layout: false,
+    align: false
   },
   attributes: {
     align: {

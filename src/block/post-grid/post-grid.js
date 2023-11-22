@@ -28,9 +28,9 @@ const POST_GRID_TEMPLATE = [
     ],
 
     /** Main Post Loop/Query with Default Wordpress Posts */
-    ['core/query', { className: 'ggm-pg-loop-wrap', query: { inherit: false, offset: 0, postType: 'post', enhancedPagination: true }, templateLock: true, displayLayout: { type: 'flex', columns: 3 } },
+    ['core/query', { className: 'ggm-pg-loop-wrap', query: { inherit: false, offset: 0, postType: 'post', enhancedPagination: true }, templateLock: true, displayLayout: false, align: false, },
         [
-            ['core/post-template', { templateLock: true },
+            ['core/post-template', { templateLock: true, layout: false, displayLayout: false, align: false, },
                 [['core/group', { className: 'ggm-pg-wrap', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' }, templateLock: true } },
                     [
                         ['core/post-featured-image', { className: 'ggm-pg-featured-img', style: { width: '100%', height: '100%', spacing: { margin: { bottom: '0px', top: '0px', right: '0px', left: '0px' } } } }],
@@ -73,7 +73,9 @@ registerBlockType('gutengridmasonry/post-grid', {
         __('Post Listing', 'gutengridmasonry'),
     ],
     supports: {
-        align: true,
+        displayLayout: false,
+        layout: false,
+        align: false,
     },
     attributes: {
         align: {

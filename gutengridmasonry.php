@@ -125,3 +125,5 @@ function ggm_plugin_block_categories( $categories ) {
 	return $categories;
 }
 add_action( 'block_categories_all', 'ggm_plugin_block_categories', 10, 2 );
+
+
