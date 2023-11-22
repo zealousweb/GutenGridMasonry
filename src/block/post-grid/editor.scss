@@ -14,7 +14,9 @@
 	.wp-block-post {
 		width: calc(50% - 10px);
 		padding: 0;
-		
+	}
+	.post-pagination {
+		display: none !important;
 	}
 }
 
