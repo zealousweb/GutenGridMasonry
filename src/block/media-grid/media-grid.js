@@ -1,4 +1,3 @@
-
 /**
  * Import style for backend and front end
 */
@@ -12,11 +11,12 @@ import PlaceholderImage from './placeholder-image.png';
 
 /**
 * WordPress dependencies
+* @return void
 */
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { MediaUpload, MediaUploadCheck, InspectorControls, useBlockProps } = wp.blockEditor;
-const { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody } = wp.components;
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { MediaUpload, MediaUploadCheck, InspectorControls, useBlockProps } from '@wordpress/blockEditor';
+import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody } from '@wordpress/components';
 
 /**
  * Media Grid block registration
@@ -52,8 +52,9 @@ registerBlockType('gridmasonryforguten/media-grid', {
 
     /**
      * Main Editor Structure 
-     * @param {*} props 
-     * @returns 
+     * @param {*} props
+     *  
+     * @returns void
      */
     edit: function (props) {
 

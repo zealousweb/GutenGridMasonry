@@ -6,16 +6,12 @@ import './style.scss';
 import './editor.scss';
 
 /**
-* WordPress dependencies
-*/
-import { registerBlockType } from '@wordpress/blocks';
-import {
-    InnerBlocks,
-    useBlockProps,
-    InspectorControls,
-} from '@wordpress/block-editor';
-const { RangeControl, Panel, PanelBody } = wp.components;
+ * WordPress dependencies
+ */
 import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { RangeControl, Panel, PanelBody } from '@wordpress/components';
 
 /** Post Template */
 const POST_GRID_TEMPLATE = [
