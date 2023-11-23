@@ -12,7 +12,7 @@
 
 .ggm-mg-grid {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: wrap !important;
 	gap: 20px;
 	.ggm-mg-button {
 		display: block;

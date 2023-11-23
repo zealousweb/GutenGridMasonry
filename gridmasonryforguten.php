@@ -64,7 +64,7 @@ function Grid_Masonry_For_Guten_Block_init()
 {
     wp_enqueue_script(
         'isotope-masonry',
-        plugins_url(GRID_MASONRY_DIR . '/assets/js/unpkg.com_isotope-layout@3.0.6_dist_isotope.pkgd.min.js', __FILE__),
+        plugins_url('/assets/js/unpkg.com_isotope-layout@3.0.6_dist_isotope.pkgd.min.js', __FILE__),
         array('jquery'),
         '3.0.6',
         true
@@ -72,7 +72,7 @@ function Grid_Masonry_For_Guten_Block_init()
 
     wp_enqueue_script(
         'fancyapp-lib',
-        plugins_url(GRID_MASONRY_DIR . '/assets/js/fancybox.umd.js', __FILE__),
+        plugins_url('/assets/js/fancybox.umd.js', __FILE__),
         array('jquery'),
         '',
         true
@@ -80,15 +80,15 @@ function Grid_Masonry_For_Guten_Block_init()
 
     wp_enqueue_script(
         'script-custom',
-        plugins_url(GRID_MASONRY_DIR . '/assets/js/script.js', __FILE__),
+        plugins_url('/assets/js/script.js', __FILE__),
         array('jquery', 'fancyapp-lib', 'isotope-masonry'),
-        GRID_MASONRY_FOR_GUTEN_VERSION,
+        GRID_MASONRY_VERSION,
         true
     );
 
     wp_enqueue_style(
-        'fancyapp-css/assets/',
-        plugins_url(GRID_MASONRY_DIR . '/assets/css/fancybox.css', __FILE__),
+        'fancyapp-css',
+        plugins_url('/assets/css/fancybox.css', __FILE__),
         '',
         true
     );
@@ -100,10 +100,11 @@ function Grid_Masonry_For_Guten_Block_init()
 add_action('init', 'Grid_Masonry_For_Guten_Block_init');
 
 /**
- * Add category in blocks lists.
+ * Undocumented function
  *
- * @param  array $categories - get category array.
- * @return string|array 
+ * @param array $categories - list of category.
+ * 
+ * @return mixed Return description.
  */
 function Ggm_Plugin_Block_categories( $categories )
 {
