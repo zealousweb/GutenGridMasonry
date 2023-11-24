@@ -5,6 +5,8 @@ var $ = jQuery.noConflict();
 ------------------------------------------------------------------------------*/
 $(() => {
 
+    console.log('tt');
+
 	//console.log('adi');
 	// init Isotope
 	/*$('.ggm-pg-loop-wrap .wp-block-post-template').isotope({

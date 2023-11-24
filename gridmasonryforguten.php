@@ -33,7 +33,7 @@ if (!defined('GRID_MASONRY_DIR')) {
 }
 
 if (!defined('GRID_MASONRY_BLOCK_PLUGIN_NAME')) {
-    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'GRID MASONRY');
+    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'Grid Masonry for Guten');
 }
 
 if (!defined('GRID_MASONRY_VERSION')) {
@@ -44,6 +44,7 @@ if (!defined('GRID_MASONRY')) {
     define('GRID_MASONRY', 'GRID MASONRY');
 }
 
+//print_r(plugin_dir_url(GRID_MASONRY_FILE ).GRID_MASONRY_BLOCK_PLUGIN_NAME);
 // Add custom function file.
 require_once GRID_MASONRY_DIR . '/inc/custom-functions.php';
 
@@ -62,13 +63,15 @@ require_once GRID_MASONRY_DIR . '/inc/custom-functions.php';
  */
 function Grid_Masonry_For_Guten_Block_init()
 {
+
     wp_enqueue_script(
-        'isotope-masonry',
-        plugins_url('/assets/js/unpkg.com_isotope-layout@3.0.6_dist_isotope.pkgd.min.js', __FILE__),
+        'masonry-lib',
+        plugin_dir_url(GRID_MASONRY_FILE) . 'assets/js/unpkg.com_isotope-layout@3.0.6_dist_isotope.pkgd.min.js',
         array('jquery'),
         '3.0.6',
         true
     );
+
 
     wp_enqueue_script(
         'fancyapp-lib',
@@ -81,7 +84,7 @@ function Grid_Masonry_For_Guten_Block_init()
     wp_enqueue_script(
         'script-custom',
         plugins_url('/assets/js/script.js', __FILE__),
-        array('jquery', 'fancyapp-lib', 'isotope-masonry'),
+        array('jquery', 'fancyapp-lib', 'masonry-lib'),
         GRID_MASONRY_VERSION,
         true
     );
