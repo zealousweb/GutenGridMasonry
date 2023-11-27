@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "gridmasonryforguten/guten-grid",
-	"version": "1.0",
+	"version": "1.0.0",
 	"title": "Guten Grid",
 	"category": "grid-masonry-for-guten",
 	"icon": "smiley",

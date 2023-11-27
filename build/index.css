@@ -20,6 +20,11 @@
 .ggm-pg-grid .post-pagination {
   display: none !important;
 }
+.ggm-pg-grid .ggm-pg-wrap > div {
+  height: 100%;
+  display: flex;
+  align-items: end;
+}
 
 .ggm-pg-loop-wrap ul {
   display: flex !important;
@@ -30,6 +35,10 @@
 
 .editor-styles-wrapper .ggm-pg-grid .is-layout-grid {
   display: flex !important;
+}
+
+.wp-block-post-featured-image .block-editor-media-placeholder {
+  height: 100%;
 }
 /*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/block/media-grid/editor.scss ***!
@@ -61,6 +70,14 @@
   position: relative;
   padding-top: 100px;
   min-height: 220px;
+}
+.ggm-mg-wrap .remove-item {
+  background-color: #ffffff;
+  color: #ff0000;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
 }
 
 .ggm-mg-image {

@@ -16,7 +16,9 @@ import PlaceholderImage from './placeholder-image.png';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { MediaUpload, MediaUploadCheck, InspectorControls, useBlockProps } from '@wordpress/blockEditor';
-import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody } from '@wordpress/components';
+import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button } from '@wordpress/components';
+import { useRef } from 'react';
+
 
 /**
  * Media Grid block registration
@@ -63,8 +65,26 @@ registerBlockType('gridmasonryforguten/media-grid', {
         const { fancyBoxEnabled } = attributes;
         const { videoOptionEnabled } = attributes;
         const { gridItem } = attributes;
+
+        const mediaUploadRef = useRef(null);
+
+        const handleButtonClick = () => {
+            // Check if the ref has been assigned to the MediaUpload component
+            if (mediaUploadRef.current) {
+                mediaUploadRef.current.open();
+            }
+        };
+
         const addRepeaterItem = () => {
             const newItems = [...attributes.items, { image: null, image_caption: '', popup_url: '' }];
+            setAttributes({ items: newItems });
+            //handleButtonClick();
+        };
+
+        const deleteRepeaterItem = (index) => {
+            //console.log({ index });
+            const newItems = [...attributes.items];
+            newItems.splice(index, 1);
             setAttributes({ items: newItems });
         };
 
@@ -76,6 +96,11 @@ registerBlockType('gridmasonryforguten/media-grid', {
             newItems[index].popup_url = popup_url;
             setAttributes({ items: newItems });
         };
+
+        
+
+        
+
 
         return (
             <>
@@ -124,10 +149,23 @@ registerBlockType('gridmasonryforguten/media-grid', {
                     {attributes.items.map((item, index) => (
                         <div className="ggm-mg-wrap" key={index}>
 
+                            <Button className="remove-item" onClick={() => deleteRepeaterItem(index)}>
+                                <svg fill="#ff0000" width="20" id="Capa_1" viewBox="0 0 482.428 482.429"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M381.163,57.799h-75.094C302.323,25.316,274.686,0,241.214,0c-33.471,0-61.104,25.315-64.85,57.799h-75.098 c-30.39,0-55.111,24.728-55.111,55.117v2.828c0,23.223,14.46,43.1,34.83,51.199v260.369c0,30.39,24.724,55.117,55.112,55.117 h210.236c30.389,0,55.111-24.729,55.111-55.117V166.944c20.369-8.1,34.83-27.977,34.83-51.199v-2.828 C436.274,82.527,411.551,57.799,381.163,57.799z M241.214,26.139c19.037,0,34.927,13.645,38.443,31.66h-76.879 C206.293,39.783,222.184,26.139,241.214,26.139z M375.305,427.312c0,15.978-13,28.979-28.973,28.979H136.096 c-15.973,0-28.973-13.002-28.973-28.979V170.861h268.182V427.312z M410.135,115.744c0,15.978-13,28.979-28.973,28.979H101.266 c-15.973,0-28.973-13.001-28.973-28.979v-2.828c0-15.978,13-28.979,28.973-28.979h279.897c15.973,0,28.973,13.001,28.973,28.979 V115.744z"></path> <path d="M171.144,422.863c7.218,0,13.069-5.853,13.069-13.068V262.641c0-7.216-5.852-13.07-13.069-13.07 c-7.217,0-13.069,5.854-13.069,13.07v147.154C158.074,417.012,163.926,422.863,171.144,422.863z"></path> <path d="M241.214,422.863c7.218,0,13.07-5.853,13.07-13.068V262.641c0-7.216-5.854-13.07-13.07-13.07 c-7.217,0-13.069,5.854-13.069,13.07v147.154C228.145,417.012,233.996,422.863,241.214,422.863z"></path> <path d="M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07 c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z"></path> </g> </g> </g></svg>
+                                {/* <svg height="200" width="200" id="Layer_1" viewBox="0 0 512 512" fill="#000000">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path style="fill:#cc0000;" d="M0,256.006C0,397.402,114.606,512.004,255.996,512C397.394,512.004,512,397.402,512,256.006 C512.009,114.61,397.394,0,255.996,0C114.606,0,0,114.614,0,256.006z"></path> <path style="fill:#eb0000;" d="M512,256.005c0-4.039-0.119-8.051-0.304-12.045c-0.426-0.558-93.859-94.043-94.499-94.499 c-1.281-1.797-3.28-3.045-5.658-3.045H201.899c-1.885,0-3.7,0.756-5.026,2.099L95.436,251.029c-2.727,2.755-2.727,7.187,0,9.942 l101.437,102.514c0.015,0.015,0.036,0.019,0.051,0.034l1.581,1.598c0.015,0.015,133.868,133.851,133.883,133.866l1.055,1.067 C436.972,467.232,512,370.401,512,256.005z"></path>
+                                            <g><path style="fill:#F4F6F9;" d="M411.539,146.416H201.9c-1.885,0-3.7,0.756-5.026,2.099L95.436,251.029 c-2.727,2.755-2.727,7.187,0,9.942l101.437,102.514c1.326,1.343,3.141,2.099,5.026,2.099h209.641c3.908,0,7.07-3.166,7.07-7.07 V153.486C418.609,149.582,415.447,146.416,411.539,146.416z M404.469,351.444H204.847L110.412,256l94.436-95.444h199.621V351.444z"></path> <path style="fill:#F4F6F9;" d="M258.073,306.949c1.381,1.381,3.189,2.071,4.998,2.071c1.809,0,3.618-0.69,4.998-2.071 l40.955-40.955l40.958,40.958c1.381,1.381,3.189,2.071,4.998,2.071s3.618-0.69,4.998-2.071c2.762-2.762,2.762-7.235,0-9.997 l-40.958-40.958l40.958-40.958c2.762-2.762,2.762-7.235,0-9.997c-2.762-2.762-7.235-2.762-9.997,0l-40.958,40.958l-40.955-40.955 c-2.762-2.762-7.235-2.762-9.997,0c-2.762,2.762-2.762,7.235,0,9.997l40.955,40.955l-40.955,40.955 C255.311,299.714,255.311,304.188,258.073,306.949z"></path></g>
+                                        </g>
+                                    </svg> */}
+                            </Button>
+                            
                             {/** Media Field Uplod/Select option */}
                             <MediaUploadCheck>
                                 <MediaUpload
                                     onSelect={(image) => updateRepeaterItem(image, item.image_caption, item.popup_url, index)}
+                                    ref={mediaUploadRef}
                                     allowedTypes={['image']}
                                     value={item.image && item.image.id}
                                     render={({ open }) => (
@@ -142,7 +180,7 @@ registerBlockType('gridmasonryforguten/media-grid', {
                                 />
                             </MediaUploadCheck>
 
-                            <div className="ggm-mg-content">
+                            <div className="ggm-mg-content">                               
 
                                 {/** Image Caption Description Field */}
                                 <TextareaControl
