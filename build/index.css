@@ -64,6 +64,15 @@
   min-height: 320px !important;
   border-radius: 20px;
   overflow: hidden;
+  background-color: transparent;
+  border: 2px solid #000;
+  transition: 0.5s ease all;
+}
+.ggm-mg-grid .ggm-mg-button:hover {
+  background-color: inherit;
+}
+.ggm-mg-grid .ggm-mg-button:hover svg {
+  fill: white !important;
 }
 
 .ggm-mg-wrap {
@@ -78,6 +87,12 @@
   top: 10px;
   right: 10px;
   z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+}
+.ggm-mg-wrap:hover .remove-item {
+  opacity: 1;
+  visibility: visible;
 }
 
 .ggm-mg-image {
@@ -106,6 +121,13 @@
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.toggle-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .ggm-mg-content {

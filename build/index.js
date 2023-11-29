@@ -22,6 +22,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_8__);
 
 /**
  * Import style for backend and front end
@@ -33,6 +35,7 @@ __webpack_require__.r(__webpack_exports__);
  * import placeholder image to shown defalt
  */
 
+//import ImageSizeDropdown from './ImageSizeDropdown';
 
 /**
 * WordPress dependencies
@@ -44,12 +47,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+//import { useRef, useState } from 'react';
+
 /**
  * Media Grid block registration
  */
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.registerBlockType)('gridmasonryforguten/media-grid', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media Grid', 'gridmasonryforguten'),
-  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media grid Masnary is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforguten'),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforguten'),
   icon: 'format-gallery',
   category: 'grid-masonry-for-guten',
   attributes: {
@@ -72,6 +79,9 @@ __webpack_require__.r(__webpack_exports__);
     gridItem: {
       type: 'number',
       default: 3
+    },
+    selectedSize: {
+      type: 'string'
     }
   },
   /**
@@ -92,26 +102,75 @@ __webpack_require__.r(__webpack_exports__);
     const {
       videoOptionEnabled
     } = attributes;
+    //const { captionOptionsEnabled } = attributes;
     const {
       gridItem
     } = attributes;
-    const mediaUploadRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-    const handleButtonClick = () => {
-      // Check if the ref has been assigned to the MediaUpload component
-      if (mediaUploadRef.current) {
-        mediaUploadRef.current.open();
-      }
-    };
+    const {
+      selectedSize
+    } = attributes;
+
+    //const { isChecked } = attributes;
+
+    // const MyCheckbox = ({ isChecked, onCheckboxChange }) => {
+    //     return (
+    //         <CheckboxControl
+    //             label="Enable Feature"
+    //             checked={isChecked}
+    //             onChange={(newState) => onCheckboxChange(newState)}
+    //         />
+    //     );
+    // };
+
+    // const handleCheckboxChange = (newState) => {
+    //     setAttributes({ isFeatureEnabled: newState });
+    // };
+
+    //const mediaUploadRef = useRef(null);
+    //const mediaUploadRef = Array.from({ length: attributes.items.length }, () => useRef(null));
+
+    // const handleButtonClick = () => {
+    //     //console.log('media-grid-' + attributes.items.length);
+    //     // Check if the ref has been assigned to the MediaUpload component
+    //     //document.getElementById('media-grid-' + attributes.items.length).open();
+    // };
+
     const addRepeaterItem = () => {
+      // const oldItems = [attributes.items];
+      // console.log(oldItems.length);
+      // for (let i = 0; i <= oldItems.length; i++) {
+      //     //console.log(oldItems[0][i].checkboxx);
+      //     oldItems[0][i].checkboxx = false;
+      // }
       const newItems = [...attributes.items, {
         image: null,
         image_caption: '',
-        popup_url: ''
+        popup_url: '',
+        checkboxx: true
       }];
       setAttributes({
         items: newItems
       });
-      //handleButtonClick();
+
+      //console.log('ee');
+      // console.log(lastIndex);
+      // const lastIndex = newItems.length - 1;
+      // setAttributes({ items: newItems }, () => {
+      //     // Trigger the image selection for the newly added row
+      //     const lastIndex = newItems.length - 1;
+      //     // if (mediaUploadRef[lastIndex] && mediaUploadRef[lastIndex].current) {
+      //     //     mediaUploadRef[lastIndex].current.open();
+      //     // }
+      // });
+      //const current = attributes.items.length; 
+      //console.log('media-grid-' + attributes.items.length);
+
+      //document.getElementById('media-grid-' + attributes.items.length).open();
+      //document.getElementById('media-grid-' + attributes.items.length).trigger('click');
+
+      //mediaUploadRef[attributes.items.length].trigger('click');
+      //attributes.items.mediaUploadRef.open();
+      //handleButtonClick(attributes.items.length);
     };
 
     const deleteRepeaterItem = index => {
@@ -124,15 +183,49 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     /** update Repeater data */
-    const updateRepeaterItem = (image, image_caption, popup_url, index) => {
+    const updateRepeaterItem = (image, image_caption, popup_url, checkboxx, index) => {
+      //const newItems = [...attributes.items, { image: null, image_caption: '', popup_url: '', checkboxx: false }];
+      // {
+      //     attributes.items.map((item, index) => {
+      //         return <li key={index}>{item.checkboxx}</li>
+      //     })
+      // }
+      //document.getElementsByClassName('components-form-toggle__input').click();        
+      const oldItems = [attributes.items];
+      console.log(oldItems[0].length);
+      for (let i = 0; i <= oldItems[0].length; i++) {
+        //setAttributes({ items:  });
+        console.log(oldItems[0][i]);
+        // if ( oldItems[0][i].checkboxx  ){
+        //     if ( oldItems[0][i].checkboxx == true){
+        //         oldItems[0][i].checkboxx = false;
+        //     }
+        // }
+      }
+      //setAttributes({ items: oldItems });
       const newItems = [...attributes.items];
       newItems[index].image = image;
       newItems[index].image_caption = image_caption;
       newItems[index].popup_url = popup_url;
+      newItems[index].checkboxx = checkboxx;
       setAttributes({
         items: newItems
       });
     };
+    const imageSizes = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.select)('core/editor').getEditorSettings().imageSizes.map(size => size.slug);
+    //const [selectedSize, setSelectedSize] = useState('full'); // Default size
+    //const dispatch = useDispatch();
+    const handleSizeChange = size => {
+      setAttributes({
+        selectedSize: size
+      });
+      setSelectedSize(size);
+
+      // You can dispatch an action or handle the selected size as needed
+      // For example, dispatch an action to update block attributes
+      //dispatch('core/editor').editPost({ meta: { imageSize: size } });
+    };
+
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, {
       key: "setting"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
@@ -151,7 +244,21 @@ __webpack_require__.r(__webpack_exports__);
         videoOptionEnabled: newVideoOptionEnabled
       }),
       className: "custom-label"
-    }) : '', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
+    }) : '', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
+      label: "Select Image Size",
+      value: selectedSize,
+      options: imageSizes.map(size => ({
+        label: size,
+        value: size
+      }))
+      //onChange={(onSelectImageSize) => setSize(onSelectImageSize)}
+      //onChange={handleSizeChange}
+      ,
+      onChange: newSelectedSize => setAttributes({
+        selectedSize: newSelectedSize
+      })
+      // Handle the selected image size
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
       className: "custom-label"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Grid Items', 'gridmasonryforguten')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
       value: gridItem,
@@ -192,9 +299,20 @@ __webpack_require__.r(__webpack_exports__);
       d: "M241.214,422.863c7.218,0,13.07-5.853,13.07-13.068V262.641c0-7.216-5.854-13.07-13.07-13.07 c-7.217,0-13.069,5.854-13.069,13.07v147.154C228.145,417.012,233.996,422.863,241.214,422.863z"
     }), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
       d: "M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07 c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z"
-    }), " "), " "), " "))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6__.MediaUpload, {
-      onSelect: image => updateRepeaterItem(image, item.image_caption, item.popup_url, index),
-      ref: mediaUploadRef,
+    }), " "), " "), " "))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
+      label: "Enable Video Option",
+      checked: item.checkboxx
+      //onChange={(checkboxx) => setAttributes({ checkboxx: item.checkboxx })}
+      ,
+      onChange: checkboxx => updateRepeaterItem(item.image, item.image_caption, item.popup_url, checkboxx, index)
+      //onChange={(checkboxx) => setAttributes({ checkboxx: true })}
+      ,
+      className: "toggle-caption"
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6__.MediaUpload, {
+      onSelect: image => updateRepeaterItem(image, item.image_caption, item.popup_url, item.checkboxx, index)
+      //ref={mediaUploadRef[index]}
+      ,
+
       allowedTypes: ['image'],
       value: item.image && item.image.id,
       render: ({
@@ -202,8 +320,8 @@ __webpack_require__.r(__webpack_exports__);
       }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "ggm-mg-image",
         onClick: open
-      }, item.image ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-        src: item.image.sizes.thumbnail.url,
+      }, item.image && selectedSize && item.image.sizes[selectedSize] ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        src: item.image.sizes[selectedSize].url,
         alt: ""
       }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: _placeholder_image_png__WEBPACK_IMPORTED_MODULE_3__,
@@ -211,22 +329,50 @@ __webpack_require__.r(__webpack_exports__);
       }))
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "ggm-mg-content"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextareaControl, {
+    }, item.image &&
+    //item.checkboxx && 
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextareaControl, {
       placeholder: "Image Caption",
       className: "mg-image-caption",
       value: item.image_caption,
-      onChange: image_caption => updateRepeaterItem(item.image, image_caption, item.popup_url, index)
+      onChange: image_caption => updateRepeaterItem(item.image, image_caption, item.popup_url, item.checkboxx, index)
     }), videoOptionEnabled && fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl
     //label="Video Popup URL"
     , {
       placeholder: "Video Popup URL",
       className: "mg-popup-video",
       value: item.popup_url,
-      onChange: popup_url => updateRepeaterItem(item.image, item.image_caption, popup_url, index)
-    }) : ''))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      onChange: popup_url => updateRepeaterItem(item.image, item.image_caption, popup_url, item.checkboxx, index)
+    }) : '')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       class: "ggm-mg-button button button-primary button-large",
       onClick: addRepeaterItem
-    }, "Add Row")));
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+      width: "50",
+      viewBox: "0 0 32 32",
+      fill: "#000000"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+      id: "SVGRepo_bgCarrier",
+      "stroke-width": "0"
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+      id: "SVGRepo_tracerCarrier",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+      id: "SVGRepo_iconCarrier"
+    }, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("title", null, "plus"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("desc", null, "Created with Sketch Beta."), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("defs", null, " "), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+      id: "Page-1",
+      stroke: "none",
+      "stroke-width": "1",
+      fill: "none",
+      "fill-rule": "evenodd"
+    }, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+      id: "Icon-Set-Filled",
+      transform: "translate(-362.000000, -1037.000000)",
+      fill: "#000000"
+    }, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "M390,1049 L382,1049 L382,1041 C382,1038.79 380.209,1037 378,1037 C375.791,1037 374,1038.79 374,1041 L374,1049 L366,1049 C363.791,1049 362,1050.79 362,1053 C362,1055.21 363.791,1057 366,1057 L374,1057 L374,1065 C374,1067.21 375.791,1069 378,1069 C380.209,1069 382,1067.21 382,1065 L382,1057 L390,1057 C392.209,1057 394,1055.21 394,1053 C394,1050.79 392.209,1049 390,1049",
+      id: "plus"
+    }, " "), " "), " "), " ")))));
   },
   /**
    * Main Save Structure
@@ -280,10 +426,12 @@ __webpack_require__.r(__webpack_exports__);
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
         alt: ""
-      }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
         alt: ""
-      }))), item.image_caption && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, item.image_caption))))
+      })), item.image_caption && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: "image-caption"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, item.image_caption))))))
     );
   }
 });
@@ -740,6 +888,16 @@ module.exports = window["wp"]["blocks"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["data"];
 
 /***/ }),
 

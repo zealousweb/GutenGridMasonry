@@ -36,14 +36,6 @@ $(() => {
 			columnWidth: '.ggm-mg-media'
 		}
 	});
-
-	Fancybox.bind('[data-fancybox="video-gallery"]', {
-	//
-	});
-
-	Fancybox.bind('[data-fancybox="gallery"]', {
-	//
-	});
 });
 /** ----------------------------------------------------------------------------
 Script on ready end */

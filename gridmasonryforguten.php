@@ -77,7 +77,7 @@ function Grid_Masonry_For_Guten_Block_init()
         'fancyapp-lib',
         plugins_url('/assets/js/fancybox.umd.js', __FILE__),
         array('jquery'),
-        '',
+        '5.0.24',
         true
     );
 
@@ -92,7 +92,7 @@ function Grid_Masonry_For_Guten_Block_init()
     wp_enqueue_style(
         'fancyapp-css',
         plugins_url('/assets/css/fancybox.css', __FILE__),
-        '',
+        '5.0.24',
         true
     );
 
