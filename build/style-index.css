@@ -213,6 +213,11 @@
   }
 }
 
+.ggm-fancy-custom .fancybox-video,
+.ggm-fancy-custom .fancybox-image {
+  position: static !important;
+}
+
 .image-caption {
   position: absolute;
   left: 0;

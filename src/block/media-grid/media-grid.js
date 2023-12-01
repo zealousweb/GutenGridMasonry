@@ -20,7 +20,9 @@ import { MediaUpload, MediaUploadCheck, InspectorControls, useBlockProps } from 
 import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button } from '@wordpress/components';
 import { SelectControl } from '@wordpress/components';
 import { select, useDispatch } from '@wordpress/data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
+
 
 
 
@@ -80,6 +82,9 @@ registerBlockType('gridmasonryforguten/media-grid', {
         //const { captionOptionsEnabled } = attributes;
         const { gridItem } = attributes;
         const { selectedSize } = attributes;
+
+        const buttonRef = useRef(null);
+
         
         
 
@@ -109,17 +114,80 @@ registerBlockType('gridmasonryforguten/media-grid', {
         //     //document.getElementById('media-grid-' + attributes.items.length).open();
         // };
 
+        const callJavaScriptFunction = (numberLenth) => {
+            setTimeout(function(){
+                console.log('JavaScript function called!' + numberLenth);
+                //$('#upload-image-' + numberLenth).trigger('click');
+                const buttonElement = document.getElementById('upload-image-' + numberLenth);
+                //const buttonElement = document.getElementsByClassName('upload-image-4');
+                console.log('====================================');
+                console.log(buttonElement);
+                console.log('====================================');
+                if (buttonElement) {
+                    // buttonElement.addEventListener('click', () => {
+                    //     console.log('Button clicked!');
+                    // });
+
+                    buttonElement.click();
+                }
+                // Your JavaScript function logic here
+            },500);
+            
+        };
+
+        // useEffect((numberLenth) => {
+        //     // Add an event listener to the button to demonstrate the click event
+        //     const buttonElement1 = document.getElementsByClassName('upload-image-' + numberLenth);
+        //     if (buttonElement1) {
+        //         buttonElement1.addEventListener('click', () => {
+        //             console.log('Button clicked!');
+        //         });
+        //     }
+        // }, []); // Run this effect only once after the initial render
         
+        useEffect(() => {
+            // Simulating a scenario where the button is added dynamically
+            const dynamicButton = document.createElement('button');
+            dynamicButton.id = 'myButton';
+            dynamicButton.textContent = 'Button to be clicked programmatically';
+            dynamicButton.addEventListener('click', callJavaScriptFunction);
+
+            document.body.appendChild(dynamicButton);
+
+            // Cleanup the dynamically created button on component unmount
+            return () => {
+                document.body.removeChild(dynamicButton);
+            };
+        }, []); // Run this effect only once after the initial render
+
 
         const addRepeaterItem = () => {
+            
             // const oldItems = [attributes.items];
             // console.log(oldItems.length);
             // for (let i = 0; i <= oldItems.length; i++) {
-            //     //console.log(oldItems[0][i].checkboxx);
-            //     oldItems[0][i].checkboxx = false;
-            // }
-            const newItems = [...attributes.items, { image: null, image_caption: '', popup_url: '', checkboxx: true }];
+                //     //console.log(oldItems[0][i].checkboxx);
+                //     oldItems[0][i].checkboxx = false;
+                // }
+            const newItems = [...attributes.items, { image: null, image_caption: '', popup_url: '', checkboxx: false }];
             setAttributes({ items: newItems });
+
+            const numberLenth = newItems.length - 1;
+
+            
+            
+            
+            
+            //buttonRef.current.click();
+            //const buttonRef = useRef(newItems.length);
+            //newItems[5].image;
+            //newItems[newItems.length].image[{open}];
+            console.log(numberLenth);
+            callJavaScriptFunction(numberLenth);
+            //console.log(newItems[5]);
+            //newItems[5].image;
+                console.log('====================================');
+                
 
             //console.log('ee');
             // console.log(lastIndex);
@@ -141,6 +209,8 @@ registerBlockType('gridmasonryforguten/media-grid', {
             //attributes.items.mediaUploadRef.open();
             //handleButtonClick(attributes.items.length);
         };
+
+        
 
         const deleteRepeaterItem = (index) => {
             //console.log({ index });
@@ -182,14 +252,23 @@ registerBlockType('gridmasonryforguten/media-grid', {
         const imageSizes = select('core/editor').getEditorSettings().imageSizes.map((size) => size.slug);
         //const [selectedSize, setSelectedSize] = useState('full'); // Default size
         //const dispatch = useDispatch();
-        const handleSizeChange = (size) => {
-            setAttributes({ selectedSize: size })
-            setSelectedSize(size);
+//         const handleSizeChange = (size) => {
+//             setAttributes({ selectedSize: size })
+//             setSelectedSize(size);
+// 
+//             // You can dispatch an action or handle the selected size as needed
+//             // For example, dispatch an action to update block attributes
+//             //dispatch('core/editor').editPost({ meta: { imageSize: size } });
+//         };
 
-            // You can dispatch an action or handle the selected size as needed
-            // For example, dispatch an action to update block attributes
-            //dispatch('core/editor').editPost({ meta: { imageSize: size } });
-        };
+        const showOptions = (index) => {
+            //console.log('no-cb-' + index);
+            //document.getElementsByClassName('no-cb-'+ index).click();
+            //const oldItems = [attributes.items, { checkboxx: false }];
+            //const newItems = [...attributes.items, { image: null, image_caption: '', popup_url: '', checkboxx: false }];
+            //setAttributes({ items: oldItems });
+            //checkboxx[index] = true;
+        }
         
 
         
@@ -266,7 +345,7 @@ registerBlockType('gridmasonryforguten/media-grid', {
                                 //onChange={(checkboxx) => setAttributes({ checkboxx: item.checkboxx })}
                                 onChange={(checkboxx) => updateRepeaterItem(item.image, item.image_caption, item.popup_url, checkboxx, index)}
                                 //onChange={(checkboxx) => setAttributes({ checkboxx: true })}
-                                className="toggle-caption"
+                                className={`toggle-caption no-cb-${index}`}
                             />
 
                             {/* <MyCheckbox
@@ -284,21 +363,28 @@ registerBlockType('gridmasonryforguten/media-grid', {
                                 <MediaUpload
                                     onSelect={(image) => updateRepeaterItem(image, item.image_caption, item.popup_url, item.checkboxx, index)}
                                     //ref={mediaUploadRef[index]}
-                                    
+                                    ref={buttonRef}
                                     allowedTypes={['image']}
                                     value={item.image && item.image.id}
                                     render={({ open }) => (
-                                        <div className="ggm-mg-image" onClick={open}>
+                                        <div className="ggm-mg-image" onClick={showOptions(index)}>
+                                            <h6 id={`upload-image-${index}`} className={`change-image upload-image-${index}`} onClick={open}>
+                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.2639 15.9376L12.5958 14.2835C11.7909 13.4852 11.3884 13.0861 10.9266 12.9402C10.5204 12.8119 10.0838 12.8166 9.68048 12.9537C9.22188 13.1096 8.82814 13.5173 8.04068 14.3327L4.04409 18.2802M14.2639 15.9376L14.6053 15.5991C15.4112 14.7999 15.8141 14.4003 16.2765 14.2544C16.6831 14.1262 17.12 14.1312 17.5236 14.2688C17.9824 14.4252 18.3761 14.834 19.1634 15.6515L20 16.4936M14.2639 15.9376L18.275 19.9566M18.275 19.9566C17.9176 20.0001 17.4543 20.0001 16.8 20.0001H7.2C6.07989 20.0001 5.51984 20.0001 5.09202 19.7821C4.71569 19.5904 4.40973 19.2844 4.21799 18.9081C4.12796 18.7314 4.07512 18.5322 4.04409 18.2802M18.275 19.9566C18.5293 19.9257 18.7301 19.8728 18.908 19.7821C19.2843 19.5904 19.5903 19.2844 19.782 18.9081C20 18.4803 20 17.9202 20 16.8001V16.4936M12.5 4L7.2 4.00011C6.07989 4.00011 5.51984 4.00011 5.09202 4.21809C4.71569 4.40984 4.40973 4.7158 4.21799 5.09213C4 5.51995 4 6.08 4 7.20011V16.8001C4 17.4576 4 17.9222 4.04409 18.2802M20 11.5V16.4936M14 10.0002L16.0249 9.59516C16.2015 9.55984 16.2898 9.54219 16.3721 9.5099C16.4452 9.48124 16.5146 9.44407 16.579 9.39917C16.6515 9.34859 16.7152 9.28492 16.8425 9.1576L21 5.00015C21.5522 4.44787 21.5522 3.55244 21 3.00015C20.4477 2.44787 19.5522 2.44787 19 3.00015L14.8425 7.1576C14.7152 7.28492 14.6515 7.34859 14.6009 7.42112C14.556 7.4855 14.5189 7.55494 14.4902 7.62801C14.4579 7.71033 14.4403 7.79862 14.4049 7.97518L14 10.0002Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                            </h6>
                                             {/* {item.image ? (
                                                 // <img src={item.image.sizes.thumbnail.url} alt={selectedSize} />
                                                 <img src={item.image.sizes[selectedSize].url} alt={selectedSize} />
                                             ) : (
                                                     <img src={PlaceholderImage} alt="" />
                                             )} */}
-                                            {item.image && selectedSize && item.image.sizes[selectedSize] ? (
-                                                <img src={item.image.sizes[selectedSize].url} alt="" />
+                                            { item.image && selectedSize && item.image.sizes[selectedSize] ? (
+                                                <img src={item.image.sizes[selectedSize].url} alt="" />                                                
                                             ) : (
-                                                <img src={PlaceholderImage} alt="" />
+                                                item.image ? (
+                                                    <img src={item.image.sizes.medium.url} alt="" />
+                                                ) : (
+                                                    <img src={PlaceholderImage} alt="" />
+                                                )                                                
                                             )}
                                         </div>
                                     )}
@@ -307,41 +393,45 @@ registerBlockType('gridmasonryforguten/media-grid', {
 
                             <div className="ggm-mg-content">
                                 {
-                                    item.image && //item.checkboxx && 
-                                    <div>
-                                    {/** Image Caption Description Field */}
-                                    <TextareaControl
-                                        placeholder="Image Caption"
-                                        className="mg-image-caption"
-                                        value={item.image_caption}
-                                        onChange={(image_caption) => updateRepeaterItem(item.image, image_caption, item.popup_url, item.checkboxx, index)}
-                                    />
+                                    item.image && //item.checkboxx &&
+                                    
+                                             
+                                            <div>
+                                                {/** Image Caption Description Field */}
+                                                <TextareaControl
+                                                    placeholder="Image Caption"
+                                                    className="mg-image-caption"
+                                                    value={item.image_caption}
+                                                    onChange={(image_caption) => updateRepeaterItem(item.image, image_caption, item.popup_url, item.checkboxx, index)}
+                                                />
 
-                                    {/** Popup URL Option Field */}
-                                    {
-                                        videoOptionEnabled && fancyBoxEnabled
-                                            ? <TextControl
-                                                //label="Video Popup URL"
-                                                placeholder="Video Popup URL"
-                                                className="mg-popup-video"
-                                                value={item.popup_url}
-                                                onChange={(popup_url) => updateRepeaterItem(item.image, item.image_caption, popup_url, item.checkboxx, index)}
-                                            />
-                                            : ''
-                                    }
-                                </div>                                
+                                                {/** Popup URL Option Field */}
+                                                {
+                                                    videoOptionEnabled && fancyBoxEnabled
+                                                        ? <TextControl
+                                                            //label="Video Popup URL"
+                                                            placeholder="Video Popup URL"
+                                                            className="mg-popup-video"
+                                                            value={item.popup_url}
+                                                            onChange={(popup_url) => updateRepeaterItem(item.image, item.image_caption, popup_url, item.checkboxx, index)}
+                                                        />
+                                                        : ''
+                                                }
+                                            {/**<InspectorControls key="setting">
+                                    <Panel>
+                                        <PanelBody title="Media Image Settings">
+                                        </PanelBody>
+                                    </Panel>
+                                </InspectorControls> */}
+                                            </div>
+                                                                            
                                 }
                             </div>
                         </div>
                     ))}
-                    {/** <InspectorControls key="setting">
-                                    <Panel>
-                                        <PanelBody title="Media Image Settings">
-                                            </PanelBody>
-                                        </Panel>
-                                    </InspectorControls>*/}
+                    
                     {/** Add Media Image Button for Repeater */}
-                    <button class="ggm-mg-button button button-primary button-large" onClick={addRepeaterItem}>
+                    <button class="ggm-mg-button button button-primary button-large"  onClick={addRepeaterItem}>
                         <svg width="50" viewBox="0 0 32 32" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>plus</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" > <g id="Icon-Set-Filled" transform="translate(-362.000000, -1037.000000)" fill="#000000"> <path d="M390,1049 L382,1049 L382,1041 C382,1038.79 380.209,1037 378,1037 C375.791,1037 374,1038.79 374,1041 L374,1049 L366,1049 C363.791,1049 362,1050.79 362,1053 C362,1055.21 363.791,1057 366,1057 L374,1057 L374,1065 C374,1067.21 375.791,1069 378,1069 C380.209,1069 382,1067.21 382,1065 L382,1057 L390,1057 C392.209,1057 394,1055.21 394,1053 C394,1050.79 392.209,1049 390,1049" id="plus"> </path> </g> </g> </g></svg>
                     </button>
                 </section>

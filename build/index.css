@@ -80,6 +80,22 @@
   padding-top: 100px;
   min-height: 220px;
 }
+.ggm-mg-wrap .change-image {
+  background-color: #ffffff;
+  color: #ff0000;
+  position: absolute;
+  top: 10px;
+  right: 70px;
+  z-index: 1;
+  padding: 12px;
+  margin: 0;
+  line-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.ggm-mg-wrap .change-image svg {
+  width: 20px;
+}
 .ggm-mg-wrap .remove-item {
   background-color: #ffffff;
   color: #ff0000;
@@ -90,6 +106,8 @@
   opacity: 0;
   visibility: hidden;
 }
+.ggm-mg-wrap:hover .ggm-mg-content,
+.ggm-mg-wrap:hover .change-image,
 .ggm-mg-wrap:hover .remove-item {
   opacity: 1;
   visibility: visible;
@@ -137,6 +155,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  opacity: 0;
+  visibility: hidden;
 }
 .ggm-mg-content label {
   display: none;
