@@ -103,7 +103,16 @@
 	left: 0;
 	z-index: 1;
 }
-
+.ggm-mg-video {
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #ffffff;
+    padding: 0;
+    svg {
+        width: 50px;
+    }
+}
 .ggm-mg-content {
 	box-sizing: border-box;
 	padding: 20px;
