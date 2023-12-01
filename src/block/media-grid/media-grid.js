@@ -116,13 +116,13 @@ registerBlockType('gridmasonryforguten/media-grid', {
 
         const callJavaScriptFunction = (numberLenth) => {
             setTimeout(function(){
-                console.log('JavaScript function called!' + numberLenth);
+                // console.log('JavaScript function called!' + numberLenth);
                 //$('#upload-image-' + numberLenth).trigger('click');
                 const buttonElement = document.getElementById('upload-image-' + numberLenth);
                 //const buttonElement = document.getElementsByClassName('upload-image-4');
-                console.log('====================================');
-                console.log(buttonElement);
-                console.log('====================================');
+                // console.log('====================================');
+                // console.log(buttonElement);
+                // console.log('====================================');
                 if (buttonElement) {
                     // buttonElement.addEventListener('click', () => {
                     //     console.log('Button clicked!');
@@ -131,7 +131,7 @@ registerBlockType('gridmasonryforguten/media-grid', {
                     buttonElement.click();
                 }
                 // Your JavaScript function logic here
-            },500);
+            },100);
             
         };
 
@@ -145,20 +145,20 @@ registerBlockType('gridmasonryforguten/media-grid', {
         //     }
         // }, []); // Run this effect only once after the initial render
         
-        useEffect(() => {
-            // Simulating a scenario where the button is added dynamically
-            const dynamicButton = document.createElement('button');
-            dynamicButton.id = 'myButton';
-            dynamicButton.textContent = 'Button to be clicked programmatically';
-            dynamicButton.addEventListener('click', callJavaScriptFunction);
-
-            document.body.appendChild(dynamicButton);
-
-            // Cleanup the dynamically created button on component unmount
-            return () => {
-                document.body.removeChild(dynamicButton);
-            };
-        }, []); // Run this effect only once after the initial render
+//         useEffect(() => {
+//             // Simulating a scenario where the button is added dynamically
+//             const dynamicButton = document.createElement('button');
+//             dynamicButton.id = 'myButton';
+//             dynamicButton.textContent = 'Button to be clicked programmatically';
+//             dynamicButton.addEventListener('click', callJavaScriptFunction);
+// 
+//             document.body.appendChild(dynamicButton);
+// 
+//             // Cleanup the dynamically created button on component unmount
+//             return () => {
+//                 document.body.removeChild(dynamicButton);
+//             };
+//         }, []); // Run this effect only once after the initial render
 
 
         const addRepeaterItem = () => {
@@ -182,11 +182,11 @@ registerBlockType('gridmasonryforguten/media-grid', {
             //const buttonRef = useRef(newItems.length);
             //newItems[5].image;
             //newItems[newItems.length].image[{open}];
-            console.log(numberLenth);
+            //console.log(numberLenth);
             callJavaScriptFunction(numberLenth);
             //console.log(newItems[5]);
             //newItems[5].image;
-                console.log('====================================');
+                //console.log('====================================');
                 
 
             //console.log('ee');
