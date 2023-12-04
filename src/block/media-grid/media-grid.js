@@ -33,11 +33,11 @@ import React, { useRef } from 'react';
 /**
  * Media Grid block registration
  */
-registerBlockType('gridmasonryforguten/media-grid', {
-    title: __('Media Grid', 'gridmasonryforguten'),
-    description: __('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforguten'),
+registerBlockType('gridmasonryforgutenberg/media-grid', {
+    title: __('Media Grid', 'gridmasonryforgutenberg'),
+    description: __('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforgutenberg'),
     icon: 'format-gallery',
-    category: 'grid-masonry-for-guten',
+    category: 'grid-masonry-for-gutenberg',
     attributes: {
 
         /** Repeater Array containing Image, Description, and VideoURL */
@@ -263,15 +263,20 @@ registerBlockType('gridmasonryforguten/media-grid', {
                                 fancyBoxEnabled
                                     ? (
                                         <>
-                                            <legend className="custom-label">
-                                                {__('Fancybox Video Options, Please hover Media Image to upload or add Video', 'gridmasonryforguten')}
-                                            </legend>
-                                            <ToggleControl
-                                                label="Enable MP4 Option"
-                                                checked={videoOptionEnabled}
-                                                onChange={(newVideoOptionEnabled) => setAttributes({ videoOptionEnabled: newVideoOptionEnabled })}
-                                                className="custom-label"
-                                            />                                            
+                                            <fieldset>
+                                                <ToggleControl
+                                                    label="Enable Video Options"
+                                                    checked={videoOptionEnabled}
+                                                    onChange={(newVideoOptionEnabled) => setAttributes({ videoOptionEnabled: newVideoOptionEnabled })}
+                                                    className="custom-label"
+                                                />
+                                            </fieldset>
+                                            <fieldset>
+                                                <legend className="blocks-base-control__label">
+                                                    {__('Fancybox Video Options, Please hover Media Image to upload or add Video', 'gridmasonryforgutenberg')}
+                                                </legend>
+                                            </fieldset>
+                                            <br></br>                                   
                                         </>
                                     )                                    
                                     : ''
@@ -289,7 +294,7 @@ registerBlockType('gridmasonryforguten/media-grid', {
                             {/** Grid Column Selection */}
                             <>
                                 <legend className="custom-label">
-                                    {__('Select Grid Items', 'gridmasonryforguten')}
+                                    {__('Select Grid Items', 'gridmasonryforgutenberg')}
                                 </legend>
                                 <RangeControl
                                     value={gridItem}

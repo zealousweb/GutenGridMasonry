@@ -1,17 +1,17 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "gridmasonryforguten/guten-grid",
+  "name": "gridmasonryforgutenberg/gutenberg-grid",
   "version": "1.0.0",
-  "title": "Guten Grid",
-  "category": "grid-masonry-for-guten",
+  "title": "Gutenberg Grid",
+  "category": "grid-masonry-for-gutenberg",
   "icon": "smiley",
   "description": "Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.",
   "example": {},
   "supports": {
     "html": false
   },
-  "textdomain": "gridmasonryforguten",
+  "textdomain": "gridmasonryforgutenberg",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"

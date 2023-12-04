@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Grid Masonry for Guten
+ * Plugin Name:       Grid Masonry for Gutenberg
  * Description:       Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.
  * Requires at least: 6.1
  * Requires PHP:      7.0
@@ -9,10 +9,10 @@
  * PHP Version:       7.0
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       gridmasonryforguten
+ * Text Domain:       gridmasonryforgutenberg
  *
  * @category  MasonryGridBlocks
- * @package   Grid_Masonry_For_Guten
+ * @package   Grid_Masonry_For_Gutenberg
  * @author    ZealousWeb <support@zealousweb.com>
  * @copyright 2023 ZealousWeb
  * @license   GPL-2.0-or-later https: //www.gnu.org/licenses/gpl-2.0.html
@@ -33,7 +33,7 @@ if (!defined('GRID_MASONRY_DIR')) {
 }
 
 if (!defined('GRID_MASONRY_BLOCK_PLUGIN_NAME')) {
-    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'Grid Masonry for Guten');
+    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'Grid Masonry for Gutenberg');
 }
 
 if (!defined('GRID_MASONRY_VERSION')) {
@@ -61,7 +61,7 @@ require_once GRID_MASONRY_DIR . '/inc/custom-functions.php';
  *
  * @return void
  */
-function Grid_Masonry_For_Guten_Block_init()
+function Grid_Masonry_For_Gutenberg_Block_init()
 {
 
     wp_enqueue_script(
@@ -108,7 +108,7 @@ function Grid_Masonry_For_Guten_Block_init()
     register_block_type(__DIR__ . '/build');
 
 }
-add_action('init', 'Grid_Masonry_For_Guten_Block_init');
+add_action('init', 'Grid_Masonry_For_Gutenberg_Block_init');
 
 /**
  * Undocumented function
@@ -119,13 +119,13 @@ add_action('init', 'Grid_Masonry_For_Guten_Block_init');
  */
 function Ggm_Plugin_Block_categories( $categories )
 {
-    if (array_search('grid-masonry-for-guten', array_column($categories, 'slug'), true) === false) {
+    if (array_search('grid-masonry-for-gutenberg', array_column($categories, 'slug'), true) === false) {
         return array_merge(
             $categories,
             array(
                 array(
-                    'slug' => 'grid-masonry-for-guten',
-                    'title' => __('ZealBlocks', 'gridmasonryforguten'),
+                    'slug' => 'grid-masonry-for-gutenberg',
+                    'title' => __('ZealBlocks', 'gridmasonryforgutenberg'),
                     'icon' => '',
                 ),
             )

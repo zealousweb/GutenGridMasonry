@@ -18,8 +18,8 @@ const POST_GRID_TEMPLATE = [
     /** Additional Heading and Description */
     ['core/group', { className: 'ggm-pg-title', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' } } },
         [
-            ['core/paragraph', { className: 'ggm-pg-sub-heading', placeholder: __('Your amazing blog posts', 'gridmasonryforguten'), align: 'center', style: { typography: { fontSize: '16px', fontWeight: 700, textTransform: 'uppercase' }, spacing: { margin: { bottom: '15px', top: '0px', right: '0px', left: '0px' } } } }],
-            ['core/heading', { className: 'ggm-pg-main-heading', placeholder: __('Create a Quick and Easy Post Grid', 'gridmasonryforguten'), textAlign: 'center', style: { typography: { fontWeight: 700, }, spacing: { margin: { bottom: '25px', top: '0px', right: '0px', left: '0px' } } } }],
+            ['core/paragraph', { className: 'ggm-pg-sub-heading', placeholder: __('Your amazing blog posts', 'gridmasonryforgutenberg'), align: 'center', style: { typography: { fontSize: '16px', fontWeight: 700, textTransform: 'uppercase' }, spacing: { margin: { bottom: '15px', top: '0px', right: '0px', left: '0px' } } } }],
+            ['core/heading', { className: 'ggm-pg-main-heading', placeholder: __('Create a Quick and Easy Post Grid', 'gridmasonryforgutenberg'), textAlign: 'center', style: { typography: { fontWeight: 700, }, spacing: { margin: { bottom: '25px', top: '0px', right: '0px', left: '0px' } } } }],
         ]
     ],
 
@@ -34,7 +34,7 @@ const POST_GRID_TEMPLATE = [
                             // [ 'core/categories' ],
                             ['core/post-title', { className: 'ggm-pg-title', style: { color: { text: '#ffffff' }, typography: { fontSize: '20px', fontWeight: 700 }, spacing: { margin: { bottom: '15px', top: '15px', right: '0px', left: '0px' } } } }],
                             ['core/post-excerpt', { excerptLength: 20, moreText: '&nbsp;', className: 'ggm-pg-description', style: { typography: { lineHeight: 1.2 }, color: { text: '#ffffff' }, spacing: { margin: { top: '0', bottom: '20px', left: '0', right: '0' } } } }],
-                            ['core/read-more', { className: 'ggm-pg-link', content: __('Read More →', 'gridmasonryforguten'), style: { color: { text: '#ffffff' }, typography: { textDecoration: 'underline', fontSize: '16px' }, spacing: { margin: { 'top': '0', 'bottom': '20px', 'left': '0', 'right': '0' } } } }],
+                            ['core/read-more', { className: 'ggm-pg-link', content: __('Read More →', 'gridmasonryforgutenberg'), style: { color: { text: '#ffffff' }, typography: { textDecoration: 'underline', fontSize: '16px' }, spacing: { margin: { 'top': '0', 'bottom': '20px', 'left': '0', 'right': '0' } } } }],
                             ['core/group', { className: 'ggm-pg-date-wrap', style: { spacing: { padding: { top: '0', right: '0', bottom: '0', left: '0' }, margin: { top: '0px', bottom: '0px' } } } }, [
                                 ['core/post-date', { className: 'ggm-pg-date', style: { spacing: { margin: '0' }, color: { text: '#ffffff' }, typography: { fontSize: '13px' } } }],
                                 ['core/post-author', { className: 'ggm-pg-author', style: { typography: { fontSize: '13px' }, spacing: { 'margin': '0' } } }],
@@ -49,7 +49,7 @@ const POST_GRID_TEMPLATE = [
     ],
     ['core/group', { className: 'ggm-pg-cta-button' },
         [
-            ['core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [['core/button', { text: __('Read All Posts', 'gridmasonryforguten') }]]],
+            ['core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [['core/button', { text: __('Read All Posts', 'gridmasonryforgutenberg') }]]],
         ]
     ]
 ];
@@ -57,16 +57,16 @@ const POST_GRID_TEMPLATE = [
 /**
  * Post Grid block registration
  */
-registerBlockType('gridmasonryforguten/post-grid', {
+registerBlockType('gridmasonryforgutenberg/post-grid', {
     apiVersion: 2,
-    title: __('Post Grid', 'gridmasonryforguten'),
-    description: __('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'gridmasonryforguten'),
+    title: __('Post Grid', 'gridmasonryforgutenberg'),
+    description: __('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'gridmasonryforgutenberg'),
     icon: <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v12zM7 11h2V9H7v2zm0 4h2v-2H7v2zm3-4h7V9h-7v2zm0 4h7v-2h-7v2z"></path></svg>,
-    category: 'grid-masonry-for-guten',
+    category: 'grid-masonry-for-gutenberg',
     example: {},
     keywords: [
-        __('post-list', 'gridmasonryforguten'),
-        __('Post Listing', 'gridmasonryforguten'),
+        __('post-list', 'gridmasonryforgutenberg'),
+        __('Post Listing', 'gridmasonryforgutenberg'),
     ],
     supports: {
         displayLayout: false,
@@ -94,7 +94,7 @@ registerBlockType('gridmasonryforguten/post-grid', {
                     <Panel>
                         <PanelBody title="PostGrid Settings">
                             <legend className="custom-label">
-                                {__('Select Grid Items', 'gridmasonryforguten')}
+                                {__('Select Grid Items', 'gridmasonryforgutenberg')}
                             </legend>
                             <RangeControl
                                 value={gridItem}

@@ -26,6 +26,9 @@
   justify-content: flex-end;
   flex-direction: column;
 }
+.ggm-pg-grid .ggm-pg-content {
+  width: 100%;
+}
 
 .ggm-pg-loop-wrap ul {
   gap: 20px;

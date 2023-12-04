@@ -55,11 +55,11 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Media Grid block registration
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.registerBlockType)('gridmasonryforguten/media-grid', {
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media Grid', 'gridmasonryforguten'),
-  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforguten'),
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.registerBlockType)('gridmasonryforgutenberg/media-grid', {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media Grid', 'gridmasonryforgutenberg'),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforgutenberg'),
   icon: 'format-gallery',
-  category: 'grid-masonry-for-guten',
+  category: 'grid-masonry-for-gutenberg',
   attributes: {
     /** Repeater Array containing Image, Description, and VideoURL */
     items: {
@@ -271,16 +271,16 @@ __webpack_require__.r(__webpack_exports__);
         fancyBoxEnabled: newIsfancyBoxEnabled
       }),
       className: "custom-label"
-    }), fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
-      className: "custom-label"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fancybox Video Options, Please hover Media Image to upload or add Video', 'gridmasonryforguten')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
-      label: "Enable MP4 Option",
+    }), fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
+      label: "Enable Video Options",
       checked: videoOptionEnabled,
       onChange: newVideoOptionEnabled => setAttributes({
         videoOptionEnabled: newVideoOptionEnabled
       }),
       className: "custom-label"
-    })) : '', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
+      className: "blocks-base-control__label"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fancybox Video Options, Please hover Media Image to upload or add Video', 'gridmasonryforgutenberg'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null)) : '', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
       label: "Select Image Size",
       value: selectedSize,
       options: imageSizes.map(size => ({
@@ -295,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
       })
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
       className: "custom-label"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Grid Items', 'gridmasonryforguten')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Grid Items', 'gridmasonryforgutenberg')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
       value: gridItem,
       onChange: newGridItem => setAttributes({
         gridItem: newGridItem
@@ -632,7 +632,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }, [['core/paragraph', {
   className: 'ggm-pg-sub-heading',
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Your amazing blog posts', 'gridmasonryforguten'),
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Your amazing blog posts', 'gridmasonryforgutenberg'),
   align: 'center',
   style: {
     typography: {
@@ -651,7 +651,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }], ['core/heading', {
   className: 'ggm-pg-main-heading',
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Create a Quick and Easy Post Grid', 'gridmasonryforguten'),
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Create a Quick and Easy Post Grid', 'gridmasonryforgutenberg'),
   textAlign: 'center',
   style: {
     typography: {
@@ -767,7 +767,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }], ['core/read-more', {
   className: 'ggm-pg-link',
-  content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Read More →', 'gridmasonryforguten'),
+  content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Read More →', 'gridmasonryforgutenberg'),
   style: {
     color: {
       text: '#ffffff'
@@ -841,16 +841,16 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }, [['core/button', {
-  text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Read All Posts', 'gridmasonryforguten')
+  text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Read All Posts', 'gridmasonryforgutenberg')
 }]]]]]];
 
 /**
  * Post Grid block registration
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.registerBlockType)('gridmasonryforguten/post-grid', {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.registerBlockType)('gridmasonryforgutenberg/post-grid', {
   apiVersion: 2,
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Grid', 'gridmasonryforguten'),
-  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'gridmasonryforguten'),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Grid', 'gridmasonryforgutenberg'),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'gridmasonryforgutenberg'),
   icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     width: "24",
     height: "24",
@@ -861,9 +861,9 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v12zM7 11h2V9H7v2zm0 4h2v-2H7v2zm3-4h7V9h-7v2zm0 4h7v-2h-7v2z"
   })),
-  category: 'grid-masonry-for-guten',
+  category: 'grid-masonry-for-gutenberg',
   example: {},
-  keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('post-list', 'gridmasonryforguten'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Listing', 'gridmasonryforguten')],
+  keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('post-list', 'gridmasonryforgutenberg'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Listing', 'gridmasonryforgutenberg')],
   supports: {
     displayLayout: false,
     layout: false,
@@ -894,7 +894,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       title: "PostGrid Settings"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
       className: "custom-label"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Select Grid Items', 'gridmasonryforguten')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.RangeControl, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Select Grid Items', 'gridmasonryforgutenberg')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.RangeControl, {
       value: gridItem,
       onChange: newGridItem => setAttributes({
         gridItem: newGridItem
@@ -1247,7 +1247,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkgridmasonryforguten"] = self["webpackChunkgridmasonryforguten"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkgridmasonryforgutenberg"] = self["webpackChunkgridmasonryforgutenberg"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	}();
