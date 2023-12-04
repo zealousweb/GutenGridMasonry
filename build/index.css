@@ -85,11 +85,16 @@
   top: 10px;
   right: 70px;
   z-index: 1;
-  padding: 12px;
   margin: 0;
   line-height: 0;
   opacity: 0;
   visibility: hidden;
+  width: 44px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
 }
 .ggm-mg-wrap .change-image svg {
   width: 20px;
@@ -103,6 +108,17 @@
   z-index: 1;
   opacity: 0;
   visibility: hidden;
+}
+.ggm-mg-wrap .upload-video-btn {
+  padding: 0;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .ggm-mg-wrap:hover .ggm-mg-content,
 .ggm-mg-wrap:hover .change-image,
@@ -139,22 +155,25 @@
   top: 0;
 }
 
-.toggle-caption {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
 .ggm-mg-video {
-  bottom: 0;
-  right: 0;
   z-index: 1;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 0;
+  border: 1px solid #949494;
+  position: relative;
+  height: 30px;
+  overflow: hidden;
+}
+.ggm-mg-video span {
+  font-size: 13px;
+  padding: 3px 8px;
+  color: #fff;
+  display: block;
 }
 .ggm-mg-video svg {
-  width: 50px;
+  width: 40px;
+  height: 24px;
+  fill: white;
 }
 
 .ggm-mg-content {

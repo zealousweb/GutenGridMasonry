@@ -1,4 +1,4 @@
-=== Grid Masonry for Guten ===
+=== Masonry Grid for Gutenberg ===
 Contributor:      ZealousWeb
 Tags:              block
 Tested up to:      6.4
