@@ -35,6 +35,7 @@ $columns: 3;
 
 	.wp-block-post {
 		padding: 10px;
+		margin: 0;
 	}
 
 	.wp-block-post-excerpt__more-text {
@@ -98,11 +99,18 @@ $columns: 3;
 			gap: 20px;
 		}
 		.wp-block-post-author {
+            align-items: center;
 			&__avatar {
 				width: 16px;
+                display: flex;
 			}
 			&__content {
 				color: #fff;
+			}
+			img {
+				max-width: 100%;
+                max-height: 16px;
+                object-fit: contain;
 			}
 		}
 	}
@@ -120,12 +128,14 @@ $columns: 3;
 	.ggm-pg-loop-wrap {
 		padding-bottom: 40px;
 	}
+
 	.post-pagination {
 		position: relative;
 		top: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin: 0;
 
 		.wp-block-query-pagination-numbers {
 			display: flex;
@@ -154,6 +164,14 @@ $columns: 3;
 			&:hover {
 				background-color: #000 !important;
 			}
+		}
+	}
+
+	.ggm-pg-loop-wrap {
+		ul {
+			display: flex !important;
+			flex-wrap: wrap;
+			margin-bottom: 20px !important;
 		}
 	}
 

@@ -10,38 +10,34 @@
 * CSS for both Frontend+Backend.
 */
 .ggm-pg-grid {
-    .wp-block-post {
-        width: calc(50% - 10px);
+	.wp-block-post {
+		width: calc(50% - 10px);
 		padding: 0;
 	}
-    .block-editor-block-toolbar__slot,
+	.block-editor-block-toolbar__slot,
 	.post-pagination {
 		display: none !important;
 	}
-    .ggm-pg-wrap > div {
-        height: 100%;
-        display: flex;
-        align-items: end;
-    }
+	.ggm-pg-wrap > div {
+		height: 100%;
+		display: flex;
+		justify-content: flex-end;
+		flex-direction: column;
+	}
 }
-
 .ggm-pg-loop-wrap {
 	ul {
-        display: flex !important;
-		flex-wrap: wrap;
-		gap: 20px;
-		margin-bottom: 50px !important;
+        gap: 20px;
+	}
+}
+.editor-styles-wrapper {
+	.ggm-pg-grid {
+		.is-layout-grid {
+			display: flex !important;
+		}
 	}
 }
 
-.editor-styles-wrapper {
-    .ggm-pg-grid {
-        .is-layout-grid {
-            display: flex !important;
-        } 
-    }
-}
-
 .wp-block-post-featured-image .block-editor-media-placeholder {
-    height: 100%;
+	height: 100%;
 }

@@ -66,7 +66,7 @@ function Grid_Masonry_For_Guten_Block_init()
 
     wp_enqueue_script(
         'masonry-lib',
-        plugin_dir_url(GRID_MASONRY_FILE) . 'assets/js/unpkg.com_isotope-layout@3.0.6_dist_isotope.pkgd.min.js',
+        plugins_url('/src/assets/js/3.0.6_dist_isotope.pkgd.min.js', __FILE__),
         array('jquery'),
         '3.0.6',
         true
@@ -75,7 +75,7 @@ function Grid_Masonry_For_Guten_Block_init()
 
     wp_enqueue_script(
         'fancyapp-lib',
-        plugins_url('/assets/js/fancybox.umd.js', __FILE__),
+        plugins_url('/src/block/media-grid/assets/js/fancybox.umd.js', __FILE__),
         array('jquery'),
         '5.0.24',
         true
@@ -83,7 +83,7 @@ function Grid_Masonry_For_Guten_Block_init()
 
     wp_enqueue_script(
         'script-custom',
-        plugins_url('/assets/js/script.js', __FILE__),
+        plugins_url('/src/assets/js/script.js', __FILE__),
         array('jquery', 'fancyapp-lib', 'masonry-lib'),
         GRID_MASONRY_VERSION,
         true
@@ -91,10 +91,18 @@ function Grid_Masonry_For_Guten_Block_init()
 
     wp_enqueue_style(
         'fancyapp-css',
-        plugins_url('/assets/css/fancybox.css', __FILE__),
+        plugins_url('/src/block/media-grid/assets/css/fancybox.css', __FILE__),
         '5.0.24',
         true
     );
+
+    wp_enqueue_style(
+        'front-styles',
+        plugins_url('/build/style-index.css', __FILE__),
+        '5.0.24',
+        true
+    );
+
 
     // wp_localize_script('main-script', 'admin_theme_object', array('themeurl' => get_theme_file_uri()));
     register_block_type(__DIR__ . '/build');

@@ -22,6 +22,8 @@ $(() => {
         itemSelector: '.wp-block-post',
         percentPosition: true,
         masonry: {
+            gutter: 20,
+            columnWidth: '.ggm-pg-wrap'
             // use outer width of grid-sizer for columnWidth
             //columnWidth: '.grid-sizer'
         }
