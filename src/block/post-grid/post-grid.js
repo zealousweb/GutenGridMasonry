@@ -83,6 +83,7 @@ registerBlockType('gridmasonryforgutenberg/post-grid', {
             default: 2,
         },
     },
+    
     //onChange: sliderIsUpdated(),
     edit: (props) => {
         const { attributes, setAttributes } = props;
@@ -113,6 +114,7 @@ registerBlockType('gridmasonryforgutenberg/post-grid', {
             </>
         );
     },
+
 
     save: ({ attributes }) => {
         const { gridItem } = attributes;

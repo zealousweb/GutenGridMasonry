@@ -8,7 +8,6 @@ import './editor.scss';
  * import placeholder image to shown defalt
  */
 import PlaceholderImage from './placeholder-image.png';
-//import ImageSizeDropdown from './ImageSizeDropdown';
 
 /**
 * WordPress dependencies
@@ -313,6 +312,7 @@ registerBlockType('gridmasonryforgutenberg/media-grid', {
             </>
         );
     },
+
 
     /**
      * Main Save Structure

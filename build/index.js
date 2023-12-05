@@ -35,7 +35,6 @@ __webpack_require__.r(__webpack_exports__);
  * import placeholder image to shown defalt
  */
 
-//import ImageSizeDropdown from './ImageSizeDropdown';
 
 /**
 * WordPress dependencies
