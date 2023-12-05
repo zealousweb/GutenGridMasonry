@@ -754,9 +754,9 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   example: {},
   keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('post-list', 'gridmasonryforgutenberg'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Listing', 'gridmasonryforgutenberg')],
   supports: {
-    displayLayout: false,
-    layout: false,
-    align: false
+    displayLayout: true,
+    layout: true,
+    align: true
   },
   attributes: {
     align: {

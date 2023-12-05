@@ -45,7 +45,6 @@ const POST_GRID_TEMPLATE = [
             ],
             ['core/query-pagination', { className: 'post-pagination' }],
         ],
-
     ],
     ['core/group', { className: 'ggm-pg-cta-button' },
         [
@@ -69,9 +68,9 @@ registerBlockType('gridmasonryforgutenberg/post-grid', {
         __('Post Listing', 'gridmasonryforgutenberg'),
     ],
     supports: {
-        displayLayout: false,
-        layout: false,
-        align: false,
+        displayLayout: true,
+        layout: true,
+        align: true,
     },
     attributes: {
         align: {
@@ -83,7 +82,7 @@ registerBlockType('gridmasonryforgutenberg/post-grid', {
             default: 2,
         },
     },
-    
+
     //onChange: sliderIsUpdated(),
     edit: (props) => {
         const { attributes, setAttributes } = props;
@@ -114,7 +113,6 @@ registerBlockType('gridmasonryforgutenberg/post-grid', {
             </>
         );
     },
-
 
     save: ({ attributes }) => {
         const { gridItem } = attributes;

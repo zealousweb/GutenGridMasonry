@@ -103,7 +103,6 @@ function Grid_Masonry_For_Gutenberg_Block_init()
         true
     );
 
-
     // wp_localize_script('main-script', 'admin_theme_object', array('themeurl' => get_theme_file_uri()));
     register_block_type(__DIR__ . '/build');
 
