@@ -62,7 +62,21 @@ Yes, Masonry Grid for Gutenberg allows you to easily incorporate a mix of media 
 the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
 directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
 (or jpg, jpeg, gif).
+
+
+media-grid-backend.png
+
 2. This is the second screen shot
+media-grid-lightbox.png
+
+3. This is the third screen shot
+media-grid-frontend.png
+
+4. This is the forth screen shot
+post-grid-backend.png
+
+5. This is the fifth screen shot
+post-grid-frontend.png
 
 == Changelog ==
 

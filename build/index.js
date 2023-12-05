@@ -49,9 +49,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-//import { useRef, useState } from 'react';
-
 /**
  * Media Grid block registration
  */
@@ -103,30 +100,15 @@ __webpack_require__.r(__webpack_exports__);
     const {
       videoOptionEnabled
     } = attributes;
-    //const { captionOptionsEnabled } = attributes;
     const {
       gridItem
     } = attributes;
     const {
       selectedSize
     } = attributes;
-    const buttonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
-    //const [selectedVideoType, setSelectedVideoType] = useState('option1');
-
-    //const { isChecked } = attributes;
-
-    // const MyCheckbox = ({ isChecked, onCheckboxChange }) => {
-    //     return (
-    //         <CheckboxControl
-    //             label="Enable Feature"
-    //             checked={isChecked}
-    //             onChange={(newState) => onCheckboxChange(newState)}
-    //         />
-    //     );
-    // };
-
-    const callJavaScriptFunction = numberLenth => {
+    /** upload image trigger after row Added javaScript function */
+    const upload_image_trigger_after_row_Added = numberLenth => {
       setTimeout(function () {
         const buttonElement = document.getElementById('upload-image-' + numberLenth);
         if (buttonElement) {
@@ -135,31 +117,7 @@ __webpack_require__.r(__webpack_exports__);
       }, 100);
     };
 
-    // useEffect((numberLenth) => {
-    //     // Add an event listener to the button to demonstrate the click event
-    //     const buttonElement1 = document.getElementsByClassName('upload-image-' + numberLenth);
-    //     if (buttonElement1) {
-    //         buttonElement1.addEventListener('click', () => {
-
-    //         });
-    //     }
-    // }, []); // Run this effect only once after the initial render
-
-    //         useEffect(() => {
-    //             // Simulating a scenario where the button is added dynamically
-    //             const dynamicButton = document.createElement('button');
-    //             dynamicButton.id = 'myButton';
-    //             dynamicButton.textContent = 'Button to be clicked programmatically';
-    //             dynamicButton.addEventListener('click', callJavaScriptFunction);
-    // 
-    //             document.body.appendChild(dynamicButton);
-    // 
-    //             // Cleanup the dynamically created button on component unmount
-    //             return () => {
-    //                 document.body.removeChild(dynamicButton);
-    //             };
-    //         }, []); // Run this effect only once after the initial render
-
+    /** Add repeater item */
     const addRepeaterItem = () => {
       const newItems = [...attributes.items, {
         image: null,
@@ -172,28 +130,10 @@ __webpack_require__.r(__webpack_exports__);
         items: newItems
       });
       const numberLenth = newItems.length - 1;
-      //buttonRef.current.click();
-      //const buttonRef = useRef(newItems.length);
-      //newItems[5].image;
-      //newItems[newItems.length].image[{open}];
-      callJavaScriptFunction(numberLenth);
-      //newItems[5].image;
-      // const lastIndex = newItems.length - 1;
-      // setAttributes({ items: newItems }, () => {
-      //     // Trigger the image selection for the newly added row
-      //     const lastIndex = newItems.length - 1;
-      //     // if (mediaUploadRef[lastIndex] && mediaUploadRef[lastIndex].current) {
-      //     //     mediaUploadRef[lastIndex].current.open();
-      //     // }
-      // });
-      //const current = attributes.items.length; 
-      //document.getElementById('media-grid-' + attributes.items.length).open();
-      //document.getElementById('media-grid-' + attributes.items.length).trigger('click');
-      //mediaUploadRef[attributes.items.length].trigger('click');
-      //attributes.items.mediaUploadRef.open();
-      //handleButtonClick(attributes.items.length);
+      upload_image_trigger_after_row_Added(numberLenth);
     };
 
+    /** Delete Repeater Row */
     const deleteRepeaterItem = index => {
       const newItems = [...attributes.items];
       newItems.splice(index, 1);
@@ -204,25 +144,6 @@ __webpack_require__.r(__webpack_exports__);
 
     /** update Repeater data */
     const updateRepeaterItem = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
-      //const newItems = [...attributes.items, { image: null, image_caption: '', popup_url: '', checkboxx: false }];
-      // {
-      //     attributes.items.map((item, index) => {
-      //         return <li key={index}>{item.checkboxx}</li>
-      //     })
-      // }
-      //document.getElementsByClassName('components-form-toggle__input').click();        
-      //const oldItems = [attributes.items];
-
-      // for (let i = 0; i <= oldItems[0].length; i++) {
-      //setAttributes({ items:  });
-
-      // if ( oldItems[0][i].checkboxx  ){
-      //     if ( oldItems[0][i].checkboxx == true){
-      //         oldItems[0][i].checkboxx = false;
-      //     }
-      // }
-      //}
-      //setAttributes({ items: oldItems });
       const newItems = [...attributes.items];
       newItems[index].image = image;
       newItems[index].image_caption = image_caption;
@@ -232,34 +153,10 @@ __webpack_require__.r(__webpack_exports__);
       setAttributes({
         items: newItems
       });
-      console.log(video_media);
     };
+
+    /** get thumbnail image sizes from wordpress */
     const imageSizes = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.select)('core/editor').getEditorSettings().imageSizes.map(size => size.slug);
-    //const [selectedSize, setSelectedSize] = useState('full'); // Default size
-    //const dispatch = useDispatch();
-    //         const handleSizeChange = (size) => {
-    //             setAttributes({ selectedSize: size })
-    //             setSelectedSize(size);
-    // 
-    //             // You can dispatch an action or handle the selected size as needed
-    //             // For example, dispatch an action to update block attributes
-    //             //dispatch('core/editor').editPost({ meta: { imageSize: size } });
-    //         };
-
-    const showOptions = index => {
-
-      //document.getElementsByClassName('no-cb-'+ index).click();
-      //const oldItems = [attributes.items, { checkboxx: false }];
-      //const newItems = [...attributes.items, { image: null, image_caption: '', popup_url: '', checkboxx: false }];
-      //setAttributes({ items: oldItems });
-      //checkboxx[index] = true;
-    };
-    const handleImageCaptions = () => {
-      //console.log('e');
-    };
-    const openCaption = index => {
-      //console.log('ee' + index);
-    };
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, {
       key: "setting"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
@@ -308,7 +205,6 @@ __webpack_require__.r(__webpack_exports__);
       })
     }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "ggm-mg-wrap",
-      onClick: openCaption(index),
       key: index
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
       className: "remove-item",
@@ -345,8 +241,7 @@ __webpack_require__.r(__webpack_exports__);
       render: ({
         open
       }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "ggm-mg-image",
-        onClick: showOptions(index)
+        className: "ggm-mg-image"
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", {
         id: `upload-image-${index}`,
         className: `change-image upload-image-${index}`,
@@ -384,7 +279,6 @@ __webpack_require__.r(__webpack_exports__);
       className: "ggm-mg-content"
     }, item.image &&
     //item.checkboxx &&
-
     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextareaControl, {
       placeholder: "Image Caption",
       className: "mg-image-caption",
@@ -514,7 +408,7 @@ __webpack_require__.r(__webpack_exports__);
       }, " ", attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "ggm-mg-media",
         key: index
-      }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled && videoOptionEnabled && item.selectedVideoType == 'thirdparty' && item.popup_url || item.selectedVideoType == 'mp4' && item.video_media ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled && item.selectedVideoType == 'thirdparty' && item.popup_url || item.selectedVideoType == 'mp4' && item.video_media ? /** have Video available and also enabled the video popup from the side panel */
+      }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled || videoOptionEnabled && item.selectedVideoType == 'thirdparty' && item.popup_url || item.selectedVideoType == 'mp4' && item.video_media ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled && item.selectedVideoType == 'thirdparty' && item.popup_url || item.selectedVideoType == 'mp4' && item.video_media ? /** have Video available and also enabled the video popup from the side panel */
 
       item.selectedVideoType == 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.popup_url,
@@ -568,11 +462,7 @@ __webpack_require__.r(__webpack_exports__);
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
         alt: ""
-      }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-        href: item.image.sizes.full.url,
-        "data-fancybox": "video-gallery",
-        "data-caption": item.image_caption
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
         alt: ""
       })), item.image_caption && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

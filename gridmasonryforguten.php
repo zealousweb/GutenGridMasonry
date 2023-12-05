@@ -66,7 +66,7 @@ function Grid_Masonry_For_Gutenberg_Block_init()
 
     wp_enqueue_script(
         'masonry-lib',
-        plugins_url('/src/assets/js/3.0.6_dist_isotope.pkgd.min.js', __FILE__),
+        plugins_url('/inc/assets/js/3.0.6_dist_isotope.pkgd.min.js', __FILE__),
         array('jquery'),
         '3.0.6',
         true
@@ -75,7 +75,7 @@ function Grid_Masonry_For_Gutenberg_Block_init()
 
     wp_enqueue_script(
         'fancyapp-lib',
-        plugins_url('/src/block/media-grid/assets/js/fancybox.umd.js', __FILE__),
+        plugins_url('/inc/assets/js/fancybox.umd.js', __FILE__),
         array('jquery'),
         '5.0.24',
         true
@@ -83,7 +83,7 @@ function Grid_Masonry_For_Gutenberg_Block_init()
 
     wp_enqueue_script(
         'script-custom',
-        plugins_url('/src/assets/js/script.js', __FILE__),
+        plugins_url('/inc/assets/js/script.js', __FILE__),
         array('jquery', 'fancyapp-lib', 'masonry-lib'),
         GRID_MASONRY_VERSION,
         true
@@ -91,7 +91,7 @@ function Grid_Masonry_For_Gutenberg_Block_init()
 
     wp_enqueue_style(
         'fancyapp-css',
-        plugins_url('/src/block/media-grid/assets/css/fancybox.css', __FILE__),
+        plugins_url('/inc/assets/css/fancybox.css', __FILE__),
         '5.0.24',
         true
     );
