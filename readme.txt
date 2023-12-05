@@ -58,24 +58,19 @@ Yes, Masonry Grid for Gutenberg allows you to easily incorporate a mix of media 
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-
-
+1. This is the first screenshot for Backend Options for Media Grid.
 media-grid-backend.png
 
-2. This is the second screen shot
-media-grid-lightbox.png
-
-3. This is the third screen shot
+2. This is the second screenshot for Front end output od Media Grid.
 media-grid-frontend.png
 
-4. This is the forth screen shot
+3. This is the third screenshot that describe for lightbox output on Front end.
+media-grid-lightbox.png
+
+4. This is the forth screenshot that showing backend options for Post Grid.
 post-grid-backend.png
 
-5. This is the fifth screen shot
+5. This is the fifth screenshot that showing output for Post Grid.
 post-grid-frontend.png
 
 == Changelog ==
@@ -83,18 +78,3 @@ post-grid-frontend.png
 = 1.0.0 =
 * Release
 Initial Release
-
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
-
-
-Code + Plugin Review Notes 
-Needs below listed changes or updates from dev site 
-1. Wordpress CoreBlock Blog page Link after post grid button changes
-2. 
-
-== Upgrade Notice ==
