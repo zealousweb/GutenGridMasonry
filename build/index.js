@@ -152,6 +152,7 @@ __webpack_require__.r(__webpack_exports__);
       setAttributes({
         items: newItems
       });
+      console.log(image);
     };
 
     /** get thumbnail image sizes from wordpress */
@@ -264,12 +265,12 @@ __webpack_require__.r(__webpack_exports__);
         "stroke-width": "2",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }), " "))), item.image && selectedSize && item.image.sizes[selectedSize] ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      }), " "))), item.image && selectedSize && item.image.sizes[selectedSize] && item.image.alt ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes[selectedSize].url,
-        alt: ""
+        alt: item.image.alt ? item.image.alt : ''
       }) : item.image ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.medium.url,
-        alt: ""
+        alt: item.image.alt ? item.image.alt : ''
       }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: _placeholder_image_png__WEBPACK_IMPORTED_MODULE_3__,
         alt: ""
@@ -281,7 +282,7 @@ __webpack_require__.r(__webpack_exports__);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextareaControl, {
       placeholder: "Image Caption",
       className: "mg-image-caption",
-      value: item.image_caption,
+      value: item.image_caption ? item.image_caption : item.image.caption,
       onChange: image_caption => updateRepeaterItem(item.image, image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)
     }), videoOptionEnabled && fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
       value: item.selectedVideoType && item.selectedVideoType.value
@@ -409,7 +410,7 @@ __webpack_require__.r(__webpack_exports__);
         key: index
       }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled || videoOptionEnabled && item.selectedVideoType == 'thirdparty' && item.popup_url || item.selectedVideoType == 'mp4' && item.video_media ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled && item.selectedVideoType == 'thirdparty' && item.popup_url || item.selectedVideoType == 'mp4' && item.video_media ? /** have Video available and also enabled the video popup from the side panel */
 
-      item.selectedVideoType == 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      item.selectedVideoType == 'thirdparty' && item.popup_url || item.image_caption || item.image.caption ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.popup_url,
         data: item.selectedVideoType,
         className: "ggm-mg-video",
@@ -427,13 +428,13 @@ __webpack_require__.r(__webpack_exports__);
         transform: "translate(-0.563 -0.563)"
       })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
-        alt: ""
-      })) : item.selectedVideoType == 'mp4' && item.video_media ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+        alt: item.image.alt ? item.image.alt : ''
+      })) : item.selectedVideoType == 'mp4' && item.video_media || item.image_caption ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.video_media.url,
         data: item.selectedVideoType,
         className: "ggm-mg-video",
         "data-fancybox": "video-gallery",
-        "data-caption": item.image_caption
+        "data-caption": item.image_caption ? item.image_caption : item.image.caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         width: "34.875",
@@ -446,27 +447,27 @@ __webpack_require__.r(__webpack_exports__);
         transform: "translate(-0.563 -0.563)"
       })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
-        alt: ""
+        alt: item.image.alt ? item.image.alt : ''
       })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.image.sizes.full.url,
         "data-fancybox": "video-gallery",
-        "data-caption": item.image_caption
+        "data-caption": item.image_caption ? item.image_caption : item.image.caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
-        alt: ""
+        alt: item.image.alt ? item.image.alt : ''
       })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.image.sizes.full.url,
         "data-fancybox": "video-gallery",
-        "data-caption": item.image_caption
+        "data-caption": item.image_caption ? item.image_caption : item.image.caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
-        alt: ""
+        alt: item.image.alt ? item.image.alt : ''
       }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
-        alt: ""
-      })), item.image_caption && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        alt: item.image.alt ? item.image.alt : ''
+      })), (item.image_caption || item.image.caption) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         class: "image-caption"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, item.image_caption))))))
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, item.image_caption ? item.image_caption : item.image.caption))))))
     );
   }
 });

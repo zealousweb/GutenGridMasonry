@@ -1,28 +1,26 @@
 === Masonry Grid for Gutenberg ===
-Contributors:      ZealousWeb
-Tags:              block
-Tested up to:      6.4
-Requires PHP:      5.6
-Requires at least: 4.8
-Stable tag:        1.0
-License:           GPL-2.0-or-later
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+
+Contributors: zealopensource
+Tags: Gutenberg, Masonry Grid, Image Gallery, Video Gallery, Post Grid, Lightbox
+Donate link: http://www.zealousweb.com/payment/
+Requires at least: 3.0
+Tested up to: 6.2.2
+Requires PHP: 5.6
+License: GPLv3 or later License
+Version: 1.0
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Easily create a beautiful masonry-style grid for displaying images, videos, and posts with Gutenberg. Configure columns, rows, lightbox options, and more.
 
 == Description ==
 
-Masonry Grid for Gutenberg provides a seamless way to create visually stunning grids within the Gutenberg editor. With a focus on flexibility and ease of use, this plugin lets you:
+Introducing the "Masonry Grid for Gutenberg" plugin – a powerful tool designed to enhance your content display in the Gutenberg editor. With this plugin, you can effortlessly create visually appealing grids that showcase a mix of images, videos, and posts in a stunning masonry-style layout.
 
-* Display images, videos, and/or posts in a masonry-style layout.
-* Easily incorporate a mix of media types within the same grid.
-* Choose the number of columns and rows for the grid layout.
-* Enable lightbox functionality for images and videos to provide a larger view when clicked.
-* Support various video formats, including MP4, YouTube, and Vimeo.
-* Provide the option to enable infinite scrolling for seamless browsing through numerous items.
-* Allow users to filter and sort content by post categories.
-* Customize the appearance of the grid, including colors, fonts, and spacing.
-* Implement a "Load More" button for users to view additional content without leaving the current page.
+- Present a captivating blend of images, videos in a media grid, and posts within the post grid, offering a dynamic and engaging content presentation.
+- Tailor your grid by choosing the number of columns and rows, giving you full control over the structure and appearance of your content.
+- Enhance the user experience by enabling a lightbox feature for images and videos. When clicked, media items expand for a larger, more immersive view.
+- Support for various video formats, including MP4, YouTube, and Vimeo, allowing you to seamlessly integrate diverse multimedia content.
+
 
 == Installation ==
 
@@ -30,51 +28,35 @@ Installing the plugin is easy. Just follow these steps:
 
 1. From the dashboard of your site, navigate to Plugins --> Add New.
 2. Select the Upload option and hit "Choose File."
-3. When the popup appears, select the masonry-grid-for-gutenberg.zip file from your desktop.
+3. When the popup appears, select the masonrygridforgutenberg.zip file from your desktop.
 4. Follow the on-screen instructions and wait till the upload completes.
 5. When it's finished, activate the plugin via the prompt. A message will display confirming activation was successful.
 
 That's it! Configure your settings as you see fit, and you're on your way to creating visually appealing grids in Gutenberg.
 
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/gridmasonryforgutenberg` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
-
 == Frequently Asked Questions ==
 
-= How do I create a masonry grid in Gutenberg? =
+= Is the Masonry Grid for Gutenberg easy to use? =
 
-1. Add a new post or page.
-2. Click on the "+" icon to add a new block.
-3. Search for "Masonry Grid" and add the block to your content.
-4. Configure the block settings, including media types, columns, rows, lightbox options, etc.
-5. Publish or update your post/page to see the masonry grid in action.
+Yes, the plugin is user-friendly and integrates seamlessly with the Gutenberg editor. Its intuitive features make it accessible to both beginners and experienced users.
 
-= Can I mix images, abd videos in the same grid? =
+= What media types can be displayed in the grid? =
 
-Yes, Masonry Grid for Gutenberg allows you to easily incorporate a mix of media types within the same grid, providing a versatile display for your content.
+The plugin supports the display of images, videos in media Grid, and posts into the post grid, providing versatility and flexibility in content presentation.
 
-== Screenshots ==
+= Can I customize the grid layout? =
 
-1. This is the first screenshot for Backend Options for Media Grid.
-media-grid-backend.png
+Yes, the plugin offers customization options, allowing you to choose the number of columns and rows for your grid. This flexibility ensures that you can tailor the layout to suit your specific design preferences.
 
-2. This is the second screenshot for Front end output od Media Grid.
-media-grid-frontend.png
+= Does the plugin support a lightbox feature? =
 
-3. This is the third screenshot that describe for lightbox output on Front end.
-media-grid-lightbox.png
+Absolutely. The Masonry Grid plugin enables a lightbox functionality for images and videos. When clicked, media items open in a larger view, enhancing the overall user experience.
 
-4. This is the forth screenshot that showing backend options for Post Grid.
-post-grid-backend.png
+= What video formats are supported for display? =
 
-5. This is the fifth screenshot that showing output for Post Grid.
-post-grid-frontend.png
+The plugin supports various video formats, including MP4, YouTube, and Vimeo. This ensures seamless integration of different multimedia content types into your grid.
 
 == Changelog ==
 
 = 1.0.0 =
-* Release
 Initial Release
