@@ -28,7 +28,7 @@ registerBlockType('gridmasonryforgutenberg/media-grid', {
     title: __('Media Grid', 'gridmasonryforgutenberg'),
     description: __('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforgutenberg'),
     icon: 'format-gallery',
-    category: 'grid-masonry-for-gutenberg',
+    category: 'zealblocks',
     attributes: {
         /** Repeater Array containing Image, Description, and VideoURL */
         items: {

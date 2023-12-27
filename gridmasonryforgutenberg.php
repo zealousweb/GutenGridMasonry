@@ -118,12 +118,12 @@ add_action('init', 'Grid_Masonry_For_Gutenberg_Block_init');
  */
 function Ggm_Plugin_Block_categories( $categories )
 {
-    if (array_search('grid-masonry-for-gutenberg', array_column($categories, 'slug'), true) === false) {
+    if (array_search('zealblocks', array_column($categories, 'slug'), true) === false) {
         return array_merge(
             $categories,
             array(
                 array(
-                    'slug' => 'grid-masonry-for-gutenberg',
+                    'slug' => 'zealblocks',
                     'title' => __('ZealBlocks', 'gridmasonryforgutenberg'),
                     'icon' => '',
                 ),

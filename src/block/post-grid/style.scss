@@ -46,6 +46,7 @@ $columns: 3;
 	.ggm-pg-wrap {
 		position: relative;
 		height: 100%;
+        margin: 0 !important;
 		&:after {
 			content: "";
 			width: 100%;

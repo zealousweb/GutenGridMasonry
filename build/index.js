@@ -55,7 +55,7 @@ __webpack_require__.r(__webpack_exports__);
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media Grid', 'gridmasonryforgutenberg'),
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'gridmasonryforgutenberg'),
   icon: 'format-gallery',
-  category: 'grid-masonry-for-gutenberg',
+  category: 'zealblocks',
   attributes: {
     /** Repeater Array containing Image, Description, and VideoURL */
     items: {
@@ -751,7 +751,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v12zM7 11h2V9H7v2zm0 4h2v-2H7v2zm3-4h7V9h-7v2zm0 4h7v-2h-7v2z"
   })),
-  category: 'grid-masonry-for-gutenberg',
+  category: 'zealblocks',
   example: {},
   keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('post-list', 'gridmasonryforgutenberg'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Listing', 'gridmasonryforgutenberg')],
   supports: {
