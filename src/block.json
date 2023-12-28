@@ -1,7 +1,7 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "gridmasonryforgutenberg/gutenberg-grid",
+	"name": "grid-masonry-for-guten-blocks/gutenberg-grid",
 	"version": "1.0.0",
 	"title": "Gutenberg Grid",
 	"category": "zealblocks",
@@ -11,7 +11,7 @@
 	"supports": {
 		"html": false
 	},
-	"textdomain": "gridmasonryforgutenberg",
+	"textdomain": "grid-masonry-for-guten-blocks",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

@@ -1,22 +1,21 @@
 <?php
 /**
- * Plugin Name:       Grid Masonry for Gutenberg
+ * Plugin Name:       Grid Masonry for Guten blocks
  * Description:       Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.
- * Requires at least: 6.1
- * Requires PHP:      7.0
- * Version:           1.0
+ * Requires at least: 5.9
+ * Requires PHP:      7.4
+ * Version:           1.0.0
  * Author:            <a href="https://www.zealousweb.com/">ZealousWeb</a>
- * PHP Version:       7.0
- * License:           GPL-2.0-or-later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       gridmasonryforgutenberg
+ * License:           GPLv3 or later License
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain:       grid-masonry-for-guten-blocks
  *
  * @category  MasonryGridBlocks
- * @package   Grid_Masonry_For_Gutenberg
+ * @package   Grid-Masonry-for-Guten-Blocks
  * @author    ZealousWeb <support@zealousweb.com>
  * @copyright 2023 ZealousWeb
- * @license   GPL-2.0-or-later https: //www.gnu.org/licenses/gpl-2.0.html
- * @link      https: //www.gnu.org/licenses/gpl-2.0.html
+ * @license   GPLv3 or later License
+ * @link      http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 // Exit if accessed directly.
@@ -33,7 +32,7 @@ if (!defined('GRID_MASONRY_DIR')) {
 }
 
 if (!defined('GRID_MASONRY_BLOCK_PLUGIN_NAME')) {
-    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'Grid Masonry for Gutenberg');
+    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'Grid Masonry for Guten blocks');
 }
 
 if (!defined('GRID_MASONRY_VERSION')) {
@@ -124,7 +123,7 @@ function Ggm_Plugin_Block_categories( $categories )
             array(
                 array(
                     'slug' => 'zealblocks',
-                    'title' => __('ZealBlocks', 'gridmasonryforgutenberg'),
+                    'title' => __('ZealBlocks', 'grid-masonry-for-guten-blocks'),
                     'icon' => '',
                 ),
             )
