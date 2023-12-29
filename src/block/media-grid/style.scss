@@ -7,6 +7,7 @@
 $columns: 5;
 .ggm-mg-grid {
 	display: flex;
+    flex-wrap: wrap;
 	margin: 0;
 	font-size: 0;
 	position: relative;
@@ -61,11 +62,15 @@ $columns: 5;
 	border-radius: 20px;
 }
 .ggm-mg-media {
+    position: relative;
 	padding: 0;
 	box-sizing: border-box;
 	font-size: 0;
 	border-radius: 20px;
 	overflow: hidden;
+    > a {
+        display: block;
+    }
     img {
         width: 100%;
     }

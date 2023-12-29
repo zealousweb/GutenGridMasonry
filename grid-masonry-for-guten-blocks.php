@@ -4,11 +4,12 @@
  * Description:       Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.
  * Requires at least: 5.9
  * Requires PHP:      7.4
+ * PHP version :      7.4
  * Version:           1.0.0
  * Author:            <a href="https://www.zealousweb.com/">ZealousWeb</a>
  * License:           GPLv3 or later License
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       grid-masonry-for-gutenberg-blocks
+ * Text Domain:       grid-masonry-for-guten-blocks
  *
  * @category  MasonryGridBlocks
  * @package   Grid-Masonry-for-Guten-Blocks
@@ -62,7 +63,7 @@ require_once GRID_MASONRY_DIR . '/inc/custom-functions.php';
  */
 function Grid_Masonry_For_Gutenberg_Block_init()
 {
-
+    
     wp_enqueue_script(
         'masonry-lib',
         plugins_url('/inc/assets/js/3.0.6_dist_isotope.pkgd.min.js', __FILE__),
@@ -70,8 +71,8 @@ function Grid_Masonry_For_Gutenberg_Block_init()
         '3.0.6',
         true
     );
-
-
+    
+    
     wp_enqueue_script(
         'fancyapp-lib',
         plugins_url('/inc/assets/js/fancybox.umd.js', __FILE__),
@@ -79,7 +80,7 @@ function Grid_Masonry_For_Gutenberg_Block_init()
         '5.0.24',
         true
     );
-
+    
     wp_enqueue_script(
         'script-custom',
         plugins_url('/inc/assets/js/script.js', __FILE__),
@@ -87,24 +88,24 @@ function Grid_Masonry_For_Gutenberg_Block_init()
         GRID_MASONRY_VERSION,
         true
     );
-
+    
     wp_enqueue_style(
         'fancyapp-css',
         plugins_url('/inc/assets/css/fancybox.css', __FILE__),
         '5.0.24',
         true
     );
-
+    
     wp_enqueue_style(
         'front-styles',
         plugins_url('/build/style-index.css', __FILE__),
         '5.0.24',
         true
     );
-
+    
     // wp_localize_script('main-script', 'admin_theme_object', array('themeurl' => get_theme_file_uri()));
     register_block_type(__DIR__ . '/build');
-
+    
 }
 add_action('init', 'Grid_Masonry_For_Gutenberg_Block_init');
 

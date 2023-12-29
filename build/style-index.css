@@ -89,6 +89,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
+  padding: 0 !important;
 }
 .ggm-pg-grid .ggm-pg-date-wrap .wp-block-post-author {
   align-items: center;
@@ -178,6 +179,7 @@
 */
 .ggm-mg-grid {
   display: flex;
+  flex-wrap: wrap;
   margin: 0;
   font-size: 0;
   position: relative;
@@ -249,11 +251,15 @@
 }
 
 .ggm-mg-media {
+  position: relative;
   padding: 0;
   box-sizing: border-box;
   font-size: 0;
   border-radius: 20px;
   overflow: hidden;
+}
+.ggm-mg-media > a {
+  display: block;
 }
 .ggm-mg-media img {
   width: 100%;

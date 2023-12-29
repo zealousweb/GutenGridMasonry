@@ -3,10 +3,10 @@ var $ = jQuery.noConflict();
 
 /** Script on ready start
 ------------------------------------------------------------------------------*/
-$(() => {
+jQuery(() => {
 
     /** Post Grid Isotope Masonry options */
-    $('.ggm-pg-grid .ggm-pg-loop-wrap').isotope({
+    jQuery('.ggm-pg-grid .ggm-pg-loop-wrap').isotope({
         itemSelector: '.wp-block-post',
         percentPosition: true,
         masonry: {
@@ -18,7 +18,7 @@ $(() => {
     });
 
     /** Media Grid Isotope Masonry options */
-    $('.ggm-mg-grid').isotope({
+    jQuery('.ggm-mg-grid').isotope({
         itemSelector: '.ggm-mg-media',
         percentPosition: true,
         masonry: {
@@ -28,7 +28,7 @@ $(() => {
         }
     });
 
-    $(window).resize();
+    //jQuery(window).resize();
 
     /** Fancybox bindings for Media Grid */
     Fancybox.bind('[data-fancybox="video-gallery"]', {

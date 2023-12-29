@@ -6,9 +6,9 @@
  * Version: 1.0
  * 
  * @category  MasonryGridBlocks
- * @package   Grid_Masonry_For_Gutenberg
+ * @package   Grid-Masonry-for-Guten-Blocks
  * @author    ZealousWeb <support@zealousweb.com>
  * @copyright 2023 ZealousWeb
- * @license   GPL-2.0-or-later https: //www.gnu.org/licenses/gpl-2.0.html
- * @link      https: //www.gnu.org/licenses/gpl-2.0.html
+ * @license   GPLv3 or later License
+ * @link      http://www.gnu.org/licenses/gpl-3.0.html
  */
