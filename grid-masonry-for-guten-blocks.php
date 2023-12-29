@@ -8,7 +8,7 @@
  * Author:            <a href="https://www.zealousweb.com/">ZealousWeb</a>
  * License:           GPLv3 or later License
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       grid-masonry-for-guten-blocks
+ * Text Domain:       grid-masonry-for-gutenberg-blocks
  *
  * @category  MasonryGridBlocks
  * @package   Grid-Masonry-for-Guten-Blocks
@@ -32,7 +32,7 @@ if (!defined('GRID_MASONRY_DIR')) {
 }
 
 if (!defined('GRID_MASONRY_BLOCK_PLUGIN_NAME')) {
-    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'Grid Masonry for Guten blocks');
+    define('GRID_MASONRY_BLOCK_PLUGIN_NAME', 'Grid Masonry for Gutenberg');
 }
 
 if (!defined('GRID_MASONRY_VERSION')) {
@@ -123,7 +123,7 @@ function Ggm_Plugin_Block_categories( $categories )
             array(
                 array(
                     'slug' => 'zealblocks',
-                    'title' => __('ZealBlocks', 'grid-masonry-for-guten-blocks'),
+                    'title' => __('ZealBlocks', 'grid-masonry-for-gutenberg'),
                     'icon' => '',
                 ),
             )

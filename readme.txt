@@ -34,6 +34,38 @@ Installing the plugin is easy. Just follow these steps:
 
 That's it! Configure your settings as you see fit, and you're on your way to creating visually appealing grids in Gutenberg.
 
+== Plugin Requirement ==
+
+PHP version : 7.4 and latest
+WordPress   : WordPress 5.9 and latest
+
+== OUR OTHER PLUGINS ==
+
+* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/generate-pdf-using-contact-form-7-pro/)</strong>
+* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-stripe-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-2checkout-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-sage-pay-opayo-payments-using-contact-form-7-pro)</strong>
+* <strong>[User Registration Using Contact Form 7 Pro](https://www.zealousweb.com/store/user-registration-using-contact-form-7-pro)</strong>
+* <strong>[Abandoned Contact Form 7 Pro](https://www.zealousweb.com/store/abandoned-contact-form-7-pro)</strong>
+
+= Getting Help With Wordpress =
+
+If you have any difficulties while using this Plugin, please feel free to contact us at https://zealousweb.com/support/
+
+We also offer custom Wordpress extension development and Wordpress theme design services to fulfill your e-commerce objectives.
+
+Our professional impassioned Wordpress experts provide profound and customer-oriented development of your project within short timeframes.
+
+Thank you for choosing a Plugin developed by <strong>[ZealousWeb](https://www.zealousweb.com)</strong>!
+
+## Functionality
+
+This plugin utilizes third-party libraries to enhance its functionality:
+
+- **Fancybox:** https://fancyapps.com/ - Use to acieve lightbox functionality for images and videos in popup
+- **Isotope:** https://isotope.metafizzy.co - Use to achive Masonry output for post and media layout
+
 == Frequently Asked Questions ==
 
 = Is the Grid Masonry for Guten Blocks easy to use? =
