@@ -60,7 +60,7 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
     apiVersion: 2,
     title: __('Post Grid', 'grid-masonry-for-guten-blocks'),
     description: __('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'grid-masonry-for-guten-blocks'),
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v12zM7 11h2V9H7v2zm0 4h2v-2H7v2zm3-4h7V9h-7v2zm0 4h7v-2h-7v2z"></path></svg>,
+    icon: <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path fill="none" d="M0 0h24v24H0z"></path> <path d="M22 9.999V20a1 1 0 0 1-1 1h-8V9.999h9zm-11 6V21H3a1 1 0 0 1-1-1v-4.001h9zM11 3v10.999H2V4a1 1 0 0 1 1-1h8zm10 0a1 1 0 0 1 1 1v3.999h-9V3h8z"></path> </g> </g></svg>,
     category: 'zealblocks',
     example: {},
     keywords: [
@@ -105,7 +105,7 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                         </PanelBody>
                     </Panel>
                 </InspectorControls>
-                <div {...useBlockProps({ className: `ggm-pg-grid grid-size-${gridItem}` })}>
+                <div {...useBlockProps({ className: `ggm-pg-grid grid-size-${gridItem}`, templateLock: true, })}>
                     <InnerBlocks
                         template={POST_GRID_TEMPLATE}
                     />

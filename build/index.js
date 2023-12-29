@@ -54,7 +54,30 @@ __webpack_require__.r(__webpack_exports__);
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.registerBlockType)('grid-masonry-for-guten-blocks/media-grid', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media Grid', 'grid-masonry-for-guten-blocks'),
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'grid-masonry-for-guten-blocks'),
-  icon: 'format-gallery',
+  //icon: 'format-gallery',
+  icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    viewBox: "0 0 24 24",
+    fill: "#000000"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+    id: "SVGRepo_tracerCarrier",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+    id: "SVGRepo_iconCarrier"
+  }, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+    id: "\uD83D\uDD0D-System-Icons",
+    stroke: "none",
+    "stroke-width": "1",
+    fill: "none",
+    "fill-rule": "evenodd"
+  }, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+    id: "ic_fluent_sub_grid_24_filled",
+    fill: "#212121",
+    "fill-rule": "nonzero"
+  }, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M17.75,3 C19.5449,3 21,4.45507 21,6.25 L21,6.25 L21,17.75 C21,19.5449 19.5449,21 17.75,21 L17.75,21 L6.25,21 C4.45507,21 3,19.5449 3,17.75 L3,17.75 L3,6.25 C3,4.45507 4.45507,3 6.25,3 L6.25,3 Z M14.25,7 C15.7688,7 17,8.23122 17,9.75 L17,11.25 L19.5,11.25 L19.5,6.25 C19.5,5.2835 18.7165,4.5 17.75,4.5 L12.75,4.5 L12.75,7 L11.25,7 L11.25,11.25 L7,11.25 L7,12.75 L4.5,12.75 L4.5,17.75 C4.5,18.7165 5.2835,19.5 6.25,19.5 L11.25,19.5 L11.25,17 L9.75,17 C8.23122,17 7,15.7688 7,14.25 L7,12.75 L11.25,12.75 L11.25,17 L12.75,17 L12.75,12.75 L17,12.75 L17,11.25 L12.75,11.25 L12.75,7 L14.25,7 Z M19.5,12.75 L17,12.75 L17,14.25 C17,15.7688 15.7688,17 14.25,17 L12.75,17 L12.75,19.5 L17.75,19.5 C18.7165,19.5 19.5,18.7165 19.5,17.75 L19.5,12.75 Z M11.25,4.5 L6.25,4.5 C5.2835,4.5 4.5,5.2835 4.5,6.25 L4.5,6.25 L4.5,11.25 L7,11.25 L7,9.75 C7,8.23122 8.23122,7 9.75,7 L9.75,7 L11.25,7 L11.25,4.5 Z",
+    id: "\uD83C\uDFA8-Color"
+  }, " "), " "), " "), " ")),
   category: 'zealblocks',
   attributes: {
     /** Repeater Array containing Image, Description, and VideoURL */
@@ -745,15 +768,21 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Grid', 'grid-masonry-for-guten-blocks'),
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('An advanced block that allows displaying post types based on different query parameters and visual configurations.', 'grid-masonry-for-guten-blocks'),
   icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-    width: "24",
-    height: "24",
     viewBox: "0 0 24 24",
     xmlns: "http://www.w3.org/2000/svg",
-    "aria-hidden": "true",
-    focusable: "false"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v12zM7 11h2V9H7v2zm0 4h2v-2H7v2zm3-4h7V9h-7v2zm0 4h7v-2h-7v2z"
-  })),
+    fill: "#000000"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+    id: "SVGRepo_tracerCarrier",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+    id: "SVGRepo_iconCarrier"
+  }, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", null, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    fill: "none",
+    d: "M0 0h24v24H0z"
+  }), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M22 9.999V20a1 1 0 0 1-1 1h-8V9.999h9zm-11 6V21H3a1 1 0 0 1-1-1v-4.001h9zM11 3v10.999H2V4a1 1 0 0 1 1-1h8zm10 0a1 1 0 0 1 1 1v3.999h-9V3h8z"
+  }), " "), " ")),
   category: 'zealblocks',
   example: {},
   keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('post-list', 'grid-masonry-for-guten-blocks'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Listing', 'grid-masonry-for-guten-blocks')],
@@ -796,7 +825,8 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       max: 3
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-        className: `ggm-pg-grid grid-size-${gridItem}`
+        className: `ggm-pg-grid grid-size-${gridItem}`,
+        templateLock: true
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks, {
       template: POST_GRID_TEMPLATE

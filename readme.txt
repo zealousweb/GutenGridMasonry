@@ -15,9 +15,9 @@ Easily create a beautiful masonry-style grid for displaying images, videos, and 
 
 == Description ==
 
-Introducing the "Grid Masonry for Guten blocks" plugin – a powerful tool designed to enhance your content display in the Gutenberg editor. With this plugin, you can effortlessly create visually appealing grids that showcase a mix of images, videos, and posts in a stunning masonry-style layout.
+Introducing the "Grid Masonry for Guten blocks" plugin – a powerful tool designed to enhance your content display in the Gutenberg editor. With this plugin, you can effortlessly create visually appealing grids that showcase a mix of images, videos, posts, and custom posts in a stunning masonry-style layout.
 
-- Present a captivating blend of images, videos in a media grid, and posts within the post grid, offering a dynamic and engaging content presentation.
+- Present a captivating blend of images, videos in a media grid, and posts and custom posts within the post grid, offering a dynamic and engaging content presentation.
 - Tailor your grid by choosing the number of columns and rows, giving you full control over the structure and appearance of your content.
 - Enhance the user experience by enabling a lightbox feature for images and videos. When clicked, media items expand for a larger, more immersive view.
 - Support for various video formats, including MP4, YouTube, and Vimeo, allowing you to seamlessly integrate diverse multimedia content.
@@ -39,6 +39,28 @@ That's it! Configure your settings as you see fit, and you're on your way to cre
 
 PHP version : 7.4 and latest
 WordPress   : WordPress 5.9 and latest
+
+== Frequently Asked Questions ==
+
+= Is the Grid Masonry for Guten Blocks easy to use? =
+
+Yes, the plugin is user-friendly and integrates seamlessly with the Gutenberg editor. Its intuitive features make it accessible to both beginners and experienced users.
+
+= What media types can be displayed in the grid? =
+
+The plugin supports the display of images, videos in media Grid, and posts into the post grid, providing versatility and flexibility in content presentation.
+
+= Can I customize the grid layout? =
+
+Yes, the plugin offers customization options, allowing you to choose the number of columns and rows for your grid. This flexibility ensures that you can tailor the layout to suit your specific design preferences.
+
+= Does the plugin support a lightbox feature? =
+
+Absolutely. The Masonry Grid plugin enables a lightbox functionality for images and videos. When clicked, media items open in a larger view, enhancing the overall user experience.
+
+= What video formats are supported for display? =
+
+The plugin supports various video formats, including MP4, YouTube, and Vimeo. This ensures seamless integration of different multimedia content types into your grid.
 
 == OUR OTHER PLUGINS ==
 
@@ -66,28 +88,6 @@ This plugin utilizes third-party libraries to enhance its functionality:
 
 - **Fancybox:** https://fancyapps.com/ - Use to acieve lightbox functionality for images and videos in popup
 - **Isotope:** https://isotope.metafizzy.co - Use to achive Masonry output for post and media layout
-
-== Frequently Asked Questions ==
-
-= Is the Grid Masonry for Guten Blocks easy to use? =
-
-Yes, the plugin is user-friendly and integrates seamlessly with the Gutenberg editor. Its intuitive features make it accessible to both beginners and experienced users.
-
-= What media types can be displayed in the grid? =
-
-The plugin supports the display of images, videos in media Grid, and posts into the post grid, providing versatility and flexibility in content presentation.
-
-= Can I customize the grid layout? =
-
-Yes, the plugin offers customization options, allowing you to choose the number of columns and rows for your grid. This flexibility ensures that you can tailor the layout to suit your specific design preferences.
-
-= Does the plugin support a lightbox feature? =
-
-Absolutely. The Masonry Grid plugin enables a lightbox functionality for images and videos. When clicked, media items open in a larger view, enhancing the overall user experience.
-
-= What video formats are supported for display? =
-
-The plugin supports various video formats, including MP4, YouTube, and Vimeo. This ensures seamless integration of different multimedia content types into your grid.
 
 == Changelog ==
 
