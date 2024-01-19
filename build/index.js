@@ -287,7 +287,7 @@ __webpack_require__.r(__webpack_exports__);
         "stroke-width": "2",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }), " "))), item.image && selectedSize && item.image.sizes[selectedSize] && item.image.alt ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      }), " "))), item.image && selectedSize && item.image.sizes[selectedSize] ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes[selectedSize].url,
         alt: item.image.alt ? item.image.alt : ''
       }) : item.image ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {

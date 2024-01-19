@@ -110,7 +110,7 @@ function Grid_Masonry_For_Gutenberg_Block_init()
 add_action('init', 'Grid_Masonry_For_Gutenberg_Block_init');
 
 /**
- * Undocumented function
+ * Created Category function
  *
  * @param array $categories - list of category.
  * 
