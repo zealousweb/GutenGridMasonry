@@ -1,12 +1,12 @@
 <?php
 /**
  * Silence is golden.
- * PHP version: 7.4
+ * Requires PHP: 7.4
  *
- * @category  MasonryGridBlocks
+ * @category  ZealBlocks
  * @package   Grid-Masonry-for-Guten-Blocks
  * @author    ZealousWeb <support@zealousweb.com>
- * @copyright 2023 ZealousWeb
+ * @copyright 2024 ZealousWeb
  * @license   GPLv3 or later License
  * @link      http://www.gnu.org/licenses/gpl-3.0.html
  */

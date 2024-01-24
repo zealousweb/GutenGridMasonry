@@ -12,29 +12,29 @@
 *
 * CSS for both Frontend+Backend.
 */
-.ggm-pg-grid .wp-block-post {
+.gmfgb-pg-grid .wp-block-post {
   width: calc(50% - 10px);
   padding: 0;
 }
-.ggm-pg-grid .block-editor-block-toolbar__slot,
-.ggm-pg-grid .post-pagination {
+.gmfgb-pg-grid .block-editor-block-toolbar__slot,
+.gmfgb-pg-grid .post-pagination {
   display: none !important;
 }
-.ggm-pg-grid .ggm-pg-wrap > div {
+.gmfgb-pg-grid .gmfgb-pg-wrap > div {
   height: 100%;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
 }
-.ggm-pg-grid .ggm-pg-content {
+.gmfgb-pg-grid .gmfgb-pg-content {
   width: 100%;
 }
 
-.ggm-pg-loop-wrap ul {
+.gmfgb-pg-loop-wrap ul {
   gap: 20px;
 }
 
-.editor-styles-wrapper .ggm-pg-grid .is-layout-grid {
+.editor-styles-wrapper .gmfgb-pg-grid .is-layout-grid {
   display: flex !important;
 }
 
@@ -50,18 +50,13 @@
 * CSS for just Backend enqueued after style.scss
 * which makes it higher in priority.
 */
-/**
-* Post Grid Editor Styles
-*
-* CSS for both Frontend+Backend.
-*/
-.ggm-mg-grid {
+.gmfgb-mg-grid {
   display: flex;
   flex-wrap: wrap !important;
   gap: 20px;
   padding: 0 !important;
 }
-.ggm-mg-grid .ggm-mg-button {
+.gmfgb-mg-grid .gmfgb-mg-button {
   display: block;
   min-height: 320px !important;
   border-radius: 20px;
@@ -70,19 +65,19 @@
   border: 2px solid #000;
   transition: 0.5s ease all;
 }
-.ggm-mg-grid .ggm-mg-button:hover {
+.gmfgb-mg-grid .gmfgb-mg-button:hover {
   background-color: inherit;
 }
-.ggm-mg-grid .ggm-mg-button:hover svg {
+.gmfgb-mg-grid .gmfgb-mg-button:hover svg {
   fill: white !important;
 }
 
-.ggm-mg-wrap {
+.gmfgb-mg-wrap {
   position: relative;
   padding-top: 100px;
   min-height: 220px;
 }
-.ggm-mg-wrap .change-image {
+.gmfgb-mg-wrap .change-image {
   background-color: #ffffff;
   color: #ff0000;
   position: absolute;
@@ -100,10 +95,10 @@
   justify-content: center;
   border-radius: 4px;
 }
-.ggm-mg-wrap .change-image svg {
+.gmfgb-mg-wrap .change-image svg {
   width: 20px;
 }
-.ggm-mg-wrap .remove-item {
+.gmfgb-mg-wrap .remove-item {
   background-color: #ffffff;
   color: #ff0000;
   position: absolute;
@@ -113,7 +108,7 @@
   opacity: 0;
   visibility: hidden;
 }
-.ggm-mg-wrap .upload-video-btn {
+.gmfgb-mg-wrap .upload-video-btn {
   padding: 0;
   height: 30px;
   position: absolute;
@@ -124,14 +119,18 @@
   align-items: center;
   justify-content: flex-end;
 }
-.ggm-mg-wrap:hover .ggm-mg-content,
-.ggm-mg-wrap:hover .change-image,
-.ggm-mg-wrap:hover .remove-item {
+.gmfgb-mg-wrap:hover .gmfgb-mg-content,
+.gmfgb-mg-wrap:hover .change-image,
+.gmfgb-mg-wrap:hover .remove-item, .gmfgb-mg-wrap:focus .gmfgb-mg-content,
+.gmfgb-mg-wrap:focus .change-image,
+.gmfgb-mg-wrap:focus .remove-item, .gmfgb-mg-wrap:active .gmfgb-mg-content,
+.gmfgb-mg-wrap:active .change-image,
+.gmfgb-mg-wrap:active .remove-item {
   opacity: 1;
   visibility: visible;
 }
 
-.ggm-mg-image {
+.gmfgb-mg-image {
   position: absolute;
   left: 0;
   top: 0;
@@ -141,7 +140,7 @@
   overflow: hidden;
   cursor: pointer;
 }
-.ggm-mg-image img {
+.gmfgb-mg-image img {
   width: 100%;
   height: 100% !important;
   -o-object-fit: cover;
@@ -149,7 +148,7 @@
   -o-object-position: center;
      object-position: center;
 }
-.ggm-mg-image:before {
+.gmfgb-mg-image:before {
   content: "";
   width: 100%;
   height: 100%;
@@ -159,7 +158,7 @@
   top: 0;
 }
 
-.ggm-mg-video {
+.gmfgb-mg-video {
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 0;
@@ -168,19 +167,19 @@
   height: 30px;
   overflow: hidden;
 }
-.ggm-mg-video span {
+.gmfgb-mg-video span {
   font-size: 13px;
   padding: 3px 8px;
   color: #fff;
   display: block;
 }
-.ggm-mg-video svg {
+.gmfgb-mg-video svg {
   width: 40px;
   height: 24px;
   fill: white;
 }
 
-.ggm-mg-content {
+.gmfgb-mg-content {
   box-sizing: border-box;
   padding: 20px;
   position: absolute;
@@ -190,60 +189,60 @@
   opacity: 0;
   visibility: hidden;
 }
-.ggm-mg-content label {
+.gmfgb-mg-content label {
   display: none;
 }
-.ggm-mg-content input[type=text],
-.ggm-mg-content textarea {
+.gmfgb-mg-content input[type=text],
+.gmfgb-mg-content textarea {
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
 }
-.ggm-mg-content input[type=text]::-webkit-input-placeholder,
-.ggm-mg-content textarea::-webkit-input-placeholder {
+.gmfgb-mg-content input[type=text]::-webkit-input-placeholder,
+.gmfgb-mg-content textarea::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #ffffff;
   opacity: 1;
 }
-.ggm-mg-content input[type=text]::-moz-placeholder,
-.ggm-mg-content textarea::-moz-placeholder {
+.gmfgb-mg-content input[type=text]::-moz-placeholder,
+.gmfgb-mg-content textarea::-moz-placeholder {
   /* Firefox 19+ */
   color: #ffffff;
   opacity: 1;
 }
-.ggm-mg-content input[type=text]:-ms-input-placeholder,
-.ggm-mg-content textarea:-ms-input-placeholder {
+.gmfgb-mg-content input[type=text]:-ms-input-placeholder,
+.gmfgb-mg-content textarea:-ms-input-placeholder {
   /* IE 10+ */
   color: #ffffff;
   opacity: 1;
 }
-.ggm-mg-content input[type=text]:-moz-placeholder,
-.ggm-mg-content textarea:-moz-placeholder {
+.gmfgb-mg-content input[type=text]:-moz-placeholder,
+.gmfgb-mg-content textarea:-moz-placeholder {
   /* Firefox 18- */
   color: #ffffff;
   opacity: 1;
 }
-.ggm-mg-content input[type=text]:focus,
-.ggm-mg-content textarea:focus {
+.gmfgb-mg-content input[type=text]:focus,
+.gmfgb-mg-content textarea:focus {
   background-color: rgb(255, 255, 255);
   color: #000000;
 }
-.ggm-mg-content input[type=text]:focus::-webkit-input-placeholder,
-.ggm-mg-content textarea:focus::-webkit-input-placeholder {
+.gmfgb-mg-content input[type=text]:focus::-webkit-input-placeholder,
+.gmfgb-mg-content textarea:focus::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #000000;
 }
-.ggm-mg-content input[type=text]:focus::-moz-placeholder,
-.ggm-mg-content textarea:focus::-moz-placeholder {
+.gmfgb-mg-content input[type=text]:focus::-moz-placeholder,
+.gmfgb-mg-content textarea:focus::-moz-placeholder {
   /* Firefox 19+ */
   color: #000000;
 }
-.ggm-mg-content input[type=text]:focus:-ms-input-placeholder,
-.ggm-mg-content textarea:focus:-ms-input-placeholder {
+.gmfgb-mg-content input[type=text]:focus:-ms-input-placeholder,
+.gmfgb-mg-content textarea:focus:-ms-input-placeholder {
   /* IE 10+ */
   color: #000000;
 }
-.ggm-mg-content input[type=text]:focus:-moz-placeholder,
-.ggm-mg-content textarea:focus:-moz-placeholder {
+.gmfgb-mg-content input[type=text]:focus:-moz-placeholder,
+.gmfgb-mg-content textarea:focus:-moz-placeholder {
   /* Firefox 18- */
   color: #000000;
 }

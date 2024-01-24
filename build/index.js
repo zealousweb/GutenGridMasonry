@@ -47,7 +47,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
  * Media Grid block registration
  */
@@ -100,8 +99,13 @@ __webpack_require__.r(__webpack_exports__);
       type: 'number',
       default: 3
     },
+    /** Selected Image thumbnail size */
     selectedSize: {
       type: 'string'
+    },
+    uniqueGallery: {
+      type: 'string',
+      default: ''
     }
   },
   /**
@@ -126,11 +130,14 @@ __webpack_require__.r(__webpack_exports__);
       gridItem
     } = attributes;
     const {
+      uniqueGallery
+    } = attributes;
+    const {
       selectedSize
     } = attributes;
 
     /** upload image trigger after row Added javaScript function */
-    const upload_image_trigger_after_row_Added = numberLenth => {
+    const gmfgb_upload_image_trigger_after_row_added = numberLenth => {
       setTimeout(function () {
         const buttonElement = document.getElementById('upload-image-' + numberLenth);
         if (buttonElement) {
@@ -140,7 +147,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     /** Add repeater item */
-    const addRepeaterItem = () => {
+    const gmfgb_add_repeater_item = () => {
       const newItems = [...attributes.items, {
         image: null,
         image_caption: '',
@@ -152,11 +159,11 @@ __webpack_require__.r(__webpack_exports__);
         items: newItems
       });
       const numberLenth = newItems.length - 1;
-      upload_image_trigger_after_row_Added(numberLenth);
+      gmfgb_upload_image_trigger_after_row_added(numberLenth);
     };
 
     /** Delete Repeater Row */
-    const deleteRepeaterItem = index => {
+    const gmfgb_delete_repeater_item = index => {
       const newItems = [...attributes.items];
       newItems.splice(index, 1);
       setAttributes({
@@ -165,7 +172,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     /** update Repeater data */
-    const updateRepeaterItem = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
+    const gmfgb_update_repeater_item = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
       const newItems = [...attributes.items];
       newItems[index].image = image;
       newItems[index].image_caption = image_caption;
@@ -176,6 +183,11 @@ __webpack_require__.r(__webpack_exports__);
         items: newItems
       });
     };
+    if (uniqueGallery === '') {
+      setAttributes({
+        uniqueGallery: Math.random().toString(36).substring(7)
+      });
+    }
 
     /** get thumbnail image sizes from wordpress */
     const imageSizes = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.select)('core/editor').getEditorSettings().imageSizes.map(size => size.slug);
@@ -223,14 +235,14 @@ __webpack_require__.r(__webpack_exports__);
       max: 5
     }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps.save({
-        className: `alignwide ggm-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
+        className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
       })
     }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "ggm-mg-wrap",
+      className: "gmfgb-mg-wrap",
       key: index
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
       className: "remove-item",
-      onClick: () => deleteRepeaterItem(index)
+      onClick: () => gmfgb_delete_repeater_item(index)
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
       fill: "#ff0000",
       width: "20",
@@ -254,7 +266,7 @@ __webpack_require__.r(__webpack_exports__);
     }), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
       d: "M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07 c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z"
     }), " "), " "), " "))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUpload, {
-      onSelect: image => updateRepeaterItem(image, item.image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)
+      onSelect: image => gmfgb_update_repeater_item(image, item.image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)
       //ref={mediaUploadRef[index]}
       //ref={buttonRef}
       ,
@@ -263,7 +275,7 @@ __webpack_require__.r(__webpack_exports__);
       render: ({
         open
       }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "ggm-mg-image"
+        className: "gmfgb-mg-image"
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", {
         id: `upload-image-${index}`,
         className: `change-image upload-image-${index}`,
@@ -298,14 +310,14 @@ __webpack_require__.r(__webpack_exports__);
         alt: ""
       }))
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "ggm-mg-content"
+      className: "gmfgb-mg-content"
     }, item.image &&
     //item.checkboxx &&
     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextareaControl, {
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Image Caption', 'grid-masonry-for-guten-blocks'),
-      className: "mg-image-caption",
+      className: "gmfgb-mg-image-caption",
       value: item.image_caption ? item.image_caption : item.image.caption,
-      onChange: image_caption => updateRepeaterItem(item.image, image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)
+      onChange: image_caption => gmfgb_update_repeater_item(item.image, image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)
     }), videoOptionEnabled && fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
       value: item.selectedVideoType
       //options={imageSizes.map((size) => ({ label: size, value: size }))}
@@ -325,9 +337,9 @@ __webpack_require__.r(__webpack_exports__);
       //     { label: 'Video URL', value: 'thirdparty' },
       // ]}
       ,
-      onChange: selectedVideoType => updateRepeaterItem(item.image, item.image_caption, selectedVideoType, item.video_media, item.popup_url, index)
+      onChange: selectedVideoType => gmfgb_update_repeater_item(item.image, item.image_caption, selectedVideoType, item.video_media, item.popup_url, index)
     }), item.selectedVideoType === 'mp4' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUpload, {
-      onSelect: video_media => updateRepeaterItem(item.image, item.image_caption, item.selectedVideoType, video_media, item.popup_url, index)
+      onSelect: video_media => gmfgb_update_repeater_item(item.image, item.image_caption, item.selectedVideoType, video_media, item.popup_url, index)
       //ref={mediaUploadRef[index]}
       ,
       allowedTypes: ['video'],
@@ -335,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
       render: ({
         open
       }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "ggm-mg-video"
+        className: "gmfgb-mg-video"
       }, item.video_media && item.video_media.filename ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, item.video_media.filename), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
         className: "upload-video-btn",
         onClick: open
@@ -375,12 +387,12 @@ __webpack_require__.r(__webpack_exports__);
     //label="Video Popup URL"
     , {
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Youtube/Vimeo URL', 'grid-masonry-for-guten-blocks'),
-      className: "mg-popup-video",
+      className: "gmfgb-mg-popup-video",
       value: item.popup_url,
-      onChange: popup_url => updateRepeaterItem(item.image, item.image_caption, item.selectedVideoType, item.video_media, popup_url, index)
+      onChange: popup_url => gmfgb_update_repeater_item(item.image, item.image_caption, item.selectedVideoType, item.video_media, popup_url, index)
     })) : '')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-      class: "ggm-mg-button button button-primary button-large",
-      onClick: addRepeaterItem
+      class: "gmfgb-mg-button button button-primary button-large",
+      onClick: gmfgb_add_repeater_item
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
       width: "50",
       viewBox: "0 0 32 32",
@@ -425,22 +437,25 @@ __webpack_require__.r(__webpack_exports__);
       videoOptionEnabled
     } = attributes;
     const {
+      uniqueGallery
+    } = attributes;
+    const {
       gridItem
     } = attributes;
     return (/** Structure to show for update data */
       (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
         ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps.save({
-          className: `alignwide ggm-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
+          className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
         })
       }, " ", attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "ggm-mg-media",
+        className: "gmfgb-mg-media",
         key: index
-      }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled || videoOptionEnabled && item.selectedVideoType === 'thirdparty' && item.popup_url || item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled && item.selectedVideoType === 'thirdparty' && item.popup_url || item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url ? /** have Video available and also enabled the video popup from the side panel */
+      }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
       item.selectedVideoType === 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.popup_url,
         data: item.selectedVideoType,
-        className: "ggm-mg-video t",
-        "data-fancybox": "video-gallery",
+        className: "gmfgb-mg-video t",
+        "data-fancybox": `video-gallery-${uniqueGallery}`,
         "data-caption": item.image_caption ? item.image_caption : item.image.caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
@@ -458,8 +473,8 @@ __webpack_require__.r(__webpack_exports__);
       })) : item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.video_media.url,
         data: item.selectedVideoType,
-        className: "ggm-mg-video s",
-        "data-fancybox": "video-gallery",
+        className: "gmfgb-mg-video s",
+        "data-fancybox": `video-gallery-${uniqueGallery}`,
         "data-caption": item.image_caption ? item.image_caption : item.image.caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
@@ -476,14 +491,14 @@ __webpack_require__.r(__webpack_exports__);
         alt: item.image.alt ? item.image.alt : ''
       })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.image.sizes.full.url,
-        "data-fancybox": "video-gallery",
+        "data-fancybox": `video-gallery-${uniqueGallery}`,
         "data-caption": item.image_caption ? item.image_caption : item.image.caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
         alt: item.image.alt ? item.image.alt : ''
       })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.image.sizes.full.url,
-        "data-fancybox": "video-gallery",
+        "data-fancybox": `video-gallery-${uniqueGallery}`,
         "data-caption": item.image_caption ? item.image_caption : item.image.caption
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
@@ -537,7 +552,7 @@ __webpack_require__.r(__webpack_exports__);
 /** Post Template */
 const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
 ['core/group', {
-  className: 'ggm-pg-title',
+  className: 'gmfgb-pg-title',
   style: {
     border: {
       style: 'solid',
@@ -547,7 +562,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }, [['core/paragraph', {
-  className: 'ggm-pg-sub-heading',
+  className: 'gmfgb-pg-sub-heading',
   placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Your amazing blog posts', 'grid-masonry-for-guten-blocks'),
   align: 'center',
   style: {
@@ -566,7 +581,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/heading', {
-  className: 'ggm-pg-main-heading',
+  className: 'gmfgb-pg-main-heading',
   placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Create a Quick and Easy Post Grid', 'grid-masonry-for-guten-blocks'),
   textAlign: 'center',
   style: {
@@ -584,7 +599,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }]]], /** Main Post Loop/Query with Default Wordpress Posts */
 ['core/query', {
-  className: 'ggm-pg-loop-wrap',
+  className: 'gmfgb-pg-loop-wrap',
   query: {
     inherit: false,
     offset: 0,
@@ -600,7 +615,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   displayLayout: false,
   align: false
 }, [['core/group', {
-  className: 'ggm-pg-wrap',
+  className: 'gmfgb-pg-wrap',
   style: {
     border: {
       style: 'solid',
@@ -611,7 +626,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     templateLock: true
   }
 }, [['core/post-featured-image', {
-  className: 'ggm-pg-featured-img',
+  className: 'gmfgb-pg-featured-img',
   style: {
     width: '100%',
     height: '100%',
@@ -625,7 +640,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/group', {
-  className: 'ggm-pg-content',
+  className: 'gmfgb-pg-content',
   style: {
     spacing: {
       padding: {
@@ -643,7 +658,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
 }, [
 // [ 'core/categories' ],
 ['core/post-title', {
-  className: 'ggm-pg-title',
+  className: 'gmfgb-pg-title',
   style: {
     color: {
       text: '#ffffff'
@@ -664,7 +679,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
 }], ['core/post-excerpt', {
   excerptLength: 20,
   moreText: '&nbsp;',
-  className: 'ggm-pg-description',
+  className: 'gmfgb-pg-description',
   style: {
     typography: {
       lineHeight: 1.2
@@ -682,7 +697,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/read-more', {
-  className: 'ggm-pg-link',
+  className: 'gmfgb-pg-link',
   content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Read More →', 'grid-masonry-for-guten-blocks'),
   style: {
     color: {
@@ -702,7 +717,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/group', {
-  className: 'ggm-pg-date-wrap',
+  className: 'gmfgb-pg-date-wrap',
   style: {
     spacing: {
       padding: {
@@ -718,7 +733,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }, [['core/post-date', {
-  className: 'ggm-pg-date',
+  className: 'gmfgb-pg-date',
   style: {
     spacing: {
       margin: '0'
@@ -731,7 +746,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/post-author', {
-  className: 'ggm-pg-author',
+  className: 'gmfgb-pg-author',
   style: {
     typography: {
       fontSize: '13px'
@@ -743,7 +758,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
 }]]]]]]]]], ['core/query-pagination', {
   className: 'post-pagination'
 }]]], ['core/group', {
-  className: 'ggm-pg-cta-button'
+  className: 'gmfgb-pg-cta-button'
 }, [['core/buttons', {
   layout: {
     type: 'flex',
@@ -825,7 +840,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       max: 3
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-        className: `ggm-pg-grid grid-size-${gridItem}`,
+        className: `gmfgb-pg-grid grid-size-${gridItem}`,
         templateLock: true
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks, {
@@ -840,7 +855,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     } = attributes;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps.save({
-        className: `ggm-pg-grid ggm-grid grid-size-${gridItem}`
+        className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}`
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.Content, null));
   }

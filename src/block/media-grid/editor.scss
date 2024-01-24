@@ -4,18 +4,13 @@
 * CSS for just Backend enqueued after style.scss
 * which makes it higher in priority.
 */
-/**
-* Post Grid Editor Styles
-*
-* CSS for both Frontend+Backend.
-*/
 
-.ggm-mg-grid {
+.gmfgb-mg-grid {
 	display: flex;
 	flex-wrap: wrap !important;
 	gap: 20px;
     padding: 0 !important;
-	.ggm-mg-button {
+	.gmfgb-mg-button {
 		display: block;
 		min-height: 320px !important;
 		border-radius: 20px;
@@ -32,7 +27,7 @@
 	}
 }
 
-.ggm-mg-wrap {
+.gmfgb-mg-wrap {
 	position: relative;
 	padding-top: 100px;
 	min-height: 220px;
@@ -79,8 +74,10 @@
         align-items: center;
         justify-content: flex-end;
 	}
-	&:hover {
-		.ggm-mg-content,
+	&:hover,
+    &:focus,
+    &:active {
+		.gmfgb-mg-content,
 		.change-image,
 		.remove-item {
 			opacity: 1;
@@ -89,7 +86,7 @@
 	}
 }
 
-.ggm-mg-image {
+.gmfgb-mg-image {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -115,7 +112,7 @@
 	}
 }
 
-.ggm-mg-video {
+.gmfgb-mg-video {
 	z-index: 1;
 	background-color: rgba(255, 255, 255, 0.2);
 	padding: 0;
@@ -136,7 +133,7 @@
 		fill: white;
 	}
 }
-.ggm-mg-content {
+.gmfgb-mg-content {
 	box-sizing: border-box;
 	padding: 20px;
 	position: absolute;

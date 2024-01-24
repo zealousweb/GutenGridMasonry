@@ -6,33 +6,33 @@ var $ = jQuery.noConflict();
 jQuery(() => {
 
     /** Post Grid Isotope Masonry options */
-    jQuery('.ggm-pg-grid .ggm-pg-loop-wrap').isotope({
+    jQuery('.gmfgb-pg-grid .gmfgb-pg-loop-wrap').isotope({
         itemSelector: '.wp-block-post',
         percentPosition: true,
         masonry: {
             gutter: 20,
-            columnWidth: '.ggm-pg-wrap'
+            columnWidth: '.gmfgb-pg-wrap'
             // use outer width of grid-sizer for columnWidth
             //columnWidth: '.grid-sizer'
         }
     });
 
     /** Media Grid Isotope Masonry options */
-    jQuery('.ggm-mg-grid').isotope({
-        itemSelector: '.ggm-mg-media',
+    jQuery('.gmfgb-mg-grid').isotope({
+        itemSelector: '.gmfgb-mg-media',
         percentPosition: true,
         masonry: {
             gutter: 20,
             // use outer width of grid-sizer for columnWidth
-            columnWidth: '.ggm-mg-media'
+            columnWidth: '.gmfgb-mg-media'
         }
     });
 
     //jQuery(window).resize();
 
     /** Fancybox bindings for Media Grid */
-    Fancybox.bind('[data-fancybox="video-gallery"]', {
-        mainClass: "ggm-fancy-custom",
+    Fancybox.bind('[data-fancybox]', {
+        mainClass: "gmfgb-fancy-custom",
     });
 });
 /** ----------------------------------------------------------------------------

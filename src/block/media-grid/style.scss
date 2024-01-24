@@ -1,11 +1,11 @@
 /**
-* Post Grid Editor Styles
+* Post Grid Editor + FrontEnd Styles
 *
 * CSS for both Frontend+Backend.
 */
 
 $columns: 5;
-.ggm-mg-grid {
+.gmfgb-mg-grid {
 	display: flex;
     flex-wrap: wrap;
 	margin: 0;
@@ -14,9 +14,9 @@ $columns: 5;
 	@media (min-width: 768px) {
 		@for $i from 1 through $columns {
 			&.grid-size-#{$i} {
-				.ggm-mg-media,
-				.ggm-mg-button,
-				.ggm-mg-wrap {
+				.gmfgb-mg-media,
+				.gmfgb-mg-button,
+				.gmfgb-mg-wrap {
 					width: calc((100% / $i) - ((20px * ($i - 1)) / $i));
 					margin-bottom: 20px;
 				}
@@ -25,25 +25,25 @@ $columns: 5;
 	}
 
 	@media (min-width: 561px) and (max-width: 767px) {
-		.ggm-mg-media,
-		.ggm-mg-button,
-		.ggm-mg-wrap {
+		.gmfgb-mg-media,
+		.gmfgb-mg-button,
+		.gmfgb-mg-wrap {
 			width: calc(33.33% - 13.33px);
 			margin-bottom: 20px;
 		}
 	}
 
 	@media (min-width: 320px) and (max-width: 560px) {
-		.ggm-mg-media,
-		.ggm-mg-button,
-		.ggm-mg-wrap {
+		.gmfgb-mg-media,
+		.gmfgb-mg-button,
+		.gmfgb-mg-wrap {
 			width: calc(50% - 10px);
 			margin-bottom: 20px;
 		}
 	}
 }
 
-.ggm-fancy-custom {
+.gmfgb-mg-fancy-custom {
 	.fancybox-video,
 	.fancybox-image {
 		position: static !important;
@@ -63,7 +63,7 @@ $columns: 5;
     max-height: 70%;
     overflow: auto;
 }
-.ggm-mg-media {
+.gmfgb-mg-media {
     position: relative;
 	padding: 0;
 	box-sizing: border-box;

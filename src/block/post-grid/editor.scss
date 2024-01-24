@@ -10,7 +10,7 @@
 * CSS for both Frontend+Backend.
 */
 
-.ggm-pg-grid {
+.gmfgb-pg-grid {
 	.wp-block-post {
 		width: calc(50% - 10px);
 		padding: 0;
@@ -19,23 +19,23 @@
 	.post-pagination {
 		display: none !important;
 	}
-	.ggm-pg-wrap > div {
+	.gmfgb-pg-wrap > div {
 		height: 100%;
 		display: flex;
 		justify-content: flex-end;
 		flex-direction: column;
 	}
-	.ggm-pg-content {
+	.gmfgb-pg-content {
 		width: 100%;
 	}
 }
-.ggm-pg-loop-wrap {
+.gmfgb-pg-loop-wrap {
 	ul {
 		gap: 20px;
 	}
 }
 .editor-styles-wrapper {
-	.ggm-pg-grid {
+	.gmfgb-pg-grid {
 		.is-layout-grid {
 			display: flex !important;
 		}

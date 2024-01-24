@@ -16,28 +16,28 @@ import { RangeControl, Panel, PanelBody } from '@wordpress/components';
 /** Post Template */
 const POST_GRID_TEMPLATE = [
     /** Additional Heading and Description */
-    ['core/group', { className: 'ggm-pg-title', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' } } },
+    ['core/group', { className: 'gmfgb-pg-title', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' } } },
         [
-            ['core/paragraph', { className: 'ggm-pg-sub-heading', placeholder: __('Your amazing blog posts', 'grid-masonry-for-guten-blocks'), align: 'center', style: { typography: { fontSize: '16px', fontWeight: 700, textTransform: 'uppercase' }, spacing: { margin: { bottom: '15px', top: '0px', right: '0px', left: '0px' } } } }],
-            ['core/heading', { className: 'ggm-pg-main-heading', placeholder: __('Create a Quick and Easy Post Grid', 'grid-masonry-for-guten-blocks'), textAlign: 'center', style: { typography: { fontWeight: 700, }, spacing: { margin: { bottom: '25px', top: '0px', right: '0px', left: '0px' } } } }],
+            ['core/paragraph', { className: 'gmfgb-pg-sub-heading', placeholder: __('Your amazing blog posts', 'grid-masonry-for-guten-blocks'), align: 'center', style: { typography: { fontSize: '16px', fontWeight: 700, textTransform: 'uppercase' }, spacing: { margin: { bottom: '15px', top: '0px', right: '0px', left: '0px' } } } }],
+            ['core/heading', { className: 'gmfgb-pg-main-heading', placeholder: __('Create a Quick and Easy Post Grid', 'grid-masonry-for-guten-blocks'), textAlign: 'center', style: { typography: { fontWeight: 700, }, spacing: { margin: { bottom: '25px', top: '0px', right: '0px', left: '0px' } } } }],
         ]
     ],
 
     /** Main Post Loop/Query with Default Wordpress Posts */
-    ['core/query', { className: 'ggm-pg-loop-wrap', query: { inherit: false, offset: 0, postType: 'post', enhancedPagination: true }, templateLock: true, displayLayout: false, align: false, },
+    ['core/query', { className: 'gmfgb-pg-loop-wrap', query: { inherit: false, offset: 0, postType: 'post', enhancedPagination: true }, templateLock: true, displayLayout: false, align: false, },
         [
             ['core/post-template', { templateLock: true, layout: false, displayLayout: false, align: false, },
-                [['core/group', { className: 'ggm-pg-wrap', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' }, templateLock: true } },
+                [['core/group', { className: 'gmfgb-pg-wrap', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' }, templateLock: true } },
                     [
-                        ['core/post-featured-image', { className: 'ggm-pg-featured-img', style: { width: '100%', height: '100%', spacing: { margin: { bottom: '0px', top: '0px', right: '0px', left: '0px' } } } }],
-                        ['core/group', { className: 'ggm-pg-content', style: { spacing: { padding: { top: '100px', right: '25px', bottom: '25px', left: '25px' }, margin: { top: '0px', bottom: '0px' } } } }, [
+                        ['core/post-featured-image', { className: 'gmfgb-pg-featured-img', style: { width: '100%', height: '100%', spacing: { margin: { bottom: '0px', top: '0px', right: '0px', left: '0px' } } } }],
+                        ['core/group', { className: 'gmfgb-pg-content', style: { spacing: { padding: { top: '100px', right: '25px', bottom: '25px', left: '25px' }, margin: { top: '0px', bottom: '0px' } } } }, [
                             // [ 'core/categories' ],
-                            ['core/post-title', { className: 'ggm-pg-title', style: { color: { text: '#ffffff' }, typography: { fontSize: '20px', fontWeight: 700 }, spacing: { margin: { bottom: '15px', top: '15px', right: '0px', left: '0px' } } } }],
-                            ['core/post-excerpt', { excerptLength: 20, moreText: '&nbsp;', className: 'ggm-pg-description', style: { typography: { lineHeight: 1.2 }, color: { text: '#ffffff' }, spacing: { margin: { top: '0', bottom: '20px', left: '0', right: '0' } } } }],
-                            ['core/read-more', { className: 'ggm-pg-link', content: __('Read More →', 'grid-masonry-for-guten-blocks'), style: { color: { text: '#ffffff' }, typography: { textDecoration: 'underline', fontSize: '16px' }, spacing: { margin: { 'top': '0', 'bottom': '20px', 'left': '0', 'right': '0' } } } }],
-                            ['core/group', { className: 'ggm-pg-date-wrap', style: { spacing: { padding: { top: '0', right: '0', bottom: '0', left: '0' }, margin: { top: '0px', bottom: '0px' } } } }, [
-                                ['core/post-date', { className: 'ggm-pg-date', style: { spacing: { margin: '0' }, color: { text: '#ffffff' }, typography: { fontSize: '13px' } } }],
-                                ['core/post-author', { className: 'ggm-pg-author', style: { typography: { fontSize: '13px' }, spacing: { 'margin': '0' } } }],
+                            ['core/post-title', { className: 'gmfgb-pg-title', style: { color: { text: '#ffffff' }, typography: { fontSize: '20px', fontWeight: 700 }, spacing: { margin: { bottom: '15px', top: '15px', right: '0px', left: '0px' } } } }],
+                            ['core/post-excerpt', { excerptLength: 20, moreText: '&nbsp;', className: 'gmfgb-pg-description', style: { typography: { lineHeight: 1.2 }, color: { text: '#ffffff' }, spacing: { margin: { top: '0', bottom: '20px', left: '0', right: '0' } } } }],
+                            ['core/read-more', { className: 'gmfgb-pg-link', content: __('Read More →', 'grid-masonry-for-guten-blocks'), style: { color: { text: '#ffffff' }, typography: { textDecoration: 'underline', fontSize: '16px' }, spacing: { margin: { 'top': '0', 'bottom': '20px', 'left': '0', 'right': '0' } } } }],
+                            ['core/group', { className: 'gmfgb-pg-date-wrap', style: { spacing: { padding: { top: '0', right: '0', bottom: '0', left: '0' }, margin: { top: '0px', bottom: '0px' } } } }, [
+                                ['core/post-date', { className: 'gmfgb-pg-date', style: { spacing: { margin: '0' }, color: { text: '#ffffff' }, typography: { fontSize: '13px' } } }],
+                                ['core/post-author', { className: 'gmfgb-pg-author', style: { typography: { fontSize: '13px' }, spacing: { 'margin': '0' } } }],
                             ]],
                         ]],
                     ],
@@ -46,7 +46,7 @@ const POST_GRID_TEMPLATE = [
             ['core/query-pagination', { className: 'post-pagination' }],
         ],
     ],
-    ['core/group', { className: 'ggm-pg-cta-button' },
+    ['core/group', { className: 'gmfgb-pg-cta-button' },
         [
             ['core/buttons', { layout: { type: 'flex', justifyContent: 'center' }, style: { spacing: { margin: { top: '25px' } } } }, [['core/button', { text: __('Read All Posts', 'grid-masonry-for-guten-blocks') }]]],
         ]
@@ -105,7 +105,7 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                         </PanelBody>
                     </Panel>
                 </InspectorControls>
-                <div {...useBlockProps({ className: `ggm-pg-grid grid-size-${gridItem}`, templateLock: true, })}>
+                <div {...useBlockProps({ className: `gmfgb-pg-grid grid-size-${gridItem}`, templateLock: true, })}>
                     <InnerBlocks
                         template={POST_GRID_TEMPLATE}
                     />
@@ -117,7 +117,7 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
     save: ({ attributes }) => {
         const { gridItem } = attributes;
         return (
-            <div {...useBlockProps.save({ className: `ggm-pg-grid ggm-grid grid-size-${gridItem}` })}>
+            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}` })}>
                 <InnerBlocks.Content />
             </div>
         );

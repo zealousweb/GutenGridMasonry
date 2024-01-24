@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.",
 	"author": "ZealousWeb",
-	"license": "GPL-2.0-or-later",
+	"license": "GPLv3 or later License",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
