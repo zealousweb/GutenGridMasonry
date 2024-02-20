@@ -103,7 +103,7 @@ function Gmfgb_Plugin_init()
     );
     
     // wp_localize_script('main-script', 'admin_theme_object', array('themeurl' => get_theme_file_uri()));
-    register_block_type(__DIR__ . '/build');
+    //register_block_type(__DIR__ . '/build');
     
 }
 add_action('init', 'Gmfgb_Plugin_init');
@@ -132,3 +132,20 @@ function Gmfgb_Plugin_Block_categories( $categories )
     return $categories;
 }
 add_action('block_categories_all', 'Gmfgb_Plugin_Block_categories', 10, 2);
+
+
+/**
+ * Registers the block using the metadata loaded from the `block.json` file.
+ * Behind the scenes, it registers also all assets so they can be enqueued
+ * through the block editor in the corresponding context.
+ *
+ * @see https://developer.wordpress.org/reference/functions/register_block_type/
+ */
+function grid_masonry_for_guten_blocks_block_init() {
+    if ( ! function_exists( 'register_block_type' ) ) {
+        // Block editor is not available.
+        return;
+    }
+	register_block_type( __DIR__ . '/build' );
+}
+add_action( 'init', 'grid_masonry_for_guten_blocks_block_init' );

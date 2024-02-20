@@ -53,6 +53,7 @@ const POST_GRID_TEMPLATE = [
     ]
 ];
 
+
 /**
  * Post Grid block registration
  */
