@@ -2,8 +2,6 @@
 /**
  * Plugin Name:       Grid Masonry for Guten blocks
  * Description:       Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.
- * Requires at least: 5.9
- * Requires PHP:      7.4
  * Version:           1.0.0
  * Author:            <a href="https://www.zealousweb.com/">ZealousWeb</a>
  * License:           GPLv3 or later License
@@ -35,9 +33,9 @@ if (!defined('GMFGB_BLOCK_PLUGIN_NAME')) {
     define('GMFGB_BLOCK_PLUGIN_NAME', 'Grid Masonry for Gutenberg');
 }
 
-if (!defined('GMFGB_VERSION')) {
-    define('GMFGB_VERSION', '1.0.0');
-}
+// if (!defined('GMFGB_VERSION')) {
+//     define('GMFGB_VERSION', '1.0.0');
+// }
 
 if (!defined('GMFGB')) {
     define('GMFGB', 'GRID MASONRY');
@@ -84,7 +82,7 @@ function Gmfgb_Plugin_init()
         'script-custom',
         plugins_url('/inc/assets/js/script.js', __FILE__),
         array('jquery', 'fancyapp-lib', 'masonry-lib'),
-        GMFGB_VERSION,
+        '1.0.0',
         true
     );
     
@@ -103,7 +101,7 @@ function Gmfgb_Plugin_init()
     );
     
     // wp_localize_script('main-script', 'admin_theme_object', array('themeurl' => get_theme_file_uri()));
-    //register_block_type(__DIR__ . '/build');
+    register_block_type(__DIR__ . '/build');
     
 }
 add_action('init', 'Gmfgb_Plugin_init');
@@ -148,4 +146,4 @@ function grid_masonry_for_guten_blocks_block_init() {
     }
 	register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'grid_masonry_for_guten_blocks_block_init' );
+//add_action( 'init', 'grid_masonry_for_guten_blocks_block_init' );

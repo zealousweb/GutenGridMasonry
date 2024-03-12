@@ -3,10 +3,8 @@
 Contributors: zealopensource
 Tags: Gutenberg, Masonry Grid, Image Gallery, Video Gallery, Post Grid, Lightbox
 Donate link: http://www.zealousweb.com/payment/
-Requires at least: 5.9
-Tested up to: 6.4.2
-Requires PHP: 7.4
 Version: 1.0.0
+Stable tag: 1.0.0
 License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

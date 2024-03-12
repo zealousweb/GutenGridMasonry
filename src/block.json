@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "grid-masonry-for-guten-blocks/grid-masonry",
+	"version": "1.0.0",
+	"title": "Media Grid",
+	"category": "zealblocks",
+	"icon": "video-alt3",
+	"description": "Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image",
+	"textdomain": "grid-masonry-for-guten-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
