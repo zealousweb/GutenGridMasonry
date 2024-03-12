@@ -1,14 +1,17 @@
 === Grid Masonry for Guten blocks ===
 
 Contributors: zealopensource
-Tags: Gutenberg, Masonry Grid, Image Gallery, Video Gallery, Post Grid, Lightbox
+Tags: Gutenberg, Masonry, Image Gallery, Video Gallery, Post Grid
 Donate link: http://www.zealousweb.com/payment/
+Requires at least: 5.9
+Tested up to: 6.4.2
+Requires PHP: 7.4
 Version: 1.0.0
 Stable tag: 1.0.0
 License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Easily create a beautiful masonry-style grid for displaying images, videos, and posts with Gutenberg. Configure columns, rows, lightbox options, and more.
+Create stunning grids with Gutenberg. Display images, videos, and posts in masonry style. Customize columns, rows, lightbox, and more.
 
 == Description ==
 
@@ -86,7 +89,20 @@ This plugin utilizes third-party libraries to enhance its functionality:
 - **Fancybox:** https://fancyapps.com/ - Use to acieve lightbox functionality for images and videos in popup
 - **Isotope:** https://isotope.metafizzy.co - Use to achive Masonry output for post and media layout
 
+== Screenshots ==
+
+1. It will show Back-End Option for Media Grid Masonry
+2. It will show Back-End Option for Post Grid Masonry
+3. It will show Back-End Option for Media Grid Masonry - Video Upload Options
+4. It will show Front-End View for Media Grid Masonry Section
+5. It will show Front-End View for Post Grid Masonry Section
+
 == Changelog ==
+
+= 1.0.0 =
+Initial Release
+
+== Upgrade Notice ==
 
 = 1.0.0 =
 Initial Release

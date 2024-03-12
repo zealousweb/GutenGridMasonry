@@ -2,6 +2,8 @@
 /**
  * Plugin Name:       Grid Masonry for Guten blocks
  * Description:       Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.
+ * Requires at least: 7.4
+ * Requires PHP:      7.4
  * Version:           1.0.0
  * Author:            <a href="https://www.zealousweb.com/">ZealousWeb</a>
  * License:           GPLv3 or later License
