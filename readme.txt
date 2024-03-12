@@ -86,8 +86,9 @@ Thank you for choosing a Plugin developed by <strong>[ZealousWeb](https://www.ze
 
 This plugin utilizes third-party libraries to enhance its functionality:
 
-- **Fancybox:** https://fancyapps.com/ - Use to acieve lightbox functionality for images and videos in popup
-- **Isotope:** https://isotope.metafizzy.co - Use to achive Masonry output for post and media layout
+- **Fancybox JS:** https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js - Use to acieve lightbox functionality for images and videos in popup
+- **Fancybox CSS:** https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css - Use to acieve lightbox functionality for images and videos in popup
+- **Isotope:** https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js - Use to achive Masonry output for post and media layout
 
 == Screenshots ==
 
