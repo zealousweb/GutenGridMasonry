@@ -35,9 +35,9 @@ if (!defined('GMFGB_BLOCK_PLUGIN_NAME')) {
     define('GMFGB_BLOCK_PLUGIN_NAME', 'Grid Masonry for Gutenberg');
 }
 
-// if (!defined('GMFGB_VERSION')) {
-//     define('GMFGB_VERSION', '1.0.0');
-// }
+if (!defined('GMFGB_VERSION')) {
+    define('GMFGB_VERSION', '1.0.0');
+}
 
 if (!defined('GMFGB')) {
     define('GMFGB', 'GRID MASONRY');
@@ -62,7 +62,7 @@ require_once GMFGB_DIR . '/inc/custom-functions.php';
  */
 function Gmfgb_Plugin_init()
 {
-    
+    /** Masonry Library */
     wp_enqueue_script(
         'masonry-lib',
         plugins_url('/inc/assets/js/3.0.6_dist_isotope.pkgd.min.js', __FILE__),
@@ -71,38 +71,41 @@ function Gmfgb_Plugin_init()
         true
     );
     
-    
+    /** FancyBox/FancyApp Library */
     wp_enqueue_script(
         'fancyapp-lib',
         plugins_url('/inc/assets/js/fancybox.umd.js', __FILE__),
         array('jquery'),
-        '5.0.24',
+        '5.0.34',
         true
     );
     
+    /** Custom Plugin Script */
     wp_enqueue_script(
         'script-custom',
         plugins_url('/inc/assets/js/script.js', __FILE__),
         array('jquery', 'fancyapp-lib', 'masonry-lib'),
-        '1.0.0',
+        GMFGB_VERSION,
         true
     );
     
+    /** FancyBox/FancyApp Library CSS */
     wp_enqueue_style(
         'fancyapp-css',
         plugins_url('/inc/assets/css/fancybox.css', __FILE__),
-        '5.0.24',
+        '5.0.34',
         true
     );
     
+    /** Custom Plugin Style */
     wp_enqueue_style(
         'front-styles',
         plugins_url('/build/style-index.css', __FILE__),
-        '5.0.24',
+        GMFGB_VERSION,
         true
     );
     
-    // wp_localize_script('main-script', 'admin_theme_object', array('themeurl' => get_theme_file_uri()));
+    /** Register Block */
     register_block_type(__DIR__ . '/build');
     
 }
@@ -132,20 +135,3 @@ function Gmfgb_Plugin_Block_categories( $categories )
     return $categories;
 }
 add_action('block_categories_all', 'Gmfgb_Plugin_Block_categories', 10, 2);
-
-
-/**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
- */
-function grid_masonry_for_guten_blocks_block_init() {
-    if ( ! function_exists( 'register_block_type' ) ) {
-        // Block editor is not available.
-        return;
-    }
-	register_block_type( __DIR__ . '/build' );
-}
-//add_action( 'init', 'grid_masonry_for_guten_blocks_block_init' );

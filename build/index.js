@@ -103,6 +103,7 @@ __webpack_require__.r(__webpack_exports__);
     selectedSize: {
       type: 'string'
     },
+    /** Unique Gallery if Multiple Galleries added to the Page */
     uniqueGallery: {
       type: 'string',
       default: ''
@@ -136,10 +137,18 @@ __webpack_require__.r(__webpack_exports__);
       selectedSize
     } = attributes;
 
+    /** Unique Gallery */
+    if (uniqueGallery === '') {
+      setAttributes({
+        uniqueGallery: Math.random().toString(36).substring(7)
+      });
+    }
+
     /** upload image trigger after row Added javaScript function */
     const gmfgb_upload_image_trigger_after_row_added = numberLenth => {
+      console.log(uniqueGallery);
       setTimeout(function () {
-        const buttonElement = document.getElementById('upload-image-' + numberLenth);
+        const buttonElement = document.getElementById('upload-image-' + uniqueGallery + numberLenth);
         if (buttonElement) {
           buttonElement.click();
         }
@@ -183,11 +192,6 @@ __webpack_require__.r(__webpack_exports__);
         items: newItems
       });
     };
-    if (uniqueGallery === '') {
-      setAttributes({
-        uniqueGallery: Math.random().toString(36).substring(7)
-      });
-    }
 
     /** get thumbnail image sizes from wordpress */
     const imageSizes = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.select)('core/editor').getEditorSettings().imageSizes.map(size => size.slug);
@@ -266,10 +270,7 @@ __webpack_require__.r(__webpack_exports__);
     }), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
       d: "M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07 c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z"
     }), " "), " "), " "))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUpload, {
-      onSelect: image => gmfgb_update_repeater_item(image, item.image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)
-      //ref={mediaUploadRef[index]}
-      //ref={buttonRef}
-      ,
+      onSelect: image => gmfgb_update_repeater_item(image, item.image_caption, item.selectedVideoType, item.video_media, item.popup_url, index),
       allowedTypes: ['image'],
       value: item.image && item.image.id,
       render: ({
@@ -277,8 +278,8 @@ __webpack_require__.r(__webpack_exports__);
       }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "gmfgb-mg-image"
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", {
-        id: `upload-image-${index}`,
-        className: `change-image upload-image-${index}`,
+        id: `upload-image-${uniqueGallery}${index}`,
+        className: `change-image upload-image-${uniqueGallery}${index}`,
         onClick: open
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
         viewBox: "0 0 24 24",
@@ -319,29 +320,17 @@ __webpack_require__.r(__webpack_exports__);
       value: item.image_caption ? item.image_caption : item.image.caption,
       onChange: image_caption => gmfgb_update_repeater_item(item.image, image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)
     }), videoOptionEnabled && fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
-      value: item.selectedVideoType
-      //options={imageSizes.map((size) => ({ label: size, value: size }))}
-      //onChange={(onSelectImageSize) => setSize(onSelectImageSize)}
-      //onChange={handleSizeChange}
-      //onChange={(newSelectedSize) => setAttributes({ selectedSize: newSelectedSize })}
-      ,
+      value: item.selectedVideoType,
       options: [{
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Upload Video', 'grid-masonry-for-guten-blocks'),
         value: 'mp4'
       }, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Video URL', 'grid-masonry-for-guten-blocks'),
         value: 'thirdparty'
-      }]
-      // options={[
-      //     { label: 'Upload Video', value: 'mp4' },
-      //     { label: 'Video URL', value: 'thirdparty' },
-      // ]}
-      ,
+      }],
       onChange: selectedVideoType => gmfgb_update_repeater_item(item.image, item.image_caption, selectedVideoType, item.video_media, item.popup_url, index)
     }), item.selectedVideoType === 'mp4' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUpload, {
-      onSelect: video_media => gmfgb_update_repeater_item(item.image, item.image_caption, item.selectedVideoType, video_media, item.popup_url, index)
-      //ref={mediaUploadRef[index]}
-      ,
+      onSelect: video_media => gmfgb_update_repeater_item(item.image, item.image_caption, item.selectedVideoType, video_media, item.popup_url, index),
       allowedTypes: ['video'],
       value: item.video_media,
       render: ({
@@ -383,9 +372,7 @@ __webpack_require__.r(__webpack_exports__);
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
       })))))
-    })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl
-    //label="Video Popup URL"
-    , {
+    })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Youtube/Vimeo URL', 'grid-masonry-for-guten-blocks'),
       className: "gmfgb-mg-popup-video",
       value: item.popup_url,
@@ -659,9 +646,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       }
     }
   }
-}, [
-// [ 'core/categories' ],
-['core/post-title', {
+}, [['core/post-title', {
   className: 'gmfgb-pg-title',
   style: {
     color: {
