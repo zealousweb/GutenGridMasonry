@@ -8,7 +8,7 @@ Tested up to: 6.4.2
 Requires PHP: 7.4
 Version: 1.0.0
 Stable tag: 1.0.0
-License: GPL-3.0-or-later
+License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Create stunning grids with Gutenberg. Display images, videos, and posts in masonry style. Customize columns, rows, lightbox, and more.
