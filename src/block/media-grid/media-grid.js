@@ -119,7 +119,12 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         /** update Repeater data */
         const gmfgb_update_repeater_item = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
             const newItems = [...attributes.items];
-            newItems[index].image = image;
+            if (image && image.type === 'image') {
+                newItems[index].image = image;
+                //setAttributes({ imageUrl: media.url });
+            } else {
+                alert('Please select only an image file.\nOther file types are not allowed.\nJPEG, PNG, and GIF files are supported');
+            }            
             newItems[index].image_caption = image_caption;
             newItems[index].selectedVideoType = selectedVideoType;
             newItems[index].video_media = video_media;
