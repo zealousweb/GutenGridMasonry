@@ -21,7 +21,7 @@ Introducing the "Grid Masonry for Guten blocks" plugin – a powerful tool desig
 - Tailor your grid by choosing the number of columns and rows, giving you full control over the structure and appearance of your content.
 - Enhance the user experience by enabling a lightbox feature for images and videos. When clicked, media items expand for a larger, more immersive view.
 - Support for various video formats, including MP4, YouTube, and Vimeo, allowing you to seamlessly integrate diverse multimedia content.
-
+- Compatibility of WordPress VIP.
 
 == Installation ==
 
@@ -102,11 +102,14 @@ This plugin utilizes third-party libraries to enhance its functionality:
 
 = 1.0.0 =
 Initial Release
+
 = 1.0.1 =
+Issue Fixed: Restricted video selection in place of thumbnail images.
 
 == Upgrade Notice ==
 
 = 1.0.0 =
 Initial Release
+
 = 1.0.1 =
 Issue Fixed: Restricted video selection in place of thumbnail images.

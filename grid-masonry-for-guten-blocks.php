@@ -36,7 +36,7 @@ if (!defined('GMFGB_BLOCK_PLUGIN_NAME')) {
 }
 
 if (!defined('GMFGB_VERSION')) {
-    define('GMFGB_VERSION', '1.0.0');
+    define('GMFGB_VERSION', '1.0.1');
 }
 
 if (!defined('GMFGB')) {
