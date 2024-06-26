@@ -595,7 +595,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }]]], /** Main Post Loop/Query with Default Wordpress Posts */
 ['core/query', {
-  className: 'gmfgb-pg-loop-wrap',
+  className: 'gmfgb-pg-loop-wrap border-none',
   query: {
     inherit: false,
     offset: 0,
@@ -611,18 +611,18 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   displayLayout: false,
   align: false
 }, [['core/group', {
-  className: 'gmfgb-pg-wrap',
+  className: 'gmfgb-pg-wrap border-none',
   style: {
     border: {
       style: 'solid',
       width: '0',
       radius: '0',
       color: '#dcdcdc'
-    },
-    templateLock: true
-  }
+    }
+  },
+  templateLock: true
 }, [['core/post-featured-image', {
-  className: 'gmfgb-pg-featured-img',
+  className: 'gmfgb-pg-featured-img border-none',
   style: {
     width: '100%',
     height: '100%',
@@ -636,7 +636,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/group', {
-  className: 'gmfgb-pg-content',
+  className: 'gmfgb-pg-content border-none',
   style: {
     spacing: {
       padding: {
@@ -711,7 +711,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/group', {
-  className: 'gmfgb-pg-date-wrap',
+  className: 'gmfgb-pg-date-wrap border-none',
   style: {
     spacing: {
       padding: {
@@ -868,6 +868,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_media_grid_media_grid_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block/media-grid/media-grid.js */ "./src/block/media-grid/media-grid.js");
 
 
+//import './block/no-border/no-border.js';
 
 /***/ }),
 

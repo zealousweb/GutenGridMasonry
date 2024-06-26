@@ -88,6 +88,14 @@ function Gmfgb_Plugin_init()
         GMFGB_VERSION,
         true
     );
+
+    wp_enqueue_script(
+        'script-custom-border',
+        plugins_url('/inc/assets/js/border-none.js', __FILE__),
+        array('jquery', 'fancyapp-lib', 'masonry-lib'),
+        GMFGB_VERSION,
+        true
+    );
     
     /** FancyBox/FancyApp Library CSS */
     wp_enqueue_style(
@@ -135,3 +143,5 @@ function Gmfgb_Plugin_Block_categories( $categories )
     return $categories;
 }
 add_action('block_categories_all', 'Gmfgb_Plugin_Block_categories', 10, 2);
+
+
