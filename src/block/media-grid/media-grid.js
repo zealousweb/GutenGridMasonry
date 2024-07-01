@@ -366,7 +366,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 </InspectorControls>
 
                 {/** Structure to show for update data */}
-                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable} ` })}>
+                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable} ` })} id={uniqueGallery}>
                     {attributes.items.map((item, index) => (
                         <div className={`gmfgb-mg-wrap ${captionpos} ${colfilter}`} key={index}>
 
@@ -492,15 +492,15 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 </section>
                 <style>
                     {`
-                        .gmfgb-mg-image.${borderstyle}{
+                         #${uniqueGallery} .gmfgb-mg-image.${borderstyle}{
                             border:${borderwidth}px ${borderstyle};
                             border-radius: ${borderRadius}px;
                             border-color: ${borderColor};
                         }
-                        .gmfgb-mg-wrap .gmfgb-mg-content textarea{
+                         #${uniqueGallery} .gmfgb-mg-wrap .gmfgb-mg-content textarea{
                             font-size:${captionsize}px;
                         }
-                        .gmfgb-mg-wrap.true .gmfgb-mg-image:hover:before {
+                        #${uniqueGallery} .gmfgb-mg-wrap.true .gmfgb-mg-image:hover:before {
                             background-color: ${overlay};
                             opacity: 0.36;
                         }
@@ -538,7 +538,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
 
         return (
             /** Structure to show for update data */
-            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
+            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
 
                 {attributes.items.map((item, index) => (
                     <div className={`gmfgb-mg-media ${borderEnable} ${captionpos} ${colfilter}`} key={index}>
@@ -594,15 +594,15 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
 
                 <style>
                     {`
-                        .gmfgb-mg-media.${borderstyle}{
+                         #${uniqueGallery} .gmfgb-mg-media.${borderstyle}{
                             border:${borderwidth}px ${borderstyle};
                             border-radius: ${borderRadius}px;
                             border-color: ${borderColor};
                         }
-                        .gmfgb-mg-media .image-caption p{
+                         #${uniqueGallery} .gmfgb-mg-media .image-caption p{
                             font-size: ${captionsize}px;
                         }
-                        .gmfgb-mg-media.true::before {
+                        #${uniqueGallery} .gmfgb-mg-media.true::before {
                             background-color: ${overlay};
                         }
                     `}
