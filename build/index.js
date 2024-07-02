@@ -277,21 +277,44 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     /** update Repeater data */
+    // const gmfgb_update_repeater_item = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
+    //     const newItems = [...attributes.items];
+    //     if (image && image.type === 'image') {
+    //         newItems[index].image = image;
+    //         //setAttributes({ imageUrl: media.url });
+    //     } else {
+    //         alert('Please select only an image file.\nOther file types are not allowed.\nJPEG, PNG, and GIF files are supported');
+    //     }
+    //     newItems[index].image_caption = image_caption;
+    //     newItems[index].selectedVideoType = selectedVideoType;
+    //     newItems[index].video_media = video_media;
+    //     newItems[index].popup_url = popup_url;
+    //     setAttributes({ items: newItems });
+    // };
+
     const gmfgb_update_repeater_item = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
       const newItems = [...attributes.items];
       if (image && image.type === 'image') {
-        newItems[index].image = image;
-        //setAttributes({ imageUrl: media.url });
+        const img = new Image();
+        img.src = image.url;
+        img.onload = () => {
+          if (img.width >= 150 && img.height >= 150) {
+            newItems[index].image = image;
+          } else {
+            alert('Image dimensions must be at least 150x150 pixels.');
+            return;
+          }
+          newItems[index].image_caption = image_caption;
+          newItems[index].selectedVideoType = selectedVideoType;
+          newItems[index].video_media = video_media;
+          newItems[index].popup_url = popup_url;
+          setAttributes({
+            items: newItems
+          });
+        };
       } else {
         alert('Please select only an image file.\nOther file types are not allowed.\nJPEG, PNG, and GIF files are supported');
       }
-      newItems[index].image_caption = image_caption;
-      newItems[index].selectedVideoType = selectedVideoType;
-      newItems[index].video_media = video_media;
-      newItems[index].popup_url = popup_url;
-      setAttributes({
-        items: newItems
-      });
     };
 
     /** get thumbnail image sizes from wordpress */
