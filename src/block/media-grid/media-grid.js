@@ -104,6 +104,10 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         overlay: {
             type: "string",
             default: '#A4A4A4'
+        },
+        hover: {
+            type: "boolean",
+            default: false
         }
     },
 
@@ -134,6 +138,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { borderColor } = attributes;
         const { colfilter } = attributes;
         const { overlay } = attributes;
+        const { hover } = attributes;
 
         const colors = [
             { color: '#F9F9F9' },
@@ -291,16 +296,35 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                 checked={colfilter}
                                 onChange={(val) => {
                                     setAttributes({ colfilter: val });
+                                    // When colfilter is turned off (false), also turn off hover
+                                    if (!val) {
+                                                console.log(val);
+                                                setAttributes({ hover: false });
+                                            }
                                 }}
                             />
                             {attributes.colfilter &&
                                 <>
-                                    <span className="color">{__("Overlay Color", "media-carousel-for-guten-blocks")}</span>
-                                    <ColorPalette
-                                        value={overlay}
-                                        onChange={(color) => setAttributes({ overlay: color })}
-                                        colors={colors}
+                                    <ToggleControl
+                                        label={__("Enable Hover", "grid-masonry-for-guten-blocks")}
+                                        checked={hover}
+                                        onChange={(val) => {
+                                            setAttributes({ hover: val });
+                                            
+                                           
+                                        }}
                                     />
+                                    {attributes.hover &&
+                                        <>
+                                            <span className="color">{__("Overlay Color", "media-carousel-for-guten-blocks")}</span>
+                                            <ColorPalette
+                                                value={overlay}
+                                                onChange={(color) => setAttributes({ overlay: color })}
+                                                colors={colors}
+                                            />
+                                        </>
+                                    }
+
                                 </>
                             }
                         </PanelBody>
@@ -368,7 +392,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 {/** Structure to show for update data */}
                 <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable} ` })} id={uniqueGallery}>
                     {attributes.items.map((item, index) => (
-                        <div className={`gmfgb-mg-wrap ${captionpos} ${colfilter}`} key={index}>
+                        <div className={`gmfgb-mg-wrap ${captionpos} ${hover}`} key={index}>
 
                             <Button className="remove-item" onClick={() => gmfgb_delete_repeater_item(index)}>
                                 <svg fill="#ff0000" width="20" id="Capa_1" viewBox="0 0 482.428 482.429"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M381.163,57.799h-75.094C302.323,25.316,274.686,0,241.214,0c-33.471,0-61.104,25.315-64.85,57.799h-75.098 c-30.39,0-55.111,24.728-55.111,55.117v2.828c0,23.223,14.46,43.1,34.83,51.199v260.369c0,30.39,24.724,55.117,55.112,55.117 h210.236c30.389,0,55.111-24.729,55.111-55.117V166.944c20.369-8.1,34.83-27.977,34.83-51.199v-2.828 C436.274,82.527,411.551,57.799,381.163,57.799z M241.214,26.139c19.037,0,34.927,13.645,38.443,31.66h-76.879 C206.293,39.783,222.184,26.139,241.214,26.139z M375.305,427.312c0,15.978-13,28.979-28.973,28.979H136.096 c-15.973,0-28.973-13.002-28.973-28.979V170.861h268.182V427.312z M410.135,115.744c0,15.978-13,28.979-28.973,28.979H101.266 c-15.973,0-28.973-13.001-28.973-28.979v-2.828c0-15.978,13-28.979,28.973-28.979h279.897c15.973,0,28.973,13.001,28.973,28.979 V115.744z"></path> <path d="M171.144,422.863c7.218,0,13.069-5.853,13.069-13.068V262.641c0-7.216-5.852-13.07-13.069-13.07 c-7.217,0-13.069,5.854-13.069,13.07v147.154C158.074,417.012,163.926,422.863,171.144,422.863z"></path> <path d="M241.214,422.863c7.218,0,13.07-5.853,13.07-13.068V262.641c0-7.216-5.854-13.07-13.07-13.07 c-7.217,0-13.069,5.854-13.069,13.07v147.154C228.145,417.012,233.996,422.863,241.214,422.863z"></path> <path d="M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07 c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z"></path> </g> </g> </g></svg>
@@ -381,7 +405,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                     allowedTypes={['image']}
                                     value={item.image && item.image.id}
                                     render={({ open }) => (
-                                        <div className={`gmfgb-mg-image ${borderEnable} `}>
+                                        <div className={`gmfgb-mg-image ${borderEnable} ${colfilter} `}>
                                             <h6 id={`upload-image-${uniqueGallery}${index}`} className={`change-image upload-image-${uniqueGallery}${index}`} onClick={open}>
                                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.2639 15.9376L12.5958 14.2835C11.7909 13.4852 11.3884 13.0861 10.9266 12.9402C10.5204 12.8119 10.0838 12.8166 9.68048 12.9537C9.22188 13.1096 8.82814 13.5173 8.04068 14.3327L4.04409 18.2802M14.2639 15.9376L14.6053 15.5991C15.4112 14.7999 15.8141 14.4003 16.2765 14.2544C16.6831 14.1262 17.12 14.1312 17.5236 14.2688C17.9824 14.4252 18.3761 14.834 19.1634 15.6515L20 16.4936M14.2639 15.9376L18.275 19.9566M18.275 19.9566C17.9176 20.0001 17.4543 20.0001 16.8 20.0001H7.2C6.07989 20.0001 5.51984 20.0001 5.09202 19.7821C4.71569 19.5904 4.40973 19.2844 4.21799 18.9081C4.12796 18.7314 4.07512 18.5322 4.04409 18.2802M18.275 19.9566C18.5293 19.9257 18.7301 19.8728 18.908 19.7821C19.2843 19.5904 19.5903 19.2844 19.782 18.9081C20 18.4803 20 17.9202 20 16.8001V16.4936M12.5 4L7.2 4.00011C6.07989 4.00011 5.51984 4.00011 5.09202 4.21809C4.71569 4.40984 4.40973 4.7158 4.21799 5.09213C4 5.51995 4 6.08 4 7.20011V16.8001C4 17.4576 4 17.9222 4.04409 18.2802M20 11.5V16.4936M14 10.0002L16.0249 9.59516C16.2015 9.55984 16.2898 9.54219 16.3721 9.5099C16.4452 9.48124 16.5146 9.44407 16.579 9.39917C16.6515 9.34859 16.7152 9.28492 16.8425 9.1576L21 5.00015C21.5522 4.44787 21.5522 3.55244 21 3.00015C20.4477 2.44787 19.5522 2.44787 19 3.00015L14.8425 7.1576C14.7152 7.28492 14.6515 7.34859 14.6009 7.42112C14.556 7.4855 14.5189 7.55494 14.4902 7.62801C14.4579 7.71033 14.4403 7.79862 14.4049 7.97518L14 10.0002Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                                             </h6>
@@ -504,6 +528,10 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                             background-color: ${overlay};
                             opacity: 0.36;
                         }
+                        #${uniqueGallery} .gmfgb-mg-image.true img  {
+                            filter: grayscale(1);
+                        
+                        }
                     `}
                 </style>
             </>
@@ -534,6 +562,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { colfilter } = attributes;
         const { overlay } = attributes;
         const borderEnable = border ? borderstyle : '';
+        const { hover } = attributes;
 
 
         return (
@@ -541,12 +570,12 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
             <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
 
                 {attributes.items.map((item, index) => (
-                    <div className={`gmfgb-mg-media ${borderEnable} ${captionpos} ${colfilter}`} key={index}>
+                    <div className={`gmfgb-mg-media ${borderEnable} ${captionpos} ${colfilter} ${hover}`} key={index}>
 
                         {item.image && (
                             <>
                                 {
-                                    fancyBoxEnabled 
+                                    fancyBoxEnabled
                                         ? <>
                                             {
                                                 videoOptionEnabled
@@ -602,8 +631,14 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                          #${uniqueGallery} .gmfgb-mg-media .image-caption p{
                             font-size: ${captionsize}px;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true::before {
+                        #${uniqueGallery} .gmfgb-mg-media.true::before{
                             background-color: ${overlay};
+                        }
+                        #${uniqueGallery} .gmfgb-mg-media.true.true:hover::before {
+                            background-color: ${overlay};
+                            z-index: 2;
+                            opacity: 0.36;
+                            visibility: visible;
                         }
                     `}
                 </style>

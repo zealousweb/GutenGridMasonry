@@ -147,6 +147,10 @@ __webpack_require__.r(__webpack_exports__);
     overlay: {
       type: "string",
       default: '#A4A4A4'
+    },
+    hover: {
+      type: "boolean",
+      default: false
     }
   },
   /**
@@ -205,6 +209,9 @@ __webpack_require__.r(__webpack_exports__);
     } = attributes;
     const {
       overlay
+    } = attributes;
+    const {
+      hover
     } = attributes;
     const colors = [{
       color: '#F9F9F9'
@@ -403,8 +410,23 @@ __webpack_require__.r(__webpack_exports__);
         setAttributes({
           colfilter: val
         });
+        // When colfilter is turned off (false), also turn off hover
+        if (!val) {
+          console.log(val);
+          setAttributes({
+            hover: false
+          });
+        }
       }
-    }), attributes.colfilter && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    }), attributes.colfilter && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Enable Hover", "grid-masonry-for-guten-blocks"),
+      checked: hover,
+      onChange: val => {
+        setAttributes({
+          hover: val
+        });
+      }
+    }), attributes.hover && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "color"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Overlay Color", "media-carousel-for-guten-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ColorPalette, {
       value: overlay,
@@ -412,7 +434,7 @@ __webpack_require__.r(__webpack_exports__);
         overlay: color
       }),
       colors: colors
-    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
       title: "MediaGrid Settings"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enable Fancybox', 'grid-masonry-for-guten-blocks'),
@@ -458,7 +480,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       id: uniqueGallery
     }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `gmfgb-mg-wrap ${captionpos} ${colfilter}`,
+      className: `gmfgb-mg-wrap ${captionpos} ${hover}`,
       key: index
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
       className: "remove-item",
@@ -492,7 +514,7 @@ __webpack_require__.r(__webpack_exports__);
       render: ({
         open
       }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `gmfgb-mg-image ${borderEnable} `
+        className: `gmfgb-mg-image ${borderEnable} ${colfilter} `
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", {
         id: `upload-image-${uniqueGallery}${index}`,
         className: `change-image upload-image-${uniqueGallery}${index}`,
@@ -635,6 +657,10 @@ __webpack_require__.r(__webpack_exports__);
                             background-color: ${overlay};
                             opacity: 0.36;
                         }
+                        #${uniqueGallery} .gmfgb-mg-image.true img  {
+                            filter: grayscale(1);
+                        
+                        }
                     `));
   },
   /**
@@ -689,6 +715,9 @@ __webpack_require__.r(__webpack_exports__);
       overlay
     } = attributes;
     const borderEnable = border ? borderstyle : '';
+    const {
+      hover
+    } = attributes;
     return (/** Structure to show for update data */
       (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
         ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps.save({
@@ -696,7 +725,7 @@ __webpack_require__.r(__webpack_exports__);
         }),
         id: uniqueGallery
       }, " ", attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `gmfgb-mg-media ${borderEnable} ${captionpos} ${colfilter}`,
+        className: `gmfgb-mg-media ${borderEnable} ${captionpos} ${colfilter} ${hover}`,
         key: index
       }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
       item.selectedVideoType === 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
@@ -769,8 +798,14 @@ __webpack_require__.r(__webpack_exports__);
                          #${uniqueGallery} .gmfgb-mg-media .image-caption p{
                             font-size: ${captionsize}px;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true::before {
+                        #${uniqueGallery} .gmfgb-mg-media.true::before{
                             background-color: ${overlay};
+                        }
+                        #${uniqueGallery} .gmfgb-mg-media.true.true:hover::before {
+                            background-color: ${overlay};
+                            z-index: 2;
+                            opacity: 0.36;
+                            visibility: visible;
                         }
                     `))
     );
