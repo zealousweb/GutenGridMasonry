@@ -610,7 +610,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
 
         return (
             /** Structure to show for update data */
-            <section {...useBlockProps.save({ className: `gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
+            <section {...useBlockProps.save({ className: `${position} gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
                 {attributes.items.map((item, index) => (
                     <div className={`gmfgb-mg-media ${borderEnable} ${captionpos} ${greyscale} ${hover}`} key={index}>
 
