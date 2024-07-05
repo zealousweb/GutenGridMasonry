@@ -315,6 +315,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                 <>
                                     <RadioControl
                                         label={__("Caption Position", "grid-masonry-for-guten-block")}
+                                        className='captionSelect'
                                         selected={captionpos}
                                         options={[
                                             { label: __("Top", "grid-masonry-for-guten-block"), value: "top" },
@@ -527,11 +528,9 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                                                         }
                                                                     </>
                                                                 )
-
                                                                 : ''
                                                         }
                                                     </div>
-
                                                 }
                                             </div>
 

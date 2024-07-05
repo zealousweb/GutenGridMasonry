@@ -180,14 +180,21 @@
   overflow: hidden;
 }
 .gmfgb-mg-video span {
-  font-size: 13px;
+  font-size: 14px;
   padding: 3px 8px;
   color: #fff;
   display: block;
+  padding-right: 41px;
+  height: 100%;
+  padding-top: 4px;
+  max-height: 22px;
+  overflow: hidden;
+  line-height: 1.7;
 }
 .gmfgb-mg-video svg {
-  width: 40px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
+  padding-right: 10px;
   fill: white;
 }
 
@@ -297,6 +304,48 @@
 
 .aligncenter {
   align-items: center;
+}
+
+.block-editor-block-list__layout [class^=components-] {
+  z-index: 4;
+}
+
+.gmfgb-mg-video,
+.gmfgb-mg-popup-video {
+  position: relative;
+  z-index: 4;
+}
+
+.captionSelect .components-h-stack {
+  flex-direction: row;
+}
+
+.captionSelect .components-radio-control__option {
+  width: 33.33%;
+}
+
+.captionSelect .components-h-stack .components-radio-control__option input[type=radio] {
+  display: none;
+}
+
+.captionSelect label.components-radio-control__label {
+  padding: 8px;
+  border: 1px solid #39687c;
+  width: 100%;
+  text-align: center;
+}
+
+.captionSelect label.components-radio-control__label:hover {
+  color: #39687c !important;
+}
+
+.captionSelect .components-radio-control__option input[type=radio]:checked + label {
+  background-color: #39687c !important;
+  color: #fff;
+}
+
+.captionSelect .components-radio-control__option input[type=radio]:checked + label:hover {
+  color: #fff !important;
 }
 
 /*# sourceMappingURL=index.css.map*/

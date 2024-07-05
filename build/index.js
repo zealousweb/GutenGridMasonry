@@ -427,6 +427,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }), attributes.caption && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RadioControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Caption Position", "grid-masonry-for-guten-block"),
+      className: "captionSelect",
       selected: captionpos,
       options: [{
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Top", "grid-masonry-for-guten-block"),

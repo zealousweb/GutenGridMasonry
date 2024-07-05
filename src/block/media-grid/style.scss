@@ -91,6 +91,7 @@ $columns: 5;
 		top: 20px;
 		left: 20px;
 		border-radius: 100px;
+		z-index: 4;
 	}
 }
 
@@ -131,7 +132,3 @@ $columns: 5;
 	visibility: hidden;
 	pointer-events: none;
 }
-// .gmfgb-mg-media.true:hover::before {
-//     opacity: 0.36;
-// 	visibility: visible;
-// }
