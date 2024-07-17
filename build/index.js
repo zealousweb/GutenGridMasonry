@@ -1131,6 +1131,10 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     gridItem: {
       type: 'number',
       default: 2
+    },
+    gap: {
+      type: 'number',
+      default: 20
     }
   },
   //onChange: sliderIsUpdated(),
@@ -1141,6 +1145,9 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     } = props;
     const {
       gridItem
+    } = attributes;
+    const {
+      gap
     } = attributes;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
       key: "setting"
@@ -1155,6 +1162,15 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       }),
       min: 1,
       max: 3
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Gap betweem two Post ", "grid-masonry-for-guten-blocks"),
+      value: gap,
+      onChange: value => setAttributes({
+        gap: value
+      }),
+      min: 10,
+      max: 60,
+      step: 10
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
         className: `gmfgb-pg-grid grid-size-${gridItem}`,
@@ -1162,7 +1178,22 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks, {
       template: POST_GRID_TEMPLATE
-    })));
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
+                            .gmfgb-pg-grid.grid-size-${gridItem} ul{
+                                display:flex;
+                                flex-wrap:wrap;
+                                gap:${gap}px;
+                            }
+                            .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
+                                    width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                                    margin:0;
+                            }
+                            .wp-block-post {
+                                padding: ${gap}px;
+                                margin: 0;
+                            }
+                                
+                        `)));
   },
   save: ({
     attributes
@@ -1170,11 +1201,32 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     const {
       gridItem
     } = attributes;
+    const {
+      gap
+    } = attributes;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps.save({
         className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}`
       })
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.Content, null));
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.Content, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
+                            .gmfgb-pg-grid.grid-size-${gridItem} ul{
+                                display:flex;
+                                flex-wrap:wrap;
+                                gap:${gap}px;
+                            }
+                           .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
+                                    width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                                    margin:0;
+                                    padding: 0;
+                                    position: relative !important;
+                                    left: unset !important;
+                                    top: unset !important;
+                            }
+                            .wp-block-post {
+                                padding: ${gap}px;
+                                margin: 0;
+                            }
+                    `));
   }
 });
 

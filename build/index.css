@@ -30,10 +30,6 @@
   width: 100%;
 }
 
-.gmfgb-pg-loop-wrap ul {
-  gap: 20px;
-}
-
 .editor-styles-wrapper .gmfgb-pg-grid .is-layout-grid {
   display: flex !important;
 }

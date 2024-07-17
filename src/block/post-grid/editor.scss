@@ -16,7 +16,7 @@
 		padding: 0;
 	}
 	.block-editor-block-toolbar__slot,
-	.post-pagination {
+	.post-pagination { 
 		display: none !important;
 	}
 	.gmfgb-pg-wrap > div {
@@ -29,11 +29,11 @@
 		width: 100%;
 	}
 }
-.gmfgb-pg-loop-wrap {
-	ul {
-		gap: 20px;
-	}
-}
+// .gmfgb-pg-loop-wrap {
+// 	ul {
+// 		gap: 20px;
+// 	}
+// }
 .editor-styles-wrapper {
 	.gmfgb-pg-grid {
 		.is-layout-grid {
