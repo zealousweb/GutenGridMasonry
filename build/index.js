@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     captionsize: {
       type: "number",
-      default: 2
+      default: 16
     },
     border: {
       type: "boolean",
@@ -151,10 +151,6 @@ __webpack_require__.r(__webpack_exports__);
     hover: {
       type: "boolean",
       default: false
-    },
-    position: {
-      type: "string",
-      default: 'aligncenter'
     }
   },
   /**
@@ -216,9 +212,6 @@ __webpack_require__.r(__webpack_exports__);
     } = attributes;
     const {
       hover
-    } = attributes;
-    const {
-      position
     } = attributes;
     const colors = [{
       color: '#F9F9F9'
@@ -309,44 +302,9 @@ __webpack_require__.r(__webpack_exports__);
 
     /** get thumbnail image sizes from wordpress */
     const imageSizes = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.select)('core/editor').getEditorSettings().imageSizes.map(size => size.slug);
-    const handleChange = val => {
-      // Update the attribute
-      setAttributes({
-        position: val
-      });
-
-      // jQuery to update the class on the parent element
-      const parentElement = jQuery(`#${uniqueGallery}`).parent();
-      // Remove all possible classes first
-      parentElement.removeClass('aligncenter alignfull alignwide');
-      // Add the new class
-      if (val) {
-        parentElement.addClass(val);
-      }
-    };
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, {
       key: "setting"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
-      title: "Section Position"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Section Position', 'grid-masonry-for-guten-blocks'),
-      value: position,
-      options: [{
-        label: "Align Center",
-        value: "aligncenter"
-      }, {
-        label: "Align Full",
-        value: "alignfull"
-      }, {
-        label: "Align Wide",
-        value: "alignwide"
-      }]
-      // onChange={(val) => {
-      //     setAttributes({ position: val });
-      // }}
-      ,
-      onChange: handleChange
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
       title: "Image Setting"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Enable Border", "grid-masonry-for-guten-blocks"),
@@ -525,7 +483,7 @@ __webpack_require__.r(__webpack_exports__);
       max: 5
     }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps.save({
-        className: `gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}`
+        className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}`
       }),
       id: uniqueGallery
     }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -767,19 +725,18 @@ __webpack_require__.r(__webpack_exports__);
     const {
       hover
     } = attributes;
-    const {
-      position
-    } = attributes;
     return (/** Structure to show for update data */
       (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
         ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps.save({
-          className: `${position} gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
+          className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`
         }),
         id: uniqueGallery
       }, " ", attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `gmfgb-mg-media ${borderEnable} ${captionpos} ${greyscale} ${hover}`,
+        className: `gmfgb-mg-media `,
         key: index
-      }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
+      }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: `main-class ${borderEnable} ${captionpos} ${greyscale} ${hover}`
+      }, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
       item.selectedVideoType === 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.popup_url,
         data: item.selectedVideoType,
@@ -839,35 +796,37 @@ __webpack_require__.r(__webpack_exports__);
       }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
         alt: item.image.alt ? item.image.alt : ''
-      })), caption && (item.image_caption || item.image.caption) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      })), caption && (item.image_caption && item.image_caption.trim() !== '' || item.image.caption && item.image.caption.trim() !== '') && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "image-caption"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, item.image_caption ? item.image_caption : item.image.caption))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-                         #${uniqueGallery} .gmfgb-mg-media.${borderstyle}{
-                            border:${borderwidth}px ${borderstyle};
-                            border-radius: ${borderRadius}px;
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, item.image_caption ? item.image_caption : item.image.caption)))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
+                         #${uniqueGallery} .main-class.${borderstyle}{
+                            position: relative;
+                           border:${borderwidth}px ${borderstyle};
                             border-color: ${borderColor};
+                            border-radius: ${borderRadius}px;
+                                overflow: hidden;
                         }
-                         #${uniqueGallery} .gmfgb-mg-media .image-caption p{
+                         #${uniqueGallery} .main-class .image-caption p{
                             font-size: ${captionsize}px;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.true::before{
+                        #${uniqueGallery} .main-class.true.true::before{
                             background-color: ${overlay};
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.true:hover::before {
+                        #${uniqueGallery} .main-class.true.true:hover::before {    
                             background-color: ${overlay};
                             z-index: 2;
                             opacity: 0.36;
                             visibility: visible;
                         }
-                        #vpbhih .gmfgb-mg-media.true.false:hover::before {
+                        #${uniqueGallery} .main-class.true.false:hover::before {
                             opacity: 0;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.false:hover .image-caption{
+                        #${uniqueGallery} .main-class.true.false:hover .image-caption{
                             background-color: rgba(0, 0, 0, 0.55)!important;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.true:hover .image-caption{
+                        #${uniqueGallery} .main-class.true.true:hover .image-caption{
                             background-color: transparent;
-                        }
+                        }   
                     `))
     );
   }

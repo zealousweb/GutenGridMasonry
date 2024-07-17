@@ -87,7 +87,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         },
         captionsize: {
             type: "number",
-            default: 2
+            default: 16
         },
         border: {
             type: "boolean",
@@ -109,10 +109,6 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
             type: "boolean",
             default: false
         },
-        position: {
-            type: "string",
-            default: 'aligncenter'
-        }
     },
 
 
@@ -143,7 +139,6 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { greyscale } = attributes;
         const { overlay } = attributes;
         const { hover } = attributes;
-        const { position } = attributes;
 
         const colors = [
             { color: '#F9F9F9' },
@@ -219,39 +214,11 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         /** get thumbnail image sizes from wordpress */
         const imageSizes = select('core/editor').getEditorSettings().imageSizes.map((size) => size.slug);
 
-        const handleChange = (val) => {
-            // Update the attribute
-            setAttributes({ position: val });
-
-            // jQuery to update the class on the parent element
-            const parentElement = jQuery(`#${uniqueGallery}`).parent();
-            // Remove all possible classes first
-            parentElement.removeClass('aligncenter alignfull alignwide');
-            // Add the new class
-            if (val) {
-                parentElement.addClass(val);
-            }
-        };
         return (
             <>
                 {/** Side Panel Settings contains FancyApp Lightbox Enable Disable, Video URL Enable Disable, and Grid Column Selection */}
                 <InspectorControls key="setting">
                     <Panel>
-                        <PanelBody title="Section Position">
-                            <SelectControl
-                                label={__('Section Position', 'grid-masonry-for-guten-blocks')}
-                                value={position}
-                                options={[
-                                    { label: "Align Center", value: "aligncenter" },
-                                    { label: "Align Full", value: "alignfull" },
-                                    { label: "Align Wide", value: "alignwide" },
-                                ]}
-                                // onChange={(val) => {
-                                //     setAttributes({ position: val });
-                                // }}
-                                onChange={handleChange}
-                            />
-                        </PanelBody>
                         <PanelBody title="Image Setting">
                             <ToggleControl
                                 label={__("Enable Border", "grid-masonry-for-guten-blocks")}
@@ -435,7 +402,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 </InspectorControls>
 
                 {/** Structure to show for update data */}
-                <section {...useBlockProps.save({ className: `gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}` })} id={uniqueGallery}>
+                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}` })} id={uniqueGallery}>
                     {attributes.items.map((item, index) => (
                         <div className={`gmfgb-mg-wrap ${captionpos} ${hover}`} key={index}>
 
@@ -589,7 +556,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
     save: function ({ attributes }) {
         /** Get constant values contains values to save */
         const { fancyBoxEnabled } = attributes;
-        const { videoOptionEnabled } = attributes;
+        const { videoOptionEnabled } = attributes;  
         const { uniqueGallery } = attributes;
         const { gridItem } = attributes;
         const { borderstyle } = attributes;
@@ -604,59 +571,68 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { overlay } = attributes;
         const borderEnable = border ? borderstyle : '';
         const { hover } = attributes;
-        const { position } = attributes;
 
 
         return (
             /** Structure to show for update data */
-            <section {...useBlockProps.save({ className: `${position} gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
+            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
                 {attributes.items.map((item, index) => (
-                    <div className={`gmfgb-mg-media ${borderEnable} ${captionpos} ${greyscale} ${hover}`} key={index}>
+                    <div className={`gmfgb-mg-media `} key={index}>
 
                         {item.image && (
                             <>
-                                {
-                                    fancyBoxEnabled
-                                        ? <>
-                                            {
-                                                videoOptionEnabled
-                                                    ? /** have Video available and also enabled the video popup from the side panel */
-                                                    (item.selectedVideoType === 'thirdparty' && item.popup_url) ?
-                                                        (
-                                                            <a href={item.popup_url} data={item.selectedVideoType} className="gmfgb-mg-video t" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
-                                                                    <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
-                                                                </svg>
-                                                                <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
-                                                            </a>
-                                                        ) : (
-                                                            (item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url)
-                                                                ? <a href={item.video_media.url} data={item.selectedVideoType} className="gmfgb-mg-video s" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                <div className={`main-class ${borderEnable} ${captionpos} ${greyscale} ${hover}`}>
+                                    {
+                                        fancyBoxEnabled
+                                            ? <>
+                                                {
+                                                    videoOptionEnabled
+                                                        ? /** have Video available and also enabled the video popup from the side panel */
+                                                        (item.selectedVideoType === 'thirdparty' && item.popup_url) ?
+                                                            (
+                                                                <a href={item.popup_url} data={item.selectedVideoType} className="gmfgb-mg-video t" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
                                                                         <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
                                                                     </svg>
                                                                     <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
                                                                 </a>
-                                                                : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                                    <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
-                                                                </a>
-                                                        )
-                                                    : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                        <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
-                                                    </a>
-                                            }
-                                        </>
-                                        : <div>
-                                            <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                            ) : (
+                                                                (item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url)
+                                                                    ? <a href={item.video_media.url} data={item.selectedVideoType} className="gmfgb-mg-video s" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
+                                                                            <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
+                                                                        </svg>
+                                                                        <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                                    </a>
+                                                                    : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                                        <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                                    </a>
+                                                            )
+                                                        : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                            <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                        </a>
+                                                }
+                                            </>
+                                            : <div>
+                                                <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                            </div>
+                                    }
+
+                                    {caption &&
+                                        ((item.image_caption && item.image_caption.trim() !== '') ||
+                                            (item.image.caption && item.image.caption.trim() !== '')) && (
+                                            <div className="image-caption">
+                                                <p>{item.image_caption ? item.image_caption : item.image.caption}</p>
+                                            </div>
+                                        )
+                                    }
+
+                                    {/* {caption && (item.image_caption || item.image.caption) && (
+                                        <div className="image-caption">
+                                            <p>{item.image_caption ? item.image_caption : item.image.caption}</p>
                                         </div>
-                                }
-
-                                {caption && (item.image_caption || item.image.caption) && (
-                                    <div className="image-caption">
-                                        <p>{item.image_caption ? item.image_caption : item.image.caption}</p>
-                                    </div>
-                                )}
-
+                                    )} */}
+                                </div>
                             </>
                         )}
                     </div>
@@ -664,32 +640,34 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
 
                 <style>
                     {`
-                         #${uniqueGallery} .gmfgb-mg-media.${borderstyle}{
-                            border:${borderwidth}px ${borderstyle};
-                            border-radius: ${borderRadius}px;
+                         #${uniqueGallery} .main-class.${borderstyle}{
+                            position: relative;
+                           border:${borderwidth}px ${borderstyle};
                             border-color: ${borderColor};
+                            border-radius: ${borderRadius}px;
+                                overflow: hidden;
                         }
-                         #${uniqueGallery} .gmfgb-mg-media .image-caption p{
+                         #${uniqueGallery} .main-class .image-caption p{
                             font-size: ${captionsize}px;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.true::before{
+                        #${uniqueGallery} .main-class.true.true::before{
                             background-color: ${overlay};
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.true:hover::before {
+                        #${uniqueGallery} .main-class.true.true:hover::before {    
                             background-color: ${overlay};
                             z-index: 2;
                             opacity: 0.36;
                             visibility: visible;
                         }
-                        #vpbhih .gmfgb-mg-media.true.false:hover::before {
+                        #${uniqueGallery} .main-class.true.false:hover::before {
                             opacity: 0;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.false:hover .image-caption{
+                        #${uniqueGallery} .main-class.true.false:hover .image-caption{
                             background-color: rgba(0, 0, 0, 0.55)!important;
                         }
-                        #${uniqueGallery} .gmfgb-mg-media.true.true:hover .image-caption{
+                        #${uniqueGallery} .main-class.true.true:hover .image-caption{
                             background-color: transparent;
-                        }
+                        }   
                     `}
                 </style>
             </section>

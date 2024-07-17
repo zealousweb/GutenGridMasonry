@@ -44,13 +44,13 @@
 		color: #ff0000;
 		position: absolute;
 		top: 10px;
-		right: 70px;
+		right: 53px;
 		z-index: 6;
 		margin: 0;
 		line-height: 0;
 		opacity: 0;
 		visibility: hidden;
-		width: 44px;
+		width: 28px;
 		height: 36px;
 		display: flex;
 		align-items: center;
@@ -66,10 +66,11 @@
 		color: #ff0000;
 		position: absolute;
 		top: 10px;
-		right: 20px;
+		right: 18px;
 		z-index: 6;
 		opacity: 0;
 		visibility: hidden;
+		padding: 5px 5px !important; 
 	}
 	.upload-video-btn {
 		padding: 0;
