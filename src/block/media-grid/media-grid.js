@@ -340,7 +340,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                 </>
                             }
                         </PanelBody>
-                        <PanelBody title="MediaGrid Settings">
+                        <PanelBody title="Media Grid Settings">
 
                             {/* <ImageSizeDropdown onSelectImageSize={onSelectImageSize} /> */}
 

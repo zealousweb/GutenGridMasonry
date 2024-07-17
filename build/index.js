@@ -442,7 +442,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       colors: colors
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
-      title: "MediaGrid Settings"
+      title: "Media Grid Settings"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enable Fancybox', 'grid-masonry-for-guten-blocks'),
       checked: fancyBoxEnabled,
