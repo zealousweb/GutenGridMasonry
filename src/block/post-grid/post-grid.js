@@ -11,8 +11,7 @@ import './editor.scss';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { RangeControl, Panel, PanelBody } from '@wordpress/components';
-
+import { RangeControl, Panel, PanelBody, ToggleControl } from '@wordpress/components';
 
 /** Post Template */
 const POST_GRID_TEMPLATE = [
@@ -85,7 +84,11 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
         gap: {
             type: 'number',
             default: 20,
-        }
+        },
+        redirect: {
+            type: 'boolean',
+            default: false,
+        },
     },
 
     //onChange: sliderIsUpdated(),
@@ -93,6 +96,7 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
         const { attributes, setAttributes } = props;
         const { gridItem } = attributes;
         const { gap } = attributes;
+        const { redirect } = attributes;
 
         return (
             <>
@@ -115,6 +119,13 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                                 min={10}
                                 max={60}
                                 step={10}
+                            />
+                            <ToggleControl
+                                label={__("Block Post", "grid-masonry-for-guten-blocks")}
+                                checked={redirect}
+                                onChange={(val) => {
+                                    setAttributes({ redirect: val });
+                                }}
                             />
                         </PanelBody>
                     </Panel>
@@ -149,8 +160,10 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
     save: ({ attributes }) => {
         const { gridItem } = attributes;
         const { gap } = attributes;
+        const { redirect } = attributes;
+        console.log(redirect);
         return (
-            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}` })}>
+            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem} ${redirect ? 'anchor' : 'no-anchor'}`})}>
                 <InnerBlocks.Content />
                 <style>
                     {`
@@ -170,6 +183,22 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                             .wp-block-post {
                                 padding: ${gap}px;
                                 margin: 0;
+                            }
+                            .anchor .gmfgb-pg-link::before{
+                                content: "";
+                                width: 100%;
+                                height: 100%;
+                                position: absolute;
+                                display: block;
+                                left: 0;
+                                top: 0;
+                                background: transparent;
+                            }
+                            .anchor .gmfgb-pg-link:focus{
+                                outline: none;
+                            }
+                            .no-anchor .gmfgb-pg-link::before {
+                                display: none;
                             }
                     `}
                 </style>

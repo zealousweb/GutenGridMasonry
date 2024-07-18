@@ -1135,6 +1135,10 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     gap: {
       type: 'number',
       default: 20
+    },
+    redirect: {
+      type: 'boolean',
+      default: false
     }
   },
   //onChange: sliderIsUpdated(),
@@ -1148,6 +1152,9 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     } = attributes;
     const {
       gap
+    } = attributes;
+    const {
+      redirect
     } = attributes;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
       key: "setting"
@@ -1171,6 +1178,14 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       min: 10,
       max: 60,
       step: 10
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Block Post", "grid-masonry-for-guten-blocks"),
+      checked: redirect,
+      onChange: val => {
+        setAttributes({
+          redirect: val
+        });
+      }
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
         className: `gmfgb-pg-grid grid-size-${gridItem}`,
@@ -1204,9 +1219,13 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     const {
       gap
     } = attributes;
+    const {
+      redirect
+    } = attributes;
+    console.log(redirect);
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps.save({
-        className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}`
+        className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem} ${redirect ? 'anchor' : 'no-anchor'}`
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.Content, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
                             .gmfgb-pg-grid.grid-size-${gridItem} ul{
@@ -1225,6 +1244,22 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
                             .wp-block-post {
                                 padding: ${gap}px;
                                 margin: 0;
+                            }
+                            .anchor .gmfgb-pg-link::before{
+                                content: "";
+                                width: 100%;
+                                height: 100%;
+                                position: absolute;
+                                display: block;
+                                left: 0;
+                                top: 0;
+                                background: transparent;
+                            }
+                            .anchor .gmfgb-pg-link:focus{
+                                outline: none;
+                            }
+                            .no-anchor .gmfgb-pg-link::before {
+                                display: none;
                             }
                     `));
   }
