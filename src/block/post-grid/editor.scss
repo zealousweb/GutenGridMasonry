@@ -29,11 +29,11 @@
 		width: 100%;
 	}
 }
-.gmfgb-pg-loop-wrap {
-	ul {
-		gap: 20px;
-	}
-}
+// .gmfgb-pg-loop-wrap {
+// 	ul {
+// 		gap: 20px;
+// 	}
+// }
 .editor-styles-wrapper {
 	.gmfgb-pg-grid {
 		.is-layout-grid {
@@ -44,4 +44,7 @@
 
 .wp-block-post-featured-image .block-editor-media-placeholder {
 	height: 100%;
+}
+p.description {
+    margin-top: -15px !important;
 }
