@@ -121,14 +121,17 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                                 step={10}
                             />
                             <ToggleControl
-                                label={__("Block Post", "grid-masonry-for-guten-blocks")}
+                                label={__("Clickable Full Post", "grid-masonry-for-guten-blocks")}
                                 checked={redirect}
                                 onChange={(val) => {
                                     setAttributes({ redirect: val });
                                 }}
                             />
+                            <p className="description">
+                                Please enable the entire post to be clickable, not just the "Read More" text.
+                            </p>
                         </PanelBody>
-                    </Panel>
+                    </Panel>    
                 </InspectorControls>
                 <div {...useBlockProps({ className: `gmfgb-pg-grid grid-size-${gridItem}`, templateLock: true, })}>
                     <InnerBlocks
@@ -163,13 +166,13 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
         const { redirect } = attributes;
         console.log(redirect);
         return (
-            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem} ${redirect ? 'anchor' : 'no-anchor'}`})}>
+            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem} ${redirect ? 'anchor' : 'no-anchor'}` })}>
                 <InnerBlocks.Content />
                 <style>
                     {`
                             .gmfgb-pg-grid.grid-size-${gridItem} ul{
                                 display:flex;
-                                flex-wrap:wrap;
+                                flex-wrap:wrap;     
                                 gap:${gap}px;
                             }
                            .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
