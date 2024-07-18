@@ -6,8 +6,8 @@ Donate link: http://www.zealousweb.com/payment/
 Requires at least: 5.9
 Tested up to: 6.4.2
 Requires PHP: 7.4
-Version: 1.0.1
-Stable tag: 1.0.1
+Version: 1.0.2
+Stable tag: 1.0.2
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -106,6 +106,10 @@ Initial Release
 = 1.0.1 =
 Issue Fixed: Restricted video selection in place of thumbnail images.
 
+= 1.0.2 =
+Added Feature: Gap Between Post Grid columns.
+Added Feature: Clickable whole Post Block to the Detail Page
+
 == Upgrade Notice ==
 
 = 1.0.0 =
@@ -113,3 +117,7 @@ Initial Release
 
 = 1.0.1 =
 Issue Fixed: Restricted video selection in place of thumbnail images.
+
+= 1.0.2 =
+Added Feature: Gap Between Post Grid columns.
+Added Feature: Clickable whole Post Block to the Detail Page
