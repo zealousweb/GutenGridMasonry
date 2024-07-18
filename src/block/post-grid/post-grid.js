@@ -11,7 +11,7 @@ import './editor.scss';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { RangeControl, Panel, PanelBody } from '@wordpress/components';
+import { RangeControl, Panel, PanelBody, ToggleControl } from '@wordpress/components';
 
 /** Post Template */
 const POST_GRID_TEMPLATE = [
@@ -24,17 +24,17 @@ const POST_GRID_TEMPLATE = [
     ],
 
     /** Main Post Loop/Query with Default Wordpress Posts */
-    ['core/query', { className: 'gmfgb-pg-loop-wrap', query: { inherit: false, offset: 0, postType: 'post', enhancedPagination: true }, templateLock: true, displayLayout: false, align: false, },
+    ['core/query', { className: 'gmfgb-pg-loop-wrap border-none', query: { inherit: false, offset: 0, postType: 'post', enhancedPagination: true }, templateLock: true, displayLayout: false, align: false, },
         [
             ['core/post-template', { templateLock: true, layout: false, displayLayout: false, align: false, },
-                [['core/group', { className: 'gmfgb-pg-wrap', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' }, templateLock: true } },
+                [['core/group', { className: 'gmfgb-pg-wrap border-none', style: { border: { style: 'solid', width: '0', radius: '0', color: '#dcdcdc' } }, templateLock: true },
                     [
-                        ['core/post-featured-image', { className: 'gmfgb-pg-featured-img', style: { width: '100%', height: '100%', spacing: { margin: { bottom: '0px', top: '0px', right: '0px', left: '0px' } } } }],
-                        ['core/group', { className: 'gmfgb-pg-content', style: { spacing: { padding: { top: '100px', right: '25px', bottom: '25px', left: '25px' }, margin: { top: '0px', bottom: '0px' } } } }, [
+                        ['core/post-featured-image', { className: 'gmfgb-pg-featured-img border-none', style: { width: '100%', height: '100%', spacing: { margin: { bottom: '0px', top: '0px', right: '0px', left: '0px' } } } }],
+                        ['core/group', { className: 'gmfgb-pg-content border-none', style: { spacing: { padding: { top: '100px', right: '25px', bottom: '25px', left: '25px' }, margin: { top: '0px', bottom: '0px' } } } }, [
                             ['core/post-title', { className: 'gmfgb-pg-title', style: { color: { text: '#ffffff' }, typography: { fontSize: '20px', fontWeight: 700 }, spacing: { margin: { bottom: '15px', top: '15px', right: '0px', left: '0px' } } } }],
                             ['core/post-excerpt', { excerptLength: 20, moreText: '&nbsp;', className: 'gmfgb-pg-description', style: { typography: { lineHeight: 1.2 }, color: { text: '#ffffff' }, spacing: { margin: { top: '0', bottom: '20px', left: '0', right: '0' } } } }],
                             ['core/read-more', { className: 'gmfgb-pg-link', content: __('Read More →', 'grid-masonry-for-guten-blocks'), style: { color: { text: '#ffffff' }, typography: { textDecoration: 'underline', fontSize: '16px' }, spacing: { margin: { 'top': '0', 'bottom': '20px', 'left': '0', 'right': '0' } } } }],
-                            ['core/group', { className: 'gmfgb-pg-date-wrap', style: { spacing: { padding: { top: '0', right: '0', bottom: '0', left: '0' }, margin: { top: '0px', bottom: '0px' } } } }, [
+                            ['core/group', { className: 'gmfgb-pg-date-wrap border-none', style: { spacing: { padding: { top: '0', right: '0', bottom: '0', left: '0' }, margin: { top: '0px', bottom: '0px' } } } }, [
                                 ['core/post-date', { className: 'gmfgb-pg-date', style: { spacing: { margin: '0' }, color: { text: '#ffffff' }, typography: { fontSize: '13px' } } }],
                                 ['core/post-author', { className: 'gmfgb-pg-author', style: { typography: { fontSize: '13px' }, spacing: { 'margin': '0' } } }],
                             ]],
@@ -81,12 +81,22 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
             type: 'number',
             default: 2,
         },
+        gap: {
+            type: 'number',
+            default: 20,
+        },
+        redirect: {
+            type: 'boolean',
+            default: false,
+        },
     },
 
     //onChange: sliderIsUpdated(),
     edit: (props) => {
         const { attributes, setAttributes } = props;
         const { gridItem } = attributes;
+        const { gap } = attributes;
+        const { redirect } = attributes;
 
         return (
             <>
@@ -102,6 +112,21 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                                 min={1}
                                 max={3}
                             />
+                            <RangeControl
+                                label={__("Gap betweem two Post ", "grid-masonry-for-guten-blocks")}
+                                value={gap}
+                                onChange={(value) => setAttributes({ gap: value })}
+                                min={10}
+                                max={60}
+                                step={10}
+                            />
+                            <ToggleControl
+                                label={__("Block Post", "grid-masonry-for-guten-blocks")}
+                                checked={redirect}
+                                onChange={(val) => {
+                                    setAttributes({ redirect: val });
+                                }}
+                            />
                         </PanelBody>
                     </Panel>
                 </InspectorControls>
@@ -109,6 +134,24 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                     <InnerBlocks
                         template={POST_GRID_TEMPLATE}
                     />
+                    <style>
+                        {`
+                            .gmfgb-pg-grid.grid-size-${gridItem} ul{
+                                display:flex;
+                                flex-wrap:wrap;
+                                gap:${gap}px;
+                            }
+                            .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
+                                    width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                                    margin:0;
+                            }
+                            .wp-block-post {
+                                padding: ${gap}px;
+                                margin: 0;
+                            }
+                                
+                        `}
+                    </style>
                 </div>
             </>
         );
@@ -116,9 +159,49 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
 
     save: ({ attributes }) => {
         const { gridItem } = attributes;
+        const { gap } = attributes;
+        const { redirect } = attributes;
+        console.log(redirect);
         return (
-            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}` })}>
+            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem} ${redirect ? 'anchor' : 'no-anchor'}`})}>
                 <InnerBlocks.Content />
+                <style>
+                    {`
+                            .gmfgb-pg-grid.grid-size-${gridItem} ul{
+                                display:flex;
+                                flex-wrap:wrap;
+                                gap:${gap}px;
+                            }
+                           .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
+                                    width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                                    margin:0;
+                                    padding: 0;
+                                    position: relative !important;
+                                    left: unset !important;
+                                    top: unset !important;
+                            }
+                            .wp-block-post {
+                                padding: ${gap}px;
+                                margin: 0;
+                            }
+                            .anchor .gmfgb-pg-link::before{
+                                content: "";
+                                width: 100%;
+                                height: 100%;
+                                position: absolute;
+                                display: block;
+                                left: 0;
+                                top: 0;
+                                background: transparent;
+                            }
+                            .anchor .gmfgb-pg-link:focus{
+                                outline: none;
+                            }
+                            .no-anchor .gmfgb-pg-link::before {
+                                display: none;
+                            }
+                    `}
+                </style>
             </div>
         );
     },
