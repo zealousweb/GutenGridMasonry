@@ -735,7 +735,7 @@ __webpack_require__.r(__webpack_exports__);
         className: `gmfgb-mg-media `,
         key: index
       }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `main-class ${borderEnable} ${captionpos} ${greyscale} ${hover}`
+        className: `main-class ${borderEnable} ${captionpos} ${greyscale} ${hover}${hover ? 'anchor' : 'no-anchor'}`
       }, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
       item.selectedVideoType === 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.popup_url,

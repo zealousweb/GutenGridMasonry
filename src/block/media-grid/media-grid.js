@@ -581,7 +581,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
 
                         {item.image && (
                             <>
-                                <div className={`main-class ${borderEnable} ${captionpos} ${greyscale} ${hover}`}>
+                                <div className={`main-class ${borderEnable} ${captionpos} ${greyscale} ${hover}${hover ? 'anchor' : 'no-anchor'}`}>
                                     {
                                         fancyBoxEnabled
                                             ? <>
