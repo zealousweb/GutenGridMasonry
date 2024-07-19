@@ -240,16 +240,18 @@
 
 .image-caption {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 50%;
   padding: 12px;
-  background-color: rgba(0, 0, 0, 0.25);
-  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 2;
   font-size: 16px;
   color: #fff;
-  width: 100%;
-  max-height: 70%;
+  width: 88%;
   overflow: auto;
+  transform: translateX(-50%);
+  text-align: center;
+  border-radius: 5px;
+  max-height: 100%;
 }
 
 .gmfgb-mg-media {
@@ -258,6 +260,10 @@
   box-sizing: border-box;
   font-size: 0;
   overflow: hidden;
+}
+.gmfgb-mg-media .main-class.true img {
+  width: 100%;
+  filter: grayscale(1);
 }
 .gmfgb-mg-media > a {
   display: block;
@@ -271,6 +277,47 @@
   position: absolute;
   top: 20px;
   left: 20px;
+  z-index: 4;
+}
+
+.main-class.top .image-caption {
+  position: absolute;
+  top: 7px;
+}
+
+.main-class.bottom .image-caption {
+  position: absolute;
+  bottom: 7px;
+}
+
+.main-class.center .image-caption {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main-class .image-caption p {
+  margin: 0;
+}
+
+.main-class.true {
+  position: relative;
+}
+
+.main-class.true::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.4s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

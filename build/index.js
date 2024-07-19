@@ -127,6 +127,18 @@ __webpack_require__.r(__webpack_exports__);
     borderColor: {
       type: "string",
       default: '#111111'
+    },
+    caption: {
+      type: "boolean",
+      default: false
+    },
+    captionpos: {
+      type: "string",
+      default: 'center'
+    },
+    captionsize: {
+      type: "number",
+      default: 16
     }
   },
   /**
@@ -170,6 +182,15 @@ __webpack_require__.r(__webpack_exports__);
     } = attributes;
     const {
       border
+    } = attributes;
+    const {
+      caption
+    } = attributes;
+    const {
+      captionpos
+    } = attributes;
+    const {
+      captionsize
     } = attributes;
     const borderEnable = border ? borderstyle : '';
     const colors = [{
@@ -328,6 +349,41 @@ __webpack_require__.r(__webpack_exports__);
         borderColor: color
       }),
       colors: colors
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Enable Caption", "grid-masonry-for-guten-blocks"),
+      checked: caption,
+      onChange: val => {
+        setAttributes({
+          caption: val
+        });
+      }
+    }), attributes.caption && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RadioControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Caption Position", "grid-masonry-for-guten-block"),
+      className: "captionSelect",
+      selected: captionpos,
+      options: [{
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Top", "grid-masonry-for-guten-block"),
+        value: "top"
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Center", "grid-masonry-for-guten-block"),
+        value: "center"
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Bottom", "grid-masonry-for-guten-block"),
+        value: "bottom"
+      }],
+      onChange: val => {
+        setAttributes({
+          captionpos: val
+        });
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Caption Font Size ", "grid-masonry-for-guten-blocks"),
+      value: captionsize,
+      onChange: value => setAttributes({
+        captionsize: value
+      }),
+      min: 16,
+      max: 50
     }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
       title: "MediaGrid Settings"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
@@ -374,7 +430,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       id: uniqueGallery
     }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "gmfgb-mg-wrap",
+      className: `gmfgb-mg-wrap ${captionpos}`,
       key: index
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
       className: "remove-item",
@@ -544,6 +600,9 @@ __webpack_require__.r(__webpack_exports__);
                             border-radius: ${borderRadius}px;
                             border-color: ${borderColor};
                         }
+                        #${uniqueGallery} .gmfgb-mg-wrap .gmfgb-mg-content textarea{
+                            font-size:${captionsize}px;
+                        }
                     `));
   },
   /**
@@ -582,6 +641,15 @@ __webpack_require__.r(__webpack_exports__);
     const {
       border
     } = attributes;
+    const {
+      caption
+    } = attributes;
+    const {
+      captionpos
+    } = attributes;
+    const {
+      captionsize
+    } = attributes;
     const borderEnable = border ? borderstyle : '';
     return (/** Structure to show for update data */
       (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
@@ -593,7 +661,7 @@ __webpack_require__.r(__webpack_exports__);
         className: "gmfgb-mg-media",
         key: index
       }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `main-class ${borderEnable}`
+        className: `main-class ${borderEnable} ${captionpos}`
       }, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
       item.selectedVideoType === 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.popup_url,
@@ -654,8 +722,8 @@ __webpack_require__.r(__webpack_exports__);
       }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: item.image.sizes.full.url,
         alt: item.image.alt ? item.image.alt : ''
-      })), (item.image_caption || item.image.caption) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        class: "image-caption"
+      })), caption && (item.image_caption && item.image_caption.trim() !== '' || item.image.caption && item.image.caption.trim() !== '') && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: "image-caption"
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, item.image_caption ? item.image_caption : item.image.caption)))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
                         #${uniqueGallery} .main-class.${borderstyle}{
                             position: relative;
@@ -664,6 +732,16 @@ __webpack_require__.r(__webpack_exports__);
                             border-radius: ${borderRadius}px;
                                 overflow: hidden;
                         }
+                        #${uniqueGallery} .main-class .image-caption p{
+                            font-size: ${captionsize}px;
+                        }
+                        #${uniqueGallery} .main-class.true.false:hover .image-caption{
+                            background-color: rgba(0, 0, 0, 0.55)!important;
+                        }
+                        #${uniqueGallery} .main-class.true.true:hover .image-caption{
+                            background-color: transparent;
+                        } 
+
                     `))
     );
   }
