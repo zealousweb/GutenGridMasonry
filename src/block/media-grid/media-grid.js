@@ -16,7 +16,7 @@ import PlaceholderImage from './placeholder-image.png';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { MediaUpload, MediaUploadCheck, InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button, Label } from '@wordpress/components';
+import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button, Label, RadioControl, ColorPalette } from '@wordpress/components';
 import { SelectControl } from '@wordpress/components';
 import { select } from '@wordpress/data';
 
@@ -65,6 +65,26 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
             type: 'string',
             default: ''            
         },
+        borderstyle: {
+            type: 'string',
+            default: 'none'
+        },
+        borderwidth: {
+            type: 'number',
+            default: 5
+        },
+        borderRadius: {
+            type: "number",
+            default: 0
+        },
+        border: {
+            type: "boolean",
+            default: false
+        },
+        borderColor: {
+            type: "string",
+            default: '#111111'
+        },
     },
 
 
@@ -84,6 +104,25 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { gridItem } = attributes;
         const { uniqueGallery } = attributes;
         const { selectedSize } = attributes;
+        const { borderstyle } = attributes;
+        const { borderwidth } = attributes;
+        const { borderRadius } = attributes;
+        const { borderColor } = attributes;
+        const { border } = attributes;
+
+        const borderEnable = border ? borderstyle : '';
+
+        const colors = [
+            { color: '#F9F9F9' },
+            { color: '#A4A4A4' },
+            { color: '#636363' },
+            { color: '#111111' },
+            { color: '#FFFFFF' },
+            { color: '#C2A990' },
+            { color: '#CFCABE' },
+            { color: '#D8613C' },
+            { color: '#B1C5A4' },
+        ];
 
         /** Unique Gallery */
         if (uniqueGallery === '') {
@@ -124,13 +163,13 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 //setAttributes({ imageUrl: media.url });
             } else {
                 alert('Please select only an image file.\nOther file types are not allowed.\nJPEG, PNG, and GIF files are supported');
-            }            
+            }
             newItems[index].image_caption = image_caption;
             newItems[index].selectedVideoType = selectedVideoType;
             newItems[index].video_media = video_media;
             newItems[index].popup_url = popup_url;
             setAttributes({ items: newItems });
-        };        
+        };
 
         /** get thumbnail image sizes from wordpress */
         const imageSizes = select('core/editor').getEditorSettings().imageSizes.map((size) => size.slug);
@@ -140,6 +179,58 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 {/** Side Panel Settings contains FancyApp Lightbox Enable Disable, Video URL Enable Disable, and Grid Column Selection */}
                 <InspectorControls key="setting">
                     <Panel>
+                        <PanelBody title="Image Setting">
+                            <ToggleControl
+                                label={__("Enable Border", "grid-masonry-for-guten-blocks")}
+                                checked={border}
+                                onChange={(val) => {
+                                    setAttributes({ border: val });
+                                }}
+                            />
+                            {attributes.border &&
+                                <>
+                                    <SelectControl
+                                        label={__('Border Style', 'grid-masonry-for-guten-blocks')}
+                                        value={borderstyle}
+                                        options={[
+                                            { label: "None", value: "none", },
+                                            { label: "Solid", value: "solid" },
+                                            { label: "Dotted", value: "dotted" },
+                                            { label: "Double", value: "double" },
+                                            { label: "Dashed", value: "dashed" },
+                                            { label: "Groove", value: "groove" },
+                                            { label: "Ridge", value: "ridge" },
+                                            { label: "Inset", value: "inset" },
+                                            { label: "Outset", value: "outset" },
+                                        ]}
+                                        onChange={(val) => {
+                                            setAttributes({ borderstyle: val });
+                                        }}
+                                    />
+                                    <RangeControl
+                                        label={__("Border Width in px", "grid-masonry-for-guten-blocks")}
+                                        value={borderwidth}
+                                        onChange={(value) => setAttributes({ borderwidth: value })}
+                                        min={0}
+                                        max={10}
+                                    />
+                                    <RangeControl
+                                        label={__("Border Radius ", "grid-masonry-for-guten-blocks")}
+                                        value={borderRadius}
+                                        onChange={(value) => setAttributes({ borderRadius: value })}
+                                        min={0}
+                                        max={50}
+                                        step={10}
+                                    />
+                                    <span className="color">{__("Border Color", "media-carousel-for-guten-blocks")}</span>
+                                    <ColorPalette
+                                        value={borderColor}
+                                        onChange={(color) => setAttributes({ borderColor: color })}
+                                        colors={colors}
+                                    />
+                                </>
+                            }
+                        </PanelBody>
                         <PanelBody title="MediaGrid Settings">
 
                             {/* <ImageSizeDropdown onSelectImageSize={onSelectImageSize} /> */}
@@ -202,7 +293,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 </InspectorControls>
 
                 {/** Structure to show for update data */}
-                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })}>
+                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}` })} id={uniqueGallery}>
                     {attributes.items.map((item, index) => (
                         <div className="gmfgb-mg-wrap" key={index}>
 
@@ -217,7 +308,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                     allowedTypes={['image']}
                                     value={item.image && item.image.id}
                                     render={({ open }) => (
-                                        <div className="gmfgb-mg-image">
+                                        <div className={`gmfgb-mg-image ${borderEnable} `}>
                                             <h6 id={`upload-image-${uniqueGallery}${index}`} className={`change-image upload-image-${uniqueGallery}${index}`} onClick={open}>
                                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.2639 15.9376L12.5958 14.2835C11.7909 13.4852 11.3884 13.0861 10.9266 12.9402C10.5204 12.8119 10.0838 12.8166 9.68048 12.9537C9.22188 13.1096 8.82814 13.5173 8.04068 14.3327L4.04409 18.2802M14.2639 15.9376L14.6053 15.5991C15.4112 14.7999 15.8141 14.4003 16.2765 14.2544C16.6831 14.1262 17.12 14.1312 17.5236 14.2688C17.9824 14.4252 18.3761 14.834 19.1634 15.6515L20 16.4936M14.2639 15.9376L18.275 19.9566M18.275 19.9566C17.9176 20.0001 17.4543 20.0001 16.8 20.0001H7.2C6.07989 20.0001 5.51984 20.0001 5.09202 19.7821C4.71569 19.5904 4.40973 19.2844 4.21799 18.9081C4.12796 18.7314 4.07512 18.5322 4.04409 18.2802M18.275 19.9566C18.5293 19.9257 18.7301 19.8728 18.908 19.7821C19.2843 19.5904 19.5903 19.2844 19.782 18.9081C20 18.4803 20 17.9202 20 16.8001V16.4936M12.5 4L7.2 4.00011C6.07989 4.00011 5.51984 4.00011 5.09202 4.21809C4.71569 4.40984 4.40973 4.7158 4.21799 5.09213C4 5.51995 4 6.08 4 7.20011V16.8001C4 17.4576 4 17.9222 4.04409 18.2802M20 11.5V16.4936M14 10.0002L16.0249 9.59516C16.2015 9.55984 16.2898 9.54219 16.3721 9.5099C16.4452 9.48124 16.5146 9.44407 16.579 9.39917C16.6515 9.34859 16.7152 9.28492 16.8425 9.1576L21 5.00015C21.5522 4.44787 21.5522 3.55244 21 3.00015C20.4477 2.44787 19.5522 2.44787 19 3.00015L14.8425 7.1576C14.7152 7.28492 14.6515 7.34859 14.6009 7.42112C14.556 7.4855 14.5189 7.55494 14.4902 7.62801C14.4579 7.71033 14.4403 7.79862 14.4049 7.97518L14 10.0002Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                                             </h6>
@@ -324,6 +415,15 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                         <svg width="50" viewBox="0 0 32 32" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>plus</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" > <g id="Icon-Set-Filled" transform="translate(-362.000000, -1037.000000)" fill="#000000"> <path d="M390,1049 L382,1049 L382,1041 C382,1038.79 380.209,1037 378,1037 C375.791,1037 374,1038.79 374,1041 L374,1049 L366,1049 C363.791,1049 362,1050.79 362,1053 C362,1055.21 363.791,1057 366,1057 L374,1057 L374,1065 C374,1067.21 375.791,1069 378,1069 C380.209,1069 382,1067.21 382,1065 L382,1057 L390,1057 C392.209,1057 394,1055.21 394,1053 C394,1050.79 392.209,1049 390,1049" id="plus"> </path> </g> </g> </g></svg>
                     </button>
                 </section>
+                <style>
+                    {`
+                        #${uniqueGallery} .gmfgb-mg-image.${borderstyle}{
+                            border:${borderwidth}px ${borderstyle};
+                            border-radius: ${borderRadius}px;
+                            border-color: ${borderColor};
+                        }
+                    `}
+                </style>
             </>
         );
     },
@@ -340,61 +440,81 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { videoOptionEnabled } = attributes;
         const { uniqueGallery } = attributes;
         const { gridItem } = attributes;
+        const { borderstyle } = attributes;
+        const { borderwidth } = attributes;
+        const { borderRadius } = attributes;
+        const { borderColor } = attributes;
+        const { border } = attributes;
+        const borderEnable = border ? borderstyle : '';
         return (
             /** Structure to show for update data */
-            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
+            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
 
                 {attributes.items.map((item, index) => (
                     <div className="gmfgb-mg-media" key={index}>
 
                         {item.image && (
                             <>
-                                {
-                                    fancyBoxEnabled 
-                                        ? <>
-                                            {
-                                                videoOptionEnabled
-                                                    ? /** have Video available and also enabled the video popup from the side panel */
-                                                    (item.selectedVideoType === 'thirdparty' && item.popup_url) ?
-                                                        (
-                                                            <a href={item.popup_url} data={item.selectedVideoType} className="gmfgb-mg-video t" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
-                                                                    <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
-                                                                </svg>
-                                                                <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
-                                                            </a>
-                                                        ) : (
-                                                            (item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url)
-                                                                ? <a href={item.video_media.url} data={item.selectedVideoType} className="gmfgb-mg-video s" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                <div className={`main-class ${borderEnable}`}>
+                                    {
+                                        fancyBoxEnabled
+                                            ? <>
+                                                {
+                                                    videoOptionEnabled
+                                                        ? /** have Video available and also enabled the video popup from the side panel */
+                                                        (item.selectedVideoType === 'thirdparty' && item.popup_url) ?
+                                                            (
+                                                                <a href={item.popup_url} data={item.selectedVideoType} className="gmfgb-mg-video t" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
                                                                         <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
                                                                     </svg>
                                                                     <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
                                                                 </a>
-                                                                : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                                    <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
-                                                                </a>
-                                                        )
-                                                    : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                        <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
-                                                    </a>
-                                            }
-                                        </>
-                                        : <div>
-                                            <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
-                                        </div>
-                                }
-                                {
-                                    (item.image_caption || item.image.caption) && (
-                                        <div class="image-caption">
-                                            <p>{(item.image_caption ? item.image_caption : item.image.caption)}</p>
-                                        </div>
-                                    )
-                                }
+                                                            ) : (
+                                                                (item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url)
+                                                                    ? <a href={item.video_media.url} data={item.selectedVideoType} className="gmfgb-mg-video s" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
+                                                                            <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
+                                                                        </svg>
+                                                                        <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                                    </a>
+                                                                    : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                                        <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                                    </a>
+                                                            )
+                                                        : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                            <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                        </a>
+                                                }
+                                            </>
+                                            : <div>
+                                                <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                            </div>
+                                    }
+                                    {
+                                        (item.image_caption || item.image.caption) && (
+                                            <div class="image-caption">
+                                                <p>{(item.image_caption ? item.image_caption : item.image.caption)}</p>
+                                            </div>
+                                        )
+                                    }
+                                </div>
                             </>
                         )}
                     </div>
                 ))}
+
+                <style>
+                    {`
+                        #${uniqueGallery} .main-class.${borderstyle}{
+                            position: relative;
+                           border:${borderwidth}px ${borderstyle};
+                            border-color: ${borderColor};
+                            border-radius: ${borderRadius}px;
+                                overflow: hidden;
+                        }
+                    `}
+                </style>
             </section>
         );
     },
