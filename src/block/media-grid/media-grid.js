@@ -194,8 +194,23 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const gmfgb_update_repeater_item = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
             const newItems = [...attributes.items];
             if (image && image.type === 'image') {
-                newItems[index].image = image;
-                //setAttributes({ imageUrl: media.url });
+                const img = new Image();
+                img.src = image.url;
+
+                img.onload = () => {
+                    if (img.width >= 150 && img.height >= 150) {
+                        newItems[index].image = image;
+                    } else {
+                        alert('Image dimensions must be at least 150x150 pixels.');
+                        return;
+                    }
+
+                    newItems[index].image_caption = image_caption;
+                    newItems[index].selectedVideoType = selectedVideoType;
+                    newItems[index].video_media = video_media;
+                    newItems[index].popup_url = popup_url;
+                    setAttributes({ items: newItems });
+                };
             } else {
                 alert('Please select only an image file.\nOther file types are not allowed.\nJPEG, PNG, and GIF files are supported');
             }
@@ -546,10 +561,13 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                             filter: grayscale(1);
                         
                         }
-                        .gmfgb-mg-grid{
+                        #${uniqueGallery}.gmfgb-mg-grid{
                             gap:${gap}px !important;
                         }
-                            
+                        #${uniqueGallery}.gmfgb-mg-grid.grid-size-${gridItem} .gmfgb-mg-wrap{
+                            width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                            margin:0;
+                        }  
                     `}
                 </style>
             </>
@@ -579,6 +597,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { greyscale } = attributes;
         const { overlay } = attributes;
         const { hover } = attributes;
+        const { gap } = attributes;
 
         const borderEnable = border ? borderstyle : '';
         return (
@@ -669,6 +688,20 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                         }
                         #${uniqueGallery} .main-class.true.no-hover:hover::before {
                             opacity: 0;
+                        }
+                        .gmfgb-mg-grid.grid-size-${gridItem}{
+                            display:flex;
+                            flex-wrap:wrap;     
+                            gap:${gap}px;
+                        }
+                        .gmfgb-mg-grid.grid-size-${gridItem} .gmfgb-mg-media{
+                            gap:${gap}px !important;
+                            width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                            margin:0;
+                            padding: 0;
+                            position: relative !important;
+                            left: unset !important;
+                            top: unset !important;
                         }
 
                     `}
