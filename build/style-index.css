@@ -30,12 +30,10 @@
   border-radius: 20px;
   overflow: hidden;
   z-index: 0;
+  pointer-events: none;
 }
 .gmfgb-pg-grid .gmfgb-pg-content {
   z-index: 1;
-  position: relative;
-}
-.gmfgb-pg-grid .wp-block-group__inner-container {
   position: relative;
 }
 .gmfgb-pg-grid .gmfgb-pg-featured-img {
