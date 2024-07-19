@@ -8,7 +8,7 @@
 .gmfgb-mg-grid {
 	display: flex;
 	flex-wrap: wrap !important;
-	gap: 20px;
+	// gap: 20px;
 	padding: 0 !important;
 	.gmfgb-mg-button {
 		display: block;
@@ -26,14 +26,14 @@
 		}
 	}
 }
-@media (min-width: 561px) and (max-width: 767px) {
-	.gmfgb-mg-media,
-	.gmfgb-mg-button,
-	.gmfgb-mg-wrap {
-		width: calc(33.33% - 13.33px);
-		margin-bottom: 20px;
-	}
-}
+// @media (min-width: 561px) and (max-width: 767px) {
+// 	.gmfgb-mg-media,
+// 	.gmfgb-mg-button,
+// 	.gmfgb-mg-wrap {
+// 		width: calc(33.33% - 13.33px);
+// 		margin-bottom: 20px;
+// 	}
+// }
 
 .gmfgb-mg-wrap {
 	position: relative;

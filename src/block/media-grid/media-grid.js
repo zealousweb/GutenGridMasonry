@@ -109,6 +109,10 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
             type: "boolean",
             default: false
         },
+        gap: {
+            type: 'number',
+            default: 20,
+        },
     },
 
 
@@ -139,6 +143,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { greyscale } = attributes;
         const { overlay } = attributes;
         const { hover } = attributes;
+        const { gap } = attributes;
 
         const borderEnable = border ? borderstyle : '';
 
@@ -385,6 +390,14 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                     max={5}
                                 />
                             </>
+                            <RangeControl
+                                label={__("Gap between two Media ", "grid-masonry-for-guten-blocks")}
+                                value={gap}
+                                onChange={(value) => setAttributes({ gap: value })}
+                                min={10}
+                                max={60}
+                                step={10}
+                            />
                         </PanelBody>
                     </Panel>
                 </InspectorControls>
@@ -533,6 +546,10 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                             filter: grayscale(1);
                         
                         }
+                        .gmfgb-mg-grid{
+                            gap:${gap}px !important;
+                        }
+                            
                     `}
                 </style>
             </>

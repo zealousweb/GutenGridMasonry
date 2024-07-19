@@ -151,6 +151,10 @@ __webpack_require__.r(__webpack_exports__);
     hover: {
       type: "boolean",
       default: false
+    },
+    gap: {
+      type: 'number',
+      default: 20
     }
   },
   /**
@@ -212,6 +216,9 @@ __webpack_require__.r(__webpack_exports__);
     } = attributes;
     const {
       hover
+    } = attributes;
+    const {
+      gap
     } = attributes;
     const borderEnable = border ? borderstyle : '';
     const colors = [{
@@ -475,7 +482,16 @@ __webpack_require__.r(__webpack_exports__);
       }),
       min: 1,
       max: 5
-    }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Gap between two Media ", "grid-masonry-for-guten-blocks"),
+      value: gap,
+      onChange: value => setAttributes({
+        gap: value
+      }),
+      min: 10,
+      max: 60,
+      step: 10
+    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps.save({
         className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}`
       }),
@@ -662,6 +678,10 @@ __webpack_require__.r(__webpack_exports__);
                             filter: grayscale(1);
                         
                         }
+                        .gmfgb-mg-grid{
+                            gap:${gap}px !important;
+                        }
+                            
                     `));
   },
   /**
