@@ -75,7 +75,7 @@ The plugin supports various video formats, including MP4, YouTube, and Vimeo. Th
 
 = Getting Help With Wordpress =
 
-If you have any difficulties while using this Plugin, please feel free to contact us at https://zealousweb.com/support/
+If you have any difficulties while using this Plugin, please feel free to contact us at <strong>[Support](https://support.zealousweb.com/portal/en/home)</strong>
 
 We also offer custom Wordpress extension development and Wordpress theme design services to fulfill your e-commerce objectives.
 
