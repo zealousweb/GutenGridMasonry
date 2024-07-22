@@ -4,10 +4,10 @@ Contributors: zealopensource
 Tags: Gutenberg, Masonry, Image Gallery, Video Gallery, Post Grid
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 5.9
-Tested up to: 6.4.2
+Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.0.1
-Stable tag: 1.0.1
+Version: 1.0.3
+Stable tag: 1.0.3
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,13 +64,14 @@ The plugin supports various video formats, including MP4, YouTube, and Vimeo. Th
 
 == OUR OTHER PLUGINS ==
 
-* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/generate-pdf-using-contact-form-7-pro/)</strong>
-* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-stripe-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-2checkout-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-sage-pay-opayo-payments-using-contact-form-7-pro)</strong>
-* <strong>[User Registration Using Contact Form 7 Pro](https://www.zealousweb.com/store/user-registration-using-contact-form-7-pro)</strong>
-* <strong>[Abandoned Contact Form 7 Pro](https://www.zealousweb.com/store/abandoned-contact-form-7-pro)</strong>
+* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-paypal-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-stripe-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-2checkout-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-sage-pay-opayo-payments-using-contact-form-7-pro)</strong>
+* <strong>[User Registration Using Contact Form 7 Pro](https://store.zealousweb.com/user-registration-using-contact-form-7-pro)</strong>
+* <strong>[Abandoned Contact Form 7 Pro](https://store.zealousweb.com/abandoned-contact-form-7-pro)</strong>
+
 
 = Getting Help With Wordpress =
 
@@ -106,6 +107,13 @@ Initial Release
 = 1.0.1 =
 Issue Fixed: Restricted video selection in place of thumbnail images.
 
+= 1.0.2 =
+Added Feature: Gap Between Post Grid columns.
+Added Feature: Clickable whole Post Block to the Detail Page
+
+= 1.0.3 =
+Issue fixed: Clickable whole post, removed space bottom of the image 
+
 == Upgrade Notice ==
 
 = 1.0.0 =
@@ -113,3 +121,10 @@ Initial Release
 
 = 1.0.1 =
 Issue Fixed: Restricted video selection in place of thumbnail images.
+
+= 1.0.2 =
+Added Feature: Gap Between Post Grid columns.
+Added Feature: Clickable whole Post Block to the Detail Page
+
+= 1.0.3 =
+Issue fixed: Clickable whole post, removed space bottom of the image 
