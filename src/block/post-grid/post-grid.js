@@ -11,7 +11,7 @@ import './editor.scss';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { RangeControl, Panel, PanelBody } from '@wordpress/components';
+import { RangeControl, Panel, PanelBody, ToggleControl } from '@wordpress/components';
 
 
 /** Post Template */
@@ -86,6 +86,10 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
             type: 'number',
             default: 20,
         },
+        redirect: {
+            type: 'boolean',
+            default: false,
+        },
     },
 
     //onChange: sliderIsUpdated(),
@@ -93,6 +97,7 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
         const { attributes, setAttributes } = props;
         const { gridItem } = attributes;
         const { gap } = attributes;
+        const { redirect } = attributes;
 
         return (
             <>
@@ -109,13 +114,23 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                                 max={3}
                             />
                             <RangeControl
-                                label={__("Gap betweem two Post ", "grid-masonry-for-guten-blocks")}
+                                label={__("Gap between two Post ", "grid-masonry-for-guten-blocks")}
                                 value={gap}
                                 onChange={(value) => setAttributes({ gap: value })}
                                 min={10}
                                 max={60}
                                 step={10}
                             />
+                            <ToggleControl
+                                label={__("Clickable Full Post", "grid-masonry-for-guten-blocks")}
+                                checked={redirect}
+                                onChange={(val) => {
+                                    setAttributes({ redirect: val });
+                                }}
+                            />
+                            <p className="description">
+                                Please enable the entire post to be clickable, not just the "Read More" text.
+                            </p>
                         </PanelBody>
                     </Panel>
                 </InspectorControls>
@@ -126,6 +141,8 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                     <style>
                         {`
                                 .gmfgb-pg-grid.grid-size-${gridItem} ul{
+                                    display:flex;
+                                    flex-wrap:wrap;
                                     gap:${gap}px;
                                 }
                                 .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
@@ -143,8 +160,9 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
     save: ({ attributes }) => {
         const { gridItem } = attributes;
         const { gap } = attributes;
+        const { redirect } = attributes;
         return (
-            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}`, data_test: `${gap}` })}>
+            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem} ${redirect ? 'anchor' : 'no-anchor'}`, data_test: `${gap}` })}>
                 <InnerBlocks.Content />
                 <style>
                     {`
@@ -155,6 +173,22 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                             padding: calc(${gap}px/2);
                             margin: 0;
                         }
+                        .anchor .gmfgb-pg-link::before{
+                                content: "";
+                                width: 100%;
+                                height: 100%;
+                                position: absolute;
+                                display: block;
+                                left: 0;
+                                top: 0;
+                                background: transparent;
+                            }
+                            .anchor .gmfgb-pg-link:focus{
+                                outline: none;
+                            }
+                            .no-anchor .gmfgb-pg-link::before {
+                                display: none;
+                            }
                     `}
                 </style>
             </div>
