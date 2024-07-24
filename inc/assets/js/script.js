@@ -6,7 +6,7 @@ var $ = jQuery.noConflict();
 jQuery(() => {
 
     data_test_var = jQuery('.gmfgb-pg-grid').attr('data_test');
-    console.log('data_test', data_test_var);
+    // console.log('data_test', data_test_var);
 
     /** Post Grid Isotope Masonry options */
     jQuery('.gmfgb-pg-grid .gmfgb-pg-loop-wrap').isotope({
