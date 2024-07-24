@@ -8,32 +8,32 @@ $columns: 3;
 .gmfgb-pg-grid {
 	margin: 0 -10px;
 	position: relative;
-	@media (min-width: 992px) {
-		@for $i from 1 through $columns {
-			&.grid-size-#{$i} {
-				.wp-block-post {
-					width: calc((100% / $i) - ((20px * ($i - 1)) / $i));
-				}
-			}
-		}
-	}
+	// @media (min-width: 992px) {
+	// 	@for $i from 1 through $columns {
+	// 		&.grid-size-#{$i} {
+	// 			.wp-block-post {
+	// 				width: calc((100% / $i) - ((60px * ($i - 1)) / $i));
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-	@media (min-width: 767px) and (max-width: 991px) {
-		.wp-block-post {
-			width: 50%;
-		}
-	}
+	// @media (min-width: 767px) and (max-width: 991px) {
+	// 	.wp-block-post {
+	// 		width: 50%;
+	// 	}
+	// }
 
-	@media (min-width: 320px) and (max-width: 766px) {
-		.wp-block-post {
-			width: 100%;
-		}
-	}
+	// @media (min-width: 320px) and (max-width: 766px) {
+	// 	.wp-block-post {
+	// 		width: 100%;
+	// 	}
+	// }
 
-	.wp-block-post {
-		padding: 10px;
-		margin: 0;
-	}
+	// .wp-block-post {
+	// 	padding: 30px;
+	// 	margin: 0;
+	// }
 
 	.wp-block-post-excerpt__more-text {
 		display: none !important;

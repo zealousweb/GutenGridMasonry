@@ -12,10 +12,6 @@
 *
 * CSS for both Frontend+Backend.
 */
-.gmfgb-pg-grid .wp-block-post {
-  width: calc(50% - 10px);
-  padding: 0;
-}
 .gmfgb-pg-grid .block-editor-block-toolbar__slot,
 .gmfgb-pg-grid .post-pagination {
   display: none !important;
@@ -28,10 +24,6 @@
 }
 .gmfgb-pg-grid .gmfgb-pg-content {
   width: 100%;
-}
-
-.gmfgb-pg-loop-wrap ul {
-  gap: 20px;
 }
 
 .editor-styles-wrapper .gmfgb-pg-grid .is-layout-grid {

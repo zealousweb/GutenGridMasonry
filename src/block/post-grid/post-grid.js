@@ -82,12 +82,17 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
             type: 'number',
             default: 2,
         },
+        gap: {
+            type: 'number',
+            default: 20,
+        },
     },
 
     //onChange: sliderIsUpdated(),
     edit: (props) => {
         const { attributes, setAttributes } = props;
         const { gridItem } = attributes;
+        const { gap } = attributes;
 
         return (
             <>
@@ -103,13 +108,33 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                                 min={1}
                                 max={3}
                             />
+                            <RangeControl
+                                label={__("Gap betweem two Post ", "grid-masonry-for-guten-blocks")}
+                                value={gap}
+                                onChange={(value) => setAttributes({ gap: value })}
+                                min={10}
+                                max={60}
+                                step={10}
+                            />
                         </PanelBody>
                     </Panel>
                 </InspectorControls>
-                <div {...useBlockProps({ className: `gmfgb-pg-grid grid-size-${gridItem}`, templateLock: true, })}>
+                <div {...useBlockProps({ className: `gmfgb-pg-grid grid-size-${gridItem}`, data_test: `${gap}`, templateLock: true })}>
                     <InnerBlocks
                         template={POST_GRID_TEMPLATE}
                     />
+                    <style>
+                        {`
+                                .gmfgb-pg-grid.grid-size-${gridItem} ul{
+                                    gap:${gap}px;
+                                }
+                                .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
+                                    width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                                    margin:0;
+                                }
+                                
+                        `}
+                    </style>
                 </div>
             </>
         );
@@ -117,9 +142,21 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
 
     save: ({ attributes }) => {
         const { gridItem } = attributes;
+        const { gap } = attributes;
         return (
-            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}` })}>
+            <div {...useBlockProps.save({ className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem}`, data_test: `${gap}` })}>
                 <InnerBlocks.Content />
+                <style>
+                    {`
+                        .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
+                            width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                        }
+                        .wp-block-post {
+                            padding: calc(${gap}px/2);
+                            margin: 0;
+                        }
+                    `}
+                </style>
             </div>
         );
     },
