@@ -1321,6 +1321,11 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     const {
       redirect
     } = attributes;
+    if (gridItem == 3) {
+      var gridItemMinusOne = gridItem - 1;
+    } else {
+      var gridItemMinusOne = gridItem;
+    }
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps.save({
         className: `gmfgb-pg-grid gmfgb-grid grid-size-${gridItem} ${redirect ? 'anchor' : 'no-anchor'}`,
@@ -1328,11 +1333,21 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.Content, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
                         .gmfgb-pg-grid.grid-size-${gridItem} .wp-block-post {
-                            width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
-                        }
-                        .wp-block-post {
-                            padding: calc(${gap}px/2);
-                            margin: 0;
+                            @media (min-width: 1024px) {
+                                width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem}));                                      
+                                padding: calc(${gap}px/2) 0; 
+                                margin: 0;
+                            }
+                            @media (min-width: 767px) and (max-width: 1024px) {
+                                width: calc((100% / ${gridItemMinusOne}) - ((${gap}px * (${gridItemMinusOne} - 1)) / ${gridItemMinusOne}));                                       
+                                padding: calc(${gap}px/2) 0;                    
+                                margin: 0;
+                            }
+                            @media (max-width: 767px) {
+                                width: 100%;                                       
+                                padding: calc(${gap}px/2) 0;                     
+                                margin: 0;
+                            }                            
                         }
                         .anchor .gmfgb-pg-link::before{
                                 content: "";

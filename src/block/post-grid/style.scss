@@ -59,6 +59,7 @@
 			border-radius: 20px;
 			overflow: hidden;
 			z-index: 0;
+			pointer-events: none;                         
 		}
 	}
 
@@ -67,9 +68,9 @@
 		position: relative;
 	}
 
-	.wp-block-group__inner-container {
-		// position: relative;
-	}
+	// .wp-block-group__inner-container {
+	// 	 position: relative;
+	// }
 	.gmfgb-pg-featured-img {
 		position: absolute;
 		left: 0;
