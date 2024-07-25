@@ -49,7 +49,6 @@ p.description {
 .gmfgb-mg-grid {
   display: flex;
   flex-wrap: wrap !important;
-  gap: 20px;
   padding: 0 !important;
 }
 .gmfgb-mg-grid .gmfgb-mg-button {
@@ -137,6 +136,7 @@ p.description {
   height: 100%;
   overflow: hidden;
   cursor: pointer;
+  box-sizing: border-box;
 }
 .gmfgb-mg-image img {
   width: 100%;

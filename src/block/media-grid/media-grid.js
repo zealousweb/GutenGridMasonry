@@ -109,6 +109,10 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
             type: "boolean",
             default: false
         },
+        gap: {
+            type: 'number',
+            default: 20,
+        },
 
     },
 
@@ -140,6 +144,8 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { greyscale } = attributes;
         const { overlay } = attributes;
         const { hover } = attributes;
+        const { gap } = attributes;
+
 
         const borderEnable = border ? borderstyle : '';
 
@@ -344,6 +350,14 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
 
                                 </>
                             }
+                            <RangeControl
+                                label={__("Gap between two Media ", "grid-masonry-for-guten-blocks")}
+                                value={gap}
+                                onChange={(value) => setAttributes({ gap: value })}
+                                min={10}
+                                max={60}
+                                step={10}
+                            />
                         </PanelBody>
                         <PanelBody title="MediaGrid Settings">
 
@@ -407,7 +421,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 </InspectorControls>
 
                 {/** Structure to show for update data */}
-                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}` })} id={uniqueGallery}>
+                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''} ${borderEnable}`, data_test: `${gap}` })} id={uniqueGallery}>
                     {attributes.items.map((item, index) => (
                         <div className={`gmfgb-mg-wrap ${captionpos} ${hover ? 'hover' : 'no-hover'}`} key={index}>
 
@@ -551,6 +565,13 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                             filter: grayscale(1);
                         
                         }
+                        #${uniqueGallery}.gmfgb-mg-grid{
+                            gap:${gap}px !important;
+                        }
+                        #${uniqueGallery}.gmfgb-mg-grid.grid-size-${gridItem} .gmfgb-mg-wrap{
+                            width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem})) !important;
+                            margin:0;
+                        }  
                     `}
                 </style>
             </>
@@ -580,11 +601,31 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { greyscale } = attributes;
         const { overlay } = attributes;
         const { hover } = attributes;
+        const { gap } = attributes;
+
+        if (gridItem > 3) {
+            var gridItemMinusOne = gridItem - 1;
+            var gridItemMinusTwo = gridItem - 2;
+        } else if (gridItem == 3) {
+            var gridItemMinusOne = gridItem - 1;
+            var gridItemMinusTwo = gridItem - 1;
+        } else {
+            var gridItemMinusOne = gridItem;
+            var gridItemMinusTwo = gridItem;
+        }
+
+        if (gridItem > 1) {
+            var gridHalfWidth = 50;
+        } else {
+            var gridHalfWidth = 100;
+        }
+
+
 
         const borderEnable = border ? borderstyle : '';
         return (
             /** Structure to show for update data */
-            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
+            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}`, data_test: `${gap}` })} id={uniqueGallery}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
 
                 {attributes.items.map((item, index) => (
                     <div className="gmfgb-mg-media" key={index}>
@@ -623,7 +664,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                                         </a>
                                                 }
                                             </>
-                                            : <div>
+                                            : <div className='mg-imgwrap'>
                                                 <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
                                             </div>
                                     }
@@ -669,6 +710,52 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                         }
                         #${uniqueGallery} .main-class.true.no-hover:hover::before {
                             opacity: 0;
+                        }
+
+                        .gmfgb-mg-grid.grid-size-${gridItem}{
+                            @media (min-width: 1024px) {
+                                .gmfgb-mg-media,
+                                .gmfgb-mg-button,
+                                .gmfgb-mg-wrap {
+                                    width: calc((100% / ${gridItem}) - ((${gap}px * (${gridItem} - 1)) / ${gridItem}));
+                                }
+                            }
+
+                            @media (min-width: 992px) and (max-width: 1024px) {
+                                .gmfgb-mg-media,
+                                .gmfgb-mg-button,
+                                .gmfgb-mg-wrap {
+                                    width: calc( (100% / ${gridItemMinusOne}) - ( (${gap}px * (${gridItemMinusOne} - 1) ) / ${gridItemMinusOne}) );
+                                }
+                            }
+
+                            @media (min-width: 640px) and (max-width: 992px) {
+                                .gmfgb-mg-media,
+                                .gmfgb-mg-button,
+                                .gmfgb-mg-wrap {
+                                    width: calc((100% / ${gridItemMinusTwo}) - ((${gap}px * (${gridItemMinusTwo} - 1)) / ${gridItemMinusTwo}));
+                                }
+                            }
+
+                            @media (min-width: 480px) and (max-width: 640px) {
+                                .gmfgb-mg-media,
+                                .gmfgb-mg-button,
+                                .gmfgb-mg-wrap {
+                                    width: calc(${gridHalfWidth}% - 10px);
+                                }
+                            }
+
+                            @media (max-width: 320px) {
+                                .gmfgb-mg-media,
+                                .gmfgb-mg-button,
+                                .gmfgb-mg-wrap {
+                                    width: 100%;
+                                }
+                            }
+                        }                       
+                                
+                        .gmfgb-mg-media{
+                            margin:calc(${gap}px/2) 0;
                         }
                     `}
                 </style>

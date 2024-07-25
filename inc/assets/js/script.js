@@ -21,11 +21,13 @@ jQuery(() => {
     });
 
     /** Media Grid Isotope Masonry options */
+    data_test_mg = jQuery('.gmfgb-mg-grid').attr('data_test');
+    // console.log(data_test_mg);
     jQuery('.gmfgb-mg-grid').isotope({
         itemSelector: '.gmfgb-mg-media',
         percentPosition: true,
         masonry: {
-            gutter: 20,
+            gutter: parseInt(data_test_mg),
             // use outer width of grid-sizer for columnWidth
             columnWidth: '.gmfgb-mg-media'
         }
