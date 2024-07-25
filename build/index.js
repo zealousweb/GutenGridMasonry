@@ -139,6 +139,18 @@ __webpack_require__.r(__webpack_exports__);
     captionsize: {
       type: "number",
       default: 16
+    },
+    greyscale: {
+      type: "boolean",
+      default: false
+    },
+    overlay: {
+      type: "string",
+      default: '#A4A4A4'
+    },
+    hover: {
+      type: "boolean",
+      default: false
     }
   },
   /**
@@ -191,6 +203,15 @@ __webpack_require__.r(__webpack_exports__);
     } = attributes;
     const {
       captionsize
+    } = attributes;
+    const {
+      greyscale
+    } = attributes;
+    const {
+      overlay
+    } = attributes;
+    const {
+      hover
     } = attributes;
     const borderEnable = border ? borderstyle : '';
     const colors = [{
@@ -260,8 +281,23 @@ __webpack_require__.r(__webpack_exports__);
     const gmfgb_update_repeater_item = (image, image_caption, selectedVideoType, video_media, popup_url, index) => {
       const newItems = [...attributes.items];
       if (image && image.type === 'image') {
-        newItems[index].image = image;
-        //setAttributes({ imageUrl: media.url });
+        const img = new Image();
+        img.src = image.url;
+        img.onload = () => {
+          if (img.width >= 150 && img.height >= 150) {
+            newItems[index].image = image;
+          } else {
+            alert('Image dimensions must be at least 150x150 pixels.');
+            return;
+          }
+          newItems[index].image_caption = image_caption;
+          newItems[index].selectedVideoType = selectedVideoType;
+          newItems[index].video_media = video_media;
+          newItems[index].popup_url = popup_url;
+          setAttributes({
+            items: newItems
+          });
+        };
       } else {
         alert('Please select only an image file.\nOther file types are not allowed.\nJPEG, PNG, and GIF files are supported');
       }
@@ -384,7 +420,37 @@ __webpack_require__.r(__webpack_exports__);
       }),
       min: 16,
       max: 50
-    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Enable Grayscale Image", "grid-masonry-for-guten-blocks"),
+      checked: greyscale,
+      onChange: val => {
+        setAttributes({
+          greyscale: val
+        });
+        // When greyscale is turned off (false), also turn off hover
+        if (!val) {
+          setAttributes({
+            hover: false
+          });
+        }
+      }
+    }), attributes.greyscale && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Enable Hover", "grid-masonry-for-guten-blocks"),
+      checked: hover,
+      onChange: val => {
+        setAttributes({
+          hover: val
+        });
+      }
+    }), attributes.hover && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "color"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Overlay Color", "media-carousel-for-guten-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ColorPalette, {
+      value: overlay,
+      onChange: color => setAttributes({
+        overlay: color
+      }),
+      colors: colors
+    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
       title: "MediaGrid Settings"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enable Fancybox', 'grid-masonry-for-guten-blocks'),
@@ -430,7 +496,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       id: uniqueGallery
     }, attributes.items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `gmfgb-mg-wrap ${captionpos}`,
+      className: `gmfgb-mg-wrap ${captionpos} ${hover ? 'hover' : 'no-hover'}`,
       key: index
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.MediaUpload, {
       onSelect: image => gmfgb_update_repeater_item(image, item.image_caption, item.selectedVideoType, item.video_media, item.popup_url, index),
@@ -439,7 +505,7 @@ __webpack_require__.r(__webpack_exports__);
       render: ({
         open
       }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `gmfgb-mg-image ${borderEnable}`
+        className: `gmfgb-mg-image ${borderEnable} ${greyscale}`
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
         className: "remove-item",
         onClick: () => gmfgb_delete_repeater_item(index)
@@ -603,6 +669,14 @@ __webpack_require__.r(__webpack_exports__);
                         #${uniqueGallery} .gmfgb-mg-wrap .gmfgb-mg-content textarea{
                             font-size:${captionsize}px;
                         }
+                        #${uniqueGallery} .gmfgb-mg-wrap.hover .gmfgb-mg-image:hover:before {
+                            background-color: ${overlay};
+                            opacity: 0.36;
+                        }
+                        #${uniqueGallery} .gmfgb-mg-image.true img  {
+                            filter: grayscale(1);
+                        
+                        }
                     `));
   },
   /**
@@ -650,6 +724,15 @@ __webpack_require__.r(__webpack_exports__);
     const {
       captionsize
     } = attributes;
+    const {
+      greyscale
+    } = attributes;
+    const {
+      overlay
+    } = attributes;
+    const {
+      hover
+    } = attributes;
     const borderEnable = border ? borderstyle : '';
     return (/** Structure to show for update data */
       (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
@@ -661,7 +744,7 @@ __webpack_require__.r(__webpack_exports__);
         className: "gmfgb-mg-media",
         key: index
       }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `main-class ${borderEnable} ${captionpos}`
+        className: `main-class ${borderEnable} ${captionpos} ${greyscale} ${hover ? 'hover' : 'no-hover'}`
       }, fancyBoxEnabled ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
       item.selectedVideoType === 'thirdparty' && item.popup_url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
         href: item.popup_url,
@@ -734,6 +817,24 @@ __webpack_require__.r(__webpack_exports__);
                         }
                         #${uniqueGallery} .main-class .image-caption p{
                             font-size: ${captionsize}px;
+                        }
+                        #${uniqueGallery} .main-class.true.no-hover:hover .image-caption{
+                            background-color: rgba(0, 0, 0, 0.55)!important;
+                        }
+                        #${uniqueGallery} .main-class.true.hover:hover .image-caption{
+                            background-color: transparent;
+                        } 
+                        #${uniqueGallery} .main-class.true.hover::before{
+                            background-color: ${overlay};
+                        }
+                        #${uniqueGallery} .main-class.true.hover:hover::before {    
+                            background-color: ${overlay};
+                            z-index: 2;
+                            opacity: 0.36;
+                            visibility: visible;
+                        }
+                        #${uniqueGallery} .main-class.true.no-hover:hover::before {
+                            opacity: 0;
                         }
                     `))
     );

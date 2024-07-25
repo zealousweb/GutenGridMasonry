@@ -153,6 +153,7 @@ p.description {
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 3;
 }
 
 .gmfgb-mg-content .gmfgb-mg-image-caption {
@@ -204,6 +205,7 @@ p.description {
 .gmfgb-mg-content textarea {
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
+  height: 50px;
 }
 .gmfgb-mg-content input[type=text]::-webkit-input-placeholder,
 .gmfgb-mg-content textarea::-webkit-input-placeholder {
