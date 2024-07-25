@@ -114,7 +114,10 @@ Added Feature: Clickable whole Post Block to the Detail Page
 Issue fixed: Clickable whole post, removed space bottom of the image 
 
 = 1.0.4 =
-
+Added Feature: Border in Media Grid.
+Added Feature: Caption in Media Grid.
+Added Feature: Grayscale Image in Media Grid.
+Added Feature: Gap Between Media Grid columns.
 
 == Upgrade Notice ==
 
@@ -132,3 +135,7 @@ Added Feature: Clickable whole Post Block to the Detail Page
 Issue fixed: Clickable whole post, removed space bottom of the image 
 
 = 1.0.4 =
+Added Feature: Border in Media Grid.
+Added Feature: Caption in Media Grid.
+Added Feature: Grayscale Image in Media Grid.
+Added Feature: Gap Between Media Grid columns.
