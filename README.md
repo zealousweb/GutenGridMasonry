@@ -1,19 +1,8 @@
 # Grid Masonry for Guten blocks
 
-Contributors: zealopensource
-Tags: Gutenberg, Masonry, Image Gallery, Video Gallery, Post Grid
-Donate link: http://www.zealousweb.com/payment/
-Requires at least: 5.9
-Tested up to: 6.6
-Requires PHP: 7.4
-Version: 1.0.3
-Stable tag: 1.0.3
-License: GPLv3 or later License
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
-
 Create stunning grids with Gutenberg. Display images, videos, and posts in masonry style. Customize columns, rows, lightbox, and more.
 
-== Description ==
+**Description**
 
 Introducing the "Grid Masonry for Guten blocks" plugin – a powerful tool designed to enhance your content display in the Gutenberg editor. With this plugin, you can effortlessly create visually appealing grids that showcase a mix of images, videos, posts, and custom posts in a stunning masonry-style layout.
 
