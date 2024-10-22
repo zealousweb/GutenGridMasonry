@@ -1,4 +1,4 @@
-=== Grid Masonry for Guten blocks ===
+# Grid Masonry for Guten blocks
 
 Contributors: zealopensource
 Tags: Gutenberg, Masonry, Image Gallery, Video Gallery, Post Grid
