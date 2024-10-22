@@ -6,13 +6,15 @@ Create stunning grids with Gutenberg. Display images, videos, and posts in mason
 
 Introducing the "Grid Masonry for Guten blocks" plugin – a powerful tool designed to enhance your content display in the Gutenberg editor. With this plugin, you can effortlessly create visually appealing grids that showcase a mix of images, videos, posts, and custom posts in a stunning masonry-style layout.
 
+**Features of Abandoned Contact Form 7**
+
 - Present a captivating blend of images, videos in a media grid, and posts and custom posts within the post grid, offering a dynamic and engaging content presentation.
 - Tailor your grid by choosing the number of columns and rows, giving you full control over the structure and appearance of your content.
 - Enhance the user experience by enabling a lightbox feature for images and videos. When clicked, media items expand for a larger, more immersive view.
 - Support for various video formats, including MP4, YouTube, and Vimeo, allowing you to seamlessly integrate diverse multimedia content.
 - Compatibility of WordPress VIP.
 
-== Installation ==
+**Installation**
 
 Installing the plugin is easy. Just follow these steps:
 
@@ -24,12 +26,12 @@ Installing the plugin is easy. Just follow these steps:
 
 That's it! Configure your settings as you see fit, and you're on your way to creating visually appealing grids in Gutenberg.
 
-== Plugin Requirement ==
+**Plugin Requirement**
 
 PHP version : 7.4 and latest
 WordPress   : WordPress 5.9 and latest
 
-== Frequently Asked Questions ==
+**Frequently Asked Questions**
 
 = Is the Grid Masonry for Guten Blocks easy to use? =
 
@@ -51,7 +53,7 @@ Absolutely. The Masonry Grid plugin enables a lightbox functionality for images 
 
 The plugin supports various video formats, including MP4, YouTube, and Vimeo. This ensures seamless integration of different multimedia content types into your grid.
 
-== OUR OTHER PLUGINS ==
+**OUR OTHER PLUGINS**
 
 * <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-paypal-payments-using-contact-form-7-pro)</strong>
 * <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-stripe-payments-using-contact-form-7-pro)</strong>
@@ -62,7 +64,7 @@ The plugin supports various video formats, including MP4, YouTube, and Vimeo. Th
 * <strong>[Abandoned Contact Form 7 Pro](https://store.zealousweb.com/abandoned-contact-form-7-pro)</strong>
 
 
-= Getting Help With Wordpress =
+**Getting Help With Wordpress**
 
 If you have any difficulties while using this Plugin, please feel free to contact us at <strong>[Support](https://support.zealousweb.com/portal/en/home)</strong>
 
@@ -80,7 +82,7 @@ This plugin utilizes third-party libraries to enhance its functionality:
 - **Fancybox CSS:** https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css - Use to acieve lightbox functionality for images and videos in popup
 - **Isotope:** https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js - Use to achive Masonry output for post and media layout
 
-== Screenshots ==
+**Screenshots**
 
 1. It will show Back-End Option for Media Grid Masonry
 2. It will show Back-End Option for Post Grid Masonry
@@ -88,7 +90,7 @@ This plugin utilizes third-party libraries to enhance its functionality:
 4. It will show Front-End View for Media Grid Masonry Section
 5. It will show Front-End View for Post Grid Masonry Section
 
-== Changelog ==
+**Changelog**
 
 = 1.0.0 =
 Initial Release
@@ -103,13 +105,20 @@ Added Feature: Clickable whole Post Block to the Detail Page
 = 1.0.3 =
 Issue fixed: Clickable whole post, removed space bottom of the image 
 
-== Upgrade Notice ==
+**Upgrade Notice**
 
 = 1.0.0 =
 Initial Release
 
 = 1.0.1 =
 Issue Fixed: Restricted video selection in place of thumbnail images.
+
+= 1.0.2 =
+Added Feature: Gap Between Post Grid columns.
+Added Feature: Clickable whole Post Block to the Detail Page
+
+= 1.0.3 =
+Issue fixed: Clickable whole post, removed space bottom of the image
 
 = 1.0.2 =
 Added Feature: Gap Between Post Grid columns.
