@@ -20,7 +20,13 @@ jobs:
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SLUG: GutenGridMasonry
+          SLUG: grid-masonry-for-guten-blocks
+
+      - name: Check generated files
+        run: ls -l ${{ github.workspace }}
+
+      - name: Rename ZIP File
+        run: mv ${{ github.workspace }}/grid-masonry-for-guten-blocks.zip ${{ github.workspace }}/GutenGridMasonry.zip
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
@@ -28,6 +34,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{github.workspace}}/grid-masonry-for-guten-blocks.zip
+          asset_path: ${{github.workspace}}/GutenGridMasonry.zip
           asset_name: ${{ github.event.repository.name }}.zip
           asset_content_type: application/zip
