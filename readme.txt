@@ -6,8 +6,8 @@ Donate link: http://www.zealousweb.com/payment/
 Requires at least: 5.9
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.0.3
-Stable tag: 1.0.3
+Version: 1.0.4
+Stable tag: 1.0.4
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,18 +101,21 @@ This plugin utilizes third-party libraries to enhance its functionality:
 
 == Changelog ==
 
-= 1.0.0 =
-Initial Release
+= 1.0.4 =
+Minor workflow adjustments
 
-= 1.0.1 =
-Issue Fixed: Restricted video selection in place of thumbnail images.
+= 1.0.3 =
+Issue fixed: Clickable whole post, removed space bottom of the image 
 
 = 1.0.2 =
 Added Feature: Gap Between Post Grid columns.
 Added Feature: Clickable whole Post Block to the Detail Page
 
-= 1.0.3 =
-Issue fixed: Clickable whole post, removed space bottom of the image 
+= 1.0.1 =
+Issue Fixed: Restricted video selection in place of thumbnail images.
+
+= 1.0.0 =
+Initial Release
 
 == Upgrade Notice ==
 
