@@ -5,35 +5,279 @@
 */
 
 $columns: 3;
+
 .gmfgb-pg-grid {
-	margin: 0 -10px;
+	display: flex;
+    flex-wrap: wrap;
+	margin: 0;
+	font-size: 0;
 	position: relative;
-	// @media (min-width: 992px) {
-	// 	@for $i from 1 through $columns {
-	// 		&.grid-size-#{$i} {
-	// 			.wp-block-post {
-	// 				width: calc((100% / $i) - ((20px * ($i - 1)) / $i));
-	// 			}
-	// 		}
-	// 	}
-	// }
+	row-gap: 20px; /* Default row gap */
+	column-gap: 20px; /* Default column gap */
+	border: none;
+	// Apply custom gap values when available
+	&[data-grid-desktop][data-grid-tablet][data-grid-mobile] {
+		// Row gap always 20px, column gap uses gap value
+		row-gap: 20px;
+		column-gap: var(--gap, 20px);
+	}
+	
+	// Target the WordPress Query block's list container
+	.wp-block-query {
+		display: flex !important;
+		flex-wrap: wrap !important;
+		gap: var(--gap, 20px);
+		margin: 0 !important;
+		padding: 0 !important;
+		width: 100%;
+		
+		// Ensure the list inside query block uses flexbox
+		ul {
+			display: flex !important;
+			flex-wrap: wrap !important;
+			gap: var(--gap, 20px);
+			margin: 0 !important;
+			padding: 0 !important;
+			width: 100%;
+			list-style: none !important;
+		}
+		
+		// Ensure post template uses flexbox
+		.wp-block-post-template {
+			display: flex !important;
+			flex-wrap: wrap !important;
+			gap: var(--gap, 20px);
+			margin: 0 !important;
+			padding: 0 !important;
+			width: 100%;
+		}
+	}
+	
+	// Responsive grid with data attributes - Higher specificity
+	&[data-grid-desktop][data-grid-tablet][data-grid-mobile] {
+		// Desktop styles
+		@media (min-width: 768px) {
+			row-gap: 20px;
+			column-gap: var(--gap, 20px);
+			.wp-block-post {
+				width: calc((100% - (var(--gap, 20px) * (var(--grid-desktop, 2) - 1))) / var(--grid-desktop, 2)) !important;
+				margin: 0 !important;
+				padding: 0 !important;
+				position: relative !important;
+				left: unset !important;
+				top: unset !important;
+				flex: 0 0 calc((100% - (var(--gap, 20px) * (var(--grid-desktop, 2) - 1))) / var(--grid-desktop, 2)) !important;
+				
+				// Apply border styles to individual post items with higher specificity
+				.gmfgb-pg-wrap {
+					border-top-width: var(--border-width-desktop-top, 0px) !important;
+					border-right-width: var(--border-width-desktop-right, 0px) !important;
+					border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
+					border-left-width: var(--border-width-desktop-left, 0px) !important;
+					border-style: var(--border-type-desktop, none) !important;
+					border-color: var(--border-color-desktop, #000000) !important;
+					border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+					overflow: hidden;
+					// Only apply border when border type is not 'none'
+					&:not([style*="border-style: none"]) {
+						border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+					}
+				}
+			}
+		}
 
-	// @media (min-width: 767px) and (max-width: 991px) {
-	// 	.wp-block-post {
-	// 		width: 50%;
-	// 	}
-	// }
+		// Tablet styles
+		@media (min-width: 561px) and (max-width: 767px) {
+			row-gap: 20px;
+			column-gap: var(--gap, 20px);
+			.wp-block-post {
+				width: calc((100% - (var(--gap, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+				margin: 0 !important;
+				padding: 0 !important;
+				position: relative !important;
+				left: unset !important;
+				top: unset !important;
+				flex: 0 0 calc((100% - (var(--gap, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+				
+				// Apply border styles to individual post items with higher specificity
+				.gmfgb-pg-wrap {
+					border-top-width: var(--border-width-tablet-top, 0px) !important;
+					border-right-width: var(--border-width-tablet-right, 0px) !important;
+					border-bottom-width: var(--border-width-tablet-bottom, 0px) !important;
+					border-left-width: var(--border-width-tablet-left, 0px) !important;
+					border-style: var(--border-type-tablet, none) !important;
+					border-color: var(--border-color-tablet, #000000) !important;
+					border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px) !important;
+					
+					// Only apply border when border type is not 'none'
+					&:not([style*="border-style: none"]) {
+						border-top: var(--border-width-tablet-top, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+						border-right: var(--border-width-tablet-right, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+						border-bottom: var(--border-width-tablet-bottom, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+						border-left: var(--border-width-tablet-left, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+					}
+				}
+			}
+		}
 
-	// @media (min-width: 320px) and (max-width: 766px) {
-	// 	.wp-block-post {
-	// 		width: 100%;
-	// 	}
-	// }
+		// Mobile styles
+		@media (min-width: 320px) and (max-width: 560px) {
+			row-gap: 20px;
+			column-gap: var(--gap, 20px);
+			.wp-block-post {
+				width: calc((100% - (var(--gap, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+				margin: 0 !important;
+				padding: 0 !important;
+				position: relative !important;
+				left: unset !important;
+				top: unset !important;
+				flex: 0 0 calc((100% - (var(--gap, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+				
+				// Apply border styles to individual post items with higher specificity
+				.gmfgb-pg-wrap {
+					border-top-width: var(--border-width-mobile-top, 0px) !important;
+					border-right-width: var(--border-width-mobile-right, 0px) !important;
+					border-bottom-width: var(--border-width-mobile-bottom, 0px) !important;
+					border-left-width: var(--border-width-mobile-left, 0px) !important;
+					border-style: var(--border-type-mobile, none) !important;
+					border-color: var(--border-color-mobile, #000000) !important;
+					border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px) !important;
+					
+					// Only apply border when border type is not 'none'
+					&:not([style*="border-style: none"]) {
+						border-top: var(--border-width-mobile-top, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+						border-right: var(--border-width-mobile-right, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+						border-bottom: var(--border-width-mobile-bottom, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+						border-left: var(--border-width-mobile-left, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+					}
+				}
+			}
+		}
+	}
+	
+	// Fallback styles for blocks without data attributes (lower specificity)
+	&:not([data-grid-desktop]) {
+		// Default desktop styles (fallback)
+		@media (min-width: 768px) {
+			@for $i from 1 through $columns {
+				&.grid-size-#{$i} {
+					row-gap: 20px;
+					column-gap: 20px;
+					.wp-block-post {
+						width: calc((100% - (20px * ($i - 1))) / $i);
+						margin: 0;
+						padding: 0;
+						flex: 0 0 calc((100% - (20px * ($i - 1))) / $i);
+						
+						// Apply border styles to individual post items with higher specificity
+						.gmfgb-pg-wrap {
+							border-top-width: var(--border-width-desktop-top, 0px) !important;
+							border-right-width: var(--border-width-desktop-right, 0px) !important;
+							border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
+							border-left-width: var(--border-width-desktop-left, 0px) !important;
+							border-style: var(--border-type-desktop, none) !important;
+							border-color: var(--border-color-desktop, #000000) !important;
+							border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+							
+							// Only apply border when border type is not 'none'
+							&:not([style*="border-style: none"]) {
+								border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+								border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+								border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+								border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+							}
+						}
+					}
+				}
+			}
+		}
 
-	// .wp-block-post {
-	// 	padding: 10px;
-	// 	margin: 0;
-	// }
+		// Tablet styles (fallback)
+		@media (min-width: 561px) and (max-width: 767px) {
+			row-gap: 20px;
+			column-gap: 20px;
+			.wp-block-post {
+				width: calc(50% - 10px);
+				margin: 0;
+				padding: 0;
+				flex: 0 0 calc(50% - 10px);
+				
+				// Apply border styles to individual post items with higher specificity
+				.gmfgb-pg-wrap {
+					border-top-width: var(--border-width-tablet-top, 0px) !important;
+					border-right-width: var(--border-width-tablet-right, 0px) !important;
+					border-bottom-width: var(--border-width-tablet-bottom, 0px) !important;
+					border-left-width: var(--border-width-tablet-left, 0px) !important;
+					border-style: var(--border-type-tablet, none) !important;
+					border-color: var(--border-color-tablet, #000000) !important;
+					border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px) !important;
+					
+					// Only apply border when border type is not 'none'
+					&:not([style*="border-style: none"]) {
+						border-top: var(--border-width-tablet-top, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+						border-right: var(--border-width-tablet-right, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+						border-bottom: var(--border-width-tablet-bottom, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+						border-left: var(--border-width-tablet-left, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+					}
+				}
+			}
+		}
+
+		// Mobile styles (fallback)
+		@media (min-width: 320px) and (max-width: 560px) {
+			row-gap: 20px;
+			column-gap: 20px;
+			.wp-block-post {
+				width: calc(100% - 20px);
+				margin: 0;
+				padding: 0;
+				flex: 0 0 calc(100% - 20px);
+				
+				// Apply border styles to individual post items with higher specificity
+				.gmfgb-pg-wrap {
+					border-top-width: var(--border-width-mobile-top, 0px) !important;
+					border-right-width: var(--border-width-mobile-right, 0px) !important;
+					border-bottom-width: var(--border-width-mobile-bottom, 0px) !important;
+					border-left-width: var(--border-width-mobile-left, 0px) !important;
+					border-style: var(--border-type-mobile, none) !important;
+					border-color: var(--border-color-mobile, #000000) !important;
+					border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px) !important;
+					
+					// Only apply border when border type is not 'none'
+					&:not([style*="border-style: none"]) {
+						border-top: var(--border-width-mobile-top, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+						border-right: var(--border-width-mobile-right, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+						border-bottom: var(--border-width-mobile-bottom, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+						border-left: var(--border-width-mobile-left, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+					}
+				}
+			}
+		}
+	}
+	
+	// Ensure default 20px gaps for any post grid without specific gap settings
+	&:not([data-grid-desktop]):not([data-grid-tablet]):not([data-grid-mobile]) {
+		row-gap: 20px;
+		column-gap: 20px;
+		
+		@media (min-width: 768px) {
+			row-gap: 20px;
+			column-gap: 20px;
+		}
+		
+		@media (min-width: 561px) and (max-width: 767px) {
+			row-gap: 20px;
+			column-gap: 20px;
+		}
+		
+		@media (min-width: 320px) and (max-width: 560px) {
+			row-gap: 20px;
+			column-gap: 20px;
+		}
+	}
 
 	.wp-block-post-excerpt__more-text {
 		display: none !important;
@@ -43,6 +287,7 @@ $columns: 3;
 		position: relative;
 		height: 100%;
         margin: 0 !important;
+        
 		&:after {
 			content: "";
 			width: 100%;
@@ -56,10 +301,19 @@ $columns: 3;
 				rgba(20, 20, 20, 0.5),
 				rgba(20, 20, 20, 0.7)
 			);
-			border-radius: 20px;
 			overflow: hidden;
 			z-index: 0;
 			pointer-events: none;
+			
+			// Tablet border radius
+			@media (min-width: 561px) and (max-width: 767px) {
+				border-radius: var(--border-radius-tablet, 20px);
+			}
+			
+			// Mobile border radius
+			@media (min-width: 320px) and (max-width: 560px) {
+				border-radius: var(--border-radius-mobile, 20px);
+			}
 		}
 	}
 
@@ -77,8 +331,18 @@ $columns: 3;
 		top: 0;
 		width: 100%;
 		height: 100%;
-		border-radius: 20px;
 		overflow: hidden;
+		
+		// Tablet border radius
+		@media (min-width: 561px) and (max-width: 767px) {
+			border-radius: var(--border-radius-tablet, 20px);
+		}
+		
+		// Mobile border radius
+		@media (min-width: 320px) and (max-width: 560px) {
+			border-radius: var(--border-radius-mobile, 20px);
+		}
+		
 		img {
 			width: 100% !important;
 			height: 100% !important;
@@ -175,14 +439,126 @@ $columns: 3;
 	// 	}
 	// }
 
-	@media (min-width: 640px) and (max-width: 992px) {
-		.wp-block-post {
-			width: 50%;
-		}
-	}
-	@media (max-width: 640px) {
-		.wp-block-post {
+	// Frontend CTA button styles
+	.gmfgb-pg-cta-button {
+		position: relative;
+		z-index: 10;
+		margin-top: 40px;
+		clear: both;
+		width: 100%;
+		
+		.wp-block-buttons {
+			position: relative;
+			display: flex;
+			justify-content: center;
 			width: 100%;
 		}
 	}
+	
+	// Override WordPress core rule that forces border-style: solid
+	.gmfgb-pg-wrap {
+		&[style*="border-width"] {
+			border-style: var(--border-type-desktop, none) !important;
+		}
+	}
+
+	// Ensure border is removed when border type is 'none'
+	&[data-border-type-desktop="none"] .wp-block-post .gmfgb-pg-wrap {
+		border: none !important;
+	}
+	
+	@media (min-width: 561px) and (max-width: 767px) {
+		&[data-border-type-tablet="none"] .wp-block-post .gmfgb-pg-wrap {
+			border: none !important;
+		}
+	}
+	
+	@media (min-width: 320px) and (max-width: 560px) {
+		&[data-border-type-mobile="none"] .wp-block-post .gmfgb-pg-wrap {
+			border: none !important;
+		}
+	}
+}
+
+// Admin editor specific styles to prevent conflicts
+.editor-styles-wrapper .gmfgb-pg-grid {
+	// Ensure proper isolation in admin editor
+	z-index: 1;
+	position: relative;
+	
+	// Prevent conflicts with media grid
+	.gmfgb-pg-loop-wrap {
+		display: flex !important;
+		flex-wrap: wrap !important;
+		gap: var(--gap, 20px);
+		margin: 0;
+		padding: 0;
+		height: 100% !important;
+		.wp-block-post {
+			position: relative !important;
+			left: unset !important;
+			top: unset !important;
+			margin: 0 !important;
+			box-sizing: border-box;
+		}
+	}
+	
+	// Ensure CTA button is not affected
+	.gmfgb-pg-cta-button {
+		position: relative !important;
+		z-index: 10;
+		margin-top: 30px;
+		clear: both;
+		
+		.wp-block-buttons {
+			position: relative !important;
+			left: unset !important;
+			top: unset !important;
+		}
+	}
+}
+
+// Frontend-specific styles to ensure responsive grid works
+body:not(.wp-admin) .gmfgb-pg-grid {
+	row-gap: 20px !important;
+	
+	&[data-grid-desktop][data-grid-tablet][data-grid-mobile] {
+		// Desktop styles
+		@media (min-width: 768px) {
+			row-gap: 20px !important;
+			column-gap: var(--gap, 20px) !important;
+		}
+		
+		// Tablet styles
+		@media (min-width: 561px) and (max-width: 767px) {
+			row-gap: 20px !important;
+			column-gap: var(--gap, 20px) !important;
+		}
+		
+		// Mobile styles
+		@media (min-width: 320px) and (max-width: 560px) {
+			row-gap: 20px !important;
+			column-gap: var(--gap, 20px) !important;
+		}
+	}
+}
+
+// Anchor link styles for clickable posts
+.anchor .gmfgb-pg-link::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 0;
+	background: transparent;
+}
+
+.anchor .gmfgb-pg-link:focus {
+	outline: none;
+}
+
+.no-anchor .gmfgb-pg-link::before {
+	display: none;
 }

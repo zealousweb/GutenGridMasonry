@@ -122,11 +122,11 @@ p.description {
   position: relative;
   padding-top: 100px;
   min-height: 360px;
-  border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
+  border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px);
   border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-  border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
+  border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
   border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-  border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
+  border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
   overflow: hidden;
   box-sizing: border-box; /* Ensure proper border handling */
 }
@@ -135,7 +135,7 @@ p.description {
   color: #ff0000;
   position: absolute;
   top: 10px;
-  right: 70px;
+  left: 70px;
   z-index: 1;
   margin: 0;
   line-height: 0;
@@ -156,7 +156,7 @@ p.description {
   color: #ff0000;
   position: absolute;
   top: 10px;
-  right: 10px;
+  left: 10px;
   z-index: 1;
   opacity: 0;
   visibility: hidden;
@@ -165,7 +165,7 @@ p.description {
   padding: 0;
   height: 30px;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0px;
   width: 100%;
   display: flex;
@@ -185,7 +185,7 @@ p.description {
 
 .gmfgb-mg-image {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   width: 100%;
   height: 100%;
@@ -206,27 +206,27 @@ p.description {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.36);
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
 }
 @media (min-width: 561px) and (max-width: 767px) {
   .gmfgb-mg-image {
-    border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px);
+    border-radius: var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-left, 0px) var(--border-radius-tablet-bottom, 0px);
     border-top-width: var(--border-width-tablet-top, 0px);
-    border-right-width: var(--border-width-tablet-right, 0px);
+    border-left-width: var(--border-width-tablet-right, 0px);
     border-bottom-width: var(--border-width-tablet-bottom, 0px);
-    border-left-width: var(--border-width-tablet-left, 0px);
+    border-right-width: var(--border-width-tablet-left, 0px);
     border-style: var(--border-type-tablet, none);
     border-color: var(--border-color-tablet, #000);
   }
 }
 @media (min-width: 320px) and (max-width: 560px) {
   .gmfgb-mg-image {
-    border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px);
+    border-radius: var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-left, 0px) var(--border-radius-mobile-bottom, 0px);
     border-top-width: var(--border-width-mobile-top, 0px);
-    border-right-width: var(--border-width-mobile-right, 0px);
+    border-left-width: var(--border-width-mobile-right, 0px);
     border-bottom-width: var(--border-width-mobile-bottom, 0px);
-    border-left-width: var(--border-width-mobile-left, 0px);
+    border-right-width: var(--border-width-mobile-left, 0px);
     border-style: var(--border-type-mobile, none);
     border-color: var(--border-color-mobile, #000);
   }
@@ -258,7 +258,7 @@ p.description {
   padding: 20px;
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   opacity: 0;
   visibility: hidden;
@@ -561,5 +561,3 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
   box-sizing: border-box !important;
   overflow: hidden !important;
 }
-
-/*# sourceMappingURL=index.css.map*/

@@ -1,0 +1,231 @@
+/**
+ * Admin Grid Conflict Fix CSS
+ * 
+ * This file contains styles to prevent conflicts between Media Grid and Post Grid
+ * specifically in the WordPress admin editor.
+ */
+
+/* Admin editor specific styles */
+.editor-styles-wrapper {
+    /* Ensure proper isolation between different grid types */
+    .gmfgb-mg-grid {
+        /* Reset any inherited styles that might conflict */
+        box-sizing: border-box;
+        z-index: 1;
+        position: relative;
+        
+        * {
+            box-sizing: border-box;
+        }
+    }
+
+    .gmfgb-pg-grid {
+        /* Reset any inherited styles that might conflict */
+        box-sizing: border-box;
+        z-index: 1;
+        position: relative;
+        
+        * {
+            box-sizing: border-box;
+        }
+    }
+
+    /* Prevent CSS inheritance conflicts */
+    .gmfgb-mg-grid .gmfgb-pg-grid,
+    .gmfgb-pg-grid .gmfgb-mg-grid {
+        /* Reset styles when grids are nested (shouldn't happen but just in case) */
+        all: unset;
+        display: block;
+    }
+
+    /* Media Grid specific admin styles */
+    .gmfgb-mg-grid {
+        /* Ensure proper flexbox layout in admin */
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        
+        .gmfgb-mg-media {
+            position: relative !important;
+            left: unset !important;
+            top: unset !important;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    }
+
+    /* Post Grid specific admin styles */
+    .gmfgb-pg-grid {
+        /* Ensure proper flexbox layout in admin - same as media grid */
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: var(--gap, 20px);
+        margin: 0;
+        padding: 0;
+        row-gap: 20px;
+        column-gap: var(--gap, 20px);
+        
+        /* Target the WordPress Query block's list container */
+        .wp-block-query {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: var(--gap, 20px);
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            
+            /* Ensure the list inside query block uses flexbox */
+            ul {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: var(--gap, 20px);
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100%;
+                list-style: none !important;
+            }
+            
+            /* Ensure post template uses flexbox */
+            .wp-block-post-template {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: var(--gap, 20px);
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100%;
+            }
+        }
+        
+        .wp-block-post {
+            position: relative !important;
+            left: unset !important;
+            top: unset !important;
+            margin: 0 !important;
+            box-sizing: border-box;
+        }
+        
+        /* Ensure CTA button is not affected */
+        .gmfgb-pg-cta-button {
+            position: relative !important;
+            z-index: 10;
+            margin-top: 30px;
+            clear: both;
+            width: 100%;
+            
+            .wp-block-buttons {
+                position: relative !important;
+                left: unset !important;
+                top: unset !important;
+            }
+        }
+    }
+
+    /* Responsive grid with data attributes for post grid */
+    .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] {
+        /* Desktop styles */
+    }
+    
+    .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post {
+        /* Default styles */
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: unset !important;
+        top: unset !important;
+    }
+
+    /* Isotope-specific styles - only apply when Isotope is initialized */
+    .gmfgb-mg-grid.isotope-initialized {
+        display: block !important;
+        
+        .gmfgb-mg-media {
+            position: absolute !important;
+        }
+    }
+
+    .gmfgb-pg-grid.isotope-initialized {
+        display: block !important;
+        
+        .wp-block-post {
+            position: absolute !important;
+        }
+    }
+
+    /* Prevent margin/padding conflicts */
+    .gmfgb-mg-grid,
+    .gmfgb-pg-grid {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Clear any floats that might cause layout issues */
+    .gmfgb-mg-grid::after,
+    .gmfgb-pg-grid::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Ensure responsive breakpoints don't conflict */
+    @media (min-width: 768px) {
+        .gmfgb-mg-grid[data-grid-desktop] .gmfgb-mg-media,
+        .gmfgb-pg-grid[data-grid-desktop] .wp-block-post {
+            /* Ensure proper width calculations don't interfere */
+            box-sizing: border-box;
+        }
+        
+        .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post {
+            width: calc((100% - (var(--gap, 20px) * (var(--grid-desktop, 2) - 1))) / var(--grid-desktop, 2)) !important;
+            flex: 0 0 calc((100% - (var(--gap, 20px) * (var(--grid-desktop, 2) - 1))) / var(--grid-desktop, 2)) !important;
+        }
+    }
+
+    @media (min-width: 561px) and (max-width: 767px) {
+        .gmfgb-mg-grid[data-grid-tablet] .gmfgb-mg-media,
+        .gmfgb-pg-grid[data-grid-tablet] .wp-block-post {
+            /* Ensure proper width calculations don't interfere */
+            box-sizing: border-box;
+        }
+        
+        .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post {
+            width: calc((100% - (var(--gap, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+            flex: 0 0 calc((100% - (var(--gap, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+        }
+    }
+
+    @media (min-width: 320px) and (max-width: 560px) {
+        .gmfgb-mg-grid[data-grid-mobile] .gmfgb-mg-media,
+        .gmfgb-pg-grid[data-grid-mobile] .wp-block-post {
+            /* Ensure proper width calculations don't interfere */
+            box-sizing: border-box;
+        }
+        
+        .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post {
+            width: calc((100% - (var(--gap, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+            flex: 0 0 calc((100% - (var(--gap, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+        }
+    }
+}
+
+/* Additional admin-specific overrides */
+.wp-admin .gmfgb-mg-grid,
+.wp-admin .gmfgb-pg-grid {
+    /* Ensure proper stacking in admin */
+    z-index: 1;
+    position: relative;
+}
+
+/* Debug styles for admin - can be removed in production */
+.editor-styles-wrapper .gmfgb-mg-grid.debug,
+.editor-styles-wrapper .gmfgb-pg-grid.debug {
+    border: 2px solid red;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.editor-styles-wrapper .gmfgb-mg-grid.debug .gmfgb-mg-media,
+.editor-styles-wrapper .gmfgb-pg-grid.debug .wp-block-post {
+    border: 1px solid blue;
+    background: rgba(0, 0, 255, 0.1);
+} 

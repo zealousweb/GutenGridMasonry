@@ -114,6 +114,24 @@ function Gmfgb_Plugin_init()
         true
     );
     
+    /** Grid Conflict Fix CSS */
+    wp_enqueue_style(
+        'grid-conflict-fix',
+        plugins_url('/inc/assets/css/grid-conflict-fix.css', __FILE__),
+        array('front-styles'),
+        GMFGB_VERSION,
+        true
+    );
+    
+    /** Admin Grid Conflict Fix CSS */
+    wp_enqueue_style(
+        'admin-grid-conflict-fix',
+        plugins_url('/inc/assets/css/admin-grid-conflict-fix.css', __FILE__),
+        array('front-styles'),
+        GMFGB_VERSION,
+        true
+    );
+    
     /** Register Block */
     register_block_type(__DIR__ . '/build');
     

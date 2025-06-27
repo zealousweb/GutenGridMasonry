@@ -16,16 +16,87 @@ import PlaceholderImage from './placeholder-image.png';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { MediaUpload, MediaUploadCheck, InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button, Label } from '@wordpress/components';
+import { TextControl, TextareaControl, ToggleControl, RangeControl, Panel, PanelBody, Button, Label, ColorPalette } from '@wordpress/components';
 import { SelectControl } from '@wordpress/components';
 import { select } from '@wordpress/data';
+import GridColumnsSetting from './GridColumnsSetting';
+import GridGutterSetting from './GridGutterSetting';
+import BorderSettings from './BorderSettings';
+import { desktop, tablet } from '@wordpress/icons';
+import React from 'react';
+
+const mobileIcon = (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+  </svg>
+);
+
+const deviceOptions = [
+  { key: 'desktop', icon: desktop, label: 'Desktop' },
+  { key: 'tablet', icon: tablet, label: 'Tablet' },
+  { key: 'mobile', icon: mobileIcon, label: 'Mobile' },
+];
+
+const minMaxFontSize = {
+  desktop: { min: 10, max: 48 },
+  tablet: { min: 10, max: 48 },
+  mobile: { min: 10, max: 48 },
+};
+
+function CaptionFontSizeSetting({ fontSize, setFontSize }) {
+  const [device, setDevice] = React.useState('desktop');
+  const handleChange = (value) => {
+    setFontSize({ ...fontSize, [device]: Number(value) });
+  };
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <label style={{ fontWeight: 500, marginBottom: 4, display: 'block' }}>
+        Caption Font Size
+      </label>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+        {deviceOptions.map(({ key, icon, label }) => (
+          <Button
+            key={key}
+            isPrimary={device === key}
+            icon={icon}
+            label={label}
+            onClick={() => setDevice(key)}
+            style={{ padding: 4 }}
+          />
+        ))}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <input
+          type="range"
+          min={minMaxFontSize[device].min}
+          max={minMaxFontSize[device].max}
+          value={fontSize[device]}
+          onChange={e => handleChange(e.target.value)}
+          style={{ flex: 1 }}
+        />
+        <input
+          type="number"
+          min={minMaxFontSize[device].min}
+          max={minMaxFontSize[device].max}
+          value={fontSize[device]}
+          onChange={e => handleChange(e.target.value)}
+          style={{ width: 48, textAlign: 'center' }}
+        />
+      </div>
+      <div style={{ fontSize: 12, color: '#555', marginTop: 4 }}>
+        {deviceOptions.find(opt => opt.key === device).label} Font Size: {fontSize[device]}px
+      </div>
+    </div>
+  );
+}
 
 /**
  * Media Grid block registration
  */
 registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
+    apiVersion: 2,
     title: __('Media Grid', 'grid-masonry-for-guten-blocks'),
-    description: __('Media grid Masonry is having ability to add Images tht will have option to view in model area like popup in full screen and also having an option to play video to the image', 'grid-masonry-for-guten-blocks'),
+    description: __('An advanced block that allows displaying media items in a responsive grid layout with lightbox functionality.', 'grid-masonry-for-guten-blocks'),
     //icon: 'format-gallery',
     icon: <svg viewBox="0 0 24 24" fill="#000000"><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="🔍-System-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="ic_fluent_sub_grid_24_filled" fill="#212121" fill-rule="nonzero"> <path d="M17.75,3 C19.5449,3 21,4.45507 21,6.25 L21,6.25 L21,17.75 C21,19.5449 19.5449,21 17.75,21 L17.75,21 L6.25,21 C4.45507,21 3,19.5449 3,17.75 L3,17.75 L3,6.25 C3,4.45507 4.45507,3 6.25,3 L6.25,3 Z M14.25,7 C15.7688,7 17,8.23122 17,9.75 L17,11.25 L19.5,11.25 L19.5,6.25 C19.5,5.2835 18.7165,4.5 17.75,4.5 L12.75,4.5 L12.75,7 L11.25,7 L11.25,11.25 L7,11.25 L7,12.75 L4.5,12.75 L4.5,17.75 C4.5,18.7165 5.2835,19.5 6.25,19.5 L11.25,19.5 L11.25,17 L9.75,17 C8.23122,17 7,15.7688 7,14.25 L7,12.75 L11.25,12.75 L11.25,17 L12.75,17 L12.75,12.75 L17,12.75 L17,11.25 L12.75,11.25 L12.75,7 L14.25,7 Z M19.5,12.75 L17,12.75 L17,14.25 C17,15.7688 15.7688,17 14.25,17 L12.75,17 L12.75,19.5 L17.75,19.5 C18.7165,19.5 19.5,18.7165 19.5,17.75 L19.5,12.75 Z M11.25,4.5 L6.25,4.5 C5.2835,4.5 4.5,5.2835 4.5,6.25 L4.5,6.25 L4.5,11.25 L7,11.25 L7,9.75 C7,8.23122 8.23122,7 9.75,7 L9.75,7 L11.25,7 L11.25,4.5 Z" id="🎨-Color"> </path> </g> </g> </g></svg>,
     category: 'zealblocks',
@@ -49,10 +120,112 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
             default: false,
         },
 
-        /** Selection for Column Count 1 to 5 */
-        gridItem: {
+        /** Selection for Column Count 1 to 5 - Desktop */
+        gridItemDesktop: {
             type: 'number',
             default: 3,
+        },
+
+        /** Selection for Column Count 1 to 4 - Tablet */
+        gridItemTablet: {
+            type: 'number',
+            default: 2,
+        },
+
+        /** Selection for Column Count 1 to 2 - Mobile */
+        gridItemMobile: {
+            type: 'number',
+            default: 1,
+        },
+
+        /** Gutter spacing for Desktop */
+        gutterDesktop: {
+            type: 'number',
+            default: 20,
+        },
+
+        /** Gutter spacing for Tablet */
+        gutterTablet: {
+            type: 'number',
+            default: 20,
+        },
+
+        /** Gutter spacing for Mobile */
+        gutterMobile: {
+            type: 'number',
+            default: 20,
+        },
+
+        /** Border width for Desktop */
+        borderWidthDesktop: {
+            type: 'object',
+            default: { top: 0, right: 0, bottom: 0, left: 0 },
+        },
+
+        /** Border width for Tablet */
+        borderWidthTablet: {
+            type: 'object',
+            default: { top: 0, right: 0, bottom: 0, left: 0 },
+        },
+
+        /** Border width for Mobile */
+        borderWidthMobile: {
+            type: 'object',
+            default: { top: 0, right: 0, bottom: 0, left: 0 },
+        },
+
+        /** Border radius for Desktop */
+        borderRadiusDesktop: {
+            type: 'object',
+            default: { top: 0, right: 0, bottom: 0, left: 0 },
+        },
+
+        /** Border radius for Tablet */
+        borderRadiusTablet: {
+            type: 'object',
+            default: { top: 0, right: 0, bottom: 0, left: 0 },
+        },
+
+        /** Border radius for Mobile */
+        borderRadiusMobile: {
+            type: 'object',
+            default: { top: 0, right: 0, bottom: 0, left: 0 },
+        },
+
+        /** Border type for Desktop */
+        borderTypeDesktop: {
+            type: 'string',
+            default: 'none',
+        },
+
+        /** Border type for Tablet */
+        borderTypeTablet: {
+            type: 'string',
+            default: 'none',
+        },
+
+        /** Border type for Mobile */
+        borderTypeMobile: {
+            type: 'string',
+            default: 'none',
+        },
+
+        /** Border color for Desktop */
+        borderColorDesktop: {
+            type: 'string',
+            default: '#000000',
+        },
+
+        /** Border color for Tablet */
+        borderColorTablet: {
+            type: 'string',
+            default: '#000000',
+        },
+
+        /** Border color for Mobile */
+        borderColorMobile: {
+            type: 'string',
+            default: '#000000',
         },
 
         /** Selected Image thumbnail size */
@@ -64,6 +237,42 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         uniqueGallery: {
             type: 'string',
             default: ''            
+        },
+
+        /** Show Caption Toggle */
+        showCaption: {
+            type: 'boolean',
+            default: false,
+        },
+
+        /** Caption Position */
+        captionPosition: {
+            type: 'string',
+            default: 'bottom', // options: 'top', 'center', 'bottom'
+        },
+
+        /** Caption Font Size for Desktop */
+        captionFontSizeDesktop: {
+            type: 'number',
+            default: 16,
+        },
+
+        /** Caption Font Size for Tablet */
+        captionFontSizeTablet: {
+            type: 'number',
+            default: 16,
+        },
+
+        /** Caption Font Size for Mobile */
+        captionFontSizeMobile: {
+            type: 'number',
+            default: 16,
+        },
+
+        /** Caption Color */
+        captionColor: {
+            type: 'string',
+            default: '#fff',
         },
     },
 
@@ -81,9 +290,27 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { attributes, setAttributes } = props;
         const { fancyBoxEnabled } = attributes;
         const { videoOptionEnabled } = attributes;
-        const { gridItem } = attributes;
+        const { gridItemDesktop } = attributes;
+        const { gridItemTablet } = attributes;
+        const { gridItemMobile } = attributes;
+        const { gutterDesktop } = attributes;
+        const { gutterTablet } = attributes;
+        const { gutterMobile } = attributes;
+        const { borderWidthDesktop } = attributes;
+        const { borderWidthTablet } = attributes;
+        const { borderWidthMobile } = attributes;
+        const { borderRadiusDesktop } = attributes;
+        const { borderRadiusTablet } = attributes;
+        const { borderRadiusMobile } = attributes;
+        const { borderTypeDesktop } = attributes;
+        const { borderTypeTablet } = attributes;
+        const { borderTypeMobile } = attributes;
+        const { borderColorDesktop } = attributes;
+        const { borderColorTablet } = attributes;
+        const { borderColorMobile } = attributes;
         const { uniqueGallery } = attributes;
         const { selectedSize } = attributes;
+        const { showCaption, captionPosition, captionFontSizeDesktop, captionFontSizeTablet, captionFontSizeMobile, captionColor } = attributes;
 
         /** Unique Gallery */
         if (uniqueGallery === '') {
@@ -141,17 +368,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 <InspectorControls key="setting">
                     <Panel>
                         <PanelBody title="MediaGrid Settings">
-
                             {/* <ImageSizeDropdown onSelectImageSize={onSelectImageSize} /> */}
-
-                            {/** Fancybox Toggle button */}
-                            <ToggleControl
-                                label={__('Enable Fancybox', 'grid-masonry-for-guten-blocks')}
-                                checked={fancyBoxEnabled}
-                                onChange={(newIsfancyBoxEnabled) => setAttributes({ fancyBoxEnabled: newIsfancyBoxEnabled })}
-                                className="custom-label"
-                            />
-
                             {/** Video URL field Enable Disable option */}
                             {
                                 fancyBoxEnabled
@@ -175,7 +392,6 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                     )
                                     : ''
                             }
-
                             <SelectControl
                                 label={__('Select Image Size', 'grid-masonry-for-guten-blocks')}
                                 value={selectedSize}
@@ -184,32 +400,240 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                 //onChange={handleSizeChange}
                                 onChange={(newSelectedSize) => setAttributes({ selectedSize: newSelectedSize })}
                             />
-
                             {/** Grid Column Selection */}
                             <>
                                 <legend className="custom-label">
-                                    {__('Select Grid Items', 'grid-masonry-for-guten-blocks')}
+                                    {__('Responsive Grid Settings', 'grid-masonry-for-guten-blocks')}
                                 </legend>
-                                <RangeControl
-                                    value={gridItem}
-                                    onChange={(newGridItem) => setAttributes({ gridItem: newGridItem })}
-                                    min={1}
-                                    max={5}
+                                <GridColumnsSetting
+                                    columns={{
+                                        desktop: gridItemDesktop,
+                                        tablet: gridItemTablet,
+                                        mobile: gridItemMobile,
+                                    }}
+                                    setColumns={({ desktop, tablet, mobile }) => {
+                                        setAttributes({
+                                            gridItemDesktop: desktop,
+                                            gridItemTablet: tablet,
+                                            gridItemMobile: mobile,
+                                        });
+                                    }}
                                 />
                             </>
+                            {/** Grid Gutter Selection */}
+                            <>
+                                <legend className="custom-label">
+                                    {__('Grid Spacing Settings', 'grid-masonry-for-guten-blocks')}
+                                </legend>
+                                <GridGutterSetting
+                                    gutter={{
+                                        desktop: gutterDesktop,
+                                        tablet: gutterTablet,
+                                        mobile: gutterMobile,
+                                    }}
+                                    setGutter={({ desktop, tablet, mobile }) => {
+                                        setAttributes({
+                                            gutterDesktop: desktop,
+                                            gutterTablet: tablet,
+                                            gutterMobile: mobile,
+                                        });
+                                    }}
+                                />
+                            </>
+                        </PanelBody>
+                    </Panel>
+                    {/* Photo Settings Panel */}
+                    <Panel>
+                        <PanelBody title="Photo Settings">
+                            <BorderSettings
+                                borderWidth={{
+                                    desktop: borderWidthDesktop,
+                                    tablet: borderWidthTablet,
+                                    mobile: borderWidthMobile,
+                                }}
+                                setBorderWidth={({ desktop, tablet, mobile }) => {
+                                    setAttributes({
+                                        borderWidthDesktop: desktop,
+                                        borderWidthTablet: tablet,
+                                        borderWidthMobile: mobile,
+                                    });
+                                }}
+                                borderRadius={{
+                                    desktop: borderRadiusDesktop,
+                                    tablet: borderRadiusTablet,
+                                    mobile: borderRadiusMobile,
+                                }}
+                                setBorderRadius={({ desktop, tablet, mobile }) => {
+                                    setAttributes({
+                                        borderRadiusDesktop: desktop,
+                                        borderRadiusTablet: tablet,
+                                        borderRadiusMobile: mobile,
+                                    });
+                                }}
+                                borderType={{
+                                    desktop: borderTypeDesktop,
+                                    tablet: borderTypeTablet,
+                                    mobile: borderTypeMobile,
+                                }}
+                                setBorderType={({ desktop, tablet, mobile }) => {
+                                    setAttributes({
+                                        borderTypeDesktop: desktop,
+                                        borderTypeTablet: tablet,
+                                        borderTypeMobile: mobile,
+                                    });
+                                }}
+                                borderColor={{
+                                    desktop: borderColorDesktop,
+                                    tablet: borderColorTablet,
+                                    mobile: borderColorMobile,
+                                }}
+                                setBorderColor={({ desktop, tablet, mobile }) => {
+                                    setAttributes({
+                                        borderColorDesktop: desktop,
+                                        borderColorTablet: tablet,
+                                        borderColorMobile: mobile,
+                                    });
+                                }}
+                            />
+                            {/* Show Caption Toggle and Settings */}
+                            <div style={{ marginTop: 24 }}>
+                                <ToggleControl
+                                    label={__('Show Caption', 'grid-masonry-for-guten-blocks')}
+                                    checked={!!showCaption}
+                                    onChange={val => setAttributes({ showCaption: val })}
+                                />
+                                {showCaption && (
+                                    <div style={{ marginTop: 25 }}>
+                                        <SelectControl
+                                            label={__('Caption Position', 'grid-masonry-for-guten-blocks')}
+                                            value={captionPosition}
+                                            options={[
+                                                { label: __('Top', 'grid-masonry-for-guten-blocks'), value: 'top' },
+                                                { label: __('Center', 'grid-masonry-for-guten-blocks'), value: 'center' },
+                                                { label: __('Bottom', 'grid-masonry-for-guten-blocks'), value: 'bottom' },
+                                            ]}
+                                            onChange={val => setAttributes({ captionPosition: val })}
+                                        />
+                                        <CaptionFontSizeSetting
+                                            fontSize={{
+                                                desktop: captionFontSizeDesktop,
+                                                tablet: captionFontSizeTablet,
+                                                mobile: captionFontSizeMobile,
+                                            }}
+                                            setFontSize={({ desktop, tablet, mobile }) => {
+                                                setAttributes({
+                                                    captionFontSizeDesktop: desktop,
+                                                    captionFontSizeTablet: tablet,
+                                                    captionFontSizeMobile: mobile,
+                                                });
+                                            }}
+                                        />
+                                        <div style={{ marginBottom: 16 }}>
+                                            <label style={{ fontWeight: 500, marginBottom: 4, display: 'block' }}>
+                                                {__('Caption Color', 'grid-masonry-for-guten-blocks')}
+                                            </label>
+                                            <ColorPalette
+                                                value={captionColor}
+                                                onChange={val => setAttributes({ captionColor: val })}
+                                                enableAlpha
+                                                colors={[
+                                                    { name: 'Black', color: '#000000' },
+                                                    { name: 'White', color: '#ffffff' },
+                                                    { name: 'Red', color: '#ff0000' },
+                                                    { name: 'Blue', color: '#0057d8' },
+                                                    { name: 'Green', color: '#00c853' },
+                                                    { name: 'Gray', color: '#888888' },
+                                                    { name: 'Yellow', color: '#ffe600' },
+                                                    { name: 'Purple', color: '#a259e6' },
+                                                ]}
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </PanelBody>
+                    </Panel>
+                    {/* Lightbox Panel - now after Photo Settings */}
+                    <Panel>
+                        <PanelBody title="Lightbox">
+                            {/* Fancybox Toggle button */}
+                            <ToggleControl
+                                label={__('Enable Fancybox', 'grid-masonry-for-guten-blocks')}
+                                checked={fancyBoxEnabled}
+                                onChange={(newIsfancyBoxEnabled) => setAttributes({ fancyBoxEnabled: newIsfancyBoxEnabled })}
+                                className="custom-label"
+                            />
                         </PanelBody>
                     </Panel>
                 </InspectorControls>
 
                 {/** Structure to show for update data */}
-                <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })}>
+                <section {...useBlockProps({ 
+                    className: `alignwide gmfgb-mg-grid grid-size-${gridItemDesktop} ${fancyBoxEnabled ? 'hasfancy' : ''}`,
+                    'data-grid-desktop': gridItemDesktop,
+                    'data-grid-tablet': gridItemTablet,
+                    'data-grid-mobile': gridItemMobile,
+                    'data-gutter-desktop': gutterDesktop,
+                    'data-gutter-tablet': gutterTablet,
+                    'data-gutter-mobile': gutterMobile,
+                    'data-border-width-desktop': JSON.stringify(borderWidthDesktop),
+                    'data-border-width-tablet': JSON.stringify(borderWidthTablet),
+                    'data-border-width-mobile': JSON.stringify(borderWidthMobile),
+                    'data-border-radius-desktop': JSON.stringify(borderRadiusDesktop),
+                    'data-border-radius-tablet': JSON.stringify(borderRadiusTablet),
+                    'data-border-radius-mobile': JSON.stringify(borderRadiusMobile),
+                    'data-border-type-desktop': borderTypeDesktop,
+                    'data-border-type-tablet': borderTypeTablet,
+                    'data-border-type-mobile': borderTypeMobile,
+                    'data-border-color-desktop': borderColorDesktop,
+                    'data-border-color-tablet': borderColorTablet,
+                    'data-border-color-mobile': borderColorMobile,
+                    style: {
+                        '--grid-desktop': gridItemDesktop,
+                        '--grid-tablet': gridItemTablet,
+                        '--grid-mobile': gridItemMobile,
+                        '--gutter-desktop': gutterDesktop + 'px',
+                        '--gutter-tablet': gutterTablet + 'px',
+                        '--gutter-mobile': gutterMobile + 'px',
+                        '--border-width-desktop-top': (borderWidthDesktop?.top || 0) + 'px',
+                        '--border-width-desktop-right': (borderWidthDesktop?.right || 0) + 'px',
+                        '--border-width-desktop-bottom': (borderWidthDesktop?.bottom || 0) + 'px',
+                        '--border-width-desktop-left': (borderWidthDesktop?.left || 0) + 'px',
+                        '--border-width-tablet-top': (borderWidthTablet?.top || 0) + 'px',
+                        '--border-width-tablet-right': (borderWidthTablet?.right || 0) + 'px',
+                        '--border-width-tablet-bottom': (borderWidthTablet?.bottom || 0) + 'px',
+                        '--border-width-tablet-left': (borderWidthTablet?.left || 0) + 'px',
+                        '--border-width-mobile-top': (borderWidthMobile?.top || 0) + 'px',
+                        '--border-width-mobile-right': (borderWidthMobile?.right || 0) + 'px',
+                        '--border-width-mobile-bottom': (borderWidthMobile?.bottom || 0) + 'px',
+                        '--border-width-mobile-left': (borderWidthMobile?.left || 0) + 'px',
+                        '--border-radius-desktop-top': (borderRadiusDesktop?.top || 0) + 'px',
+                        '--border-radius-desktop-right': (borderRadiusDesktop?.right || 0) + 'px',
+                        '--border-radius-desktop-bottom': (borderRadiusDesktop?.bottom || 0) + 'px',
+                        '--border-radius-desktop-left': (borderRadiusDesktop?.left || 0) + 'px',
+                        '--border-radius-tablet-top': (borderRadiusTablet?.top || 0) + 'px',
+                        '--border-radius-tablet-right': (borderRadiusTablet?.right || 0) + 'px',
+                        '--border-radius-tablet-bottom': (borderRadiusTablet?.bottom || 0) + 'px',
+                        '--border-radius-tablet-left': (borderRadiusTablet?.left || 0) + 'px',
+                        '--border-radius-mobile-top': (borderRadiusMobile?.top || 0) + 'px',
+                        '--border-radius-mobile-right': (borderRadiusMobile?.right || 0) + 'px',
+                        '--border-radius-mobile-bottom': (borderRadiusMobile?.bottom || 0) + 'px',
+                        '--border-radius-mobile-left': (borderRadiusMobile?.left || 0) + 'px',
+                        '--border-type-desktop': borderTypeDesktop,
+                        '--border-type-tablet': borderTypeTablet,
+                        '--border-type-mobile': borderTypeMobile,
+                        '--border-color-desktop': borderColorDesktop,
+                        '--border-color-tablet': borderColorTablet,
+                        '--border-color-mobile': borderColorMobile
+                    }
+                })}>
                     {attributes.items.map((item, index) => (
                         <div className="gmfgb-mg-wrap" key={index}>
 
                             <Button className="remove-item" onClick={() => gmfgb_delete_repeater_item(index)}>
                                 <svg fill="#ff0000" width="20" id="Capa_1" viewBox="0 0 482.428 482.429"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M381.163,57.799h-75.094C302.323,25.316,274.686,0,241.214,0c-33.471,0-61.104,25.315-64.85,57.799h-75.098 c-30.39,0-55.111,24.728-55.111,55.117v2.828c0,23.223,14.46,43.1,34.83,51.199v260.369c0,30.39,24.724,55.117,55.112,55.117 h210.236c30.389,0,55.111-24.729,55.111-55.117V166.944c20.369-8.1,34.83-27.977,34.83-51.199v-2.828 C436.274,82.527,411.551,57.799,381.163,57.799z M241.214,26.139c19.037,0,34.927,13.645,38.443,31.66h-76.879 C206.293,39.783,222.184,26.139,241.214,26.139z M375.305,427.312c0,15.978-13,28.979-28.973,28.979H136.096 c-15.973,0-28.973-13.002-28.973-28.979V170.861h268.182V427.312z M410.135,115.744c0,15.978-13,28.979-28.973,28.979H101.266 c-15.973,0-28.973-13.001-28.973-28.979v-2.828c0-15.978,13-28.979,28.973-28.979h279.897c15.973,0,28.973,13.001,28.973,28.979 V115.744z"></path> <path d="M171.144,422.863c7.218,0,13.069-5.853,13.069-13.068V262.641c0-7.216-5.852-13.07-13.069-13.07 c-7.217,0-13.069,5.854-13.069,13.07v147.154C158.074,417.012,163.926,422.863,171.144,422.863z"></path> <path d="M241.214,422.863c7.218,0,13.07-5.853,13.07-13.068V262.641c0-7.216-5.854-13.07-13.07-13.07 c-7.217,0-13.069,5.854-13.069,13.07v147.154C228.145,417.012,233.996,422.863,241.214,422.863z"></path> <path d="M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07 c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z"></path> </g> </g> </g></svg>
                             </Button>
-
+                  
                             {/** Media Field Uplod/Select option */}
                             <MediaUploadCheck>
                                 <MediaUpload
@@ -218,6 +642,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                     value={item.image && item.image.id}
                                     render={({ open }) => (
                                         <div className="gmfgb-mg-image">
+                                                      
                                             <h6 id={`upload-image-${uniqueGallery}${index}`} className={`change-image upload-image-${uniqueGallery}${index}`} onClick={open}>
                                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.2639 15.9376L12.5958 14.2835C11.7909 13.4852 11.3884 13.0861 10.9266 12.9402C10.5204 12.8119 10.0838 12.8166 9.68048 12.9537C9.22188 13.1096 8.82814 13.5173 8.04068 14.3327L4.04409 18.2802M14.2639 15.9376L14.6053 15.5991C15.4112 14.7999 15.8141 14.4003 16.2765 14.2544C16.6831 14.1262 17.12 14.1312 17.5236 14.2688C17.9824 14.4252 18.3761 14.834 19.1634 15.6515L20 16.4936M14.2639 15.9376L18.275 19.9566M18.275 19.9566C17.9176 20.0001 17.4543 20.0001 16.8 20.0001H7.2C6.07989 20.0001 5.51984 20.0001 5.09202 19.7821C4.71569 19.5904 4.40973 19.2844 4.21799 18.9081C4.12796 18.7314 4.07512 18.5322 4.04409 18.2802M18.275 19.9566C18.5293 19.9257 18.7301 19.8728 18.908 19.7821C19.2843 19.5904 19.5903 19.2844 19.782 18.9081C20 18.4803 20 17.9202 20 16.8001V16.4936M12.5 4L7.2 4.00011C6.07989 4.00011 5.51984 4.00011 5.09202 4.21809C4.71569 4.40984 4.40973 4.7158 4.21799 5.09213C4 5.51995 4 6.08 4 7.20011V16.8001C4 17.4576 4 17.9222 4.04409 18.2802M20 11.5V16.4936M14 10.0002L16.0249 9.59516C16.2015 9.55984 16.2898 9.54219 16.3721 9.5099C16.4452 9.48124 16.5146 9.44407 16.579 9.39917C16.6515 9.34859 16.7152 9.28492 16.8425 9.1576L21 5.00015C21.5522 4.44787 21.5522 3.55244 21 3.00015C20.4477 2.44787 19.5522 2.44787 19 3.00015L14.8425 7.1576C14.7152 7.28492 14.6515 7.34859 14.6009 7.42112C14.556 7.4855 14.5189 7.55494 14.4902 7.62801C14.4579 7.71033 14.4403 7.79862 14.4049 7.97518L14 10.0002Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                                             </h6>
@@ -237,7 +662,6 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                             </MediaUploadCheck>
 
                             <div className="gmfgb-mg-content">
-
                                 {
                                     item.image && //item.checkboxx &&
                                     <div>
@@ -339,11 +763,86 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { fancyBoxEnabled } = attributes;
         const { videoOptionEnabled } = attributes;
         const { uniqueGallery } = attributes;
-        const { gridItem } = attributes;
+        const { gridItemDesktop } = attributes;
+        const { gridItemTablet } = attributes;
+        const { gridItemMobile } = attributes;
+        const { gutterDesktop } = attributes;
+        const { gutterTablet } = attributes;
+        const { gutterMobile } = attributes;
+        const { borderWidthDesktop } = attributes;
+        const { borderWidthTablet } = attributes;
+        const { borderWidthMobile } = attributes;
+        const { borderRadiusDesktop } = attributes;
+        const { borderRadiusTablet } = attributes;
+        const { borderRadiusMobile } = attributes;
+        const { borderTypeDesktop } = attributes;
+        const { borderTypeTablet } = attributes;
+        const { borderTypeMobile } = attributes;
+        const { borderColorDesktop } = attributes;
+        const { borderColorTablet } = attributes;
+        const { borderColorMobile } = attributes;
+        const { showCaption, captionPosition, captionFontSizeDesktop, captionFontSizeTablet, captionFontSizeMobile, captionColor } = attributes;
         return (
             /** Structure to show for update data */
-            <section {...useBlockProps.save({ className: `alignwide gmfgb-mg-grid grid-size-${gridItem} ${fancyBoxEnabled ? 'hasfancy' : ''}` })}> { /* }//className={`gmfgb-grid grid-size-${gridItem} ${ fancyBoxEnabled ? 'hasfancy' : '' }`}>{*/}
-
+            <section {...useBlockProps.save({ 
+                className: `alignwide gmfgb-mg-grid grid-size-${gridItemDesktop} ${fancyBoxEnabled ? 'hasfancy' : ''}`,
+                'data-grid-desktop': gridItemDesktop,
+                'data-grid-tablet': gridItemTablet,
+                'data-grid-mobile': gridItemMobile,
+                'data-gutter-desktop': gutterDesktop,
+                'data-gutter-tablet': gutterTablet,
+                'data-gutter-mobile': gutterMobile,
+                'data-border-width-desktop': JSON.stringify(borderWidthDesktop),
+                'data-border-width-tablet': JSON.stringify(borderWidthTablet),
+                'data-border-width-mobile': JSON.stringify(borderWidthMobile),
+                'data-border-radius-desktop': JSON.stringify(borderRadiusDesktop),
+                'data-border-radius-tablet': JSON.stringify(borderRadiusTablet),
+                'data-border-radius-mobile': JSON.stringify(borderRadiusMobile),
+                'data-border-type-desktop': borderTypeDesktop,
+                'data-border-type-tablet': borderTypeTablet,
+                'data-border-type-mobile': borderTypeMobile,
+                'data-border-color-desktop': borderColorDesktop,
+                'data-border-color-tablet': borderColorTablet,
+                'data-border-color-mobile': borderColorMobile,
+                style: {
+                    '--grid-desktop': gridItemDesktop,
+                    '--grid-tablet': gridItemTablet,
+                    '--grid-mobile': gridItemMobile,
+                    '--gutter-desktop': gutterDesktop + 'px',
+                    '--gutter-tablet': gutterTablet + 'px',
+                    '--gutter-mobile': gutterMobile + 'px',
+                    '--border-width-desktop-top': (borderWidthDesktop?.top || 0) + 'px',
+                    '--border-width-desktop-right': (borderWidthDesktop?.right || 0) + 'px',
+                    '--border-width-desktop-bottom': (borderWidthDesktop?.bottom || 0) + 'px',
+                    '--border-width-desktop-left': (borderWidthDesktop?.left || 0) + 'px',
+                    '--border-width-tablet-top': (borderWidthTablet?.top || 0) + 'px',
+                    '--border-width-tablet-right': (borderWidthTablet?.right || 0) + 'px',
+                    '--border-width-tablet-bottom': (borderWidthTablet?.bottom || 0) + 'px',
+                    '--border-width-tablet-left': (borderWidthTablet?.left || 0) + 'px',
+                    '--border-width-mobile-top': (borderWidthMobile?.top || 0) + 'px',
+                    '--border-width-mobile-right': (borderWidthMobile?.right || 0) + 'px',
+                    '--border-width-mobile-bottom': (borderWidthMobile?.bottom || 0) + 'px',
+                    '--border-width-mobile-left': (borderWidthMobile?.left || 0) + 'px',
+                    '--border-radius-desktop-top': (borderRadiusDesktop?.top || 0) + 'px',
+                    '--border-radius-desktop-right': (borderRadiusDesktop?.right || 0) + 'px',
+                    '--border-radius-desktop-bottom': (borderRadiusDesktop?.bottom || 0) + 'px',
+                    '--border-radius-desktop-left': (borderRadiusDesktop?.left || 0) + 'px',
+                    '--border-radius-tablet-top': (borderRadiusTablet?.top || 0) + 'px',
+                    '--border-radius-tablet-right': (borderRadiusTablet?.right || 0) + 'px',
+                    '--border-radius-tablet-bottom': (borderRadiusTablet?.bottom || 0) + 'px',
+                    '--border-radius-tablet-left': (borderRadiusTablet?.left || 0) + 'px',
+                    '--border-radius-mobile-top': (borderRadiusMobile?.top || 0) + 'px',
+                    '--border-radius-mobile-right': (borderRadiusMobile?.right || 0) + 'px',
+                    '--border-radius-mobile-bottom': (borderRadiusMobile?.bottom || 0) + 'px',
+                    '--border-radius-mobile-left': (borderRadiusMobile?.left || 0) + 'px',
+                    '--border-type-desktop': borderTypeDesktop,
+                    '--border-type-tablet': borderTypeTablet,
+                    '--border-type-mobile': borderTypeMobile,
+                    '--border-color-desktop': borderColorDesktop,
+                    '--border-color-tablet': borderColorTablet,
+                    '--border-color-mobile': borderColorMobile
+                }
+            })}>
                 {attributes.items.map((item, index) => (
                     <div className="gmfgb-mg-media" key={index}>
 
@@ -385,9 +884,17 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                         </div>
                                 }
                                 {
-                                    (item.image_caption || item.image.caption) && (
-                                        <div class="image-caption">
-                                            <p>{(item.image_caption ? item.image_caption : item.image.caption)}</p>
+                                    showCaption && (item.image_caption || (item.image && item.image.caption)) && (
+                                        <div
+                                            className={`image-caption caption-pos-${captionPosition}`}
+                                            style={{
+                                                '--caption-font-size-desktop': captionFontSizeDesktop ? `${captionFontSizeDesktop}px` : undefined,
+                                                '--caption-font-size-tablet': captionFontSizeTablet ? `${captionFontSizeTablet}px` : undefined,
+                                                '--caption-font-size-mobile': captionFontSizeMobile ? `${captionFontSizeMobile}px` : undefined,
+                                                color: captionColor || '#fff',
+                                            }}
+                                        >
+                                            {item.image_caption ? item.image_caption : (item.image && item.image.caption)}
                                         </div>
                                     )
                                 }
