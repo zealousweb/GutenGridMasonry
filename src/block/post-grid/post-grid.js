@@ -198,9 +198,7 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                 <InspectorControls key="setting">
                     <Panel>
                         <PanelBody title={__('PostGrid Settings', 'grid-masonry-for-guten-blocks')}>
-                            <legend className="custom-label">
-                                {__('Responsive Grid Settings', 'grid-masonry-for-guten-blocks')}
-                            </legend>
+                            
                             <GridColumnsSetting
                                 columns={{
                                     desktop: gridItemDesktop,

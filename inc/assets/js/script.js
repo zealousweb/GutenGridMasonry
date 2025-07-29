@@ -44,11 +44,11 @@ jQuery(() => {
             // Relayout Isotope after applying responsive settings
             if ($grid.hasClass('isotope-initialized') && initializedGrids.has(gridId)) {
                 try {
-                    // Get current viewport gutter value
+                    // Get current viewport gutter value based on new breakpoints
                     let currentGutter = gutterDesktop;
-                    if (window.innerWidth >= 561 && window.innerWidth <= 767) {
+                    if (window.innerWidth >= 768 && window.innerWidth <= 1023) {
                         currentGutter = gutterTablet;
-                    } else if (window.innerWidth >= 320 && window.innerWidth <= 560) {
+                    } else if (window.innerWidth <= 767) {
                         currentGutter = gutterMobile;
                     }
                     
@@ -167,12 +167,11 @@ jQuery(() => {
                 const gutterTablet = parseInt($grid.attr('data-gutter-tablet')) || 20;
                 const gutterMobile = parseInt($grid.attr('data-gutter-mobile')) || 20;
                 
-                // Determine initial gutter based on current viewport (defaults to 20px)
-                // Use actual gutter values for column gap
+                // Determine initial gutter based on current viewport using new breakpoints
                 let initialGutter = gutterDesktop;
-                if (window.innerWidth >= 561 && window.innerWidth <= 767) {
+                if (window.innerWidth >= 768 && window.innerWidth <= 1023) {
                     initialGutter = gutterTablet;
-                } else if (window.innerWidth >= 320 && window.innerWidth <= 560) {
+                } else if (window.innerWidth <= 767) {
                     initialGutter = gutterMobile;
                 }
                 
@@ -212,12 +211,11 @@ jQuery(() => {
                 const gutterTablet = parseInt($grid.attr('data-gutter-tablet')) || 20;
                 const gutterMobile = parseInt($grid.attr('data-gutter-mobile')) || 20;
                 
-                // Determine current gutter based on viewport (defaults to 20px)
-                // Use actual gutter values for column gap
+                // Determine current gutter based on viewport using new breakpoints
                 let currentGutter = gutterDesktop;
-                if (window.innerWidth >= 561 && window.innerWidth <= 767) {
+                if (window.innerWidth >= 768 && window.innerWidth <= 1023) {
                     currentGutter = gutterTablet;
-                } else if (window.innerWidth >= 320 && window.innerWidth <= 560) {
+                } else if (window.innerWidth <= 767) {
                     currentGutter = gutterMobile;
                 }
                 

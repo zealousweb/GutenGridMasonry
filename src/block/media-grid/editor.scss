@@ -23,13 +23,13 @@
 	}
 	
 	&:not([data-gutter-tablet]) {
-		@media (min-width: 561px) and (max-width: 767px) {
+		@media (min-width: 768px) and (max-width: 1023px) {
 			column-gap: 20px !important;
 		}
 	}
 	
 	&:not([data-gutter-mobile]) {
-		@media (min-width: 320px) and (max-width: 560px) {
+		@media (max-width: 767px) {
 			column-gap: 20px !important;
 		}
 	}
@@ -39,13 +39,13 @@
 		margin: 0 !important; /* Remove any default margins */
 		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
 		
-		// Tablet styles
-		@media (min-width: 561px) and (max-width: 767px) {
+		// Tablet styles (768px to 1023px) - Includes iPad
+		@media (min-width: 768px) and (max-width: 1023px) {
 			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
 		}
 		
-		// Mobile styles
-		@media (min-width: 320px) and (max-width: 560px) {
+		// Mobile styles (below 768px) - Includes all mobile devices
+		@media (max-width: 767px) {
 			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
 		}
 	}
@@ -61,13 +61,13 @@
 		margin: 0 !important; /* Remove any default margins */
 		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
 		
-		// Tablet styles
-		@media (min-width: 561px) and (max-width: 767px) {
+		// Tablet styles (768px to 1023px) - Includes iPad
+		@media (min-width: 768px) and (max-width: 1023px) {
 			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
 		}
 		
-		// Mobile styles
-		@media (min-width: 320px) and (max-width: 560px) {
+		// Mobile styles (below 768px) - Includes all mobile devices
+		@media (max-width: 767px) {
 			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
 		}
 		
@@ -85,10 +85,10 @@
 	padding-top: 100px;
 	min-height: 360px;
 	border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
-	border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-	border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-	border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-	border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
+	border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+	border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+	border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+	border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
 	overflow: hidden;
 	box-sizing: border-box; /* Ensure proper border handling */
 	.change-image {
@@ -191,8 +191,18 @@
 		border-style: var(--border-type-mobile, none);
 		border-color: var(--border-color-mobile, #000);
 	}
-}
-
+	&-caption-count {
+		font-size: 12px;
+		color: #000;
+		margin: 0 0 8px 0;
+		text-align: center;
+		background: #fff;
+		display: inline-block;
+		padding: 5px;
+		border-radius: 5px;
+		z-index: 2;
+	}
+} 
 .gmfgb-mg-video {
 	z-index: 1;
 	background-color: rgba(255, 255, 255, 0.2);
@@ -312,11 +322,11 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
 	row-gap: 20px !important;
 	column-gap: var(--gutter-desktop, 20px) !important;
 	
-	@media (min-width: 561px) and (max-width: 767px) {
+	@media (min-width: 768px) and (max-width: 1023px) {
 		column-gap: var(--gutter-tablet, 20px) !important;
 	}
 	
-	@media (min-width: 320px) and (max-width: 560px) {
+	@media (max-width: 767px) {
 		column-gap: var(--gutter-mobile, 20px) !important;
 	}
 	
@@ -324,11 +334,11 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
 		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
 		margin: 0 !important;
 		
-		@media (min-width: 561px) and (max-width: 767px) {
+		@media (min-width: 768px) and (max-width: 1023px) {
 			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
 		}
 		
-		@media (min-width: 320px) and (max-width: 560px) {
+		@media (max-width: 767px) {
 			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
 		}
 	}
@@ -337,11 +347,11 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
 		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
 		margin: 0 !important;
 		
-		@media (min-width: 561px) and (max-width: 767px) {
+		@media (min-width: 768px) and (max-width: 1023px) {
 			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
 		}
 		
-		@media (min-width: 320px) and (max-width: 560px) {
+		@media (max-width: 767px) {
 			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
 		}
 	}
@@ -360,8 +370,8 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
 	&[data-gutter-desktop="45"] { column-gap: 45px !important; }
 	&[data-gutter-desktop="50"] { column-gap: 50px !important; }
 	
-	// Tablet fallback
-	@media (min-width: 561px) and (max-width: 767px) {
+	// Tablet fallback (768px to 1023px) - Includes iPad
+	@media (min-width: 768px) and (max-width: 1023px) {
 		&[data-gutter-tablet="10"] { column-gap: 10px !important; }
 		&[data-gutter-tablet="15"] { column-gap: 15px !important; }
 		&[data-gutter-tablet="20"] { column-gap: 20px !important; }
@@ -373,8 +383,8 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
 		&[data-gutter-tablet="50"] { column-gap: 50px !important; }
 	}
 	
-	// Mobile fallback
-	@media (min-width: 320px) and (max-width: 560px) {
+	// Mobile fallback (below 768px) - Includes all mobile devices
+	@media (max-width: 767px) {
 		&[data-gutter-mobile="10"] { column-gap: 10px !important; }
 		&[data-gutter-mobile="15"] { column-gap: 15px !important; }
 		&[data-gutter-mobile="20"] { column-gap: 20px !important; }
@@ -388,23 +398,20 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
 }
 
 // Force immediate application of gutter spacing in editor
-.editor-styles-wrapper .gmfgb-mg-grid {
-	// Override any potential conflicts
-	border: none;
-	&[data-gutter-desktop] {
+body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data-gutter-mobile] {
+	// Desktop styles (1024px and above)
+	@media (min-width: 1024px) {
 		column-gap: var(--gutter-desktop, 20px) !important;
 	}
 	
-	&[data-gutter-tablet] {
-		@media (min-width: 561px) and (max-width: 767px) {
-			column-gap: var(--gutter-tablet, 20px) !important;
-		}
+	// Tablet styles (768px to 1023px) - Includes iPad
+	@media (min-width: 768px) and (max-width: 1023px) {
+		column-gap: var(--gutter-tablet, 20px) !important;
 	}
 	
-	&[data-gutter-mobile] {
-		@media (min-width: 320px) and (max-width: 560px) {
-			column-gap: var(--gutter-mobile, 20px) !important;
-		}
+	// Mobile styles (below 768px) - Includes all mobile devices
+	@media (max-width: 767px) {
+		column-gap: var(--gutter-mobile, 20px) !important;
 	}
 }
 
@@ -438,4 +445,9 @@ body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gu
 		box-sizing: border-box !important;
 		overflow: hidden !important;
 	}
+}
+
+.block-editor-block-inspector label.components-input-control__label {
+	font-size: 13px !important;
+	text-transform: capitalize !important;
 }

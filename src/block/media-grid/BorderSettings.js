@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, SelectControl, ColorPalette } from '@wordpress/components';
-import { desktop, tablet, link as linkIcon, unlink as unlinkIcon } from '@wordpress/icons';
+import { desktop, tablet, link as linkIcon, linkOff as unlinkIcon } from '@wordpress/icons';
 
 const mobileIcon = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -61,6 +61,12 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
   const currentBorderWidth = ensureBorderObject(borderWidth, device);
   const handleBorderWidthChange = (side, value) => {
     let val = Number(value) || 0;
+    
+    // Validate against min/max limits
+    const limits = minMax[device];
+    if (val < limits.min) val = limits.min;
+    if (val > limits.max) val = limits.max;
+    
     let newBorderWidth = { ...borderWidth };
     let obj = { ...currentBorderWidth };
     if (isLinkedWidth) {
@@ -76,6 +82,12 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
   const currentBorderRadius = ensureBorderObject(borderRadius, device);
   const handleBorderRadiusChange = (side, value) => {
     let val = Number(value) || 0;
+    
+    // Validate against min/max limits
+    const limits = minMax[device];
+    if (val < limits.min) val = limits.min;
+    if (val > limits.max) val = limits.max;
+    
     let newBorderRadius = { ...borderRadius };
     let obj = { ...currentBorderRadius };
     if (isLinkedRadius) {
@@ -102,7 +114,7 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
   const isBorderTypeNone = borderType[device] === 'none';
 
   // Layout for Elementor-style controls
-  const renderFourInputRow = (obj, onChange, isLinked, setIsLinked, disabled = false) => (
+  const renderFourInputRow = (obj, onChange, isLinked, setIsLinked, disabled = false, settingType = '') => (
     <>
       <div style={{ display: 'flex', alignItems: 'center', gap: 0, border: '1px solid #ddd', borderRadius: 4, overflow: 'hidden' }}>
         {['top', 'right', 'bottom', 'left'].map((side, idx) => (
@@ -151,6 +163,10 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
         <span style={{ width: 48, textAlign: 'center' }}>Bottom</span>
         <span style={{ width: 48, textAlign: 'center' }}>Left</span>
         <span style={{ width: 36 }}></span>
+      </div>
+      {/* PX Label for current values */}
+      <div style={{ fontSize: 12, color: '#555', marginTop: 4 }}>
+        {deviceOptions.find(opt => opt.key === device).label} {settingType}: {isLinked ? `${obj.top}px` : `${obj.top}px, ${obj.right}px, ${obj.bottom}px, ${obj.left}px`}
       </div>
     </>
   );
@@ -208,14 +224,14 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
         <label style={{ fontWeight: 500, marginBottom: 8, display: 'block', opacity: isBorderTypeNone ? 0.5 : 1 }}>
           Border Width
         </label>
-        {renderFourInputRow(currentBorderWidth, handleBorderWidthChange, isLinkedWidth, setIsLinkedWidth, isBorderTypeNone)}
+        {renderFourInputRow(currentBorderWidth, handleBorderWidthChange, isLinkedWidth, setIsLinkedWidth, isBorderTypeNone, 'Border Width')}
       </div>
       {/* Border Radius Control */}
       <div>
         <label style={{ fontWeight: 500, marginBottom: 8, display: 'block' }}>
           Border Radius
         </label>
-        {renderFourInputRow(currentBorderRadius, handleBorderRadiusChange, isLinkedRadius, setIsLinkedRadius)}
+        {renderFourInputRow(currentBorderRadius, handleBorderRadiusChange, isLinkedRadius, setIsLinkedRadius, false, 'Border Radius')}
       </div>
     </div>
   );

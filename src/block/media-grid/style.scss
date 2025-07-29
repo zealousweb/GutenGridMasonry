@@ -25,8 +25,8 @@ $columns: 5;
 	
 	// Responsive grid with data attributes - Higher specificity
 	&[data-grid-desktop][data-grid-tablet][data-grid-mobile] {
-		// Desktop styles
-		@media (min-width: 768px) {
+		// Desktop styles (1024px and above)
+		@media (min-width: 1024px) {
 			row-gap: 20px;
 			column-gap: var(--gutter-desktop, 20px);
 			
@@ -38,8 +38,8 @@ $columns: 5;
 			}
 		}
 
-		// Tablet styles
-		@media (min-width: 561px) and (max-width: 767px) {
+		// Tablet styles (768px to 1023px) - Includes iPad
+		@media (min-width: 768px) and (max-width: 1023px) {
 			row-gap: 20px;
 			column-gap: var(--gutter-tablet, 20px);
 			
@@ -51,8 +51,8 @@ $columns: 5;
 			}
 		}
 
-		// Mobile styles
-		@media (min-width: 320px) and (max-width: 560px) {
+		// Mobile styles (below 768px) - Includes all mobile devices
+		@media (max-width: 767px) {
 			row-gap: 20px;
 			column-gap: var(--gutter-mobile, 20px);
 			
@@ -67,8 +67,8 @@ $columns: 5;
 	
 	// Frontend specific styles - ensure gutter values are applied
 	&[data-gutter-desktop][data-gutter-tablet][data-gutter-mobile] {
-		// Desktop styles
-		@media (min-width: 768px) {
+		// Desktop styles (1024px and above)
+		@media (min-width: 1024px) {
 			row-gap: 20px;
 			column-gap: var(--gutter-desktop, 20px);
 			
@@ -80,8 +80,8 @@ $columns: 5;
 			}
 		}
 
-		// Tablet styles
-		@media (min-width: 561px) and (max-width: 767px) {
+		// Tablet styles (768px to 1023px) - Includes iPad
+		@media (min-width: 768px) and (max-width: 1023px) {
 			row-gap: 20px;
 			column-gap: var(--gutter-tablet, 20px);
 			
@@ -93,8 +93,8 @@ $columns: 5;
 			}
 		}
 
-		// Mobile styles
-		@media (min-width: 320px) and (max-width: 560px) {
+		// Mobile styles (below 768px) - Includes all mobile devices
+		@media (max-width: 767px) {
 			row-gap: 20px;
 			column-gap: var(--gutter-mobile, 20px);
 			
@@ -109,8 +109,8 @@ $columns: 5;
 	
 	// Fallback styles for blocks without data attributes (lower specificity)
 	&:not([data-grid-desktop]) {
-		// Default desktop styles (fallback)
-		@media (min-width: 768px) {
+		// Default desktop styles (fallback) - 1024px and above
+		@media (min-width: 1024px) {
 			@for $i from 1 through $columns {
 				&.grid-size-#{$i} {
 					row-gap: 20px;
@@ -125,26 +125,26 @@ $columns: 5;
 			}
 		}
 
-		// Tablet styles (fallback)
-		@media (min-width: 561px) and (max-width: 767px) {
-			row-gap: 20px;
-			column-gap: 20px;
-			.gmfgb-mg-media,
-			.gmfgb-mg-button,
-			.gmfgb-mg-wrap {
-				width: calc(33.33% - 13.33px);
-				margin-bottom: 0;
-			}
-		}
-
-		// Mobile styles (fallback)
-		@media (min-width: 320px) and (max-width: 560px) {
+		// Tablet styles (fallback) - 768px to 1023px
+		@media (min-width: 768px) and (max-width: 1023px) {
 			row-gap: 20px;
 			column-gap: 20px;
 			.gmfgb-mg-media,
 			.gmfgb-mg-button,
 			.gmfgb-mg-wrap {
 				width: calc(50% - 10px);
+				margin-bottom: 0;
+			}
+		}
+
+		// Mobile styles (fallback) - below 768px
+		@media (max-width: 767px) {
+			row-gap: 20px;
+			column-gap: 20px;
+			.gmfgb-mg-media,
+			.gmfgb-mg-button,
+			.gmfgb-mg-wrap {
+				width: 100%;
 				margin-bottom: 0;
 			}
 		}
@@ -155,17 +155,17 @@ $columns: 5;
 		row-gap: 20px;
 		column-gap: 20px;
 		
-		@media (min-width: 768px) {
+		@media (min-width: 1024px) {
 			row-gap: 20px;
 			column-gap: 20px;
 		}
 		
-		@media (min-width: 561px) and (max-width: 767px) {
+		@media (min-width: 768px) and (max-width: 1023px) {
 			row-gap: 20px;
 			column-gap: 20px;
 		}
 		
-		@media (min-width: 320px) and (max-width: 560px) {
+		@media (max-width: 767px) {
 			row-gap: 20px;
 			column-gap: 20px;
 		}
@@ -183,12 +183,14 @@ $columns: 5;
 		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3));
 		margin-bottom: 20px !important; /* Add bottom margin for row spacing */
 		
-		@media (min-width: 561px) and (max-width: 767px) {
+		// Tablet styles (768px to 1023px) - Includes iPad
+		@media (min-width: 768px) and (max-width: 1023px) {
 			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2));
 			margin-bottom: 20px !important; /* Add bottom margin for row spacing */
 		}
 		
-		@media (min-width: 320px) and (max-width: 560px) {
+		// Mobile styles (below 768px) - Includes all mobile devices
+		@media (max-width: 767px) {
 			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1));
 			margin-bottom: 20px !important; /* Add bottom margin for row spacing */
 		}
@@ -206,11 +208,11 @@ $columns: 5;
 	column-gap: var(--gutter-desktop, 20px) !important;
 	
 	// Responsive gutter spacing for editor
-	@media (min-width: 561px) and (max-width: 767px) {
+	@media (min-width: 768px) and (max-width: 1023px) {
 		column-gap: var(--gutter-tablet, 20px) !important;
 	}
 	
-	@media (min-width: 320px) and (max-width: 560px) {
+	@media (max-width: 767px) {
 		column-gap: var(--gutter-mobile, 20px) !important;
 	}
 	
@@ -231,11 +233,11 @@ $columns: 5;
 			top: unset !important;
 			width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
 			
-			@media (min-width: 561px) and (max-width: 767px) {
+			@media (min-width: 768px) and (max-width: 1023px) {
 				width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
 			}
 			
-			@media (min-width: 320px) and (max-width: 560px) {
+			@media (max-width: 767px) {
 				width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
 			}
 		}
@@ -256,17 +258,17 @@ body:not(.wp-admin) .gmfgb-mg-grid {
 		row-gap: 20px !important;
 		column-gap: var(--gutter-desktop, 20px) !important;
 		
-		@media (min-width: 768px) {
+		@media (min-width: 1024px) {
 			row-gap: 20px !important;
 			column-gap: var(--gutter-desktop, 20px) !important;
 		}
 		
-		@media (min-width: 561px) and (max-width: 767px) {
+		@media (min-width: 768px) and (max-width: 1023px) {
 			row-gap: 20px !important;
 			column-gap: var(--gutter-tablet, 20px) !important;
 		}
 		
-		@media (min-width: 320px) and (max-width: 560px) {
+		@media (max-width: 767px) {
 			row-gap: 20px !important;
 			column-gap: var(--gutter-mobile, 20px) !important;
 		}
@@ -277,17 +279,17 @@ body:not(.wp-admin) .gmfgb-mg-grid {
 body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data-gutter-mobile] {
 	row-gap: 20px !important;
 	
-	@media (min-width: 768px) {
+	@media (min-width: 1024px) {
 		row-gap: 20px !important;
 		column-gap: var(--gutter-desktop, 20px) !important;
 	}
 	
-	@media (min-width: 561px) and (max-width: 767px) {
+	@media (min-width: 768px) and (max-width: 1023px) {
 		row-gap: 20px !important;
 		column-gap: var(--gutter-tablet, 20px) !important;
 	}
 	
-	@media (min-width: 320px) and (max-width: 560px) {
+	@media (max-width: 767px) {
 		row-gap: 20px !important;
 		column-gap: var(--gutter-mobile, 20px) !important;
 	}
@@ -337,6 +339,10 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
 .image-caption.caption-pos-bottom[data-caption-font-desktop] {
     font-size: inherit;
 }
+.components-base-control select,
+.components-flex-item label.components-text-control__label {
+	text-transform: capitalize;
+}
 @media (min-width: 768px) {
     .image-caption.caption-pos-bottom[data-caption-font-desktop] {
         font-size: unset;
@@ -376,19 +382,20 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
 		top: 20px;
 		left: 20px;
 		border-radius: 100px;
+		z-index: 2;
 	}
 	
 	// Apply border only when border type is not 'none'
 	&:not([data-border-type-desktop="none"]) {
-		border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-		border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-		border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
-		border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000);
+		border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+		border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+		border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+		border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
 	}
 	
 	// Tablet styles
 	@media (min-width: 561px) and (max-width: 767px) {
-		border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px);
+		border-radius: var(--border-radius-tablet-top) var(--border-radius-tablet-right) var(--border-radius-tablet-bottom) var(--border-radius-tablet-left);
 		
 		&:not([data-border-type-tablet="none"]) {
 			border-top-width: var(--border-width-tablet-top, 0px);

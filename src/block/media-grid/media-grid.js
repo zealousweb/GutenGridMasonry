@@ -46,7 +46,14 @@ const minMaxFontSize = {
 function CaptionFontSizeSetting({ fontSize, setFontSize }) {
   const [device, setDevice] = React.useState('desktop');
   const handleChange = (value) => {
-    setFontSize({ ...fontSize, [device]: Number(value) });
+    let val = Number(value) || 0;
+    
+    // Validate against min/max limits
+    const limits = minMaxFontSize[device];
+    if (val < limits.min) val = limits.min;
+    if (val > limits.max) val = limits.max;
+    
+    setFontSize({ ...fontSize, [device]: val });
   };
   return (
     <div style={{ marginBottom: 24 }}>
@@ -402,9 +409,6 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                             />
                             {/** Grid Column Selection */}
                             <>
-                                <legend className="custom-label">
-                                    {__('Responsive Grid Settings', 'grid-masonry-for-guten-blocks')}
-                                </legend>
                                 <GridColumnsSetting
                                     columns={{
                                         desktop: gridItemDesktop,
@@ -422,9 +426,6 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                             </>
                             {/** Grid Gutter Selection */}
                             <>
-                                <legend className="custom-label">
-                                    {__('Grid Spacing Settings', 'grid-masonry-for-guten-blocks')}
-                                </legend>
                                 <GridGutterSetting
                                     gutter={{
                                         desktop: gutterDesktop,
@@ -665,13 +666,55 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                 {
                                     item.image && //item.checkboxx &&
                                     <div>
-                                        {/** Image Caption Description Field */}
-                                        <TextareaControl
-                                            placeholder={__('Image Caption', 'grid-masonry-for-guten-blocks')}
-                                            className="gmfgb-mg-image-caption"
-                                            value={(item.image_caption ? item.image_caption : item.image.caption)}
-                                            onChange={(image_caption) => gmfgb_update_repeater_item(item.image, image_caption, item.selectedVideoType, item.video_media, item.popup_url, index)}
-                                        />
+                                        {/** Image Caption Description Field - Only show when Show Caption is enabled */}
+                                        {showCaption && (
+                                            <div>
+                                                <TextareaControl
+                                                    placeholder={__('Image Caption', 'grid-masonry-for-guten-blocks')}
+                                                    className="gmfgb-mg-image-caption"
+                                                    value={(item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption)}
+                                                    onChange={(image_caption) => {
+                                                        // Check word count limit (20 words)
+                                                        const wordCount = image_caption.trim().split(/\s+/).filter(word => word.length > 0).length;
+                                                        if (wordCount <= 20) {
+                                                            gmfgb_update_repeater_item(item.image, image_caption, item.selectedVideoType, item.video_media, item.popup_url, index);
+                                                        } else {
+                                                            // Show warning and truncate to 20 words
+                                                            const words = image_caption.trim().split(/\s+/).filter(word => word.length > 0);
+                                                            const truncatedCaption = words.slice(0, 20).join(' ');
+                                                            gmfgb_update_repeater_item(item.image, truncatedCaption, item.selectedVideoType, item.video_media, item.popup_url, index);
+                                                        }
+                                                    }}
+                                                />
+                                                <div className='gmfgb-mg-image-caption-count'>
+                                                    {(() => {
+                                                        const currentCaption = item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : (item.image && item.image.caption ? item.image.caption : '');
+                                                        const wordCount = currentCaption.trim().split(/\s+/).filter(word => word.length > 0).length;
+                                                        return `${wordCount}/20 ${__('words', 'grid-masonry-for-guten-blocks')}`;
+                                                    })()}
+                                                </div>
+                                                {(() => {
+                                                    const currentCaption = item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : (item.image && item.image.caption ? item.image.caption : '');
+                                                    const wordCount = currentCaption.trim().split(/\s+/).filter(word => word.length > 0).length;
+                                                    if (wordCount > 20) {
+                                                        return (
+                                                            <div style={{ 
+                                                                fontSize: '12px', 
+                                                                color: '#d63638', 
+                                                                marginTop: '4px',
+                                                                padding: '4px 8px',
+                                                                backgroundColor: '#fef7f1',
+                                                                border: '1px solid #d63638',
+                                                                borderRadius: '3px'
+                                                            }}>
+                                                                {__('Image caption is limited to 20 words. Your caption has been truncated.', 'grid-masonry-for-guten-blocks')}
+                                                            </div>
+                                                        );
+                                                    }
+                                                    return null;
+                                                })()}
+                                            </div>
+                                        )}
 
                                         {/** Popup URL Option Field */}
 
@@ -856,7 +899,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                                     ? /** have Video available and also enabled the video popup from the side panel */
                                                     (item.selectedVideoType === 'thirdparty' && item.popup_url) ?
                                                         (
-                                                            <a href={item.popup_url} data={item.selectedVideoType} className="gmfgb-mg-video t" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                            <a href={item.popup_url} data={item.selectedVideoType} className="gmfgb-mg-video t" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
                                                                     <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
                                                                 </svg>
@@ -864,17 +907,17 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                                             </a>
                                                         ) : (
                                                             (item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url)
-                                                                ? <a href={item.video_media.url} data={item.selectedVideoType} className="gmfgb-mg-video s" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                                ? <a href={item.video_media.url} data={item.selectedVideoType} className="gmfgb-mg-video s" data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
                                                                         <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
                                                                     </svg>
                                                                     <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
                                                                 </a>
-                                                                : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                                : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
                                                                     <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
                                                                 </a>
                                                         )
-                                                    : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={(item.image_caption ? item.image_caption : item.image.caption)} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                    : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
                                                         <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
                                                     </a>
                                             }
@@ -884,7 +927,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                         </div>
                                 }
                                 {
-                                    showCaption && (item.image_caption || (item.image && item.image.caption)) && (
+                                    showCaption && ((item.image_caption !== null && item.image_caption !== undefined && item.image_caption !== '') || (item.image && item.image.caption)) && (
                                         <div
                                             className={`image-caption caption-pos-${captionPosition}`}
                                             style={{
@@ -894,7 +937,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                                 color: captionColor || '#fff',
                                             }}
                                         >
-                                            {item.image_caption ? item.image_caption : (item.image && item.image.caption)}
+                                            {item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : (item.image && item.image.caption)}
                                         </div>
                                     )
                                 }

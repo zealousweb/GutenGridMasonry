@@ -24,7 +24,14 @@ export default function GridGutterSetting({ gutter, setGutter }) {
   const [device, setDevice] = useState('desktop');
 
   const handleChange = (value) => {
-    setGutter({ ...gutter, [device]: Number(value) });
+    let val = Number(value) || 0;
+    
+    // Validate against min/max limits
+    const limits = minMax[device];
+    if (val < limits.min) val = limits.min;
+    if (val > limits.max) val = limits.max;
+    
+    setGutter({ ...gutter, [device]: val });
   };
 
   return (
@@ -59,7 +66,7 @@ export default function GridGutterSetting({ gutter, setGutter }) {
           max={minMax[device].max}
           value={gutter[device]}
           onChange={e => handleChange(e.target.value)}
-          style={{ width: 48, textAlign: 'center' }}
+          style={{ width: 55, textAlign: 'center' }}
         />
       </div>
       <div style={{ fontSize: 12, color: '#555', marginTop: 4 }}>

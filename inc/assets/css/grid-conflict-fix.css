@@ -89,7 +89,7 @@
 }
 
 /* Ensure responsive breakpoints don't conflict */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .gmfgb-mg-grid[data-grid-desktop] .gmfgb-mg-media,
     .gmfgb-pg-grid[data-grid-desktop] .wp-block-post {
         /* Ensure proper width calculations don't interfere */
@@ -97,7 +97,7 @@
     }
 }
 
-@media (min-width: 561px) and (max-width: 767px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     .gmfgb-mg-grid[data-grid-tablet] .gmfgb-mg-media,
     .gmfgb-pg-grid[data-grid-tablet] .wp-block-post {
         /* Ensure proper width calculations don't interfere */
@@ -105,7 +105,7 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 560px) {
+@media (max-width: 767px) {
     .gmfgb-mg-grid[data-grid-mobile] .gmfgb-mg-media,
     .gmfgb-pg-grid[data-grid-mobile] .wp-block-post {
         /* Ensure proper width calculations don't interfere */

@@ -24,7 +24,14 @@ export default function GridColumnsSetting({ columns, setColumns }) {
   const [device, setDevice] = useState('desktop');
 
   const handleChange = (value) => {
-    setColumns({ ...columns, [device]: Number(value) });
+    let val = Number(value) || 0;
+    
+    // Validate against min/max limits
+    const limits = minMax[device];
+    if (val < limits.min) val = limits.min;
+    if (val > limits.max) val = limits.max;
+    
+    setColumns({ ...columns, [device]: val });
   };
 
   return (
@@ -59,7 +66,7 @@ export default function GridColumnsSetting({ columns, setColumns }) {
           max={minMax[device].max}
           value={columns[device]}
           onChange={e => handleChange(e.target.value)}
-          style={{ width: 48, textAlign: 'center' }}
+          style={{ width: 55, textAlign: 'center' }}
         />
       </div>
       <div style={{ fontSize: 12, color: '#555', marginTop: 4 }}>
