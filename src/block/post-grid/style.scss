@@ -30,6 +30,7 @@ $columns: 3;
 		margin: 0 !important;
 		padding: 0 !important;
 		width: 100%;
+		height: auto !important;
 		
 		// Ensure the list inside query block uses flexbox
 		ul {
@@ -104,20 +105,20 @@ $columns: 3;
 				
 				// Apply border styles to individual post items with higher specificity
 				.gmfgb-pg-wrap {
-					border-top-width: var(--border-width-tablet-top, 0px) !important;
-					border-right-width: var(--border-width-tablet-right, 0px) !important;
-					border-bottom-width: var(--border-width-tablet-bottom, 0px) !important;
-					border-left-width: var(--border-width-tablet-left, 0px) !important;
-					border-style: var(--border-type-tablet, none) !important;
-					border-color: var(--border-color-tablet, #000000) !important;
-					border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px) !important;
+					border-top-width: var(--border-width-desktop-top, 0px) !important;
+					border-right-width: var(--border-width-desktop-right, 0px) !important;
+					border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
+					border-left-width: var(--border-width-desktop-left, 0px) !important;
+					border-style: var(--border-type-desktop, none) !important;
+					border-color: var(--border-color-desktop, #000000) !important;
+					border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
 					
 					// Only apply border when border type is not 'none'
 					&:not([style*="border-style: none"]) {
-						border-top: var(--border-width-tablet-top, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-						border-right: var(--border-width-tablet-right, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-						border-bottom: var(--border-width-tablet-bottom, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-						border-left: var(--border-width-tablet-left, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+						border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
 					}
 				}
 			}
@@ -138,20 +139,20 @@ $columns: 3;
 				
 				// Apply border styles to individual post items with higher specificity
 				.gmfgb-pg-wrap {
-					border-top-width: var(--border-width-mobile-top, 0px) !important;
-					border-right-width: var(--border-width-mobile-right, 0px) !important;
-					border-bottom-width: var(--border-width-mobile-bottom, 0px) !important;
-					border-left-width: var(--border-width-mobile-left, 0px) !important;
-					border-style: var(--border-type-mobile, none) !important;
-					border-color: var(--border-color-mobile, #000000) !important;
-					border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px) !important;
+					border-top-width: var(--border-width-desktop-top, 0px) !important;
+					border-right-width: var(--border-width-desktop-right, 0px) !important;
+					border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
+					border-left-width: var(--border-width-desktop-left, 0px) !important;
+					border-style: var(--border-type-desktop, none) !important;
+					border-color: var(--border-color-desktop, #000000) !important;
+					border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
 					
 					// Only apply border when border type is not 'none'
 					&:not([style*="border-style: none"]) {
-						border-top: var(--border-width-mobile-top, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-						border-right: var(--border-width-mobile-right, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-						border-bottom: var(--border-width-mobile-bottom, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-						border-left: var(--border-width-mobile-left, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+						border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+						border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
 					}
 				}
 			}
@@ -287,7 +288,7 @@ $columns: 3;
 		position: relative;
 		height: 100%;
         margin: 0 !important;
-        
+        overflow: hidden;
 		&:after {
 			content: "";
 			width: 100%;
@@ -305,15 +306,7 @@ $columns: 3;
 			z-index: 0;
 			pointer-events: none;
 			
-			// Tablet border radius
-			@media (min-width: 561px) and (max-width: 767px) {
-				border-radius: var(--border-radius-tablet, 20px);
-			}
 			
-			// Mobile border radius
-			@media (min-width: 320px) and (max-width: 560px) {
-				border-radius: var(--border-radius-mobile, 20px);
-			}
 		}
 	}
 
@@ -333,15 +326,7 @@ $columns: 3;
 		height: 100%;
 		overflow: hidden;
 		
-		// Tablet border radius
-		@media (min-width: 561px) and (max-width: 767px) {
-			border-radius: var(--border-radius-tablet, 20px);
-		}
-		
-		// Mobile border radius
-		@media (min-width: 320px) and (max-width: 560px) {
-			border-radius: var(--border-radius-mobile, 20px);
-		}
+	
 		
 		img {
 			width: 100% !important;

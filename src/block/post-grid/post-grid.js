@@ -238,52 +238,36 @@ registerBlockType('grid-masonry-for-guten-blocks/post-grid', {
                     <Panel>
                         <PanelBody title="Photo Settings">
                             <BorderSettings
-                                borderWidth={{
-                                    desktop: borderWidthDesktop,
-                                    tablet: borderWidthTablet,
-                                    mobile: borderWidthMobile,
-                                }}
-                                setBorderWidth={({ desktop, tablet, mobile }) => {
+                                borderWidth={borderWidthDesktop}
+                                setBorderWidth={(value) => {
                                     setAttributes({
-                                        borderWidthDesktop: desktop,
-                                        borderWidthTablet: tablet,
-                                        borderWidthMobile: mobile,
+                                        borderWidthDesktop: value,
+                                        borderWidthTablet: value,
+                                        borderWidthMobile: value,
                                     });
                                 }}
-                                borderRadius={{
-                                    desktop: borderRadiusDesktop,
-                                    tablet: borderRadiusTablet,
-                                    mobile: borderRadiusMobile,
-                                }}
-                                setBorderRadius={({ desktop, tablet, mobile }) => {
+                                borderRadius={borderRadiusDesktop}
+                                setBorderRadius={(value) => {
                                     setAttributes({
-                                        borderRadiusDesktop: desktop,
-                                        borderRadiusTablet: tablet,
-                                        borderRadiusMobile: mobile,
+                                        borderRadiusDesktop: value,
+                                        borderRadiusTablet: value,
+                                        borderRadiusMobile: value,
                                     });
                                 }}
-                                borderType={{
-                                    desktop: borderTypeDesktop,
-                                    tablet: borderTypeTablet,
-                                    mobile: borderTypeMobile,
-                                }}
-                                setBorderType={({ desktop, tablet, mobile }) => {
+                                borderType={borderTypeDesktop}
+                                setBorderType={(value) => {
                                     setAttributes({
-                                        borderTypeDesktop: desktop,
-                                        borderTypeTablet: tablet,
-                                        borderTypeMobile: mobile,
+                                        borderTypeDesktop: value,
+                                        borderTypeTablet: value,
+                                        borderTypeMobile: value,
                                     });
                                 }}
-                                borderColor={{
-                                    desktop: borderColorDesktop,
-                                    tablet: borderColorTablet,
-                                    mobile: borderColorMobile,
-                                }}
-                                setBorderColor={({ desktop, tablet, mobile }) => {
+                                borderColor={borderColorDesktop}
+                                setBorderColor={(value) => {
                                     setAttributes({
-                                        borderColorDesktop: desktop,
-                                        borderColorTablet: tablet,
-                                        borderColorMobile: mobile,
+                                        borderColorDesktop: value,
+                                        borderColorTablet: value,
+                                        borderColorMobile: value,
                                     });
                                 }}
                             />

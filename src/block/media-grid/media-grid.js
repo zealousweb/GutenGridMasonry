@@ -45,16 +45,42 @@ const minMaxFontSize = {
 
 function CaptionFontSizeSetting({ fontSize, setFontSize }) {
   const [device, setDevice] = React.useState('desktop');
-  const handleChange = (value) => {
-    let val = Number(value) || 0;
-    
-    // Validate against min/max limits
+  const [inputValue, setInputValue] = React.useState(fontSize[device] || 16);
+  
+  // Update input value when device changes
+  React.useEffect(() => {
+    setInputValue(fontSize[device] || 16);
+  }, [device, fontSize[device]]);
+  
+  const handleSliderChange = (value) => {
+    const val = Number(value) || 0;
+    setInputValue(val);
+    setFontSize({ ...fontSize, [device]: val });
+  };
+  
+  const handleInputChange = (value) => {
+    const val = Number(value) || 0;
+    setInputValue(val);
+  };
+  
+  const handleInputBlur = () => {
+    // Validate and apply on blur
     const limits = minMaxFontSize[device];
+    let val = inputValue;
+    
     if (val < limits.min) val = limits.min;
     if (val > limits.max) val = limits.max;
     
+    setInputValue(val);
     setFontSize({ ...fontSize, [device]: val });
   };
+  
+  const handleInputKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleInputBlur();
+    }
+  };
+  
   return (
     <div style={{ marginBottom: 24 }}>
       <label style={{ fontWeight: 500, marginBottom: 4, display: 'block' }}>
@@ -78,15 +104,17 @@ function CaptionFontSizeSetting({ fontSize, setFontSize }) {
           min={minMaxFontSize[device].min}
           max={minMaxFontSize[device].max}
           value={fontSize[device]}
-          onChange={e => handleChange(e.target.value)}
+          onChange={e => handleSliderChange(e.target.value)}
           style={{ flex: 1 }}
         />
         <input
           type="number"
           min={minMaxFontSize[device].min}
           max={minMaxFontSize[device].max}
-          value={fontSize[device]}
-          onChange={e => handleChange(e.target.value)}
+          value={inputValue}
+          onChange={e => handleInputChange(e.target.value)}
+          onBlur={handleInputBlur}
+          onKeyPress={handleInputKeyPress}
           style={{ width: 48, textAlign: 'center' }}
         />
       </div>
@@ -824,7 +852,22 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
         const { borderColorDesktop } = attributes;
         const { borderColorTablet } = attributes;
         const { borderColorMobile } = attributes;
+        const { selectedSize } = attributes;
         const { showCaption, captionPosition, captionFontSizeDesktop, captionFontSizeTablet, captionFontSizeMobile, captionColor } = attributes;
+        
+        // Helper function to get the correct image URL based on selected size
+        const getImageUrl = (image) => {
+            if (selectedSize && image.sizes && image.sizes[selectedSize]) {
+                return image.sizes[selectedSize].url;
+            }
+            // Fallback to medium size if selected size doesn't exist
+            if (image.sizes && image.sizes.medium) {
+                return image.sizes.medium.url;
+            }
+            // Final fallback to full size
+            return image.sizes.full.url;
+        };
+        
         return (
             /** Structure to show for update data */
             <section {...useBlockProps.save({ 
@@ -889,7 +932,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                 {attributes.items.map((item, index) => (
                     <div className="gmfgb-mg-media" key={index}>
 
-                        {item.image && (
+                        {item.image ? (
                             <>
                                 {
                                     fancyBoxEnabled 
@@ -903,7 +946,7 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
                                                                     <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
                                                                 </svg>
-                                                                <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                                <img src={getImageUrl(item.image)} alt={(item.image.alt ? item.image.alt : '')} />
                                                             </a>
                                                         ) : (
                                                             (item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url)
@@ -911,19 +954,19 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
                                                                         <path id="Icon_awesome-play-circle" data-name="Icon awesome-play-circle" d="M18,.563A17.438,17.438,0,1,0,35.438,18,17.434,17.434,0,0,0,18,.563Zm8.135,19.125-12.375,7.1a1.691,1.691,0,0,1-2.51-1.477V10.688a1.692,1.692,0,0,1,2.51-1.477l12.375,7.523A1.693,1.693,0,0,1,26.135,19.688Z" transform="translate(-0.563 -0.563)" />
                                                                     </svg>
-                                                                    <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                                    <img src={getImageUrl(item.image)} alt={(item.image.alt ? item.image.alt : '')} />
                                                                 </a>
-                                                                : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                                    <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                                : <a href={getImageUrl(item.image)} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                                    <img src={getImageUrl(item.image)} alt={(item.image.alt ? item.image.alt : '')} />
                                                                 </a>
                                                         )
-                                                    : <a href={item.image.sizes.full.url} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
-                                                        <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                                    : <a href={getImageUrl(item.image)} data-fancybox={`video-gallery-${uniqueGallery}`} data-caption={showCaption ? (item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption) : ''} data-fancy-class={`video-gallery-${uniqueGallery}`}>
+                                                        <img src={getImageUrl(item.image)} alt={(item.image.alt ? item.image.alt : '')} />
                                                     </a>
                                             }
                                         </>
                                         : <div>
-                                            <img src={item.image.sizes.full.url} alt={(item.image.alt ? item.image.alt : '')} />
+                                            <img src={getImageUrl(item.image)} alt={(item.image.alt ? item.image.alt : '')} />
                                         </div>
                                 }
                                 {
@@ -942,6 +985,10 @@ registerBlockType('grid-masonry-for-guten-blocks/media-grid', {
                                     )
                                 }
                             </>
+                        ) : (
+                            <div>
+                                <img src={PlaceholderImage} alt="" />
+                            </div>
                         )}
                     </div>
                 ))}

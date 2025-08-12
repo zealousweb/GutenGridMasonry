@@ -948,17 +948,40 @@ function CaptionFontSizeSetting({
   setFontSize
 }) {
   const [device, setDevice] = react__WEBPACK_IMPORTED_MODULE_11___default().useState('desktop');
-  const handleChange = value => {
-    let val = Number(value) || 0;
+  const [inputValue, setInputValue] = react__WEBPACK_IMPORTED_MODULE_11___default().useState(fontSize[device] || 16);
 
-    // Validate against min/max limits
-    const limits = minMaxFontSize[device];
-    if (val < limits.min) val = limits.min;
-    if (val > limits.max) val = limits.max;
+  // Update input value when device changes
+  react__WEBPACK_IMPORTED_MODULE_11___default().useEffect(() => {
+    setInputValue(fontSize[device] || 16);
+  }, [device, fontSize[device]]);
+  const handleSliderChange = value => {
+    const val = Number(value) || 0;
+    setInputValue(val);
     setFontSize({
       ...fontSize,
       [device]: val
     });
+  };
+  const handleInputChange = value => {
+    const val = Number(value) || 0;
+    setInputValue(val);
+  };
+  const handleInputBlur = () => {
+    // Validate and apply on blur
+    const limits = minMaxFontSize[device];
+    let val = inputValue;
+    if (val < limits.min) val = limits.min;
+    if (val > limits.max) val = limits.max;
+    setInputValue(val);
+    setFontSize({
+      ...fontSize,
+      [device]: val
+    });
+  };
+  const handleInputKeyPress = e => {
+    if (e.key === 'Enter') {
+      handleInputBlur();
+    }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
     style: {
@@ -1001,7 +1024,7 @@ function CaptionFontSizeSetting({
         min: minMaxFontSize[device].min,
         max: minMaxFontSize[device].max,
         value: fontSize[device],
-        onChange: e => handleChange(e.target.value),
+        onChange: e => handleSliderChange(e.target.value),
         style: {
           flex: 1
         }
@@ -1009,8 +1032,10 @@ function CaptionFontSizeSetting({
         type: "number",
         min: minMaxFontSize[device].min,
         max: minMaxFontSize[device].max,
-        value: fontSize[device],
-        onChange: e => handleChange(e.target.value),
+        value: inputValue,
+        onChange: e => handleInputChange(e.target.value),
+        onBlur: handleInputBlur,
+        onKeyPress: handleInputKeyPress,
         style: {
           width: 48,
           textAlign: 'center'
@@ -2025,6 +2050,9 @@ function CaptionFontSizeSetting({
       borderColorMobile
     } = attributes;
     const {
+      selectedSize
+    } = attributes;
+    const {
       showCaption,
       captionPosition,
       captionFontSizeDesktop,
@@ -2032,6 +2060,19 @@ function CaptionFontSizeSetting({
       captionFontSizeMobile,
       captionColor
     } = attributes;
+
+    // Helper function to get the correct image URL based on selected size
+    const getImageUrl = image => {
+      if (selectedSize && image.sizes && image.sizes[selectedSize]) {
+        return image.sizes[selectedSize].url;
+      }
+      // Fallback to medium size if selected size doesn't exist
+      if (image.sizes && image.sizes.medium) {
+        return image.sizes.medium.url;
+      }
+      // Final fallback to full size
+      return image.sizes.full.url;
+    };
     return /*#__PURE__*/ /** Structure to show for update data */(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("section", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps.save({
         className: `alignwide gmfgb-mg-grid grid-size-${gridItemDesktop} ${fancyBoxEnabled ? 'hasfancy' : ''}`,
@@ -2094,7 +2135,7 @@ function CaptionFontSizeSetting({
       }),
       children: attributes.items.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
         className: "gmfgb-mg-media",
-        children: item.image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
+        children: item.image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
           children: [fancyBoxEnabled ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
             children: videoOptionEnabled ? /** have Video available and also enabled the video popup from the side panel */
             item.selectedVideoType === 'thirdparty' && item.popup_url ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("a", {
@@ -2116,7 +2157,7 @@ function CaptionFontSizeSetting({
                   transform: "translate(-0.563 -0.563)"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
-                src: item.image.sizes.full.url,
+                src: getImageUrl(item.image),
                 alt: item.image.alt ? item.image.alt : ''
               })]
             }) : item.selectedVideoType === 'mp4' && item.video_media && item.video_media.url ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("a", {
@@ -2138,31 +2179,31 @@ function CaptionFontSizeSetting({
                   transform: "translate(-0.563 -0.563)"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
-                src: item.image.sizes.full.url,
+                src: getImageUrl(item.image),
                 alt: item.image.alt ? item.image.alt : ''
               })]
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
-              href: item.image.sizes.full.url,
+              href: getImageUrl(item.image),
               "data-fancybox": `video-gallery-${uniqueGallery}`,
               "data-caption": showCaption ? item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption : '',
               "data-fancy-class": `video-gallery-${uniqueGallery}`,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
-                src: item.image.sizes.full.url,
+                src: getImageUrl(item.image),
                 alt: item.image.alt ? item.image.alt : ''
               })
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
-              href: item.image.sizes.full.url,
+              href: getImageUrl(item.image),
               "data-fancybox": `video-gallery-${uniqueGallery}`,
               "data-caption": showCaption ? item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image.caption : '',
               "data-fancy-class": `video-gallery-${uniqueGallery}`,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
-                src: item.image.sizes.full.url,
+                src: getImageUrl(item.image),
                 alt: item.image.alt ? item.image.alt : ''
               })
             })
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
-              src: item.image.sizes.full.url,
+              src: getImageUrl(item.image),
               alt: item.image.alt ? item.image.alt : ''
             })
           }), showCaption && (item.image_caption !== null && item.image_caption !== undefined && item.image_caption !== '' || item.image && item.image.caption) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
@@ -2175,6 +2216,11 @@ function CaptionFontSizeSetting({
             },
             children: item.image_caption !== null && item.image_caption !== undefined ? item.image_caption : item.image && item.image.caption
           })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
+            src: _placeholder_image_png__WEBPACK_IMPORTED_MODULE_2__,
+            alt: ""
+          })
         })
       }, index))
     });
@@ -2735,68 +2781,36 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
             title: "Photo Settings",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_media_grid_BorderSettings__WEBPACK_IMPORTED_MODULE_7__["default"], {
-              borderWidth: {
-                desktop: borderWidthDesktop,
-                tablet: borderWidthTablet,
-                mobile: borderWidthMobile
-              },
-              setBorderWidth: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
+              borderWidth: borderWidthDesktop,
+              setBorderWidth: value => {
                 setAttributes({
-                  borderWidthDesktop: desktop,
-                  borderWidthTablet: tablet,
-                  borderWidthMobile: mobile
+                  borderWidthDesktop: value,
+                  borderWidthTablet: value,
+                  borderWidthMobile: value
                 });
               },
-              borderRadius: {
-                desktop: borderRadiusDesktop,
-                tablet: borderRadiusTablet,
-                mobile: borderRadiusMobile
-              },
-              setBorderRadius: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
+              borderRadius: borderRadiusDesktop,
+              setBorderRadius: value => {
                 setAttributes({
-                  borderRadiusDesktop: desktop,
-                  borderRadiusTablet: tablet,
-                  borderRadiusMobile: mobile
+                  borderRadiusDesktop: value,
+                  borderRadiusTablet: value,
+                  borderRadiusMobile: value
                 });
               },
-              borderType: {
-                desktop: borderTypeDesktop,
-                tablet: borderTypeTablet,
-                mobile: borderTypeMobile
-              },
-              setBorderType: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
+              borderType: borderTypeDesktop,
+              setBorderType: value => {
                 setAttributes({
-                  borderTypeDesktop: desktop,
-                  borderTypeTablet: tablet,
-                  borderTypeMobile: mobile
+                  borderTypeDesktop: value,
+                  borderTypeTablet: value,
+                  borderTypeMobile: value
                 });
               },
-              borderColor: {
-                desktop: borderColorDesktop,
-                tablet: borderColorTablet,
-                mobile: borderColorMobile
-              },
-              setBorderColor: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
+              borderColor: borderColorDesktop,
+              setBorderColor: value => {
                 setAttributes({
-                  borderColorDesktop: desktop,
-                  borderColorTablet: tablet,
-                  borderColorMobile: mobile
+                  borderColorDesktop: value,
+                  borderColorTablet: value,
+                  borderColorMobile: value
                 });
               }
             })

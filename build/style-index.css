@@ -29,6 +29,7 @@
   margin: 0 !important;
   padding: 0 !important;
   width: 100%;
+  height: auto !important;
 }
 .gmfgb-pg-grid .wp-block-query ul {
   display: flex !important;
@@ -95,19 +96,19 @@
     flex: 0 0 calc((100% - var(--gap, 20px) * (var(--grid-tablet, 2) - 1)) / var(--grid-tablet, 2)) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap {
-    border-top-width: var(--border-width-tablet-top, 0px) !important;
-    border-right-width: var(--border-width-tablet-right, 0px) !important;
-    border-bottom-width: var(--border-width-tablet-bottom, 0px) !important;
-    border-left-width: var(--border-width-tablet-left, 0px) !important;
-    border-style: var(--border-type-tablet, none) !important;
-    border-color: var(--border-color-tablet, #000000) !important;
-    border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px) !important;
+    border-top-width: var(--border-width-desktop-top, 0px) !important;
+    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
+    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-style: var(--border-type-desktop, none) !important;
+    border-color: var(--border-color-desktop, #000000) !important;
+    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
-    border-top: var(--border-width-tablet-top, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-    border-right: var(--border-width-tablet-right, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-    border-bottom: var(--border-width-tablet-bottom, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-    border-left: var(--border-width-tablet-left, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+    border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
 }
 @media (max-width: 767px) {
@@ -126,19 +127,19 @@
     flex: 0 0 calc((100% - var(--gap, 20px) * (var(--grid-mobile, 1) - 1)) / var(--grid-mobile, 1)) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap {
-    border-top-width: var(--border-width-mobile-top, 0px) !important;
-    border-right-width: var(--border-width-mobile-right, 0px) !important;
-    border-bottom-width: var(--border-width-mobile-bottom, 0px) !important;
-    border-left-width: var(--border-width-mobile-left, 0px) !important;
-    border-style: var(--border-type-mobile, none) !important;
-    border-color: var(--border-color-mobile, #000000) !important;
-    border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px) !important;
+    border-top-width: var(--border-width-desktop-top, 0px) !important;
+    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
+    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-style: var(--border-type-desktop, none) !important;
+    border-color: var(--border-color-desktop, #000000) !important;
+    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
-    border-top: var(--border-width-mobile-top, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-    border-right: var(--border-width-mobile-right, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-    border-bottom: var(--border-width-mobile-bottom, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-    border-left: var(--border-width-mobile-left, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+    border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
 }
 @media (min-width: 1024px) {
@@ -310,6 +311,7 @@
   position: relative;
   height: 100%;
   margin: 0 !important;
+  overflow: hidden;
 }
 .gmfgb-pg-grid .gmfgb-pg-wrap:after {
   content: "";
@@ -324,16 +326,6 @@
   z-index: 0;
   pointer-events: none;
 }
-@media (min-width: 561px) and (max-width: 767px) {
-  .gmfgb-pg-grid .gmfgb-pg-wrap:after {
-    border-radius: var(--border-radius-tablet, 20px);
-  }
-}
-@media (min-width: 320px) and (max-width: 560px) {
-  .gmfgb-pg-grid .gmfgb-pg-wrap:after {
-    border-radius: var(--border-radius-mobile, 20px);
-  }
-}
 .gmfgb-pg-grid .gmfgb-pg-content {
   z-index: 1;
   position: relative;
@@ -345,16 +337,6 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-}
-@media (min-width: 561px) and (max-width: 767px) {
-  .gmfgb-pg-grid .gmfgb-pg-featured-img {
-    border-radius: var(--border-radius-tablet, 20px);
-  }
-}
-@media (min-width: 320px) and (max-width: 560px) {
-  .gmfgb-pg-grid .gmfgb-pg-featured-img {
-    border-radius: var(--border-radius-mobile, 20px);
-  }
 }
 .gmfgb-pg-grid .gmfgb-pg-featured-img img {
   width: 100% !important;
@@ -998,13 +980,13 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
   }
 }
 @media (min-width: 561px) and (max-width: 767px) {
-  .image-caption.caption-pos-bottom[data-caption-font-tablet] {
+  .image-caption.caption-pos-bottom[data-caption-font-desktop] {
     font-size: unset;
     font-size: 16px;
   }
 }
 @media (min-width: 320px) and (max-width: 560px) {
-  .image-caption.caption-pos-bottom[data-caption-font-mobile] {
+  .image-caption.caption-pos-bottom[data-caption-font-desktop] {
     font-size: unset;
     font-size: 16px;
   }
@@ -1040,28 +1022,28 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
 }
 @media (min-width: 561px) and (max-width: 767px) {
   .gmfgb-mg-media {
-    border-radius: var(--border-radius-tablet-top) var(--border-radius-tablet-right) var(--border-radius-tablet-bottom) var(--border-radius-tablet-left);
+    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
   }
-  .gmfgb-mg-media:not([data-border-type-tablet=none]) {
-    border-top-width: var(--border-width-tablet-top, 0px);
-    border-right-width: var(--border-width-tablet-right, 0px);
-    border-bottom-width: var(--border-width-tablet-bottom, 0px);
-    border-left-width: var(--border-width-tablet-left, 0px);
-    border-style: var(--border-type-tablet, none);
-    border-color: var(--border-color-tablet, #000);
+  .gmfgb-mg-media:not([data-border-type-desktop=none]) {
+    border-top-width: var(--border-width-desktop-top, 0px);
+    border-right-width: var(--border-width-desktop-right, 0px);
+    border-bottom-width: var(--border-width-desktop-bottom, 0px);
+    border-left-width: var(--border-width-desktop-left, 0px);
+    border-style: var(--border-type-desktop, none);
+    border-color: var(--border-color-desktop, #000);
   }
 }
 @media (min-width: 320px) and (max-width: 560px) {
   .gmfgb-mg-media {
-    border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px);
+    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
   }
-  .gmfgb-mg-media:not([data-border-type-mobile=none]) {
-    border-top-width: var(--border-width-mobile-top, 0px);
-    border-right-width: var(--border-width-mobile-right, 0px);
-    border-bottom-width: var(--border-width-mobile-bottom, 0px);
-    border-left-width: var(--border-width-mobile-left, 0px);
-    border-style: var(--border-type-mobile, none);
-    border-color: var(--border-color-mobile, #000);
+  .gmfgb-mg-media:not([data-border-type-desktop=none]) {
+    border-top-width: var(--border-width-desktop-top, 0px);
+    border-right-width: var(--border-width-desktop-right, 0px);
+    border-bottom-width: var(--border-width-desktop-bottom, 0px);
+    border-left-width: var(--border-width-desktop-left, 0px);
+    border-style: var(--border-type-desktop, none);
+    border-color: var(--border-color-desktop, #000);
   }
 }
 
@@ -1197,14 +1179,14 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
   .image-caption.caption-pos-top,
   .image-caption.caption-pos-center,
   .image-caption.caption-pos-bottom {
-    font-size: var(--caption-font-size-tablet, 16px);
+    font-size: var(--caption-font-size-desktop, 16px);
   }
 }
 @media (min-width: 320px) and (max-width: 560px) {
   .image-caption.caption-pos-top,
   .image-caption.caption-pos-center,
   .image-caption.caption-pos-bottom {
-    font-size: var(--caption-font-size-mobile, 16px);
+    font-size: var(--caption-font-size-desktop, 16px);
   }
 }
 
