@@ -140,38 +140,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/desktop.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/tablet.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/link.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/link-off.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/link.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/link-off.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
-const mobileIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-  width: "20",
-  height: "20",
-  viewBox: "0 0 24 24",
-  fill: "currentColor",
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-    d: "M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"
-  })
-});
-const deviceOptions = [{
-  key: 'desktop',
-  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__["default"],
-  label: 'Desktop'
-}, {
-  key: 'tablet',
-  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
-  label: 'Tablet'
-}, {
-  key: 'mobile',
-  icon: mobileIcon,
-  label: 'Mobile'
-}];
 const borderTypeOptions = [{
   label: 'None',
   value: 'none'
@@ -201,18 +177,8 @@ const borderTypeOptions = [{
   value: 'outset'
 }];
 const minMax = {
-  desktop: {
-    min: 0,
-    max: 50
-  },
-  tablet: {
-    min: 0,
-    max: 40
-  },
-  mobile: {
-    min: 0,
-    max: 30
-  }
+  min: 0,
+  max: 50
 };
 function BorderSettings({
   borderWidth,
@@ -224,13 +190,12 @@ function BorderSettings({
   borderColor,
   setBorderColor
 }) {
-  const [device, setDevice] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('desktop');
   const [isLinkedWidth, setIsLinkedWidth] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [isLinkedRadius, setIsLinkedRadius] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
 
   // Helper to ensure object format
-  const ensureBorderObject = (borderData, device) => {
-    if (!borderData || !borderData[device]) {
+  const ensureBorderObject = borderData => {
+    if (!borderData) {
       return {
         top: 0,
         right: 0,
@@ -238,22 +203,21 @@ function BorderSettings({
         left: 0
       };
     }
-    const deviceData = borderData[device];
-    if (typeof deviceData === 'number') {
+    if (typeof borderData === 'number') {
       return {
-        top: deviceData,
-        right: deviceData,
-        bottom: deviceData,
-        left: deviceData
+        top: borderData,
+        right: borderData,
+        bottom: borderData,
+        left: borderData
       };
     }
-    if (typeof deviceData === 'object') {
-      var _deviceData$top, _deviceData$right, _deviceData$bottom, _deviceData$left;
+    if (typeof borderData === 'object') {
+      var _borderData$top, _borderData$right, _borderData$bottom, _borderData$left;
       return {
-        top: (_deviceData$top = deviceData.top) !== null && _deviceData$top !== void 0 ? _deviceData$top : 0,
-        right: (_deviceData$right = deviceData.right) !== null && _deviceData$right !== void 0 ? _deviceData$right : 0,
-        bottom: (_deviceData$bottom = deviceData.bottom) !== null && _deviceData$bottom !== void 0 ? _deviceData$bottom : 0,
-        left: (_deviceData$left = deviceData.left) !== null && _deviceData$left !== void 0 ? _deviceData$left : 0
+        top: (_borderData$top = borderData.top) !== null && _borderData$top !== void 0 ? _borderData$top : 0,
+        right: (_borderData$right = borderData.right) !== null && _borderData$right !== void 0 ? _borderData$right : 0,
+        bottom: (_borderData$bottom = borderData.bottom) !== null && _borderData$bottom !== void 0 ? _borderData$bottom : 0,
+        left: (_borderData$left = borderData.left) !== null && _borderData$left !== void 0 ? _borderData$left : 0
       };
     }
     return {
@@ -265,88 +229,68 @@ function BorderSettings({
   };
 
   // Border Width Handlers
-  const currentBorderWidth = ensureBorderObject(borderWidth, device);
+  const currentBorderWidth = ensureBorderObject(borderWidth);
   const handleBorderWidthChange = (side, value) => {
     let val = Number(value) || 0;
 
     // Validate against min/max limits
-    const limits = minMax[device];
-    if (val < limits.min) val = limits.min;
-    if (val > limits.max) val = limits.max;
+    if (val < minMax.min) val = minMax.min;
+    if (val > minMax.max) val = minMax.max;
     let newBorderWidth = {
-      ...borderWidth
-    };
-    let obj = {
       ...currentBorderWidth
     };
     if (isLinkedWidth) {
-      obj = {
+      newBorderWidth = {
         top: val,
         right: val,
         bottom: val,
         left: val
       };
     } else {
-      obj[side] = val;
+      newBorderWidth[side] = val;
     }
-    newBorderWidth[device] = obj;
     setBorderWidth(newBorderWidth);
   };
 
   // Border Radius Handlers
-  const currentBorderRadius = ensureBorderObject(borderRadius, device);
+  const currentBorderRadius = ensureBorderObject(borderRadius);
   const handleBorderRadiusChange = (side, value) => {
     let val = Number(value) || 0;
 
     // Validate against min/max limits
-    const limits = minMax[device];
-    if (val < limits.min) val = limits.min;
-    if (val > limits.max) val = limits.max;
+    if (val < minMax.min) val = minMax.min;
+    if (val > minMax.max) val = minMax.max;
     let newBorderRadius = {
-      ...borderRadius
-    };
-    let obj = {
       ...currentBorderRadius
     };
     if (isLinkedRadius) {
-      obj = {
+      newBorderRadius = {
         top: val,
         right: val,
         bottom: val,
         left: val
       };
     } else {
-      obj[side] = val;
+      newBorderRadius[side] = val;
     }
-    newBorderRadius[device] = obj;
     setBorderRadius(newBorderRadius);
   };
   const handleBorderTypeChange = value => {
-    setBorderType({
-      ...borderType,
-      [device]: value
-    });
+    setBorderType(value);
     if (value === 'none') {
-      let newBorderWidth = {
-        ...borderWidth
-      };
-      newBorderWidth[device] = {
+      setBorderWidth({
         top: 0,
         right: 0,
         bottom: 0,
         left: 0
-      };
-      setBorderWidth(newBorderWidth);
+      });
     }
   };
   const handleBorderColorChange = value => {
-    setBorderColor({
-      ...borderColor,
-      [device]: value
-    });
+    setBorderColor(value);
   };
-  const showBorderColor = borderType[device] && borderType[device] !== 'none';
-  const isBorderTypeNone = borderType[device] === 'none';
+  const showBorderColor = borderType && borderType !== 'none';
+  const isBorderTypeNone = borderType === 'none';
 
   // Layout for Elementor-style controls
   const renderFourInputRow = (obj, onChange, isLinked, setIsLinked, disabled = false, settingType = '') => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -361,8 +305,8 @@ function BorderSettings({
       },
       children: [['top', 'right', 'bottom', 'left'].map((side, idx) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
         type: "number",
-        min: minMax[device].min,
-        max: minMax[device].max,
+        min: minMax.min,
+        max: minMax.max,
         value: obj[side],
         onChange: e => onChange(side, e.target.value),
         style: {
@@ -381,7 +325,7 @@ function BorderSettings({
         disabled: disabled
       }, side)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
         isSmall: true,
-        icon: isLinked ? _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__["default"] : _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"],
+        icon: isLinked ? _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__["default"] : _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
         label: isLinked ? 'Unlink values' : 'Link values',
         onClick: () => setIsLinked(!isLinked),
         style: {
@@ -437,34 +381,14 @@ function BorderSettings({
         color: '#555',
         marginTop: 4
       },
-      children: [deviceOptions.find(opt => opt.key === device).label, " ", settingType, ": ", isLinked ? `${obj.top}px` : `${obj.top}px, ${obj.right}px, ${obj.bottom}px, ${obj.left}px`]
+      children: [settingType, ": ", isLinked ? `${obj.top}px` : `${obj.top}px, ${obj.right}px, ${obj.bottom}px, ${obj.left}px`]
     })]
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     style: {
       marginBottom: 24
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "gmfgb-mg-border-setting",
-      style: {
-        display: 'flex',
-        gap: 8,
-        marginBottom: 8
-      },
-      children: deviceOptions.map(({
-        key,
-        icon,
-        label
-      }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-        isPrimary: device === key,
-        icon: icon,
-        label: label,
-        onClick: () => setDevice(key),
-        style: {
-          padding: 4
-        }
-      }, key))
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       style: {
         marginBottom: 16
       },
@@ -476,7 +400,7 @@ function BorderSettings({
         },
         children: "Border Type"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        value: borderType[device],
+        value: borderType,
         options: borderTypeOptions,
         onChange: handleBorderTypeChange
       })]
@@ -492,7 +416,7 @@ function BorderSettings({
         },
         children: "Border Color"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
-        value: borderColor[device],
+        value: borderColor,
         onChange: handleBorderColorChange,
         enableAlpha: true,
         colors: [{
@@ -1135,8 +1059,8 @@ function CaptionFontSizeSetting({
       type: 'number',
       default: 20
     },
-    /** Border width for Desktop */
-    borderWidthDesktop: {
+    /** Border width */
+    borderWidth: {
       type: 'object',
       default: {
         top: 0,
@@ -1145,8 +1069,8 @@ function CaptionFontSizeSetting({
         left: 0
       }
     },
-    /** Border width for Tablet */
-    borderWidthTablet: {
+    /** Border radius */
+    borderRadius: {
       type: 'object',
       default: {
         top: 0,
@@ -1155,73 +1079,13 @@ function CaptionFontSizeSetting({
         left: 0
       }
     },
-    /** Border width for Mobile */
-    borderWidthMobile: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border radius for Desktop */
-    borderRadiusDesktop: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border radius for Tablet */
-    borderRadiusTablet: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border radius for Mobile */
-    borderRadiusMobile: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border type for Desktop */
-    borderTypeDesktop: {
+    /** Border type */
+    borderType: {
       type: 'string',
       default: 'none'
     },
-    /** Border type for Tablet */
-    borderTypeTablet: {
-      type: 'string',
-      default: 'none'
-    },
-    /** Border type for Mobile */
-    borderTypeMobile: {
-      type: 'string',
-      default: 'none'
-    },
-    /** Border color for Desktop */
-    borderColorDesktop: {
-      type: 'string',
-      default: '#000000'
-    },
-    /** Border color for Tablet */
-    borderColorTablet: {
-      type: 'string',
-      default: '#000000'
-    },
-    /** Border color for Mobile */
-    borderColorMobile: {
+    /** Border color */
+    borderColor: {
       type: 'string',
       default: '#000000'
     },
@@ -1302,40 +1166,16 @@ function CaptionFontSizeSetting({
       gutterMobile
     } = attributes;
     const {
-      borderWidthDesktop
+      borderWidth
     } = attributes;
     const {
-      borderWidthTablet
+      borderRadius
     } = attributes;
     const {
-      borderWidthMobile
+      borderType
     } = attributes;
     const {
-      borderRadiusDesktop
-    } = attributes;
-    const {
-      borderRadiusTablet
-    } = attributes;
-    const {
-      borderRadiusMobile
-    } = attributes;
-    const {
-      borderTypeDesktop
-    } = attributes;
-    const {
-      borderTypeTablet
-    } = attributes;
-    const {
-      borderTypeMobile
-    } = attributes;
-    const {
-      borderColorDesktop
-    } = attributes;
-    const {
-      borderColorTablet
-    } = attributes;
-    const {
-      borderColorMobile
+      borderColor
     } = attributes;
     const {
       uniqueGallery
@@ -1493,70 +1333,42 @@ function CaptionFontSizeSetting({
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
             title: "Photo Settings",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_BorderSettings__WEBPACK_IMPORTED_MODULE_10__["default"], {
-              borderWidth: {
-                desktop: borderWidthDesktop,
-                tablet: borderWidthTablet,
-                mobile: borderWidthMobile
-              },
+              borderWidth: borderWidth,
               setBorderWidth: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
-                setAttributes({
-                  borderWidthDesktop: desktop,
-                  borderWidthTablet: tablet,
-                  borderWidthMobile: mobile
-                });
-              },
-              borderRadius: {
-                desktop: borderRadiusDesktop,
-                tablet: borderRadiusTablet,
-                mobile: borderRadiusMobile
-              },
+                top,
+                right,
+                bottom,
+                left
+              }) => setAttributes({
+                borderWidth: {
+                  top,
+                  right,
+                  bottom,
+                  left
+                }
+              }),
+              borderRadius: borderRadius,
               setBorderRadius: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
-                setAttributes({
-                  borderRadiusDesktop: desktop,
-                  borderRadiusTablet: tablet,
-                  borderRadiusMobile: mobile
-                });
-              },
-              borderType: {
-                desktop: borderTypeDesktop,
-                tablet: borderTypeTablet,
-                mobile: borderTypeMobile
-              },
-              setBorderType: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
-                setAttributes({
-                  borderTypeDesktop: desktop,
-                  borderTypeTablet: tablet,
-                  borderTypeMobile: mobile
-                });
-              },
-              borderColor: {
-                desktop: borderColorDesktop,
-                tablet: borderColorTablet,
-                mobile: borderColorMobile
-              },
-              setBorderColor: ({
-                desktop,
-                tablet,
-                mobile
-              }) => {
-                setAttributes({
-                  borderColorDesktop: desktop,
-                  borderColorTablet: tablet,
-                  borderColorMobile: mobile
-                });
-              }
+                top,
+                right,
+                bottom,
+                left
+              }) => setAttributes({
+                borderRadius: {
+                  top,
+                  right,
+                  bottom,
+                  left
+                }
+              }),
+              borderType: borderType,
+              setBorderType: value => setAttributes({
+                borderType: value
+              }),
+              borderColor: borderColor,
+              setBorderColor: value => setAttributes({
+                borderColor: value
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
               style: {
                 marginTop: 24
@@ -1673,18 +1485,18 @@ function CaptionFontSizeSetting({
           'data-gutter-desktop': gutterDesktop,
           'data-gutter-tablet': gutterTablet,
           'data-gutter-mobile': gutterMobile,
-          'data-border-width-desktop': JSON.stringify(borderWidthDesktop),
-          'data-border-width-tablet': JSON.stringify(borderWidthTablet),
-          'data-border-width-mobile': JSON.stringify(borderWidthMobile),
-          'data-border-radius-desktop': JSON.stringify(borderRadiusDesktop),
-          'data-border-radius-tablet': JSON.stringify(borderRadiusTablet),
-          'data-border-radius-mobile': JSON.stringify(borderRadiusMobile),
-          'data-border-type-desktop': borderTypeDesktop,
-          'data-border-type-tablet': borderTypeTablet,
-          'data-border-type-mobile': borderTypeMobile,
-          'data-border-color-desktop': borderColorDesktop,
-          'data-border-color-tablet': borderColorTablet,
-          'data-border-color-mobile': borderColorMobile,
+          'data-border-width-desktop': JSON.stringify(borderWidth),
+          'data-border-width-tablet': JSON.stringify(borderWidth),
+          'data-border-width-mobile': JSON.stringify(borderWidth),
+          'data-border-radius-desktop': JSON.stringify(borderRadius),
+          'data-border-radius-tablet': JSON.stringify(borderRadius),
+          'data-border-radius-mobile': JSON.stringify(borderRadius),
+          'data-border-type-desktop': borderType,
+          'data-border-type-tablet': borderType,
+          'data-border-type-mobile': borderType,
+          'data-border-color-desktop': borderColor,
+          'data-border-color-tablet': borderColor,
+          'data-border-color-mobile': borderColor,
           style: {
             '--grid-desktop': gridItemDesktop,
             '--grid-tablet': gridItemTablet,
@@ -1692,36 +1504,36 @@ function CaptionFontSizeSetting({
             '--gutter-desktop': gutterDesktop + 'px',
             '--gutter-tablet': gutterTablet + 'px',
             '--gutter-mobile': gutterMobile + 'px',
-            '--border-width-desktop-top': (borderWidthDesktop?.top || 0) + 'px',
-            '--border-width-desktop-right': (borderWidthDesktop?.right || 0) + 'px',
-            '--border-width-desktop-bottom': (borderWidthDesktop?.bottom || 0) + 'px',
-            '--border-width-desktop-left': (borderWidthDesktop?.left || 0) + 'px',
-            '--border-width-tablet-top': (borderWidthTablet?.top || 0) + 'px',
-            '--border-width-tablet-right': (borderWidthTablet?.right || 0) + 'px',
-            '--border-width-tablet-bottom': (borderWidthTablet?.bottom || 0) + 'px',
-            '--border-width-tablet-left': (borderWidthTablet?.left || 0) + 'px',
-            '--border-width-mobile-top': (borderWidthMobile?.top || 0) + 'px',
-            '--border-width-mobile-right': (borderWidthMobile?.right || 0) + 'px',
-            '--border-width-mobile-bottom': (borderWidthMobile?.bottom || 0) + 'px',
-            '--border-width-mobile-left': (borderWidthMobile?.left || 0) + 'px',
-            '--border-radius-desktop-top': (borderRadiusDesktop?.top || 0) + 'px',
-            '--border-radius-desktop-right': (borderRadiusDesktop?.right || 0) + 'px',
-            '--border-radius-desktop-bottom': (borderRadiusDesktop?.bottom || 0) + 'px',
-            '--border-radius-desktop-left': (borderRadiusDesktop?.left || 0) + 'px',
-            '--border-radius-tablet-top': (borderRadiusTablet?.top || 0) + 'px',
-            '--border-radius-tablet-right': (borderRadiusTablet?.right || 0) + 'px',
-            '--border-radius-tablet-bottom': (borderRadiusTablet?.bottom || 0) + 'px',
-            '--border-radius-tablet-left': (borderRadiusTablet?.left || 0) + 'px',
-            '--border-radius-mobile-top': (borderRadiusMobile?.top || 0) + 'px',
-            '--border-radius-mobile-right': (borderRadiusMobile?.right || 0) + 'px',
-            '--border-radius-mobile-bottom': (borderRadiusMobile?.bottom || 0) + 'px',
-            '--border-radius-mobile-left': (borderRadiusMobile?.left || 0) + 'px',
-            '--border-type-desktop': borderTypeDesktop,
-            '--border-type-tablet': borderTypeTablet,
-            '--border-type-mobile': borderTypeMobile,
-            '--border-color-desktop': borderColorDesktop,
-            '--border-color-tablet': borderColorTablet,
-            '--border-color-mobile': borderColorMobile
+            '--border-width-desktop-top': (borderWidth?.top || 0) + 'px',
+            '--border-width-desktop-right': (borderWidth?.right || 0) + 'px',
+            '--border-width-desktop-bottom': (borderWidth?.bottom || 0) + 'px',
+            '--border-width-desktop-left': (borderWidth?.left || 0) + 'px',
+            '--border-width-tablet-top': (borderWidth?.top || 0) + 'px',
+            '--border-width-tablet-right': (borderWidth?.right || 0) + 'px',
+            '--border-width-tablet-bottom': (borderWidth?.bottom || 0) + 'px',
+            '--border-width-tablet-left': (borderWidth?.left || 0) + 'px',
+            '--border-width-mobile-top': (borderWidth?.top || 0) + 'px',
+            '--border-width-mobile-right': (borderWidth?.right || 0) + 'px',
+            '--border-width-mobile-bottom': (borderWidth?.bottom || 0) + 'px',
+            '--border-width-mobile-left': (borderWidth?.left || 0) + 'px',
+            '--border-radius-desktop-top': (borderRadius?.top || 0) + 'px',
+            '--border-radius-desktop-right': (borderRadius?.right || 0) + 'px',
+            '--border-radius-desktop-bottom': (borderRadius?.bottom || 0) + 'px',
+            '--border-radius-desktop-left': (borderRadius?.left || 0) + 'px',
+            '--border-radius-tablet-top': (borderRadius?.top || 0) + 'px',
+            '--border-radius-tablet-right': (borderRadius?.right || 0) + 'px',
+            '--border-radius-tablet-bottom': (borderRadius?.bottom || 0) + 'px',
+            '--border-radius-tablet-left': (borderRadius?.left || 0) + 'px',
+            '--border-radius-mobile-top': (borderRadius?.top || 0) + 'px',
+            '--border-radius-mobile-right': (borderRadius?.right || 0) + 'px',
+            '--border-radius-mobile-bottom': (borderRadius?.bottom || 0) + 'px',
+            '--border-radius-mobile-left': (borderRadius?.left || 0) + 'px',
+            '--border-type-desktop': borderType,
+            '--border-type-tablet': borderType,
+            '--border-type-mobile': borderType,
+            '--border-color-desktop': borderColor,
+            '--border-color-tablet': borderColor,
+            '--border-color-mobile': borderColor
           }
         }),
         children: [attributes.items.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
@@ -2014,40 +1826,16 @@ function CaptionFontSizeSetting({
       gutterMobile
     } = attributes;
     const {
-      borderWidthDesktop
+      borderWidth
     } = attributes;
     const {
-      borderWidthTablet
+      borderRadius
     } = attributes;
     const {
-      borderWidthMobile
+      borderType
     } = attributes;
     const {
-      borderRadiusDesktop
-    } = attributes;
-    const {
-      borderRadiusTablet
-    } = attributes;
-    const {
-      borderRadiusMobile
-    } = attributes;
-    const {
-      borderTypeDesktop
-    } = attributes;
-    const {
-      borderTypeTablet
-    } = attributes;
-    const {
-      borderTypeMobile
-    } = attributes;
-    const {
-      borderColorDesktop
-    } = attributes;
-    const {
-      borderColorTablet
-    } = attributes;
-    const {
-      borderColorMobile
+      borderColor
     } = attributes;
     const {
       selectedSize
@@ -2082,18 +1870,18 @@ function CaptionFontSizeSetting({
         'data-gutter-desktop': gutterDesktop,
         'data-gutter-tablet': gutterTablet,
         'data-gutter-mobile': gutterMobile,
-        'data-border-width-desktop': JSON.stringify(borderWidthDesktop),
-        'data-border-width-tablet': JSON.stringify(borderWidthTablet),
-        'data-border-width-mobile': JSON.stringify(borderWidthMobile),
-        'data-border-radius-desktop': JSON.stringify(borderRadiusDesktop),
-        'data-border-radius-tablet': JSON.stringify(borderRadiusTablet),
-        'data-border-radius-mobile': JSON.stringify(borderRadiusMobile),
-        'data-border-type-desktop': borderTypeDesktop,
-        'data-border-type-tablet': borderTypeTablet,
-        'data-border-type-mobile': borderTypeMobile,
-        'data-border-color-desktop': borderColorDesktop,
-        'data-border-color-tablet': borderColorTablet,
-        'data-border-color-mobile': borderColorMobile,
+        'data-border-width-desktop': JSON.stringify(borderWidth),
+        'data-border-width-tablet': JSON.stringify(borderWidth),
+        'data-border-width-mobile': JSON.stringify(borderWidth),
+        'data-border-radius-desktop': JSON.stringify(borderRadius),
+        'data-border-radius-tablet': JSON.stringify(borderRadius),
+        'data-border-radius-mobile': JSON.stringify(borderRadius),
+        'data-border-type-desktop': borderType,
+        'data-border-type-tablet': borderType,
+        'data-border-type-mobile': borderType,
+        'data-border-color-desktop': borderColor,
+        'data-border-color-tablet': borderColor,
+        'data-border-color-mobile': borderColor,
         style: {
           '--grid-desktop': gridItemDesktop,
           '--grid-tablet': gridItemTablet,
@@ -2101,36 +1889,36 @@ function CaptionFontSizeSetting({
           '--gutter-desktop': gutterDesktop + 'px',
           '--gutter-tablet': gutterTablet + 'px',
           '--gutter-mobile': gutterMobile + 'px',
-          '--border-width-desktop-top': (borderWidthDesktop?.top || 0) + 'px',
-          '--border-width-desktop-right': (borderWidthDesktop?.right || 0) + 'px',
-          '--border-width-desktop-bottom': (borderWidthDesktop?.bottom || 0) + 'px',
-          '--border-width-desktop-left': (borderWidthDesktop?.left || 0) + 'px',
-          '--border-width-tablet-top': (borderWidthTablet?.top || 0) + 'px',
-          '--border-width-tablet-right': (borderWidthTablet?.right || 0) + 'px',
-          '--border-width-tablet-bottom': (borderWidthTablet?.bottom || 0) + 'px',
-          '--border-width-tablet-left': (borderWidthTablet?.left || 0) + 'px',
-          '--border-width-mobile-top': (borderWidthMobile?.top || 0) + 'px',
-          '--border-width-mobile-right': (borderWidthMobile?.right || 0) + 'px',
-          '--border-width-mobile-bottom': (borderWidthMobile?.bottom || 0) + 'px',
-          '--border-width-mobile-left': (borderWidthMobile?.left || 0) + 'px',
-          '--border-radius-desktop-top': (borderRadiusDesktop?.top || 0) + 'px',
-          '--border-radius-desktop-right': (borderRadiusDesktop?.right || 0) + 'px',
-          '--border-radius-desktop-bottom': (borderRadiusDesktop?.bottom || 0) + 'px',
-          '--border-radius-desktop-left': (borderRadiusDesktop?.left || 0) + 'px',
-          '--border-radius-tablet-top': (borderRadiusTablet?.top || 0) + 'px',
-          '--border-radius-tablet-right': (borderRadiusTablet?.right || 0) + 'px',
-          '--border-radius-tablet-bottom': (borderRadiusTablet?.bottom || 0) + 'px',
-          '--border-radius-tablet-left': (borderRadiusTablet?.left || 0) + 'px',
-          '--border-radius-mobile-top': (borderRadiusMobile?.top || 0) + 'px',
-          '--border-radius-mobile-right': (borderRadiusMobile?.right || 0) + 'px',
-          '--border-radius-mobile-bottom': (borderRadiusMobile?.bottom || 0) + 'px',
-          '--border-radius-mobile-left': (borderRadiusMobile?.left || 0) + 'px',
-          '--border-type-desktop': borderTypeDesktop,
-          '--border-type-tablet': borderTypeTablet,
-          '--border-type-mobile': borderTypeMobile,
-          '--border-color-desktop': borderColorDesktop,
-          '--border-color-tablet': borderColorTablet,
-          '--border-color-mobile': borderColorMobile
+          '--border-width-desktop-top': (borderWidth?.top || 0) + 'px',
+          '--border-width-desktop-right': (borderWidth?.right || 0) + 'px',
+          '--border-width-desktop-bottom': (borderWidth?.bottom || 0) + 'px',
+          '--border-width-desktop-left': (borderWidth?.left || 0) + 'px',
+          '--border-width-tablet-top': (borderWidth?.top || 0) + 'px',
+          '--border-width-tablet-right': (borderWidth?.right || 0) + 'px',
+          '--border-width-tablet-bottom': (borderWidth?.bottom || 0) + 'px',
+          '--border-width-tablet-left': (borderWidth?.left || 0) + 'px',
+          '--border-width-mobile-top': (borderWidth?.top || 0) + 'px',
+          '--border-width-mobile-right': (borderWidth?.right || 0) + 'px',
+          '--border-width-mobile-bottom': (borderWidth?.bottom || 0) + 'px',
+          '--border-width-mobile-left': (borderWidth?.left || 0) + 'px',
+          '--border-radius-desktop-top': (borderRadius?.top || 0) + 'px',
+          '--border-radius-desktop-right': (borderRadius?.right || 0) + 'px',
+          '--border-radius-desktop-bottom': (borderRadius?.bottom || 0) + 'px',
+          '--border-radius-desktop-left': (borderRadius?.left || 0) + 'px',
+          '--border-radius-tablet-top': (borderRadius?.top || 0) + 'px',
+          '--border-radius-tablet-right': (borderRadius?.right || 0) + 'px',
+          '--border-radius-tablet-bottom': (borderRadius?.bottom || 0) + 'px',
+          '--border-radius-tablet-left': (borderRadius?.left || 0) + 'px',
+          '--border-radius-mobile-top': (borderRadius?.top || 0) + 'px',
+          '--border-radius-mobile-right': (borderRadius?.right || 0) + 'px',
+          '--border-radius-mobile-bottom': (borderRadius?.bottom || 0) + 'px',
+          '--border-radius-mobile-left': (borderRadius?.left || 0) + 'px',
+          '--border-type-desktop': borderType,
+          '--border-type-tablet': borderType,
+          '--border-type-mobile': borderType,
+          '--border-color-desktop': borderColor,
+          '--border-color-tablet': borderColor,
+          '--border-color-mobile': borderColor
         }
       }),
       children: attributes.items.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
@@ -2304,15 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
 ['core/group', {
-  className: 'gmfgb-pg-title',
-  style: {
-    border: {
-      style: 'solid',
-      width: '0',
-      radius: '0',
-      color: '#dcdcdc'
-    }
-  }
+  className: 'gmfgb-pg-title'
 }, [['core/paragraph', {
   className: 'gmfgb-pg-sub-heading',
   placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Your amazing blog posts', 'grid-masonry-for-guten-blocks'),
@@ -2351,7 +2131,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   }
 }]]], /** Main Post Loop/Query with Default Wordpress Posts */
 ['core/query', {
-  className: 'gmfgb-pg-loop-wrap border-none',
+  className: 'gmfgb-pg-loop-wrap',
   query: {
     inherit: false,
     offset: 0,
@@ -2367,18 +2147,10 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
   displayLayout: false,
   align: false
 }, [['core/group', {
-  className: 'gmfgb-pg-wrap border-none',
-  style: {
-    border: {
-      style: 'var(--border-type-desktop, none)',
-      width: 'var(--border-width-desktop, 0px)',
-      radius: 'var(--border-radius-desktop, 0px)',
-      color: 'var(--border-color-desktop, #000000)'
-    }
-  },
+  className: 'gmfgb-pg-wrap',
   templateLock: true
 }, [['core/post-featured-image', {
-  className: 'gmfgb-pg-featured-img border-none',
+  className: 'gmfgb-pg-featured-img',
   style: {
     width: '100%',
     height: '100%',
@@ -2392,7 +2164,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/group', {
-  className: 'gmfgb-pg-content border-none',
+  className: 'gmfgb-pg-content',
   style: {
     spacing: {
       padding: {
@@ -2467,7 +2239,7 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
     }
   }
 }], ['core/group', {
-  className: 'gmfgb-pg-date-wrap border-none',
+  className: 'gmfgb-pg-date-wrap',
   style: {
     spacing: {
       padding: {
@@ -2585,8 +2357,8 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       type: 'boolean',
       default: false
     },
-    /** Border width for Desktop */
-    borderWidthDesktop: {
+    /** Border width */
+    borderWidth: {
       type: 'object',
       default: {
         top: 0,
@@ -2595,8 +2367,8 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
         left: 0
       }
     },
-    /** Border width for Tablet */
-    borderWidthTablet: {
+    /** Border radius */
+    borderRadius: {
       type: 'object',
       default: {
         top: 0,
@@ -2605,73 +2377,13 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
         left: 0
       }
     },
-    /** Border width for Mobile */
-    borderWidthMobile: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border radius for Desktop */
-    borderRadiusDesktop: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border radius for Tablet */
-    borderRadiusTablet: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border radius for Mobile */
-    borderRadiusMobile: {
-      type: 'object',
-      default: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    },
-    /** Border type for Desktop */
-    borderTypeDesktop: {
+    /** Border type */
+    borderType: {
       type: 'string',
       default: 'none'
     },
-    /** Border type for Tablet */
-    borderTypeTablet: {
-      type: 'string',
-      default: 'none'
-    },
-    /** Border type for Mobile */
-    borderTypeMobile: {
-      type: 'string',
-      default: 'none'
-    },
-    /** Border color for Desktop */
-    borderColorDesktop: {
-      type: 'string',
-      default: '#000000'
-    },
-    /** Border color for Tablet */
-    borderColorTablet: {
-      type: 'string',
-      default: '#000000'
-    },
-    /** Border color for Mobile */
-    borderColorMobile: {
+    /** Border color */
+    borderColor: {
       type: 'string',
       default: '#000000'
     }
@@ -2698,40 +2410,16 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       redirect
     } = attributes;
     const {
-      borderWidthDesktop
+      borderWidth
     } = attributes;
     const {
-      borderWidthTablet
+      borderRadius
     } = attributes;
     const {
-      borderWidthMobile
+      borderType
     } = attributes;
     const {
-      borderRadiusDesktop
-    } = attributes;
-    const {
-      borderRadiusTablet
-    } = attributes;
-    const {
-      borderRadiusMobile
-    } = attributes;
-    const {
-      borderTypeDesktop
-    } = attributes;
-    const {
-      borderTypeTablet
-    } = attributes;
-    const {
-      borderTypeMobile
-    } = attributes;
-    const {
-      borderColorDesktop
-    } = attributes;
-    const {
-      borderColorTablet
-    } = attributes;
-    const {
-      borderColorMobile
+      borderColor
     } = attributes;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
@@ -2779,40 +2467,44 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Panel, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-            title: "Photo Settings",
+            title: "Border Settings",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_media_grid_BorderSettings__WEBPACK_IMPORTED_MODULE_7__["default"], {
-              borderWidth: borderWidthDesktop,
-              setBorderWidth: value => {
-                setAttributes({
-                  borderWidthDesktop: value,
-                  borderWidthTablet: value,
-                  borderWidthMobile: value
-                });
-              },
-              borderRadius: borderRadiusDesktop,
-              setBorderRadius: value => {
-                setAttributes({
-                  borderRadiusDesktop: value,
-                  borderRadiusTablet: value,
-                  borderRadiusMobile: value
-                });
-              },
-              borderType: borderTypeDesktop,
-              setBorderType: value => {
-                setAttributes({
-                  borderTypeDesktop: value,
-                  borderTypeTablet: value,
-                  borderTypeMobile: value
-                });
-              },
-              borderColor: borderColorDesktop,
-              setBorderColor: value => {
-                setAttributes({
-                  borderColorDesktop: value,
-                  borderColorTablet: value,
-                  borderColorMobile: value
-                });
-              }
+              borderWidth: borderWidth,
+              setBorderWidth: ({
+                top,
+                right,
+                bottom,
+                left
+              }) => setAttributes({
+                borderWidth: {
+                  top,
+                  right,
+                  bottom,
+                  left
+                }
+              }),
+              borderRadius: borderRadius,
+              setBorderRadius: ({
+                top,
+                right,
+                bottom,
+                left
+              }) => setAttributes({
+                borderRadius: {
+                  top,
+                  right,
+                  bottom,
+                  left
+                }
+              }),
+              borderType: borderType,
+              setBorderType: value => setAttributes({
+                borderType: value
+              }),
+              borderColor: borderColor,
+              setBorderColor: value => setAttributes({
+                borderColor: value
+              })
             })
           })
         })]
@@ -2823,53 +2515,53 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
           'data-grid-desktop': gridItemDesktop,
           'data-grid-tablet': gridItemTablet,
           'data-grid-mobile': gridItemMobile,
-          'data-border-width-desktop': JSON.stringify(borderWidthDesktop),
-          'data-border-width-tablet': JSON.stringify(borderWidthTablet),
-          'data-border-width-mobile': JSON.stringify(borderWidthMobile),
-          'data-border-radius-desktop': JSON.stringify(borderRadiusDesktop),
-          'data-border-radius-tablet': JSON.stringify(borderRadiusTablet),
-          'data-border-radius-mobile': JSON.stringify(borderRadiusMobile),
-          'data-border-type-desktop': borderTypeDesktop,
-          'data-border-type-tablet': borderTypeTablet,
-          'data-border-type-mobile': borderTypeMobile,
-          'data-border-color-desktop': borderColorDesktop,
-          'data-border-color-tablet': borderColorTablet,
-          'data-border-color-mobile': borderColorMobile,
+          'data-border-width-desktop': JSON.stringify(borderWidth),
+          'data-border-width-tablet': JSON.stringify(borderWidth),
+          'data-border-width-mobile': JSON.stringify(borderWidth),
+          'data-border-radius-desktop': JSON.stringify(borderRadius),
+          'data-border-radius-tablet': JSON.stringify(borderRadius),
+          'data-border-radius-mobile': JSON.stringify(borderRadius),
+          'data-border-type-desktop': borderType,
+          'data-border-type-tablet': borderType,
+          'data-border-type-mobile': borderType,
+          'data-border-color-desktop': borderColor,
+          'data-border-color-tablet': borderColor,
+          'data-border-color-mobile': borderColor,
           style: {
             '--grid-desktop': gridItemDesktop,
             '--grid-tablet': gridItemTablet,
             '--grid-mobile': gridItemMobile,
             '--gap': gap + 'px',
-            '--border-width-desktop-top': (borderWidthDesktop?.top || 0) + 'px',
-            '--border-width-desktop-right': (borderWidthDesktop?.right || 0) + 'px',
-            '--border-width-desktop-bottom': (borderWidthDesktop?.bottom || 0) + 'px',
-            '--border-width-desktop-left': (borderWidthDesktop?.left || 0) + 'px',
-            '--border-width-tablet-top': (borderWidthTablet?.top || 0) + 'px',
-            '--border-width-tablet-right': (borderWidthTablet?.right || 0) + 'px',
-            '--border-width-tablet-bottom': (borderWidthTablet?.bottom || 0) + 'px',
-            '--border-width-tablet-left': (borderWidthTablet?.left || 0) + 'px',
-            '--border-width-mobile-top': (borderWidthMobile?.top || 0) + 'px',
-            '--border-width-mobile-right': (borderWidthMobile?.right || 0) + 'px',
-            '--border-width-mobile-bottom': (borderWidthMobile?.bottom || 0) + 'px',
-            '--border-width-mobile-left': (borderWidthMobile?.left || 0) + 'px',
-            '--border-radius-desktop-top': (borderRadiusDesktop?.top || 0) + 'px',
-            '--border-radius-desktop-right': (borderRadiusDesktop?.right || 0) + 'px',
-            '--border-radius-desktop-bottom': (borderRadiusDesktop?.bottom || 0) + 'px',
-            '--border-radius-desktop-left': (borderRadiusDesktop?.left || 0) + 'px',
-            '--border-radius-tablet-top': (borderRadiusTablet?.top || 0) + 'px',
-            '--border-radius-tablet-right': (borderRadiusTablet?.right || 0) + 'px',
-            '--border-radius-tablet-bottom': (borderRadiusTablet?.bottom || 0) + 'px',
-            '--border-radius-tablet-left': (borderRadiusTablet?.left || 0) + 'px',
-            '--border-radius-mobile-top': (borderRadiusMobile?.top || 0) + 'px',
-            '--border-radius-mobile-right': (borderRadiusMobile?.right || 0) + 'px',
-            '--border-radius-mobile-bottom': (borderRadiusMobile?.bottom || 0) + 'px',
-            '--border-radius-mobile-left': (borderRadiusMobile?.left || 0) + 'px',
-            '--border-type-desktop': borderTypeDesktop,
-            '--border-type-tablet': borderTypeTablet,
-            '--border-type-mobile': borderTypeMobile,
-            '--border-color-desktop': borderColorDesktop,
-            '--border-color-tablet': borderColorTablet,
-            '--border-color-mobile': borderColorMobile
+            '--border-width-desktop-top': (borderWidth?.top || 0) + 'px',
+            '--border-width-desktop-right': (borderWidth?.right || 0) + 'px',
+            '--border-width-desktop-bottom': (borderWidth?.bottom || 0) + 'px',
+            '--border-width-desktop-left': (borderWidth?.left || 0) + 'px',
+            '--border-width-tablet-top': (borderWidth?.top || 0) + 'px',
+            '--border-width-tablet-right': (borderWidth?.right || 0) + 'px',
+            '--border-width-tablet-bottom': (borderWidth?.bottom || 0) + 'px',
+            '--border-width-tablet-left': (borderWidth?.left || 0) + 'px',
+            '--border-width-mobile-top': (borderWidth?.top || 0) + 'px',
+            '--border-width-mobile-right': (borderWidth?.right || 0) + 'px',
+            '--border-width-mobile-bottom': (borderWidth?.bottom || 0) + 'px',
+            '--border-width-mobile-left': (borderWidth?.left || 0) + 'px',
+            '--border-radius-desktop-top': (borderRadius?.top || 0) + 'px',
+            '--border-radius-desktop-right': (borderRadius?.right || 0) + 'px',
+            '--border-radius-desktop-bottom': (borderRadius?.bottom || 0) + 'px',
+            '--border-radius-desktop-left': (borderRadius?.left || 0) + 'px',
+            '--border-radius-tablet-top': (borderRadius?.top || 0) + 'px',
+            '--border-radius-tablet-right': (borderRadius?.right || 0) + 'px',
+            '--border-radius-tablet-bottom': (borderRadius?.bottom || 0) + 'px',
+            '--border-radius-tablet-left': (borderRadius?.left || 0) + 'px',
+            '--border-radius-mobile-top': (borderRadius?.top || 0) + 'px',
+            '--border-radius-mobile-right': (borderRadius?.right || 0) + 'px',
+            '--border-radius-mobile-bottom': (borderRadius?.bottom || 0) + 'px',
+            '--border-radius-mobile-left': (borderRadius?.left || 0) + 'px',
+            '--border-type-desktop': borderType,
+            '--border-type-tablet': borderType,
+            '--border-type-mobile': borderType,
+            '--border-color-desktop': borderColor,
+            '--border-color-tablet': borderColor,
+            '--border-color-mobile': borderColor
           }
         }),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
@@ -2897,40 +2589,16 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
       redirect
     } = attributes;
     const {
-      borderWidthDesktop
+      borderWidth
     } = attributes;
     const {
-      borderWidthTablet
+      borderRadius
     } = attributes;
     const {
-      borderWidthMobile
+      borderType
     } = attributes;
     const {
-      borderRadiusDesktop
-    } = attributes;
-    const {
-      borderRadiusTablet
-    } = attributes;
-    const {
-      borderRadiusMobile
-    } = attributes;
-    const {
-      borderTypeDesktop
-    } = attributes;
-    const {
-      borderTypeTablet
-    } = attributes;
-    const {
-      borderTypeMobile
-    } = attributes;
-    const {
-      borderColorDesktop
-    } = attributes;
-    const {
-      borderColorTablet
-    } = attributes;
-    const {
-      borderColorMobile
+      borderColor
     } = attributes;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps.save({
@@ -2938,53 +2606,53 @@ const POST_GRID_TEMPLATE = [/** Additional Heading and Description */
         'data-grid-desktop': gridItemDesktop,
         'data-grid-tablet': gridItemTablet,
         'data-grid-mobile': gridItemMobile,
-        'data-border-width-desktop': JSON.stringify(borderWidthDesktop),
-        'data-border-width-tablet': JSON.stringify(borderWidthTablet),
-        'data-border-width-mobile': JSON.stringify(borderWidthMobile),
-        'data-border-radius-desktop': JSON.stringify(borderRadiusDesktop),
-        'data-border-radius-tablet': JSON.stringify(borderRadiusTablet),
-        'data-border-radius-mobile': JSON.stringify(borderRadiusMobile),
-        'data-border-type-desktop': borderTypeDesktop,
-        'data-border-type-tablet': borderTypeTablet,
-        'data-border-type-mobile': borderTypeMobile,
-        'data-border-color-desktop': borderColorDesktop,
-        'data-border-color-tablet': borderColorTablet,
-        'data-border-color-mobile': borderColorMobile,
+        'data-border-width-desktop': JSON.stringify(borderWidth),
+        'data-border-width-tablet': JSON.stringify(borderWidth),
+        'data-border-width-mobile': JSON.stringify(borderWidth),
+        'data-border-radius-desktop': JSON.stringify(borderRadius),
+        'data-border-radius-tablet': JSON.stringify(borderRadius),
+        'data-border-radius-mobile': JSON.stringify(borderRadius),
+        'data-border-type-desktop': borderType,
+        'data-border-type-tablet': borderType,
+        'data-border-type-mobile': borderType,
+        'data-border-color-desktop': borderColor,
+        'data-border-color-tablet': borderColor,
+        'data-border-color-mobile': borderColor,
         style: {
           '--grid-desktop': gridItemDesktop,
           '--grid-tablet': gridItemTablet,
           '--grid-mobile': gridItemMobile,
           '--gap': gap + 'px',
-          '--border-width-desktop-top': (borderWidthDesktop?.top || 0) + 'px',
-          '--border-width-desktop-right': (borderWidthDesktop?.right || 0) + 'px',
-          '--border-width-desktop-bottom': (borderWidthDesktop?.bottom || 0) + 'px',
-          '--border-width-desktop-left': (borderWidthDesktop?.left || 0) + 'px',
-          '--border-width-tablet-top': (borderWidthTablet?.top || 0) + 'px',
-          '--border-width-tablet-right': (borderWidthTablet?.right || 0) + 'px',
-          '--border-width-tablet-bottom': (borderWidthTablet?.bottom || 0) + 'px',
-          '--border-width-tablet-left': (borderWidthTablet?.left || 0) + 'px',
-          '--border-width-mobile-top': (borderWidthMobile?.top || 0) + 'px',
-          '--border-width-mobile-right': (borderWidthMobile?.right || 0) + 'px',
-          '--border-width-mobile-bottom': (borderWidthMobile?.bottom || 0) + 'px',
-          '--border-width-mobile-left': (borderWidthMobile?.left || 0) + 'px',
-          '--border-radius-desktop-top': (borderRadiusDesktop?.top || 0) + 'px',
-          '--border-radius-desktop-right': (borderRadiusDesktop?.right || 0) + 'px',
-          '--border-radius-desktop-bottom': (borderRadiusDesktop?.bottom || 0) + 'px',
-          '--border-radius-desktop-left': (borderRadiusDesktop?.left || 0) + 'px',
-          '--border-radius-tablet-top': (borderRadiusTablet?.top || 0) + 'px',
-          '--border-radius-tablet-right': (borderRadiusTablet?.right || 0) + 'px',
-          '--border-radius-tablet-bottom': (borderRadiusTablet?.bottom || 0) + 'px',
-          '--border-radius-tablet-left': (borderRadiusTablet?.left || 0) + 'px',
-          '--border-radius-mobile-top': (borderRadiusMobile?.top || 0) + 'px',
-          '--border-radius-mobile-right': (borderRadiusMobile?.right || 0) + 'px',
-          '--border-radius-mobile-bottom': (borderRadiusMobile?.bottom || 0) + 'px',
-          '--border-radius-mobile-left': (borderRadiusMobile?.left || 0) + 'px',
-          '--border-type-desktop': borderTypeDesktop,
-          '--border-type-tablet': borderTypeTablet,
-          '--border-type-mobile': borderTypeMobile,
-          '--border-color-desktop': borderColorDesktop,
-          '--border-color-tablet': borderColorTablet,
-          '--border-color-mobile': borderColorMobile
+          '--border-width-desktop-top': (borderWidth?.top || 0) + 'px',
+          '--border-width-desktop-right': (borderWidth?.right || 0) + 'px',
+          '--border-width-desktop-bottom': (borderWidth?.bottom || 0) + 'px',
+          '--border-width-desktop-left': (borderWidth?.left || 0) + 'px',
+          '--border-width-tablet-top': (borderWidth?.top || 0) + 'px',
+          '--border-width-tablet-right': (borderWidth?.right || 0) + 'px',
+          '--border-width-tablet-bottom': (borderWidth?.bottom || 0) + 'px',
+          '--border-width-tablet-left': (borderWidth?.left || 0) + 'px',
+          '--border-width-mobile-top': (borderWidth?.top || 0) + 'px',
+          '--border-width-mobile-right': (borderWidth?.right || 0) + 'px',
+          '--border-width-mobile-bottom': (borderWidth?.bottom || 0) + 'px',
+          '--border-width-mobile-left': (borderWidth?.left || 0) + 'px',
+          '--border-radius-desktop-top': (borderRadius?.top || 0) + 'px',
+          '--border-radius-desktop-right': (borderRadius?.right || 0) + 'px',
+          '--border-radius-desktop-bottom': (borderRadius?.bottom || 0) + 'px',
+          '--border-radius-desktop-left': (borderRadius?.left || 0) + 'px',
+          '--border-radius-tablet-top': (borderRadius?.top || 0) + 'px',
+          '--border-radius-tablet-right': (borderRadius?.right || 0) + 'px',
+          '--border-radius-tablet-bottom': (borderRadius?.bottom || 0) + 'px',
+          '--border-radius-tablet-left': (borderRadius?.left || 0) + 'px',
+          '--border-radius-mobile-top': (borderRadius?.top || 0) + 'px',
+          '--border-radius-mobile-right': (borderRadius?.right || 0) + 'px',
+          '--border-radius-mobile-bottom': (borderRadius?.bottom || 0) + 'px',
+          '--border-radius-mobile-left': (borderRadius?.left || 0) + 'px',
+          '--border-type-desktop': borderType,
+          '--border-type-tablet': borderType,
+          '--border-type-mobile': borderType,
+          '--border-color-desktop': borderColor,
+          '--border-color-tablet': borderColor,
+          '--border-color-mobile': borderColor
         }
       }),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.Content, {})

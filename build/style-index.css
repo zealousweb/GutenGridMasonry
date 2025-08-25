@@ -1020,32 +1020,6 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
   border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
   border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
 }
-@media (min-width: 561px) and (max-width: 767px) {
-  .gmfgb-mg-media {
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
-  }
-  .gmfgb-mg-media:not([data-border-type-desktop=none]) {
-    border-top-width: var(--border-width-desktop-top, 0px);
-    border-right-width: var(--border-width-desktop-right, 0px);
-    border-bottom-width: var(--border-width-desktop-bottom, 0px);
-    border-left-width: var(--border-width-desktop-left, 0px);
-    border-style: var(--border-type-desktop, none);
-    border-color: var(--border-color-desktop, #000);
-  }
-}
-@media (min-width: 320px) and (max-width: 560px) {
-  .gmfgb-mg-media {
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
-  }
-  .gmfgb-mg-media:not([data-border-type-desktop=none]) {
-    border-top-width: var(--border-width-desktop-top, 0px);
-    border-right-width: var(--border-width-desktop-right, 0px);
-    border-bottom-width: var(--border-width-desktop-bottom, 0px);
-    border-left-width: var(--border-width-desktop-left, 0px);
-    border-style: var(--border-type-desktop, none);
-    border-color: var(--border-color-desktop, #000);
-  }
-}
 
 .gmfgb-mg-media[style*=border-width] {
   border-style: var(--border-type-desktop, none) !important;

@@ -1,18 +1,6 @@
 import { useState } from 'react';
 import { Button, SelectControl, ColorPalette } from '@wordpress/components';
-import { desktop, tablet, link as linkIcon, linkOff as unlinkIcon } from '@wordpress/icons';
-
-const mobileIcon = (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
-  </svg>
-);
-
-const deviceOptions = [
-  { key: 'desktop', icon: desktop, label: 'Desktop' },
-  { key: 'tablet', icon: tablet, label: 'Tablet' },
-  { key: 'mobile', icon: mobileIcon, label: 'Mobile' },
-];
+import { link as linkIcon, linkOff as unlinkIcon } from '@wordpress/icons';
 
 const borderTypeOptions = [
   { label: 'None', value: 'none' },
@@ -26,92 +14,80 @@ const borderTypeOptions = [
   { label: 'Outset', value: 'outset' },
 ];
 
-const minMax = {
-  desktop: { min: 0, max: 50 },
-  tablet: { min: 0, max: 40 },
-  mobile: { min: 0, max: 30 },
-};
+const minMax = { min: 0, max: 50 };
 
 export default function BorderSettings({ borderWidth, setBorderWidth, borderRadius, setBorderRadius, borderType, setBorderType, borderColor, setBorderColor }) {
-  const [device, setDevice] = useState('desktop');
   const [isLinkedWidth, setIsLinkedWidth] = useState(true);
   const [isLinkedRadius, setIsLinkedRadius] = useState(true);
 
   // Helper to ensure object format
-  const ensureBorderObject = (borderData, device) => {
-    if (!borderData || !borderData[device]) {
+  const ensureBorderObject = (borderData) => {
+    if (!borderData) {
       return { top: 0, right: 0, bottom: 0, left: 0 };
     }
-    const deviceData = borderData[device];
-    if (typeof deviceData === 'number') {
-      return { top: deviceData, right: deviceData, bottom: deviceData, left: deviceData };
+    if (typeof borderData === 'number') {
+      return { top: borderData, right: borderData, bottom: borderData, left: borderData };
     }
-    if (typeof deviceData === 'object') {
+    if (typeof borderData === 'object') {
       return {
-        top: deviceData.top ?? 0,
-        right: deviceData.right ?? 0,
-        bottom: deviceData.bottom ?? 0,
-        left: deviceData.left ?? 0
+        top: borderData.top ?? 0,
+        right: borderData.right ?? 0,
+        bottom: borderData.bottom ?? 0,
+        left: borderData.left ?? 0
       };
     }
     return { top: 0, right: 0, bottom: 0, left: 0 };
   };
 
   // Border Width Handlers
-  const currentBorderWidth = ensureBorderObject(borderWidth, device);
+  const currentBorderWidth = ensureBorderObject(borderWidth);
   const handleBorderWidthChange = (side, value) => {
     let val = Number(value) || 0;
     
     // Validate against min/max limits
-    const limits = minMax[device];
-    if (val < limits.min) val = limits.min;
-    if (val > limits.max) val = limits.max;
+    if (val < minMax.min) val = minMax.min;
+    if (val > minMax.max) val = minMax.max;
     
-    let newBorderWidth = { ...borderWidth };
-    let obj = { ...currentBorderWidth };
+    let newBorderWidth = { ...currentBorderWidth };
     if (isLinkedWidth) {
-      obj = { top: val, right: val, bottom: val, left: val };
+      newBorderWidth = { top: val, right: val, bottom: val, left: val };
     } else {
-      obj[side] = val;
+      newBorderWidth[side] = val;
     }
-    newBorderWidth[device] = obj;
     setBorderWidth(newBorderWidth);
   };
 
   // Border Radius Handlers
-  const currentBorderRadius = ensureBorderObject(borderRadius, device);
+  const currentBorderRadius = ensureBorderObject(borderRadius);
   const handleBorderRadiusChange = (side, value) => {
     let val = Number(value) || 0;
     
     // Validate against min/max limits
-    const limits = minMax[device];
-    if (val < limits.min) val = limits.min;
-    if (val > limits.max) val = limits.max;
+    if (val < minMax.min) val = minMax.min;
+    if (val > minMax.max) val = minMax.max;
     
-    let newBorderRadius = { ...borderRadius };
-    let obj = { ...currentBorderRadius };
+    let newBorderRadius = { ...currentBorderRadius };
     if (isLinkedRadius) {
-      obj = { top: val, right: val, bottom: val, left: val };
+      newBorderRadius = { top: val, right: val, bottom: val, left: val };
     } else {
-      obj[side] = val;
+      newBorderRadius[side] = val;
     }
-    newBorderRadius[device] = obj;
     setBorderRadius(newBorderRadius);
   };
 
   const handleBorderTypeChange = (value) => {
-    setBorderType({ ...borderType, [device]: value });
+    setBorderType(value);
     if (value === 'none') {
-      let newBorderWidth = { ...borderWidth };
-      newBorderWidth[device] = { top: 0, right: 0, bottom: 0, left: 0 };
-      setBorderWidth(newBorderWidth);
+      setBorderWidth({ top: 0, right: 0, bottom: 0, left: 0 });
     }
   };
+  
   const handleBorderColorChange = (value) => {
-    setBorderColor({ ...borderColor, [device]: value });
+    setBorderColor(value);
   };
-  const showBorderColor = borderType[device] && borderType[device] !== 'none';
-  const isBorderTypeNone = borderType[device] === 'none';
+  
+  const showBorderColor = borderType && borderType !== 'none';
+  const isBorderTypeNone = borderType === 'none';
 
   // Layout for Elementor-style controls
   const renderFourInputRow = (obj, onChange, isLinked, setIsLinked, disabled = false, settingType = '') => (
@@ -121,8 +97,8 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
           <input
             key={side}
             type="number"
-            min={minMax[device].min}
-            max={minMax[device].max}
+            min={minMax.min}
+            max={minMax.max}
             value={obj[side]}
             onChange={e => onChange(side, e.target.value)}
             style={{
@@ -166,32 +142,20 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
       </div>
       {/* PX Label for current values */}
       <div style={{ fontSize: 12, color: '#555', marginTop: 4 }}>
-        {deviceOptions.find(opt => opt.key === device).label} {settingType}: {isLinked ? `${obj.top}px` : `${obj.top}px, ${obj.right}px, ${obj.bottom}px, ${obj.left}px`}
+        {settingType}: {isLinked ? `${obj.top}px` : `${obj.top}px, ${obj.right}px, ${obj.bottom}px, ${obj.left}px`}
       </div>
     </>
   );
 
   return (
     <div style={{ marginBottom: 24 }}>
-      <div className='gmfgb-mg-border-setting' style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-        {deviceOptions.map(({ key, icon, label }) => (
-          <Button
-            key={key}
-            isPrimary={device === key}
-            icon={icon}
-            label={label}
-            onClick={() => setDevice(key)}
-            style={{ padding: 4 }}
-          />
-        ))}
-      </div>
       {/* Border Type Control */}
       <div style={{ marginBottom: 16 }}>
         <label style={{ fontWeight: 500, marginBottom: 4, display: 'block' }}>
           Border Type
         </label>
         <SelectControl
-          value={borderType[device]}
+          value={borderType}
           options={borderTypeOptions}
           onChange={handleBorderTypeChange}
         />
@@ -203,7 +167,7 @@ export default function BorderSettings({ borderWidth, setBorderWidth, borderRadi
             Border Color
           </label>
           <ColorPalette
-            value={borderColor[device]}
+            value={borderColor}
             onChange={handleBorderColorChange}
             enableAlpha
             colors={[
