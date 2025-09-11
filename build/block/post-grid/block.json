@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "name": "grid-masonry-for-guten-blocks/post-grid",
+  "version": "1.0.0",
+  "title": "Post Grid",
+  "category": "zealblocks",
+  "icon": "grid-view",
+  "description": "An advanced block that allows displaying post types based on different query parameters and visual configurations.",
+  "textdomain": "grid-masonry-for-guten-blocks",
+  "editorScript": "file:../../index.js",
+  "editorStyle": "file:../../index.css",
+  "style": "file:../../style-index.css",
+  "supports": {
+    "displayLayout": true,
+    "layout": true,
+    "align": true
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "wide"
+    },
+    "gridItemDesktop": {
+      "type": "number",
+      "default": 2
+    },
+    "gridItemTablet": {
+      "type": "number",
+      "default": 2
+    },
+    "gridItemMobile": {
+      "type": "number",
+      "default": 1
+    },
+    "gap": {
+      "type": "number",
+      "default": 20
+    },
+    "redirect": {
+      "type": "boolean",
+      "default": false
+    },
+    "borderWidth": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "borderType": {
+      "type": "string",
+      "default": "none"
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "#000000"
+    }
+  }
+}
