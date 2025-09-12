@@ -109,7 +109,10 @@ This plugin utilizes third-party libraries to enhance its functionality:
 == Changelog ==
 
 = 1.0.6 =
-Minor changes - Doc update
+* Flexible Column Layouts: Easily control the number of columns in your grid to achieve the perfect layout for your content. 
+* Customizable Photo Settings: Fine-tune image presentation with options for border style, width, radius, hover effect, caption toggle, position, and font size.
+* Lightbox Integration: Make your images more interactive by enabling a Lightbox feature. 
+* Customizable Color Options: Match grid colors to your brand for a cohesive, consistent design that enhances your site’s aesthetics.
 
 = 1.0.5 =
 Minor changes - Doc update
@@ -152,6 +155,9 @@ Minor workflow adjustments
 Minor changes - Doc update
 
 = 1.0.6 =
-Minor changes - Doc update
+* Flexible Column Layouts: Easily control the number of columns in your grid to achieve the perfect layout for your content. 
+* Customizable Photo Settings: Fine-tune image presentation with options for border style, width, radius, hover effect, caption toggle, position, and font size.
+* Lightbox Integration: Make your images more interactive by enabling a Lightbox feature. 
+* Customizable Color Options: Match grid colors to your brand for a cohesive, consistent design that enhances your site’s aesthetics.
 
 
