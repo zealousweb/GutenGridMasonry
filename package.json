@@ -15,10 +15,11 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.14.0"
+		"@wordpress/scripts": "^30.18.0"
 	},
 	"dependencies": {
 		"@fancyapps/ui": "^5.0.34",
-		"@wordpress/compose": "^7.1.0"
+		"@wordpress/compose": "^7.1.0",
+		"@wordpress/icons": "^10.25.0"
 	}
 }

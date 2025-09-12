@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"name": "grid-masonry-for-guten-blocks/grid-masonry",
+	"name": "grid-masonry-for-guten-blocks/media-grid",
 	"version": "1.0.0",
 	"title": "Media Grid",
 	"category": "zealblocks",

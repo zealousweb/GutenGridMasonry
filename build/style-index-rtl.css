@@ -59,25 +59,25 @@
     margin: 0 !important;
     padding: 0 !important;
     position: relative !important;
-    left: unset !important;
+    right: unset !important;
     top: unset !important;
     flex: 0 0 calc((100% - var(--gap, 20px) * (var(--grid-desktop, 2) - 1)) / var(--grid-desktop, 2)) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-desktop-top, 0px) !important;
-    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-left-width: var(--border-width-desktop-right, 0px) !important;
     border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
-    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-right-width: var(--border-width-desktop-left, 0px) !important;
     border-style: var(--border-type-desktop, none) !important;
     border-color: var(--border-color-desktop, #000000) !important;
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+    border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px) !important;
     overflow: hidden;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
     border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -91,24 +91,24 @@
     margin: 0 !important;
     padding: 0 !important;
     position: relative !important;
-    left: unset !important;
+    right: unset !important;
     top: unset !important;
     flex: 0 0 calc((100% - var(--gap, 20px) * (var(--grid-tablet, 2) - 1)) / var(--grid-tablet, 2)) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-desktop-top, 0px) !important;
-    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-left-width: var(--border-width-desktop-right, 0px) !important;
     border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
-    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-right-width: var(--border-width-desktop-left, 0px) !important;
     border-style: var(--border-type-desktop, none) !important;
     border-color: var(--border-color-desktop, #000000) !important;
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+    border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
     border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
 }
 @media (max-width: 767px) {
@@ -122,24 +122,24 @@
     margin: 0 !important;
     padding: 0 !important;
     position: relative !important;
-    left: unset !important;
+    right: unset !important;
     top: unset !important;
     flex: 0 0 calc((100% - var(--gap, 20px) * (var(--grid-mobile, 1) - 1)) / var(--grid-mobile, 1)) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-desktop-top, 0px) !important;
-    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-left-width: var(--border-width-desktop-right, 0px) !important;
     border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
-    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-right-width: var(--border-width-desktop-left, 0px) !important;
     border-style: var(--border-type-desktop, none) !important;
     border-color: var(--border-color-desktop, #000000) !important;
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+    border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px) !important;
   }
   .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-grid-mobile] .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
     border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
 }
 @media (min-width: 1024px) {
@@ -156,18 +156,18 @@
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-1 .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-desktop-top, 0px) !important;
-    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-left-width: var(--border-width-desktop-right, 0px) !important;
     border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
-    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-right-width: var(--border-width-desktop-left, 0px) !important;
     border-style: var(--border-type-desktop, none) !important;
     border-color: var(--border-color-desktop, #000000) !important;
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+    border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px) !important;
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-1 .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
     border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-2 {
     row-gap: 20px;
@@ -182,18 +182,18 @@
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-2 .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-desktop-top, 0px) !important;
-    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-left-width: var(--border-width-desktop-right, 0px) !important;
     border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
-    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-right-width: var(--border-width-desktop-left, 0px) !important;
     border-style: var(--border-type-desktop, none) !important;
     border-color: var(--border-color-desktop, #000000) !important;
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+    border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px) !important;
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-2 .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
     border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-3 {
     row-gap: 20px;
@@ -208,18 +208,18 @@
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-3 .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-desktop-top, 0px) !important;
-    border-right-width: var(--border-width-desktop-right, 0px) !important;
+    border-left-width: var(--border-width-desktop-right, 0px) !important;
     border-bottom-width: var(--border-width-desktop-bottom, 0px) !important;
-    border-left-width: var(--border-width-desktop-left, 0px) !important;
+    border-right-width: var(--border-width-desktop-left, 0px) !important;
     border-style: var(--border-type-desktop, none) !important;
     border-color: var(--border-color-desktop, #000000) !important;
-    border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px) !important;
+    border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px) !important;
   }
   .gmfgb-pg-grid:not([data-grid-desktop]).grid-size-3 .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
     border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
-    border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
+    border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop, #000000) !important;
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -236,18 +236,18 @@
   }
   .gmfgb-pg-grid:not([data-grid-desktop]) .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-tablet-top, 0px) !important;
-    border-right-width: var(--border-width-tablet-right, 0px) !important;
+    border-left-width: var(--border-width-tablet-right, 0px) !important;
     border-bottom-width: var(--border-width-tablet-bottom, 0px) !important;
-    border-left-width: var(--border-width-tablet-left, 0px) !important;
+    border-right-width: var(--border-width-tablet-left, 0px) !important;
     border-style: var(--border-type-tablet, none) !important;
     border-color: var(--border-color-tablet, #000000) !important;
-    border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px) !important;
+    border-radius: var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-left, 0px) var(--border-radius-tablet-bottom, 0px) !important;
   }
   .gmfgb-pg-grid:not([data-grid-desktop]) .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-tablet-top, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-    border-right: var(--border-width-tablet-right, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+    border-left: var(--border-width-tablet-right, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
     border-bottom: var(--border-width-tablet-bottom, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
-    border-left: var(--border-width-tablet-left, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
+    border-right: var(--border-width-tablet-left, 0px) var(--border-type-tablet, none) var(--border-color-tablet, #000000) !important;
   }
 }
 @media (max-width: 767px) {
@@ -264,18 +264,18 @@
   }
   .gmfgb-pg-grid:not([data-grid-desktop]) .wp-block-post .gmfgb-pg-wrap {
     border-top-width: var(--border-width-mobile-top, 0px) !important;
-    border-right-width: var(--border-width-mobile-right, 0px) !important;
+    border-left-width: var(--border-width-mobile-right, 0px) !important;
     border-bottom-width: var(--border-width-mobile-bottom, 0px) !important;
-    border-left-width: var(--border-width-mobile-left, 0px) !important;
+    border-right-width: var(--border-width-mobile-left, 0px) !important;
     border-style: var(--border-type-mobile, none) !important;
     border-color: var(--border-color-mobile, #000000) !important;
-    border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px) !important;
+    border-radius: var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-left, 0px) var(--border-radius-mobile-bottom, 0px) !important;
   }
   .gmfgb-pg-grid:not([data-grid-desktop]) .wp-block-post .gmfgb-pg-wrap:not([style*="border-style: none"]) {
     border-top: var(--border-width-mobile-top, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-    border-right: var(--border-width-mobile-right, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+    border-left: var(--border-width-mobile-right, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
     border-bottom: var(--border-width-mobile-bottom, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
-    border-left: var(--border-width-mobile-left, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
+    border-right: var(--border-width-mobile-left, 0px) var(--border-type-mobile, none) var(--border-color-mobile, #000000) !important;
   }
 }
 .gmfgb-pg-grid:not([data-grid-desktop]):not([data-grid-tablet]):not([data-grid-mobile]) {
@@ -319,7 +319,7 @@
   height: 100%;
   display: block;
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.7));
   overflow: hidden;
@@ -332,7 +332,7 @@
 }
 .gmfgb-pg-grid .gmfgb-pg-featured-img {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   width: 100%;
   height: 100%;
@@ -497,7 +497,7 @@
 }
 .editor-styles-wrapper .gmfgb-pg-grid:not(.isotope-initialized) .wp-block-post {
   position: relative !important;
-  left: unset !important;
+  right: unset !important;
   top: unset !important;
   width: calc((100% - var(--gap, 20px) * (var(--grid-desktop, 2) - 1)) / var(--grid-desktop, 2)) !important;
 }
@@ -576,7 +576,7 @@ body:not(.wp-admin) .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-gri
   height: 100%;
   position: absolute;
   display: block;
-  left: 0;
+  right: 0;
   top: 0;
   background: transparent;
 }
@@ -849,12 +849,12 @@ body:not(.wp-admin) .gmfgb-pg-grid[data-grid-desktop][data-grid-tablet][data-gri
 }
 .editor-styles-wrapper .gmfgb-mg-grid:not(.isotope-initialized) .gmfgb-mg-media {
   position: relative !important;
-  left: unset !important;
+  right: unset !important;
   top: unset !important;
 }
 .editor-styles-wrapper .gmfgb-mg-grid:not(.isotope-initialized) .gmfgb-mg-wrap {
   position: relative !important;
-  left: unset !important;
+  right: unset !important;
   top: unset !important;
   width: calc((100% - var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1)) / var(--grid-desktop, 3)) !important;
 }
@@ -934,7 +934,7 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
 
 .image-caption {
   position: absolute;
-  left: 0;
+  right: 0;
   width: 100%;
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.25);
@@ -943,7 +943,7 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
   max-height: 70%;
   overflow: auto;
   font-size: 16px;
-  text-align: left;
+  text-align: right;
 }
 .image-caption.caption-pos-top {
   top: 0;
@@ -997,7 +997,7 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
   padding: 0;
   box-sizing: border-box;
   font-size: 0;
-  border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
+  border-radius: var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-left, 0px) var(--border-radius-desktop-bottom, 0px);
   overflow: hidden;
 }
 .gmfgb-mg-media > a {
@@ -1011,15 +1011,15 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
   padding: 5px;
   position: absolute;
   top: 20px;
-  left: 20px;
+  right: 20px;
   border-radius: 100px;
   z-index: 2;
 }
 .gmfgb-mg-media:not([data-border-type-desktop=none]) {
   border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
-  border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+  border-left: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
   border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
-  border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+  border-right: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
 }
 
 .gmfgb-mg-media[style*=border-width] {
@@ -1164,5 +1164,3 @@ body:not(.wp-admin) .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data
     font-size: var(--caption-font-size-desktop, 16px);
   }
 }
-
-/*# sourceMappingURL=style-index.css.map*/

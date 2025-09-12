@@ -5,11 +5,51 @@
 * which makes it higher in priority.
 */
 
+// Override WordPress core rule that forces border-style: solid
+.gmfgb-mg-image {
+	&[style*="border-width"] {
+		border-style: var(--border-type-desktop, none) !important;
+	}
+}
+
 .gmfgb-mg-grid {
 	display: flex;
 	flex-wrap: wrap !important;
-	gap: 20px;
     padding: 0 !important;
+	row-gap: 20px !important; /* Row gap always 20px */
+	// Initial state handling for gutter spacing
+	&:not([data-gutter-desktop]) {
+		column-gap: 20px !important;
+	}
+	
+	&:not([data-gutter-tablet]) {
+		@media (min-width: 768px) and (max-width: 1023px) {
+			column-gap: 20px !important;
+		}
+	}
+	
+	&:not([data-gutter-mobile]) {
+		@media (max-width: 767px) {
+			column-gap: 20px !important;
+		}
+	}
+	
+	// Editor-specific width calculations for grid items
+	.gmfgb-mg-wrap {
+		margin: 0 !important; /* Remove any default margins */
+		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
+		
+		// Tablet styles (768px to 1023px) - Includes iPad
+		@media (min-width: 768px) and (max-width: 1023px) {
+			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+		}
+		
+		// Mobile styles (below 768px) - Includes all mobile devices
+		@media (max-width: 767px) {
+			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+		}
+	}
+	
 	.gmfgb-mg-button {
 		display: block;
 		min-height: 320px !important;
@@ -18,6 +58,19 @@
 		background-color: transparent;
 		border: 2px solid #000;
 		transition: 0.5s ease all;
+		margin: 0 !important; /* Remove any default margins */
+		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
+		
+		// Tablet styles (768px to 1023px) - Includes iPad
+		@media (min-width: 768px) and (max-width: 1023px) {
+			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+		}
+		
+		// Mobile styles (below 768px) - Includes all mobile devices
+		@media (max-width: 767px) {
+			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+		}
+		
 		&:hover {
 			background-color: inherit;
 			svg {
@@ -30,7 +83,14 @@
 .gmfgb-mg-wrap {
 	position: relative;
 	padding-top: 100px;
-	min-height: 220px;
+	min-height: 360px;
+	border-radius: var(--border-radius-desktop-top, 0px) var(--border-radius-desktop-right, 0px) var(--border-radius-desktop-bottom, 0px) var(--border-radius-desktop-left, 0px);
+	border-top: var(--border-width-desktop-top, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+	border-right: var(--border-width-desktop-right, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+	border-bottom: var(--border-width-desktop-bottom, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+	border-left: var(--border-width-desktop-left, 0px) var(--border-type-desktop, none) var(--border-color-desktop);
+	overflow: hidden;
+	box-sizing: border-box; /* Ensure proper border handling */
 	.change-image {
 		background-color: #ffffff;
 		color: #ff0000;
@@ -92,8 +152,7 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
-	border-radius: 20px;
-	overflow: hidden;
+	box-sizing: border-box; /* Ensure borders are included in width/height calculations */
 	cursor: pointer;
 	img {
 		width: 100%;
@@ -110,8 +169,40 @@
 		left: 0;
 		top: 0;
 	}
-}
-
+	
+	// Tablet styles
+	@media (min-width: 561px) and (max-width: 767px) {
+		border-radius: var(--border-radius-tablet-top, 0px) var(--border-radius-tablet-right, 0px) var(--border-radius-tablet-bottom, 0px) var(--border-radius-tablet-left, 0px);
+		border-top-width: var(--border-width-tablet-top, 0px);
+		border-right-width: var(--border-width-tablet-right, 0px);
+		border-bottom-width: var(--border-width-tablet-bottom, 0px);
+		border-left-width: var(--border-width-tablet-left, 0px);
+		border-style: var(--border-type-tablet, none);
+		border-color: var(--border-color-tablet, #000);
+	}
+	
+	// Mobile styles
+	@media (min-width: 320px) and (max-width: 560px) {
+		border-radius: var(--border-radius-mobile-top, 0px) var(--border-radius-mobile-right, 0px) var(--border-radius-mobile-bottom, 0px) var(--border-radius-mobile-left, 0px);
+		border-top-width: var(--border-width-mobile-top, 0px);
+		border-right-width: var(--border-width-mobile-right, 0px);
+		border-bottom-width: var(--border-width-mobile-bottom, 0px);
+		border-left-width: var(--border-width-mobile-left, 0px);
+		border-style: var(--border-type-mobile, none);
+		border-color: var(--border-color-mobile, #000);
+	}
+	&-caption-count {
+		font-size: 12px;
+		color: #000;
+		margin: 0 0 8px 0;
+		text-align: center;
+		background: #fff;
+		display: inline-block;
+		padding: 5px;
+		border-radius: 5px;
+		z-index: 2;
+	}
+} 
 .gmfgb-mg-video {
 	z-index: 1;
 	background-color: rgba(255, 255, 255, 0.2);
@@ -196,4 +287,167 @@
 	text-transform: uppercase;
 	margin-bottom: 10px;
 	display: inline-block;
+}
+
+// Additional specificity for WordPress admin editor
+.wp-admin .editor-styles-wrapper .gmfgb-mg-grid {
+	row-gap: 20px !important;
+	column-gap: var(--gutter-desktop, 20px) !important;
+	
+	@media (min-width: 561px) and (max-width: 767px) {
+		column-gap: var(--gutter-tablet, 20px) !important;
+	}
+	
+	@media (min-width: 320px) and (max-width: 560px) {
+		column-gap: var(--gutter-mobile, 20px) !important;
+	}
+	
+	.gmfgb-mg-wrap {
+		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
+		
+		@media (min-width: 561px) and (max-width: 767px) {
+			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+		}
+		
+		@media (min-width: 320px) and (max-width: 560px) {
+			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+		}
+	}
+}
+
+// Even more specific rule for the editor context
+body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data-gutter-mobile] {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	row-gap: 20px !important;
+	column-gap: var(--gutter-desktop, 20px) !important;
+	
+	@media (min-width: 768px) and (max-width: 1023px) {
+		column-gap: var(--gutter-tablet, 20px) !important;
+	}
+	
+	@media (max-width: 767px) {
+		column-gap: var(--gutter-mobile, 20px) !important;
+	}
+	
+	.gmfgb-mg-wrap {
+		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
+		margin: 0 !important;
+		
+		@media (min-width: 768px) and (max-width: 1023px) {
+			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+		}
+		
+		@media (max-width: 767px) {
+			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+		}
+	}
+	
+	.gmfgb-mg-button {
+		width: calc((100% - (var(--gutter-desktop, 20px) * (var(--grid-desktop, 3) - 1))) / var(--grid-desktop, 3)) !important;
+		margin: 0 !important;
+		
+		@media (min-width: 768px) and (max-width: 1023px) {
+			width: calc((100% - (var(--gutter-tablet, 20px) * (var(--grid-tablet, 2) - 1))) / var(--grid-tablet, 2)) !important;
+		}
+		
+		@media (max-width: 767px) {
+			width: calc((100% - (var(--gutter-mobile, 20px) * (var(--grid-mobile, 1) - 1))) / var(--grid-mobile, 1)) !important;
+		}
+	}
+}
+
+// Fallback mechanism using data attributes for gutter spacing
+.gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data-gutter-mobile] {
+	// Desktop fallback
+	&[data-gutter-desktop="10"] { column-gap: 10px !important; }
+	&[data-gutter-desktop="15"] { column-gap: 15px !important; }
+	&[data-gutter-desktop="20"] { column-gap: 20px !important; }
+	&[data-gutter-desktop="25"] { column-gap: 25px !important; }
+	&[data-gutter-desktop="30"] { column-gap: 30px !important; }
+	&[data-gutter-desktop="35"] { column-gap: 35px !important; }
+	&[data-gutter-desktop="40"] { column-gap: 40px !important; }
+	&[data-gutter-desktop="45"] { column-gap: 45px !important; }
+	&[data-gutter-desktop="50"] { column-gap: 50px !important; }
+	
+	// Tablet fallback (768px to 1023px) - Includes iPad
+	@media (min-width: 768px) and (max-width: 1023px) {
+		&[data-gutter-tablet="10"] { column-gap: 10px !important; }
+		&[data-gutter-tablet="15"] { column-gap: 15px !important; }
+		&[data-gutter-tablet="20"] { column-gap: 20px !important; }
+		&[data-gutter-tablet="25"] { column-gap: 25px !important; }
+		&[data-gutter-tablet="30"] { column-gap: 30px !important; }
+		&[data-gutter-tablet="35"] { column-gap: 35px !important; }
+		&[data-gutter-tablet="40"] { column-gap: 40px !important; }
+		&[data-gutter-tablet="45"] { column-gap: 45px !important; }
+		&[data-gutter-tablet="50"] { column-gap: 50px !important; }
+	}
+	
+	// Mobile fallback (below 768px) - Includes all mobile devices
+	@media (max-width: 767px) {
+		&[data-gutter-mobile="10"] { column-gap: 10px !important; }
+		&[data-gutter-mobile="15"] { column-gap: 15px !important; }
+		&[data-gutter-mobile="20"] { column-gap: 20px !important; }
+		&[data-gutter-mobile="25"] { column-gap: 25px !important; }
+		&[data-gutter-mobile="30"] { column-gap: 30px !important; }
+		&[data-gutter-mobile="35"] { column-gap: 35px !important; }
+		&[data-gutter-mobile="40"] { column-gap: 40px !important; }
+		&[data-gutter-mobile="45"] { column-gap: 45px !important; }
+		&[data-gutter-mobile="50"] { column-gap: 50px !important; }
+	}
+}
+
+// Force immediate application of gutter spacing in editor
+body.wp-admin .editor-styles-wrapper .gmfgb-mg-grid[data-gutter-desktop][data-gutter-tablet][data-gutter-mobile] {
+	// Desktop styles (1024px and above)
+	@media (min-width: 1024px) {
+		column-gap: var(--gutter-desktop, 20px) !important;
+	}
+	
+	// Tablet styles (768px to 1023px) - Includes iPad
+	@media (min-width: 768px) and (max-width: 1023px) {
+		column-gap: var(--gutter-tablet, 20px) !important;
+	}
+	
+	// Mobile styles (below 768px) - Includes all mobile devices
+	@media (max-width: 767px) {
+		column-gap: var(--gutter-mobile, 20px) !important;
+	}
+}
+
+// Comprehensive border handling for editor
+.editor-styles-wrapper .gmfgb-mg-grid {
+	// Ensure grid layout remains intact with borders
+	.gmfgb-mg-wrap {
+		// Use padding instead of margin to prevent border overflow
+		box-sizing: border-box !important;
+		overflow: hidden !important;
+		
+		.gmfgb-mg-image {
+			// Ensure borders are contained within the element
+			box-sizing: border-box !important;
+			width: 100% !important;
+			height: 100% !important;
+			
+			// Ensure image content fits properly
+			img {
+				box-sizing: border-box;
+				width: 100% !important;
+				height: 100% !important;
+				object-fit: cover;
+				object-position: center;
+			}
+		}
+	}
+	
+	// Ensure button maintains proper sizing
+	.gmfgb-mg-button {
+		box-sizing: border-box !important;
+		overflow: hidden !important;
+	}
+}
+
+.block-editor-block-inspector label.components-input-control__label {
+	font-size: 13px !important;
+	text-transform: capitalize !important;
 }
