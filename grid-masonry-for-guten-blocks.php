@@ -4,7 +4,7 @@
  * Description:       Seamless Masonry Layouts with Gutenberg allows users to display their posts and media in a masonry design with integrated lightbox options.
  * Requires at least: 5.9
  * Requires PHP:      7.4
- * Version:           1.0.6
+ * Version:           1.0.7
  * Author:            ZealousWeb
  * Author URI:        https://www.zealousweb.com
  * License:           GPLv3 or later License
@@ -37,7 +37,7 @@ if (!defined('GMFGB_BLOCK_PLUGIN_NAME')) {
 }
 
 if (!defined('GMFGB_VERSION')) {
-    define('GMFGB_VERSION', '1.0.6');
+    define('GMFGB_VERSION', '1.0.7');
 }
 
 if (!defined('GMFGB')) {
