@@ -164,3 +164,13 @@ function Gmfgb_Plugin_Block_categories( $categories )
 add_action('block_categories_all', 'Gmfgb_Plugin_Block_categories', 10, 2);
 
 
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'Gmfgb_admin_plugin_links' );
+
+function Gmfgb_admin_plugin_links( $links ) {
+
+	$support_link = '<a href="https://support.zealousweb.com/portal/en/home" target="_blank">' . esc_html__( 'Open Support Ticket', 'grid-masonry-for-guten-blocks' ) . '</a>';
+
+	$links[] = $support_link;
+
+	return $links;
+}
