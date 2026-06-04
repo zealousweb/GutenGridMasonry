@@ -109,7 +109,7 @@ This plugin utilizes third-party libraries to enhance its functionality:
 == Changelog ==
 
 = 1.0.7 =
-* Added a new "Open Support Ticket" button to provide quick and direct access to support
+* Added a new "Open Support Ticket" button to provide quick and direct access to support.
 
 = 1.0.6 =
 * Flexible Column Layouts: Easily control the number of columns in your grid to achieve the perfect layout for your content. 
