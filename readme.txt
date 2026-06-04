@@ -4,7 +4,7 @@ Contributors: zealopensource
 Tags: Gutenberg, Masonry, Image Gallery, Video Gallery, Post Grid
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 5.9
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
 Version: 1.0.7
 Stable tag: 1.0.7
@@ -107,8 +107,9 @@ This plugin utilizes third-party libraries to enhance its functionality:
 5. It will show Front-End View for Post Grid Masonry Section
 
 == Changelog ==
+
 = 1.0.7 =
-* Tested with the latest version of WordPress (6.9).
+* Added a new "Open Support Ticket" button to provide quick and direct access to support
 
 = 1.0.6 =
 * Flexible Column Layouts: Easily control the number of columns in your grid to achieve the perfect layout for your content. 
